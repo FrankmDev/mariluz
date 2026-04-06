@@ -1,0 +1,21 @@
+---
+interface Props {
+  variant?: 'default' | 'green' | 'blue';
+  class?: string;
+}
+
+const { variant = 'default', class: className = '' } = Astro.props;
+
+const variantStyles: Record<string, string> = {
+  default: '',
+  green: 'background: var(--apple-green-light); color: var(--apple-green); border-color: rgba(52,199,89,0.15);',
+  blue: 'background: var(--apple-blue-light); color: var(--apple-blue); border-color: rgba(0,113,227,0.15);',
+};
+---
+
+<span
+  class={`apple-badge ${className}`}
+  style={variantStyles[variant]}
+>
+  <slot />
+</span>

@@ -1,0 +1,247 @@
+---
+const testimonials = [
+  {
+    name: 'Carmen Rodríguez',
+    location: 'Madrid',
+    saving: 324,
+    quote: 'Pensaba que ya tenía una buena tarifa, pero Mariluz encontró una mejor. Ahora ahorro 27€ al mes sin cambiar mis hábitos.',
+    initials: 'CR',
+    color: '#5856D6',
+    bg: 'linear-gradient(135deg, #5856D6, #8B5CF6)',
+  },
+  {
+    name: 'Javier Martínez',
+    location: 'Barcelona',
+    saving: 456,
+    quote: 'Como autónomo, cada euro cuenta. Mariluz me ayudó a reducir la factura de mi local un 20%. Excelente servicio.',
+    initials: 'JM',
+    color: '#007AFF',
+    bg: 'linear-gradient(135deg, #007AFF, #0051D5)',
+  },
+  {
+    name: 'Ana y Luis García',
+    location: 'Valencia',
+    saving: 288,
+    quote: 'Todo muy sencillo. Enviamos la factura, ella hizo el análisis y en dos semanas ya estábamos ahorrando.',
+    initials: 'AL',
+    color: '#34C759',
+    bg: 'linear-gradient(135deg, #34C759, #248A3D)',
+  },
+];
+
+const featuredTestimonial = {
+  name: 'María José Sánchez',
+  location: 'Sevilla',
+  role: 'Propietaria de restaurante',
+  saving: 1240,
+  quote: 'Llevaba 3 años con la misma tarifa pensando que era imposible ahorrar más con todo el local encendido. Mariluz analizó nuestro consumo horario y nos cambió a una tarifa con discriminación optimizada. El primer mes ya ahorramos 103€. En un año, más de 1.200€. Si tienes un negocio, esto es imprescindible.',
+  initials: 'MJ',
+};
+---
+
+<section class="section" style="background: #FFFFFF;">
+  <div class="container-custom">
+
+    <!-- Section Header -->
+    <div class="text-center reveal" style="margin-bottom: 64px;">
+      <span class="badge" style="margin-bottom: 20px; display: inline-flex;">Testimonios</span>
+      <h2 class="text-large-title" style="color: var(--label-primary); margin-bottom: 16px;">
+        Lo que dicen mis clientes.
+      </h2>
+      <p class="text-body-large" style="color: var(--label-secondary);">
+        Resultados reales de quienes confiaron en mi asesoría.
+      </p>
+    </div>
+
+    <!-- Social proof bar -->
+    <div class="reveal social-proof-bar" style="transition-delay: 80ms; margin-bottom: 64px;">
+      <div class="proof-item">
+        <div style="display: flex; gap: 2px; justify-content: center; margin-bottom: 6px;">
+          <span style="color: var(--ios-orange); font-size: 1rem;">★</span>
+          <span style="color: var(--ios-orange); font-size: 1rem;">★</span>
+          <span style="color: var(--ios-orange); font-size: 1rem;">★</span>
+          <span style="color: var(--ios-orange); font-size: 1rem;">★</span>
+          <span style="color: var(--ios-orange); font-size: 1rem;">★</span>
+        </div>
+        <span class="text-numeric" style="font-size: 1.75rem; font-weight: 800; color: var(--label-primary); letter-spacing: -0.03em;">4.9</span>
+        <p class="text-caption" style="color: var(--label-secondary);">Valoración media</p>
+      </div>
+      <div class="proof-sep"></div>
+      <div class="proof-item">
+        <span class="text-numeric" style="font-size: 1.75rem; font-weight: 800; color: var(--label-primary); letter-spacing: -0.03em;">450+</span>
+        <p class="text-caption" style="color: var(--label-secondary);">Clientes satisfechos</p>
+      </div>
+      <div class="proof-sep"></div>
+      <div class="proof-item">
+        <span class="text-numeric" style="font-size: 1.75rem; font-weight: 800; color: var(--ios-green); letter-spacing: -0.03em;">280€</span>
+        <p class="text-caption" style="color: var(--label-secondary);">Ahorro medio anual</p>
+      </div>
+      <div class="proof-sep"></div>
+      <div class="proof-item">
+        <span class="text-numeric" style="font-size: 1.75rem; font-weight: 800; color: var(--ios-blue); letter-spacing: -0.03em;">98%</span>
+        <p class="text-caption" style="color: var(--label-secondary);">Recomendarían el servicio</p>
+      </div>
+    </div>
+
+    <!-- Featured Testimonial -->
+    <div class="reveal featured-testimonial" style="transition-delay: 160ms; margin-bottom: 32px;">
+      <!-- Quote icon -->
+      <div class="featured-quote-icon" aria-hidden="true">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+      </div>
+
+      <div class="featured-content">
+        <div style="display: flex; gap: 2px; margin-bottom: 20px;">
+          <span style="color: var(--ios-orange); font-size: 1.125rem;">★</span>
+          <span style="color: var(--ios-orange); font-size: 1.125rem;">★</span>
+          <span style="color: var(--ios-orange); font-size: 1.125rem;">★</span>
+          <span style="color: var(--ios-orange); font-size: 1.125rem;">★</span>
+          <span style="color: var(--ios-orange); font-size: 1.125rem;">★</span>
+        </div>
+        <blockquote class="text-title-2" style="color: var(--label-primary); line-height: 1.5; font-weight: 400; font-style: italic; margin-bottom: 28px; max-width: 700px;">
+          "{featuredTestimonial.quote}"
+        </blockquote>
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div class="avatar avatar-md" style="background: linear-gradient(135deg, var(--ios-orange) 0%, #FF6B00 100%); color: white; font-size: 1rem; font-weight: 700; width: 52px; height: 52px;">
+              {featuredTestimonial.initials}
+            </div>
+            <div>
+              <p class="text-headline" style="color: var(--label-primary); font-weight: 700;">{featuredTestimonial.name}</p>
+              <p class="text-footnote" style="color: var(--label-secondary);">{featuredTestimonial.role} · {featuredTestimonial.location}</p>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; background: var(--ios-green-light); border: 1px solid rgba(52,199,89,0.2); border-radius: var(--radius-pill); padding: 10px 20px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-green)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            <span style="font-size: 1rem; font-weight: 800; color: var(--ios-green); font-family: var(--font-display);">+{featuredTestimonial.saving}€/año</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="testimonials-grid">
+      {testimonials.map((t, index) => (
+        <div
+          class="reveal card"
+          style={`padding: 28px; display: flex; flex-direction: column; gap: 18px; border-radius: var(--radius-3xl); transition-delay: ${index * 120 + 280}ms; position: relative; overflow: hidden;`}
+        >
+          <!-- Stars -->
+          <div style="display: flex; gap: 2px; color: var(--ios-orange);" aria-label="5 estrellas">
+            {[...Array(5)].map(() => (
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            ))}
+          </div>
+
+          <!-- Quote -->
+          <blockquote class="text-body" style="color: var(--label-primary); flex: 1; line-height: 1.65; font-style: italic;">
+            "{t.quote}"
+          </blockquote>
+
+          <div class="divider"></div>
+
+          <!-- Author -->
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div
+                class="avatar avatar-md"
+                style={`background: ${t.bg}; color: white; font-weight: 700;`}
+                aria-hidden="true"
+              >
+                {t.initials}
+              </div>
+              <div>
+                <p class="text-subhead" style="color: var(--label-primary); font-weight: 600;">{t.name}</p>
+                <p class="text-footnote" style="color: var(--label-secondary);">{t.location}</p>
+              </div>
+            </div>
+            <div class="badge badge-green" style="flex-shrink: 0; padding: 6px 12px; font-size: 0.8125rem;">
+              +{t.saving}€
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .social-proof-bar {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr 1px 1fr;
+    align-items: center;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--separator);
+    overflow: hidden;
+  }
+
+  .proof-item {
+    padding: 24px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .proof-sep {
+    background: var(--separator);
+    height: 100%;
+    width: 1px;
+    min-height: 60px;
+  }
+
+  .featured-testimonial {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-3xl);
+    border: 1px solid var(--separator);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-quote-icon {
+    color: rgba(0,0,0,0.06);
+    margin-bottom: 20px;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .social-proof-bar {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1px 1fr;
+    }
+
+    .proof-sep:first-of-type {
+      display: none;
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .featured-testimonial {
+      padding: 32px 24px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .social-proof-bar {
+      grid-template-columns: 1fr 1fr;
+    }
+    .proof-sep {
+      display: none;
+    }
+  }
+</style>

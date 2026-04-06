@@ -1,0 +1,13 @@
+---
+interface Props {
+  class?: string;
+  surface?: 'white' | 'gray';
+}
+
+const { class: className = '', surface = 'white' } = Astro.props;
+const base = surface === 'gray' ? 'apple-surface' : 'apple-card';
+---
+
+<div class={`${base} ${className}`}>
+  <slot />
+</div>

@@ -1,0 +1,482 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Analizamos tu factura',
+    description: 'Me envías tu última factura y estudio tu consumo real, patrones de uso horario y potencia contratada. Un análisis que ninguna comparadora automática puede hacer.',
+    detail: 'Análisis en 24h',
+    color: 'var(--ios-blue)',
+    colorLight: 'var(--ios-blue-light)',
+    colorGlow: 'rgba(0,122,255,0.15)',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>`,
+    metric: '< 24h',
+    metricLabel: 'tiempo de análisis',
+  },
+  {
+    number: '02',
+    title: 'Encontramos la mejor tarifa',
+    description: 'Comparo entre todas las comercializadoras del mercado libre usando datos actualizados en tiempo real. No hay comisiones ocultas ni intereses comerciales.',
+    detail: 'Comparativa completa',
+    color: 'var(--ios-indigo)',
+    colorLight: 'var(--ios-indigo-light)',
+    colorGlow: 'rgba(88,86,214,0.15)',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>`,
+    metric: '200+',
+    metricLabel: 'tarifas comparadas',
+  },
+  {
+    number: '03',
+    title: 'Gestionamos el cambio',
+    description: 'Me encargo de todo el papeleo y trámites con la nueva comercializadora. Tú no tienes que hacer absolutamente nada. Sin cortes de suministro.',
+    detail: 'Sin interrupciones',
+    color: 'var(--ios-green)',
+    colorLight: 'var(--ios-green-light)',
+    colorGlow: 'rgba(52,199,89,0.15)',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+    metric: '5–15',
+    metricLabel: 'días hábiles',
+  },
+];
+---
+
+<section id="como-funciona" class="section how-section" data-section="how">
+  <div class="container-custom">
+
+    <!-- Section header -->
+    <div class="text-center reveal" style="margin-bottom: 88px;">
+      <span class="badge badge-blue" style="margin-bottom: 20px; display: inline-flex;">Proceso</span>
+      <h2 class="text-large-title" style="color: var(--label-primary); margin-bottom: 16px;">
+        Así de fácil es ahorrar.
+      </h2>
+      <p class="text-body-large" style="color: var(--label-secondary); max-width: 420px; margin: 0 auto;">
+        Tres pasos simples. Yo me encargo de todo.
+      </p>
+    </div>
+
+    <!-- Timeline connector row (desktop) -->
+    <div class="timeline-track" aria-hidden="true">
+      <div class="timeline-line-bg"></div>
+      <div class="timeline-line-progress" id="timeline-progress"></div>
+      <div class="timeline-dot tl-dot-1" data-step="1"></div>
+      <div class="timeline-dot tl-dot-2" data-step="2"></div>
+      <div class="timeline-dot tl-dot-3" data-step="3"></div>
+    </div>
+
+    <!-- Steps grid -->
+    <div class="steps-grid">
+      {steps.map((step, index) => (
+        <div class="reveal step-card step-card-3d" data-step-card={index + 1} style={`transition-delay: ${index * 140}ms;`}>
+
+          <!-- Colored accent bar at top -->
+          <div class="step-accent" style={`background: ${step.color};`}></div>
+
+          <!-- Decorative big number background -->
+          <div class="step-bg-number" style={`color: ${step.color};`}>{step.number}</div>
+
+          <!-- Shimmer effect -->
+          <div class="step-shimmer"></div>
+
+          <div class="step-body">
+            <!-- Top row: icon + step label -->
+            <div class="step-top-row">
+              <div class="icon-frame icon-frame-lg step-icon-anim" style={`background: ${step.colorLight}; color: ${step.color}; box-shadow: 0 4px 16px ${step.colorGlow};`}>
+                <Fragment set:html={step.icon} />
+              </div>
+              <div class="step-label-pill" style={`background: ${step.colorLight}; color: ${step.color};`}>
+                Paso {step.number}
+              </div>
+            </div>
+
+            <!-- Text -->
+            <h3 class="text-title-1 step-title" style="color: var(--label-primary); margin-bottom: 12px; line-height: 1.2; margin-top: 24px;">{step.title}</h3>
+            <p class="text-body step-desc" style="color: var(--label-secondary); line-height: 1.65; margin-bottom: 24px;">{step.description}</p>
+
+            <!-- Metric + detail row -->
+            <div class="step-footer">
+              <div class="step-metric">
+                <span class="step-metric-num" style={`color: ${step.color};`}>{step.metric}</span>
+                <span class="step-metric-label">{step.metricLabel}</span>
+              </div>
+              <div class="step-detail-chip" style={`background: ${step.colorLight}; color: ${step.color};`}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                {step.detail}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="reveal text-center" style="margin-top: 72px; transition-delay: 440ms;">
+      <p class="text-body" style="color: var(--label-secondary); margin-bottom: 20px;">
+        El proceso completo tarda entre 5 y 15 días hábiles.
+      </p>
+      <a href="#calculadora" class="btn-secondary">
+        Ver cuánto puedo ahorrar
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .how-section {
+    background: var(--bg-secondary);
+    position: relative;
+  }
+
+  /* Timeline track */
+  .timeline-track {
+    position: relative;
+    height: 2px;
+    margin: -64px 80px 20px;
+    display: none;
+  }
+
+  .timeline-line-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--separator);
+    border-radius: 1px;
+  }
+
+  .timeline-line-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--ios-blue), var(--ios-indigo), var(--ios-green));
+    border-radius: 1px;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: all 0.4s var(--ease-ios-spring);
+    z-index: 2;
+  }
+
+  .timeline-dot.active {
+    transform: translate(-50%, -50%) scale(1);
+    animation: dot-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dot-pulse {
+    0%, 100% { box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 0 0 0 rgba(0,122,255,0.3); }
+    50% { box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 0 0 8px rgba(0,122,255,0); }
+  }
+
+  .tl-dot-1 { left: 16.67%; background: var(--ios-blue); }
+  .tl-dot-2 { left: 50%; background: var(--ios-indigo); }
+  .tl-dot-3 { left: 83.33%; background: var(--ios-green); }
+
+  @media (min-width: 960px) {
+    .timeline-track { display: block; }
+  }
+
+  /* Steps grid */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    position: relative;
+    perspective: 2000px;
+  }
+
+  .step-card {
+    position: relative;
+    /* Authentic Liquid Glass */
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 2px 8px rgba(0, 0, 0, 0.03),
+      0 1px 3px rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+    transition: all 600ms var(--ease-ios-spring);
+    transform-style: preserve-3d;
+  }
+
+  .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    border-radius: 24px 24px 0 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.2) 60%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  .step-card-3d {
+    transform: translateZ(0);
+  }
+
+  .step-card-3d:hover {
+    background: rgba(255, 255, 255, 0.82);
+    transform: translateY(-6px) rotateX(1deg) rotateY(-1deg) scale(1.01);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 12px 32px rgba(0, 0, 0, 0.08),
+      0 4px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .step-card-3d[data-step-card="1"]:hover { transform: translateY(-6px) rotateY(1deg) scale(1.01); }
+  .step-card-3d[data-step-card="3"]:hover { transform: translateY(-6px) rotateY(-1deg) scale(1.01); }
+
+  .step-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255,255,255,0.7) 50%,
+      transparent 60%
+    );
+    transform: translateX(-100%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .step-card:hover .step-shimmer {
+    opacity: 1;
+    animation: step-shimmer 0.8s ease forwards;
+  }
+
+  @keyframes step-shimmer {
+    to { transform: translateX(100%); }
+  }
+
+  /* Step icon animation */
+  .step-icon-anim {
+    transition: transform 0.4s var(--ease-ios-spring);
+  }
+
+  .step-card:hover .step-icon-anim {
+    transform: scale(1.1) rotate(-5deg);
+  }
+
+  /* Step title animation */
+  .step-title {
+    position: relative;
+  }
+
+  .step-title::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.4s var(--ease-ios-decel);
+    opacity: 0.3;
+  }
+
+  .step-card:hover .step-title::after {
+    width: 40%;
+  }
+
+  .step-desc {
+    transition: color 0.3s;
+  }
+
+  .step-card:hover .step-desc {
+    color: var(--label-primary);
+  }
+
+  .step-accent {
+    height: 4px;
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    flex-shrink: 0;
+  }
+
+  .step-bg-number {
+    position: absolute;
+    bottom: -24px;
+    right: -18px;
+    font-size: 8.5rem;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    opacity: 0.055;
+    pointer-events: none;
+    user-select: none;
+    font-family: var(--font-display);
+    z-index: 1;
+    transition: opacity 500ms;
+  }
+
+  .step-card:hover .step-bg-number {
+    opacity: 0.08;
+  }
+
+  .step-body {
+    padding: 32px 32px 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .step-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .step-label-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: var(--font-display);
+  }
+
+  .step-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .step-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .step-metric-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-family: var(--font-display);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .step-metric-label {
+    font-size: 0.6875rem;
+    color: var(--label-tertiary);
+    font-weight: 500;
+    font-family: var(--font-display);
+  }
+
+  .step-detail-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: var(--font-display);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 960px) {
+    .steps-grid {
+      grid-template-columns: 1fr;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<script>
+  // Timeline scroll progress
+  const howSection = document.querySelector('[data-section="how"]');
+  const timelineProgress = document.getElementById('timeline-progress');
+  const timelineDots = document.querySelectorAll('.timeline-dot');
+
+  if (howSection && timelineProgress) {
+    const updateTimeline = () => {
+      const rect = howSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      
+      // Calculate progress based on section visibility
+      const scrollProgress = Math.max(0, Math.min(1, 
+        (windowHeight - sectionTop) / (windowHeight + sectionHeight * 0.5)
+      ));
+      
+      timelineProgress.style.width = `${scrollProgress * 100}%`;
+      
+      // Activate dots based on progress
+      timelineDots.forEach((dot, index) => {
+        const threshold = (index + 1) / 3;
+        if (scrollProgress >= threshold - 0.2) {
+          dot.classList.add('active');
+        }
+      });
+    };
+
+    // Use IntersectionObserver for better performance
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          window.addEventListener('scroll', updateTimeline, { passive: true });
+          updateTimeline();
+        } else {
+          window.removeEventListener('scroll', updateTimeline);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(howSection);
+  }
+
+  // Staggered reveal for step cards
+  const stepCards = document.querySelectorAll('[data-step-card]');
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, index * 100);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  stepCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.6s var(--ease-ios-decel), transform 0.6s var(--ease-ios-spring)';
+    cardObserver.observe(card);
+  });
+</script>

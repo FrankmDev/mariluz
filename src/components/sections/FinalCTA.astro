@@ -1,0 +1,451 @@
+---
+import { siteConfig } from '../../config/site';
+---
+
+<section class="final-cta-section" id="final-cta">
+
+  <!-- Background decorative orbs -->
+  <div class="cta-orbs" aria-hidden="true">
+    <div class="cta-orb orb-main"></div>
+    <div class="cta-orb orb-secondary"></div>
+    <div class="cta-orb orb-tertiary"></div>
+  </div>
+
+  <!-- Floating particles -->
+  <div class="cta-particles" aria-hidden="true">
+    <div class="cta-particle"></div>
+    <div class="cta-particle"></div>
+    <div class="cta-particle"></div>
+    <div class="cta-particle"></div>
+    <div class="cta-particle"></div>
+    <div class="cta-particle"></div>
+    <div class="cta-particle"></div>
+    <div class="cta-particle"></div>
+  </div>
+
+  <!-- Gradient mesh overlay -->
+  <div class="cta-mesh-overlay" aria-hidden="true"></div>
+
+  <div class="container-custom relative z-10" style="padding-top: 120px; padding-bottom: 120px;">
+    <div class="cta-inner reveal">
+
+      <!-- Eyebrow -->
+      <div class="cta-eyebrow">
+        <span class="cta-status-dot"></span>
+        <span class="cta-eyebrow-text">Asesoría disponible ahora</span>
+      </div>
+
+      <!-- Headline -->
+      <h2 class="text-hero cta-headline">
+        <span class="cta-headline-line">¿Listo para pagar</span>
+        <span class="cta-headline-line cta-headline-accent">menos en tu factura?</span>
+      </h2>
+
+      <!-- Subhead -->
+      <p class="cta-subhead">
+        Contacta hoy mismo. Analizo tu factura sin coste y te digo exactamente cuánto puedes ahorrar.
+      </p>
+
+      <!-- CTAs -->
+      <div class="cta-buttons">
+        <a href={siteConfig.whatsappUrl} class="cta-btn-primary">
+          <span class="btn-shimmer-cta"></span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Estudio gratuito por WhatsApp
+        </a>
+        <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} class="cta-btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.19 2 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          {siteConfig.phone}
+        </a>
+      </div>
+
+      <!-- Trust row -->
+      <div class="cta-trust-row">
+        <div class="cta-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>Sin compromiso</span>
+        </div>
+        <div class="cta-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>Servicio 100% gratuito</span>
+        </div>
+        <div class="cta-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>Respuesta en menos de 24h</span>
+        </div>
+        <div class="cta-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>+450 clientes satisfechos</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .final-cta-section {
+    position: relative;
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 55%, #007AFF 100%);
+    background-size: 200% 200%;
+    animation: gradient-move 10s ease infinite;
+    overflow: hidden;
+  }
+
+  @keyframes gradient-move {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* CTA Orbs */
+  .cta-orbs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .cta-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.6;
+  }
+
+  .orb-main {
+    top: -30%;
+    left: -10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 60%);
+    animation: orb-float 20s ease-in-out infinite;
+  }
+
+  .orb-secondary {
+    bottom: -20%;
+    right: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    animation: orb-float 25s ease-in-out infinite reverse;
+  }
+
+  .orb-tertiary {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 60%);
+    animation: orb-pulse 15s ease-in-out infinite;
+  }
+
+  @keyframes orb-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.05); }
+    66% { transform: translate(-20px, 30px) scale(0.95); }
+  }
+
+  @keyframes orb-pulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  /* Floating particles */
+  .cta-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .cta-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    animation: particle-rise 12s ease-in-out infinite;
+  }
+
+  .cta-particle:nth-child(1) { left: 10%; bottom: 0; animation-delay: 0s; }
+  .cta-particle:nth-child(2) { left: 25%; bottom: 0; animation-delay: -2s; }
+  .cta-particle:nth-child(3) { left: 40%; bottom: 0; animation-delay: -4s; }
+  .cta-particle:nth-child(4) { left: 55%; bottom: 0; animation-delay: -6s; }
+  .cta-particle:nth-child(5) { left: 70%; bottom: 0; animation-delay: -8s; }
+  .cta-particle:nth-child(6) { left: 85%; bottom: 0; animation-delay: -10s; }
+  .cta-particle:nth-child(7) { left: 15%; bottom: 0; animation-delay: -3s; }
+  .cta-particle:nth-child(8) { left: 60%; bottom: 0; animation-delay: -7s; }
+
+  @keyframes particle-rise {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    90% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-600px) scale(0.5);
+      opacity: 0;
+    }
+  }
+
+  /* Mesh overlay */
+  .cta-mesh-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(255,255,255,0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(255,255,255,0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Content */
+  .cta-inner {
+    max-width: 860px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Eyebrow */
+  .cta-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius-pill);
+    padding: 8px 20px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(8px);
+    animation: fade-up 0.6s var(--ease-ios-decel) forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .cta-status-dot {
+    width: 8px;
+    height: 8px;
+    background: #30D158;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(48,209,88,0.3);
+    flex-shrink: 0;
+    animation: status-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes status-glow {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(48,209,88,0.3); }
+    50% { box-shadow: 0 0 0 6px rgba(48,209,88,0); }
+  }
+
+  .cta-eyebrow-text {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: var(--font-display);
+  }
+
+  /* Headline */
+  .cta-headline {
+    color: #FFFFFF;
+    margin-bottom: 24px;
+    max-width: 780px;
+  }
+
+  .cta-headline-line {
+    display: block;
+    overflow: hidden;
+  }
+
+  .cta-headline-line:first-child {
+    animation: slide-up-reveal 0.8s var(--ease-ios-decel) forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  .cta-headline-accent {
+    color: rgba(255,255,255,0.7);
+    animation: slide-up-reveal 0.8s var(--ease-ios-decel) forwards;
+    animation-delay: 0.45s;
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  @keyframes slide-up-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Subhead */
+  .cta-subhead {
+    font-size: 1.25rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 520px;
+    line-height: 1.55;
+    margin-bottom: 52px;
+    font-family: var(--font-display);
+    animation: fade-up 0.6s var(--ease-ios-decel) forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  /* Buttons */
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+    animation: fade-up 0.6s var(--ease-ios-decel) forwards;
+    animation-delay: 0.75s;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @media (min-width: 640px) {
+    .cta-buttons {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  .cta-btn-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.0625rem;
+    letter-spacing: -0.01em;
+    color: var(--ios-blue);
+    background: #FFFFFF;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 18px 36px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 320ms var(--ease-ios-spring);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    overflow: hidden;
+  }
+
+  .btn-shimmer-cta {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255,255,255,0.4) 50%,
+      transparent 60%
+    );
+    animation: btn-shimmer 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes btn-shimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+  }
+
+  .cta-btn-primary:hover {
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.25), 0 0 40px rgba(255,255,255,0.2);
+  }
+
+  .cta-btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .cta-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    letter-spacing: -0.01em;
+    color: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: var(--radius-pill);
+    padding: 18px 32px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 320ms var(--ease-ios-spring);
+    backdrop-filter: blur(8px);
+  }
+
+  .cta-btn-secondary:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.4);
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  /* Trust row */
+  .cta-trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+    animation: fade-up 0.6s var(--ease-ios-decel) forwards;
+    animation-delay: 0.9s;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .cta-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.6);
+    font-family: var(--font-display);
+    transition: all 0.3s var(--ease-ios-spring);
+  }
+
+  .cta-trust-item svg {
+    stroke: rgba(255,255,255,0.5);
+    transition: all 0.3s;
+  }
+
+  .cta-trust-item:hover {
+    color: rgba(255,255,255,0.9);
+    transform: translateX(4px);
+  }
+
+  .cta-trust-item:hover svg {
+    stroke: rgba(255,255,255,0.8);
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 640px) {
+    .cta-btn-primary,
+    .cta-btn-secondary {
+      width: 100%;
+    }
+  }
+</style>

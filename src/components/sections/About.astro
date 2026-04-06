@@ -1,0 +1,580 @@
+---
+import { siteConfig } from '../../config/site';
+import Counter from '../ui/Counter.astro';
+
+const { advisor } = siteConfig;
+
+const stats = [
+  { value: advisor.experience, suffix: '+', label: 'Años experiencia' },
+  { value: advisor.clients, suffix: '+', label: 'Clientes activos' },
+  { value: siteConfig.savings.averageYearly, suffix: '€', label: 'Ahorro medio anual' },
+];
+---
+
+<section id="sobre-mi" class="section about-section" style="background: var(--bg-secondary);">
+  <div class="container-custom">
+    <div class="about-layout">
+
+      <!-- Left: Profile Card with Image -->
+      <div class="about-left reveal">
+        
+        <!-- Main Profile Card - Liquid Glass Premium -->
+        <div class="profile-card-liquid">
+          <!-- Glass layers -->
+          <div class="glass-layer glass-back"></div>
+          <div class="glass-layer glass-mid"></div>
+          <div class="glass-content">
+            
+            <!-- Image Container -->
+            <div class="profile-image-wrapper">
+              <div class="profile-image-container">
+                <img 
+                  src="/images/mariluz-profile.jpg" 
+                  alt="Mariluz García - Asesora Energética"
+                  class="profile-image"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="profile-image-placeholder" style="display: none;">
+                  <span class="profile-initial">M</span>
+                </div>
+              </div>
+              <!-- Status indicator -->
+              <div class="status-ring">
+                <div class="status-dot-pulse"></div>
+              </div>
+            </div>
+
+            <!-- Info -->
+            <div class="profile-info">
+              <h3 class="profile-name">{advisor.name}</h3>
+              <p class="profile-title">{advisor.title}</p>
+              
+              <div class="profile-divider"></div>
+              
+              <div class="profile-badges">
+                <div class="profile-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                  </svg>
+                  <span>Certificada CNMC</span>
+                </div>
+                <div class="profile-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                  <span>100% Independiente</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Specular highlight -->
+          <div class="glass-specular"></div>
+        </div>
+
+        <!-- Floating Stats - Liquid Glass -->
+        <div class="floating-stats reveal" style="transition-delay: 200ms;">
+          <div class="floating-stat">
+            <span class="floating-stat-value">8+</span>
+            <span class="floating-stat-label">Años</span>
+          </div>
+          <div class="floating-stat-divider"></div>
+          <div class="floating-stat">
+            <span class="floating-stat-value">450+</span>
+            <span class="floating-stat-label">Clientes</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Content -->
+      <div class="about-right reveal" style="transition-delay: 100ms;">
+
+        <div class="about-header">
+          <span class="about-eyebrow">Sobre mí</span>
+          <h2 class="about-title">
+            Un método exacto.<br/>
+            <span class="title-accent">Y transparente.</span>
+          </h2>
+        </div>
+
+        <div class="about-body">
+          <p class="about-lead">
+            Llevo más de {advisor.experience} años ayudando a familias y empresas a reducir sus facturas de luz. Sin trucos, sin promesas imposibles.
+          </p>
+
+          <p class="about-text">
+            Mi trabajo consiste en auditar tu consumo real, comparar los datos con los del mercado actual, y encontrar científicamente la tarifa que mejor encaja con tus hábitos.
+          </p>
+
+          <p class="about-text">
+            El mercado eléctrico está diseñado para ser complejo. Mi misión es hacerlo invisible y automático para ti.
+          </p>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row">
+          {stats.map((stat, index) => (
+            <div class="stat-item" style={`--stat-delay: ${index * 0.1}s`}>
+              <div class="stat-value">
+                <Counter endValue={stat.value} suffix={stat.suffix} />
+              </div>
+              <div class="stat-label">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA -->
+        <div class="about-cta">
+          <a href={siteConfig.whatsappUrl} class="btn-primary btn-shimmer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Hablar con Mariluz
+          </a>
+          <a href="#calculadora" class="btn-tertiary">
+            Ver calculadora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Layout - Equal Height Columns */
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: stretch;
+    min-height: 600px;
+  }
+
+  .about-left,
+  .about-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Left Side - Profile Card */
+  .about-left {
+    position: relative;
+    padding: 20px;
+  }
+
+  /* Liquid Glass Profile Card - Authentic */
+  .profile-card-liquid {
+    position: relative;
+    border-radius: 24px;
+    padding: 48px 40px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    /* Authentic Liquid Glass */
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(28px) saturate(200%);
+    -webkit-backdrop-filter: blur(28px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      0 24px 64px rgba(0, 0, 0, 0.08),
+      0 8px 24px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Specular highlight - curved reflection */
+  .profile-card-liquid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    border-radius: 24px 24px 0 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.5) 40%,
+      rgba(255, 255, 255, 0.1) 70%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Gradient border effect */
+  .profile-card-liquid::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .glass-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Profile Image */
+  .profile-image-wrapper {
+    position: relative;
+    margin-bottom: 28px;
+  }
+
+  .profile-image-container {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .profile-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--ios-blue) 0%, var(--ios-indigo) 100%);
+  }
+
+  .profile-initial {
+    font-size: 4rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  /* Status Ring */
+  .status-ring {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 28px;
+    height: 28px;
+    background: var(--bg-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .status-dot-pulse {
+    width: 14px;
+    height: 14px;
+    background: var(--ios-green);
+    border-radius: 50%;
+    animation: status-breathe 2s ease-in-out infinite;
+  }
+
+  @keyframes status-breathe {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(52, 199, 89, 0); }
+  }
+
+  /* Profile Info */
+  .profile-info {
+    width: 100%;
+  }
+
+  .profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--label-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+    font-family: var(--font-display);
+  }
+
+  .profile-title {
+    font-size: 1rem;
+    color: var(--label-secondary);
+    font-weight: 500;
+    margin-bottom: 24px;
+    font-family: var(--font-display);
+  }
+
+  .profile-divider {
+    height: 1px;
+    background: var(--separator);
+    margin-bottom: 24px;
+  }
+
+  .profile-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .profile-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: var(--label-secondary);
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+
+  .profile-badge svg {
+    color: var(--ios-green);
+    flex-shrink: 0;
+  }
+
+  /* Floating Stats - Authentic Liquid Glass */
+  .floating-stats {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    /* Liquid Glass */
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    padding: 16px 24px;
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 8px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .floating-stats::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    border-radius: 16px 16px 0 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.2) 60%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  .floating-stat {
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  .floating-stat-value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--label-primary);
+    letter-spacing: -0.02em;
+    font-family: var(--font-display);
+  }
+
+  .floating-stat-label {
+    font-size: 0.75rem;
+    color: var(--label-tertiary);
+    font-weight: 500;
+    font-family: var(--font-display);
+  }
+
+  .floating-stat-divider {
+    width: 1px;
+    height: 32px;
+    background: var(--separator);
+  }
+
+  /* Right Side - Content */
+  .about-right {
+    padding: 20px 0;
+  }
+
+  .about-header {
+    margin-bottom: 32px;
+  }
+
+  .about-eyebrow {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--ios-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    font-family: var(--font-display);
+  }
+
+  .about-title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: var(--label-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    font-family: var(--font-display);
+  }
+
+  .title-accent {
+    color: var(--label-secondary);
+  }
+
+  .about-body {
+    margin-bottom: 40px;
+  }
+
+  .about-lead {
+    font-size: 1.125rem;
+    color: var(--label-primary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-family: var(--font-display);
+  }
+
+  .about-text {
+    font-size: 1rem;
+    color: var(--label-secondary);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    font-family: var(--font-display);
+  }
+
+  /* Stats Row */
+  .stats-row {
+    display: flex;
+    gap: 48px;
+    padding: 28px 0;
+    border-top: 1px solid var(--separator);
+    border-bottom: 1px solid var(--separator);
+    margin-bottom: 32px;
+  }
+
+  .stat-item {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: stat-fade-in 0.5s var(--ease-ios-decel) forwards;
+    animation-delay: var(--stat-delay, 0s);
+  }
+
+  @keyframes stat-fade-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--label-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 6px;
+    font-family: var(--font-display);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-item:nth-child(3) .stat-value {
+    color: var(--ios-green);
+  }
+
+  .stat-label {
+    font-size: 0.8125rem;
+    color: var(--label-secondary);
+    font-weight: 500;
+    font-family: var(--font-display);
+  }
+
+  /* CTA */
+  .about-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    .about-layout {
+      grid-template-columns: 1fr;
+      gap: 60px;
+      min-height: auto;
+    }
+
+    .about-left {
+      max-width: 400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .about-right {
+      text-align: center;
+    }
+
+    .about-body {
+      text-align: left;
+    }
+
+    .stats-row {
+      justify-content: center;
+    }
+
+    .about-cta {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .profile-card-liquid {
+      padding: 36px 28px;
+    }
+
+    .stats-row {
+      flex-direction: column;
+      gap: 24px;
+      text-align: center;
+    }
+
+    .floating-stats {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      margin-top: 24px;
+      justify-content: center;
+    }
+  }
+</style>

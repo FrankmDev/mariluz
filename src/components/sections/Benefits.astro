@@ -1,0 +1,896 @@
+---
+const benefits = [
+  {
+    title: 'Sin coste',
+    subtitle: 'para ti',
+    description: 'Mi servicio es completamente gratuito. Cobro una comisión de la comercializadora a la que te cambias. Nunca de ti.',
+    cardBg: 'var(--ios-blue)',
+    gradientBg: 'linear-gradient(145deg, #007AFF 0%, #5856D6 100%)',
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+    size: 'large',
+    tag: '100% GRATIS',
+    style: 'blue',
+  },
+  {
+    title: 'Gestión completa',
+    description: 'Me encargo de todo el papeleo y la gestión con la nueva comercializadora. Sin que muevas un dedo.',
+    accent: 'var(--ios-indigo)',
+    accentLight: 'var(--ios-indigo-light)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>`,
+    size: 'small',
+    style: 'white',
+  },
+  {
+    title: 'Asesoramiento personalizado',
+    description: 'Análisis individual de tu consumo real para encontrar la tarifa exacta que necesitas.',
+    accent: 'var(--ios-orange)',
+    accentLight: 'var(--ios-orange-light)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>`,
+    size: 'small',
+    style: 'white',
+  },
+  {
+    title: 'Cambio sin cortes',
+    subtitle: 'Garantizado',
+    description: 'La transición es inmediata y no hay interrupción en tu suministro eléctrico. La luz nunca se corta durante el cambio.',
+    gradientBg: 'linear-gradient(145deg, #34C759 0%, #0DBF6F 100%)',
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+    size: 'large',
+    tag: 'GARANTIZADO',
+    style: 'green',
+  },
+  {
+    title: 'Ahorro desde ya',
+    description: 'Verás la reducción en tu siguiente factura, no en seis meses. El ahorro es inmediato.',
+    accent: 'var(--ios-teal)',
+    accentLight: 'rgba(90,200,250,0.12)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
+    size: 'small',
+    style: 'white',
+  },
+  {
+    title: 'Siempre disponible',
+    description: 'Atención personalizada por WhatsApp. Te respondo en menos de 24 horas sin excepción.',
+    accent: 'var(--ios-purple)',
+    accentLight: 'rgba(175,82,222,0.1)',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>`,
+    size: 'small',
+    style: 'white',
+  },
+];
+
+const stats = [
+  { value: '450+', label: 'Hogares asesorados', color: 'var(--label-primary)' },
+  { value: '280€', label: 'Ahorro medio anual', color: 'var(--ios-green)' },
+  { value: '98%', label: 'Tasa de satisfacción', color: 'var(--ios-blue)' },
+  { value: '8+', label: 'Años de experiencia', color: 'var(--ios-indigo)' },
+];
+---
+
+<section class="section benefits-section">
+  <div class="container-custom">
+
+    <!-- Section Header -->
+    <div class="text-center reveal" style="margin-bottom: 72px;">
+      <span class="badge badge-blue" style="margin-bottom: 20px; display: inline-flex;">Ventajas</span>
+      <h2 class="text-large-title" style="color: var(--label-primary); margin-bottom: 16px;">
+        La diferencia es clara.
+      </h2>
+      <p class="text-body-large" style="color: var(--label-secondary); max-width: 460px; margin: 0 auto;">
+        Todo lo que necesitas para ahorrar en tu factura, sin complicaciones ni letra pequeña.
+      </p>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="bento-ultra">
+
+      <!-- Large Feature Card — Blue -->
+      <div class="reveal bento-feature bento-colored bento-blue bento-3d" data-tilt style="grid-area: feature-left; transition-delay: 0ms;">
+        <!-- Glass specular highlight layer -->
+        <div class="bento-specular" aria-hidden="true"></div>
+        <!-- Decorative mesh circles -->
+        <div class="bento-mesh" aria-hidden="true">
+          <div class="mesh-circle mc-1"></div>
+          <div class="mesh-circle mc-2"></div>
+        </div>
+        <!-- Animated gradient border -->
+        <div class="bento-gradient-border"></div>
+        <!-- Tag -->
+        <div class="bento-tag">100% GRATIS</div>
+        <!-- Content -->
+        <div class="bento-content">
+          <div class="bento-icon-wrap">
+            <Fragment set:html={benefits[0].icon} />
+          </div>
+          <h3 class="text-title-1 bento-title">
+            {benefits[0].title}
+            <span class="bento-subtitle"> {benefits[0].subtitle}</span>
+          </h3>
+          <p class="text-body bento-desc">{benefits[0].description}</p>
+        </div>
+      </div>
+
+      <!-- Small Card — indigo -->
+      <div class="reveal bento-small bento-3d" data-tilt style="grid-area: top-mid; transition-delay: 100ms;">
+        <div class="bento-glow" style="background: radial-gradient(circle at 85% 15%, var(--ios-indigo-light) 0%, transparent 70%);"></div>
+        <div class="bento-small-content">
+          <div class="icon-frame bento-icon-anim" style="background: var(--ios-indigo-light); color: var(--ios-indigo); width: 48px; height: 48px; border-radius: 12px; margin-bottom: 16px;">
+            <Fragment set:html={benefits[1].icon} />
+          </div>
+          <h3 class="text-title-2 bento-small-title">{benefits[1].title}</h3>
+          <p class="bento-small-desc">{benefits[1].description}</p>
+        </div>
+        <!-- Mini checklist -->
+        <div class="bento-checklist">
+          <div class="check-row">
+            <svg class="check-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ios-indigo)" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>Papeleo incluido</span>
+          </div>
+          <div class="check-row">
+            <svg class="check-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ios-indigo)" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>Sin trámites por tu parte</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small Card — orange -->
+      <div class="reveal bento-small bento-3d" data-tilt style="grid-area: top-right; transition-delay: 200ms;">
+        <div class="bento-glow" style="background: radial-gradient(circle at 85% 15%, var(--ios-orange-light) 0%, transparent 70%);"></div>
+        <div class="bento-small-content">
+          <div class="icon-frame bento-icon-anim" style="background: var(--ios-orange-light); color: var(--ios-orange); width: 48px; height: 48px; border-radius: 12px; margin-bottom: 16px;">
+            <Fragment set:html={benefits[2].icon} />
+          </div>
+          <h3 class="text-title-2 bento-small-title">{benefits[2].title}</h3>
+          <p class="bento-small-desc">{benefits[2].description}</p>
+        </div>
+        <!-- Profile indicator -->
+        <div class="bento-profile-row">
+          <div class="profile-stack">
+            <div class="profile-avatar" style="background: #007AFF;"></div>
+            <div class="profile-avatar" style="background: #5856D6;"></div>
+            <div class="profile-avatar" style="background: #34C759;"></div>
+          </div>
+          <span class="profile-label">450+ asesorados</span>
+        </div>
+      </div>
+
+      <!-- Small Card — teal -->
+      <div class="reveal bento-small bento-3d" data-tilt style="grid-area: bot-left; transition-delay: 400ms;">
+        <div class="bento-glow" style="background: radial-gradient(circle at 85% 15%, rgba(90,200,250,0.12) 0%, transparent 70%);"></div>
+        <div class="bento-small-content">
+          <div class="icon-frame bento-icon-anim" style="background: rgba(90,200,250,0.12); color: var(--ios-teal); width: 48px; height: 48px; border-radius: 12px; margin-bottom: 16px;">
+            <Fragment set:html={benefits[4].icon} />
+          </div>
+          <h3 class="text-title-2 bento-small-title">{benefits[4].title}</h3>
+          <p class="bento-small-desc">{benefits[4].description}</p>
+        </div>
+        <!-- Trend indicator -->
+        <div class="trend-indicator">
+          <div class="trend-bars">
+            {[60, 45, 55, 35, 28, 32, 22].map((h, i) => (
+              <div class="trend-bar" data-height={h} style={`height: 0px; background: ${h <= 32 ? 'var(--ios-green)' : 'var(--bg-tertiary)'}; animation: trend-grow 0.6s ease forwards; animation-delay: ${0.5 + i * 0.1}s;`}></div>
+            ))}
+          </div>
+          <span class="trend-label" style="color: var(--ios-green);">↓ Tendencia a la baja</span>
+        </div>
+      </div>
+
+      <!-- Small Card — purple -->
+      <div class="reveal bento-small bento-3d" data-tilt style="grid-area: bot-mid; transition-delay: 500ms;">
+        <div class="bento-glow" style="background: radial-gradient(circle at 85% 15%, rgba(175,82,222,0.10) 0%, transparent 70%);"></div>
+        <div class="bento-small-content">
+          <div class="icon-frame bento-icon-anim" style="background: rgba(175,82,222,0.10); color: var(--ios-purple); width: 48px; height: 48px; border-radius: 12px; margin-bottom: 16px;">
+            <Fragment set:html={benefits[5].icon} />
+          </div>
+          <h3 class="text-title-2 bento-small-title">{benefits[5].title}</h3>
+          <p class="bento-small-desc">{benefits[5].description}</p>
+        </div>
+        <!-- Response time indicator -->
+        <div class="response-indicator">
+          <div class="response-bar-track">
+            <div class="response-bar-fill" style="width: 0; animation: response-fill 1.5s ease forwards; animation-delay: 0.8s;"></div>
+          </div>
+          <span class="response-label">Respuesta &lt; 24h</span>
+        </div>
+      </div>
+
+      <!-- Large Feature Card — Green -->
+      <div class="reveal bento-feature bento-colored bento-green bento-3d" data-tilt style="grid-area: feature-right; transition-delay: 300ms;">
+        <div class="bento-specular" aria-hidden="true"></div>
+        <div class="bento-mesh" aria-hidden="true">
+          <div class="mesh-circle mc-3"></div>
+          <div class="mesh-circle mc-4"></div>
+        </div>
+        <div class="bento-gradient-border"></div>
+        <div class="bento-tag">GARANTIZADO</div>
+        <div class="bento-content">
+          <div class="bento-icon-wrap">
+            <Fragment set:html={benefits[3].icon} />
+          </div>
+          <h3 class="text-title-1 bento-title">
+            {benefits[3].title}
+            <span class="bento-subtitle"> {benefits[3].subtitle}</span>
+          </h3>
+          <p class="text-body bento-desc">{benefits[3].description}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats Ribbon -->
+    <div class="reveal stats-ribbon" style="transition-delay: 600ms;">
+      {stats.map((stat, i) => (
+        <>
+          <div class="ribbon-stat">
+            <span class="ribbon-num" style={`color: ${stat.color};`}>{stat.value}</span>
+            <span class="ribbon-label">{stat.label}</span>
+          </div>
+          {i < stats.length - 1 && <div class="ribbon-sep" aria-hidden="true"></div>}
+        </>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .benefits-section {
+    background: var(--bg-secondary);
+  }
+
+  /* Bento grid */
+  .bento-ultra {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 280px 240px;
+    gap: 16px;
+    grid-template-areas:
+      "feature-left feature-left top-mid top-right"
+      "bot-left bot-mid feature-right feature-right";
+    margin-bottom: 16px;
+  }
+
+  /* Large colored feature cards - with Liquid Glass overlay */
+  .bento-feature {
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: all 600ms var(--ease-ios-spring);
+    cursor: default;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .bento-feature:hover {
+    transform: scale(1.012) translateY(-4px);
+  }
+
+  /* 3D Tilt effect */
+  .bento-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.4s var(--ease-ios-spring);
+  }
+
+  .bento-3d:hover {
+    transform: translateY(-6px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+  }
+
+  .bento-feature.bento-3d:hover {
+    transform: translateY(-6px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+  }
+
+  /* Liquid Glass specular overlay for colored cards */
+  .bento-feature::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0.05) 60%,
+      transparent 100%
+    );
+    pointer-events: none;
+    border-radius: 24px 24px 0 0;
+  }
+
+  /* Animated gradient border - more subtle */
+  .bento-gradient-border {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.3) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(255,255,255,0.2) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .bento-feature:hover .bento-gradient-border {
+    opacity: 1;
+  }
+
+  .bento-feature:hover {
+    transform: scale(1.016) translateY(-5px);
+  }
+
+  /* 3D Tilt effect */
+  .bento-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.4s var(--ease-ios-spring);
+  }
+
+  .bento-3d:hover {
+    transform: translateY(-8px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+  }
+
+  .bento-feature.bento-3d:hover {
+    transform: translateY(-8px) rotateX(3deg) rotateY(-2deg) scale(1.02);
+  }
+
+  /* Animated gradient border */
+  .bento-gradient-border {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, transparent 50%, rgba(255,255,255,0.3) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s;
+    animation: border-rotate 4s linear infinite;
+  }
+
+  .bento-feature:hover .bento-gradient-border {
+    opacity: 1;
+  }
+
+  @keyframes border-rotate {
+    0% { background: linear-gradient(0deg, rgba(255,255,255,0.5) 0%, transparent 50%, rgba(255,255,255,0.3) 100%); }
+    25% { background: linear-gradient(90deg, rgba(255,255,255,0.5) 0%, transparent 50%, rgba(255,255,255,0.3) 100%); }
+    50% { background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, transparent 50%, rgba(255,255,255,0.3) 100%); }
+    75% { background: linear-gradient(270deg, rgba(255,255,255,0.5) 0%, transparent 50%, rgba(255,255,255,0.3) 100%); }
+    100% { background: linear-gradient(360deg, rgba(255,255,255,0.5) 0%, transparent 50%, rgba(255,255,255,0.3) 100%); }
+  }
+
+  .bento-blue {
+    background: linear-gradient(145deg, #007AFF 0%, #5856D6 100%);
+    box-shadow: 0 10px 48px rgba(0,122,255,0.28), 0 2px 8px rgba(0,122,255,0.15);
+  }
+
+  .bento-blue:hover {
+    box-shadow: 0 20px 64px rgba(0,122,255,0.35), 0 4px 16px rgba(0,122,255,0.2);
+  }
+
+  .bento-green {
+    background: linear-gradient(145deg, #34C759 0%, #0DBF6F 100%);
+    box-shadow: 0 10px 48px rgba(52,199,89,0.28), 0 2px 8px rgba(52,199,89,0.15);
+  }
+
+  .bento-green:hover {
+    box-shadow: 0 20px 64px rgba(52,199,89,0.35), 0 4px 16px rgba(52,199,89,0.2);
+  }
+
+  /* Glass specular highlight */
+  .bento-specular {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Mesh decorative circles */
+  .bento-mesh {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .mesh-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .mc-1 { width: 200px; height: 200px; top: -60px; right: -60px; }
+  .mc-2 { width: 320px; height: 320px; top: -140px; right: -140px; }
+  .mc-3 { width: 180px; height: 180px; bottom: -40px; left: -40px; }
+  .mc-4 { width: 300px; height: 300px; bottom: -120px; left: -120px; }
+
+  /* Tag pill */
+  .bento-tag {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.95);
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    font-family: var(--font-display);
+    z-index: 3;
+    backdrop-filter: blur(8px);
+  }
+
+  .bento-content {
+    position: relative;
+    z-index: 3;
+  }
+
+  .bento-icon-wrap {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.20);
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 20px;
+    backdrop-filter: blur(4px);
+    transition: transform 0.4s var(--ease-ios-spring);
+  }
+
+  .bento-feature:hover .bento-icon-wrap {
+    transform: scale(1.1) rotate(-5deg);
+  }
+
+  /* Small card icon animation */
+  .bento-icon-anim {
+    transition: all 0.4s var(--ease-ios-spring);
+  }
+
+  .bento-small:hover .bento-icon-anim {
+    transform: scale(1.12) rotate(5deg);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .bento-title {
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    line-height: 1.15;
+  }
+
+  .bento-subtitle {
+    color: rgba(255,255,255,0.72);
+  }
+
+  .bento-desc {
+    color: rgba(255,255,255,0.72);
+    line-height: 1.55;
+    font-size: 0.9375rem;
+  }
+
+  /* Small cards - Authentic Liquid Glass */
+  .bento-small {
+    position: relative;
+    /* Liquid Glass */
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    padding: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 500ms var(--ease-ios-spring);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      0 1px 2px rgba(0, 0, 0, 0.02);
+  }
+
+  .bento-small::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    border-radius: 20px 20px 0 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.2) 60%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  .bento-small:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.02) translateY(-4px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 12px 32px rgba(0, 0, 0, 0.08),
+      0 4px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .bento-glow {
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .bento-small-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .bento-small-title {
+    color: var(--label-primary);
+    margin-bottom: 6px;
+  }
+
+  .bento-small-desc {
+    font-size: 0.875rem;
+    color: var(--label-secondary);
+    line-height: 1.5;
+  }
+
+  /* Checklist */
+  .bento-checklist {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 12px;
+  }
+
+  .check-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--label-secondary);
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+
+  /* Profile row */
+  .bento-profile-row {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .profile-stack {
+    display: flex;
+  }
+
+  .profile-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-left: -6px;
+    transition: transform 0.3s var(--ease-ios-spring);
+    animation: avatar-pop 0.4s ease backwards;
+  }
+
+  .profile-avatar:first-child {
+    margin-left: 0;
+    animation-delay: 0.1s;
+  }
+
+  .profile-avatar:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .profile-avatar:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes avatar-pop {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .bento-small:hover .profile-avatar {
+    transform: translateX(3px);
+  }
+
+  .bento-small:hover .profile-avatar:nth-child(1) {
+    transform: translateX(-3px);
+  }
+
+  .profile-label {
+    font-size: 0.75rem;
+    color: var(--label-secondary);
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+
+  /* Trend bars */
+  .trend-indicator {
+    position: relative;
+    z-index: 2;
+    margin-top: 12px;
+  }
+
+  .trend-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 40px;
+    margin-bottom: 6px;
+  }
+
+  .trend-bar {
+    flex: 1;
+    border-radius: 3px 3px 0 0;
+    min-width: 6px;
+    transition: all 0.3s var(--ease-ios-spring);
+  }
+
+  @keyframes trend-grow {
+    from { height: 0; }
+    to { height: calc(var(--bar-height, 40) * 1px); }
+  }
+
+  .bento-small:hover .trend-bar {
+    filter: brightness(1.1);
+  }
+
+  .bento-small:hover .trend-bar:nth-child(odd) {
+    transform: scaleY(1.1);
+  }
+
+  .trend-label {
+    font-size: 0.6875rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  /* Check row animations */
+  .check-row {
+    transition: transform 0.3s var(--ease-ios-spring);
+  }
+
+  .bento-small:hover .check-row {
+    transform: translateX(4px);
+  }
+
+  .check-icon {
+    transition: transform 0.3s var(--ease-ios-spring);
+  }
+
+  .bento-small:hover .check-icon {
+    transform: scale(1.2);
+  }
+
+  /* Response indicator */
+  .response-indicator {
+    position: relative;
+    z-index: 2;
+    margin-top: 12px;
+  }
+
+  .response-bar-track {
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+
+  .response-bar-fill {
+    height: 100%;
+    width: 85%;
+    background: linear-gradient(90deg, var(--ios-purple), #BF5AF2);
+    border-radius: 2px;
+    animation: breathe-scale 3s ease-in-out infinite;
+  }
+
+  .response-label {
+    font-size: 0.6875rem;
+    color: var(--ios-purple);
+    font-weight: 600;
+    font-family: var(--font-display);
+  }
+
+  @keyframes response-fill {
+    from { width: 0; }
+    to { width: 85%; }
+  }
+
+  /* Stats ribbon */
+  .stats-ribbon {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr 1px 1fr;
+    background: var(--bg-primary);
+    border: 1px solid var(--separator);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xs);
+  }
+
+  .ribbon-stat {
+    padding: 28px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ribbon-num {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-family: var(--font-display);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ribbon-label {
+    font-size: 0.75rem;
+    color: var(--label-secondary);
+    font-weight: 500;
+    font-family: var(--font-display);
+    line-height: 1.3;
+  }
+
+  .ribbon-sep {
+    background: var(--separator);
+    width: 1px;
+    margin: 20px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    .bento-ultra {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      grid-template-areas:
+        "feature-left feature-left"
+        "top-mid top-right"
+        "feature-right feature-right"
+        "bot-left bot-mid";
+    }
+
+    .bento-feature,
+    .bento-small {
+      min-height: 200px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .stats-ribbon {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+
+    .ribbon-sep {
+      display: none;
+    }
+
+    .ribbon-stat {
+      padding: 20px 12px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .bento-ultra {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "feature-left"
+        "top-mid"
+        "top-right"
+        "feature-right"
+        "bot-left"
+        "bot-mid";
+      gap: 12px;
+    }
+
+    .bento-feature {
+      min-height: 260px;
+    }
+
+    .bento-small {
+      min-height: 180px;
+    }
+
+    .stats-ribbon {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Initialize trend bar heights
+  document.querySelectorAll('.trend-bar').forEach(bar => {
+    const height = bar.dataset.height;
+    if (height) {
+      bar.style.setProperty('--bar-height', height);
+    }
+  });
+
+  // 3D Tilt effect for bento cards
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  
+  if (!isTouchDevice) {
+    document.querySelectorAll('.bento-3d').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / centerY * -5;
+        const rotateY = (x - centerX) / centerX * 5;
+        
+        card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  // Stats ribbon counter animation
+  const ribbonObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const statNums = entry.target.querySelectorAll('.ribbon-num');
+        statNums.forEach((num, index) => {
+          setTimeout(() => {
+            num.style.animation = 'fade-scale-in 0.6s var(--ease-ios-spring) forwards';
+          }, index * 100);
+        });
+        ribbonObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const statsRibbon = document.querySelector('.stats-ribbon');
+  if (statsRibbon) {
+    ribbonObserver.observe(statsRibbon);
+  }
+</script>

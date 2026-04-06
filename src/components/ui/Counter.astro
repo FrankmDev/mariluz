@@ -1,0 +1,77 @@
+---
+interface Props {
+  endValue: number;
+  suffix?: string;
+  prefix?: string;
+  duration?: number;
+  class?: string;
+}
+
+const { endValue, suffix = '', prefix = '', duration = 2000, class: className = '' } = Astro.props;
+---
+
+<span class={`t-numeric ${className}`} data-counter data-end={endValue} data-duration={duration} data-prefix={prefix} data-suffix={suffix}>
+  {prefix}{endValue}{suffix}
+</span>
+
+<script>
+  class Counter {
+    element: HTMLElement;
+    endValue: number;
+    duration: number;
+    prefix: string;
+    suffix: string;
+    hasAnimated: boolean;
+
+    constructor(element: HTMLElement) {
+      this.element = element;
+      this.endValue = parseInt(element.dataset.end || '0');
+      this.duration = parseInt(element.dataset.duration || '2000');
+      this.prefix = element.dataset.prefix || '';
+      this.suffix = element.dataset.suffix || '';
+      this.hasAnimated = false;
+      
+      this.init();
+    }
+
+    init() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !this.hasAnimated) {
+            this.animate();
+            this.hasAnimated = true;
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(this.element);
+    }
+
+    animate() {
+      const startTime = performance.now();
+      const startValue = 0;
+
+      const step = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / this.duration, 1);
+        
+        // Ease out cubic
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const currentValue = Math.floor(startValue + (this.endValue - startValue) * easeProgress);
+        
+        this.element.textContent = `${this.prefix}${currentValue.toLocaleString('es-ES')}${this.suffix}`;
+        
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      };
+
+      requestAnimationFrame(step);
+    }
+  }
+
+  document.querySelectorAll('[data-counter]').forEach(counter => {
+    new Counter(counter as HTMLElement);
+  });
+</script>

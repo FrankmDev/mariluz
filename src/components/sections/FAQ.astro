@@ -1,0 +1,433 @@
+---
+import { siteConfig } from '../../config/site';
+
+const faqs = [
+  {
+    question: '¿Cuánto cuesta el servicio de asesoría?',
+    answer: 'El servicio es completamente gratuito para ti. Como asesora independiente, recibo una comisión de la comercializadora a la que te cambias, nunca cobro directamente a mis clientes. Tu ahorro es real desde el primer día.',
+  },
+  {
+    question: '¿Cuánto tiempo tarda el cambio de compañía?',
+    answer: 'El proceso suele tardar entre 5 y 15 días hábiles desde que firmas la solicitud. Durante este tiempo, no hay ninguna interrupción en tu suministro eléctrico. El cambio es automático y sin cortes.',
+  },
+  {
+    question: '¿Qué documentación necesito aportar?',
+    answer: 'Solo necesito una copia de tu última factura de luz y tu DNI. Con esto puedo analizar tu consumo real y encontrar la mejor tarifa. Yo me encargo de todo el papeleo posterior.',
+  },
+  {
+    question: '¿Y si ya tengo una tarifa con discriminación horaria?',
+    answer: 'Perfecto. Analizaré si tu perfil de consumo se adapta bien a las horas valle y si hay opciones más ventajosas. Muchas veces se puede optimizar aún más el ahorro ajustando el tipo de tarifa a tus hábitos reales.',
+  },
+  {
+    question: '¿El cambio afecta a la instalación eléctrica?',
+    answer: 'No, absolutamente. El cambio solo implica modificar la comercializadora que te factura. Los cables, el contador y toda la instalación física siguen siendo exactamente los mismos.',
+  },
+  {
+    question: '¿Puedo volver a mi compañía anterior si quiero?',
+    answer: 'Sí, siempre tienes libertad para cambiar. Aunque mis clientes suelen estar tan satisfechos con el ahorro que no quieren volver. De cualquier forma, no hay permanencia en la mayoría de tarifas que recomiendo.',
+  },
+];
+---
+
+<section id="faq" class="section" style="background: var(--bg-secondary);">
+  <div class="container-custom">
+
+    <!-- Section Header -->
+    <div class="text-center reveal" style="margin-bottom: 72px;">
+      <span class="badge" style="margin-bottom: 20px; display: inline-flex;">Preguntas frecuentes</span>
+      <h2 class="text-large-title" style="color: var(--label-primary); margin-bottom: 16px;">
+        Todo lo que necesitas saber.
+      </h2>
+      <p class="text-body-large" style="color: var(--label-secondary); max-width: 480px; margin: 0 auto;">
+        Respuestas honestas a las dudas más habituales.
+      </p>
+    </div>
+
+    <div class="faq-layout">
+
+      <!-- Left: FAQ Accordion -->
+      <div class="reveal faq-col" style="transition-delay: 0ms;">
+        {faqs.map((faq, index) => (
+          <details class="faq-item" data-faq={index} style={`--faq-index: ${index}`}>
+            <summary class="faq-summary">
+              <span class="faq-number">{String(index + 1).padStart(2, '0')}</span>
+              <span class="text-title-3 faq-question" style="color: var(--label-primary); padding-right: 20px; line-height: 1.4; flex: 1;">{faq.question}</span>
+              <div class="faq-icon-btn">
+                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="faq-body">
+              <div class="faq-answer">
+                <p class="text-body" style="color: var(--label-secondary); line-height: 1.7;">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Right: Contact Card -->
+      <div class="reveal faq-contact-col" style="transition-delay: 150ms;">
+
+        <div class="contact-card" data-contact-card>
+          <!-- Avatar -->
+          <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+            <div class="avatar-container">
+              <div class="avatar avatar-3d" style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--ios-blue) 0%, var(--ios-indigo) 100%); color: white; font-size: 2rem; font-weight: 700; border-radius: 50%;">M</div>
+              <div class="status-dot status-pulse" style="position: absolute; bottom: 4px; right: 4px; width: 16px; height: 16px; border: 3px solid var(--bg-primary); border-radius: 50%; background: var(--ios-green);"></div>
+            </div>
+          </div>
+
+          <h3 class="text-title-2" style="color: var(--label-primary); text-align: center; margin-bottom: 8px;">¿Tienes más dudas?</h3>
+          <p class="text-body" style="color: var(--label-secondary); text-align: center; margin-bottom: 28px; line-height: 1.5;">
+            Escríbeme directamente. Respondo en menos de 24 horas y sin compromiso.
+          </p>
+
+          <!-- WhatsApp CTA -->
+          <a href={siteConfig.whatsappUrl} class="btn-primary" style="width: 100%; justify-content: center; margin-bottom: 12px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Escribir por WhatsApp
+          </a>
+
+          <!-- Phone CTA -->
+          <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} class="btn-secondary" style="width: 100%; justify-content: center; margin-bottom: 24px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.19 2 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            {siteConfig.phone}
+          </a>
+
+          <!-- Trust indicators -->
+          <div style="border-top: 1px solid var(--separator); padding-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-green)" stroke-width="2.5" stroke-linecap="round" flex-shrink="0"><path d="M20 6L9 17l-5-5"/></svg>
+              <span class="text-footnote" style="color: var(--label-secondary);">Sin compromiso ni permanencia</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-green)" stroke-width="2.5" stroke-linecap="round" flex-shrink="0"><path d="M20 6L9 17l-5-5"/></svg>
+              <span class="text-footnote" style="color: var(--label-secondary);">Respuesta garantizada en 24h</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-green)" stroke-width="2.5" stroke-linecap="round" flex-shrink="0"><path d="M20 6L9 17l-5-5"/></svg>
+              <span class="text-footnote" style="color: var(--label-secondary);">Servicio 100% gratuito siempre</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .faq-item {
+    display: block;
+    border-bottom: 1px solid var(--separator);
+    transition: all 0.3s var(--ease-ios-spring);
+  }
+
+  .faq-item:hover {
+    background: rgba(0, 122, 255, 0.02);
+    padding-left: 12px;
+    margin-left: -12px;
+    padding-right: 12px;
+    margin-right: -12px;
+    border-radius: var(--radius-lg);
+  }
+
+  .faq-item[open] {
+    background: rgba(0, 122, 255, 0.03);
+    padding-left: 16px;
+    margin-left: -16px;
+    padding-right: 16px;
+    margin-right: -16px;
+    border-radius: var(--radius-xl);
+    border-bottom-color: transparent;
+  }
+
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    padding: 24px 0;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    -webkit-user-select: none;
+    gap: 16px;
+    transition: all 0.3s var(--ease-ios-spring);
+  }
+
+  .faq-summary:hover {
+    opacity: 0.8;
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-number {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--label-quaternary);
+    font-family: var(--font-display);
+    letter-spacing: 0.05em;
+    transition: all 0.3s var(--ease-ios-spring);
+    min-width: 24px;
+  }
+
+  .faq-item[open] .faq-number {
+    color: var(--ios-blue);
+  }
+
+  .faq-question {
+    transition: color 0.3s;
+  }
+
+  .faq-item:hover .faq-question {
+    color: var(--ios-blue) !important;
+  }
+
+  .faq-icon-btn {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 400ms var(--ease-ios-spring);
+  }
+
+  .faq-chevron {
+    color: var(--label-tertiary);
+    transition: all 400ms var(--ease-ios-spring);
+  }
+
+  .faq-item[open] .faq-icon-btn {
+    background: var(--ios-blue);
+    transform: rotate(0deg);
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: white;
+    stroke: white;
+  }
+
+  .faq-body {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 500ms var(--ease-ios), opacity 350ms ease, padding 500ms var(--ease-ios);
+    padding-right: 56px;
+    padding-left: 40px;
+  }
+
+  .faq-item[open] .faq-body {
+    max-height: 400px;
+    opacity: 1;
+    padding-bottom: 24px;
+  }
+
+  .faq-answer {
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.4s var(--ease-ios-decel) 0.1s;
+  }
+
+  .faq-item[open] .faq-answer {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .contact-card {
+    position: sticky;
+    top: 88px;
+    /* Authentic Liquid Glass */
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(28px) saturate(200%);
+    -webkit-backdrop-filter: blur(28px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 24px;
+    padding: 36px 32px;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 8px 32px rgba(0, 0, 0, 0.06),
+      0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s var(--ease-ios-spring);
+  }
+
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55%;
+    border-radius: 24px 24px 0 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .contact-card:hover {
+    background: rgba(255, 255, 255, 0.85);
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      0 16px 48px rgba(0, 0, 0, 0.08),
+      0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Avatar animations */
+  .avatar-container {
+    position: relative;
+    transition: transform 0.4s var(--ease-ios-spring);
+  }
+
+  .contact-card:hover .avatar-container {
+    transform: scale(1.05);
+  }
+
+  .avatar-3d {
+    transition: all 0.4s var(--ease-ios-spring);
+    box-shadow: 0 8px 32px rgba(0, 122, 255, 0.25);
+  }
+
+  .contact-card:hover .avatar-3d {
+    box-shadow: 0 12px 40px rgba(0, 122, 255, 0.35);
+  }
+
+  .status-pulse {
+    animation: status-breathe 2s ease-in-out infinite;
+  }
+
+  @keyframes status-breathe {
+    0%, 100% { 
+      box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.4);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 0 0 6px rgba(52, 199, 89, 0);
+      transform: scale(1.1);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .faq-layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .contact-card {
+      position: static;
+    }
+  }
+</style>
+
+<script>
+  // FAQ Accordion with smooth animations
+  document.querySelectorAll('.faq-item').forEach((item, index) => {
+    const summary = item.querySelector('.faq-summary');
+    
+    // Staggered entrance animation
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+      item.style.transition = 'opacity 0.5s var(--ease-ios-decel), transform 0.5s var(--ease-ios-spring)';
+      item.style.opacity = '1';
+      item.style.transform = 'translateY(0)';
+    }, index * 80);
+    
+    summary?.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isOpen = item.hasAttribute('open');
+
+      // Close other items with animation
+      document.querySelectorAll('.faq-item[open]').forEach(openItem => {
+        if (openItem !== item) {
+          const body = openItem.querySelector('.faq-body');
+          const answer = openItem.querySelector('.faq-answer');
+          if (body) {
+            body.style.maxHeight = body.scrollHeight + 'px';
+            requestAnimationFrame(() => {
+              body.style.maxHeight = '0';
+              body.style.opacity = '0';
+              body.style.paddingBottom = '0';
+            });
+          }
+          if (answer) {
+            answer.style.transform = 'translateY(-10px)';
+            answer.style.opacity = '0';
+          }
+          setTimeout(() => openItem.removeAttribute('open'), 400);
+        }
+      });
+
+      if (isOpen) {
+        const body = item.querySelector('.faq-body');
+        const answer = item.querySelector('.faq-answer');
+        if (body) {
+          body.style.maxHeight = body.scrollHeight + 'px';
+          requestAnimationFrame(() => {
+            body.style.maxHeight = '0';
+            body.style.opacity = '0';
+            body.style.paddingBottom = '0';
+          });
+        }
+        if (answer) {
+          answer.style.transform = 'translateY(-10px)';
+          answer.style.opacity = '0';
+        }
+        setTimeout(() => item.removeAttribute('open'), 400);
+      } else {
+        item.setAttribute('open', '');
+        const body = item.querySelector('.faq-body');
+        if (body) {
+          requestAnimationFrame(() => {
+            body.style.maxHeight = body.scrollHeight + 'px';
+            body.style.opacity = '1';
+          });
+        }
+      }
+    });
+  });
+
+  // Contact card 3D tilt effect
+  const contactCard = document.querySelector('[data-contact-card]');
+  if (contactCard && !window.matchMedia('(pointer: coarse)').matches) {
+    contactCard.addEventListener('mousemove', (e) => {
+      const rect = contactCard.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / centerY * -3;
+      const rotateY = (x - centerX) / centerX * 3;
+      
+      (contactCard as HTMLElement).style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+    });
+    
+    contactCard.addEventListener('mouseleave', () => {
+      (contactCard as HTMLElement).style.transform = '';
+    });
+  }
+</script>
