@@ -1,187 +1,393 @@
 ---
 import { siteConfig } from '../../config/site';
+import { MessageCircle } from 'lucide-astro';
+
+// Datos de comercializadoras para la simulación
+const PROVIDERS = [
+  {
+    id: 'current',
+    name: 'Tu comercializadora actual',
+    logo: '🔌',
+    color: '#8E8E93',
+    isCurrent: true,
+    yearlyCost: 0, // Se calcula dinámicamente
+  },
+  {
+    id: 'iberdrola',
+    name: 'Iberdrola',
+    logo: '⚡',
+    color: '#007AFF',
+    discount: 0.15,
+    rating: 4.2,
+    features: ['Sin permanencia', 'Factura digital', 'App móvil'],
+  },
+  {
+    id: 'endesa',
+    name: 'Endesa',
+    logo: '🔋',
+    color: '#FF9500',
+    discount: 0.12,
+    rating: 4.0,
+    features: ['Tarifa online', 'Descuento 12 meses', 'Gestión online'],
+  },
+  {
+    id: 'naturgy',
+    name: 'Naturgy',
+    logo: '🌿',
+    color: '#34C759',
+    discount: 0.18,
+    rating: 4.4,
+    features: ['Energía verde', 'Sin permanencia', 'Precio fijo'],
+  },
+  {
+    id: 'repsol',
+    name: 'Repsol',
+    logo: '⛽',
+    color: '#FF3B30',
+    discount: 0.10,
+    rating: 3.9,
+    features: ['Puntos descuento', 'Gas+luz', 'Tarifa plana'],
+  },
+];
 ---
 
-<section id="calculadora" class="section" style="background: #FFFFFF;">
+<section id="calculadora" class="calc-section" aria-label="Comparador de tarifas eléctricas">
   <div class="container-custom">
+    
+    <!-- Section Header -->
+    <header class="section-header reveal">
+      <div class="eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>Estudio gratuito</span>
+      </div>
+      <h2 class="headline">
+        <span class="headline-main">Sube tu factura.</span>
+        <span class="headline-accent">Descubre tu ahorro real.</span>
+      </h2>
+      <p class="subhead">
+        Analizo tu factura y te muestro cuánto podrías ahorrar con cada comercializadora. Sin compromiso.
+      </p>
+    </header>
 
+    <!-- Main Calculator Area -->
     <div class="calc-layout">
-
-      <!-- Left: Calculator Widget -->
-      <div class="reveal calc-widget-col" style="transition-delay: 0ms;">
-
-        <!-- Header inside widget -->
-        <div style="margin-bottom: 48px;">
-          <span class="badge badge-green" style="margin-bottom: 16px; display: inline-flex;">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
-            Calculadora de ahorro
-          </span>
-          <h2 class="text-large-title" style="color: var(--label-primary); margin-bottom: 12px;">
-            Descubre tu potencial de ahorro.
-          </h2>
-          <p class="text-body" style="color: var(--label-secondary);">
-            Estimación en tiempo real basada en datos reales del mercado energético español.
-          </p>
-        </div>
-
-        <!-- Widget Card -->
-        <div class="calc-card">
-          <div style="padding: 36px 36px 0;">
-
-            <!-- Segmented Control -->
-            <div class="segmented" style="width: 100%; padding: 3px; margin-bottom: 40px;">
-              <button class="segmented-btn active" data-type="home" type="button" aria-pressed="true" style="flex: 1; padding: 10px 16px;">
-                <span style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                  Hogar
-                </span>
-              </button>
-              <button class="segmented-btn" data-type="business" type="button" aria-pressed="false" style="flex: 1; padding: 10px 16px;">
-                <span style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-                  Negocio
-                </span>
-              </button>
-            </div>
-
-            <!-- Amount Display -->
-            <div style="text-align: center; margin-bottom: 32px;">
-              <p class="text-subhead" style="color: var(--label-secondary); margin-bottom: 10px;">Factura mensual actual</p>
-              <div class="text-numeric bill-display" style="display: flex; align-items: flex-start; justify-content: center; gap: 8px; line-height: 1;">
-                <span id="bill-amount" class="bill-counter" style="font-size: 5rem; font-weight: 800; letter-spacing: -0.05em; color: var(--label-primary);">120</span>
-                <span class="bill-currency" style="font-size: 2.25rem; font-weight: 600; color: var(--label-secondary); margin-top: 10px;">€</span>
-              </div>
-            </div>
-
-            <!-- Slider -->
-            <div class="slider-container" style="position: relative; margin-bottom: 10px;">
-              <div class="slider-track-bg" style="position: absolute; inset: 0; background: var(--bg-secondary); border-radius: 22px;"></div>
-              <div id="slider-track-fill" class="slider-fill" style="position: absolute; left: 0; top: 0; bottom: 0; background: linear-gradient(90deg, var(--ios-blue), #5856D6); border-radius: 22px; width: 22%; transition: width 80ms ease-out; box-shadow: 0 0 30px rgba(0,122,255,0.3);"></div>
-              <input
-                type="range"
-                id="bill-slider"
-                min="20"
-                max="500"
-                value="120"
-                step="5"
-                class="slider-ios slider-premium"
-                style="position: relative; z-index: 2; background: transparent; height: 48px;"
-                aria-label="Factura mensual en euros"
-              />
-              <div class="slider-icon" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); z-index: 3; color: white; pointer-events: none; opacity: 0.9;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-              </div>
-              <div class="slider-thumb-glow" id="slider-glow" style="position: absolute; top: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: rgba(0,122,255,0.3); border-radius: 50%; filter: blur(12px); pointer-events: none; opacity: 0; transition: opacity 0.3s;"></div>
-            </div>
-            <div class="slider-labels" style="display: flex; justify-content: space-between; margin-bottom: 36px;">
-              <span class="text-footnote slider-label" style="color: var(--label-tertiary); font-weight: 600; transition: color 0.3s;">20€ / mes</span>
-              <span class="text-footnote slider-label" style="color: var(--label-tertiary); font-weight: 600; transition: color 0.3s;">500€ / mes</span>
-            </div>
-          </div>
-
-          <!-- Result Area -->
-          <div style="margin: 0 36px; border-top: 1px solid var(--separator);"></div>
-          <div class="result-area" style="padding: 32px 36px 36px; background: linear-gradient(180deg, rgba(52,199,89,0.05) 0%, transparent 100%); position: relative; overflow: hidden;">
+      
+      <!-- Left: Upload/Results Widget -->
+      <div class="reveal calc-widget-col" style="transition-delay: 100ms;">
+        
+        <div class="calc-card" id="calculator-widget">
+          <!-- Specular highlight layer -->
+          <div class="card-specular" aria-hidden="true"></div>
+          
+          <div class="card-content" id="card-content">
             
-            <!-- Shimmer effect on high savings -->
-            <div id="savings-shimmer" class="savings-shimmer" style="position: absolute; inset: 0; background: linear-gradient(105deg, transparent 40%, rgba(52,199,89,0.1) 50%, transparent 60%); transform: translateX(-100%); pointer-events: none;"></div>
+            <!-- STATE: Upload -->
+            <div class="state-upload" id="state-upload">
+              <div class="upload-zone" id="upload-zone">
+                <input 
+                  type="file" 
+                  id="file-input" 
+                  class="file-input" 
+                  accept=".pdf,application/pdf"
+                  aria-label="Subir factura eléctrica (PDF)"
+                />
+                
+                <div class="upload-content">
+                  <div class="upload-icon-wrapper">
+                    <div class="upload-icon-circle">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                      </svg>
+                    </div>
+                    <div class="upload-icon-pulse"></div>
+                  </div>
+                  
+                  <h3 class="upload-title">Arrastra tu factura aquí</h3>
+                  <p class="upload-subtitle">o haz clic para seleccionar archivo</p>
+                  
+                  <div class="upload-formats">
+                    <span class="format-badge">Solo PDF</span>
+                  </div>
+                  
+                  <div class="upload-divider">
+                    <span>o</span>
+                  </div>
+                  
+                  <!-- Segmented Control para modo manual -->
+                  <div class="segmented-control">
+                    <button class="segment-btn active" data-type="home" type="button" aria-pressed="true">
+                      <span class="btn-inner">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                          <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                        Hogar
+                      </span>
+                    </button>
+                    <button class="segment-btn" data-type="business" type="button" aria-pressed="false">
+                      <span class="btn-inner">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                          <rect x="2" y="7" width="20" height="14" rx="2"/>
+                          <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+                        </svg>
+                        Negocio
+                      </span>
+                    </button>
+                  </div>
+                  
+                  <!-- Amount Display Manual -->
+                  <div class="amount-display">
+                    <p class="amount-label">Factura mensual actual</p>
+                    <div class="amount-value">
+                      <span id="bill-amount" class="bill-counter">120</span>
+                      <span class="amount-currency">€</span>
+                    </div>
+                  </div>
 
-            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px; position: relative; z-index: 1;">
-              <div>
-                <p style="font-size: 0.875rem; font-weight: 700; color: var(--ios-green); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; font-family: var(--font-display);">Ahorro anual estimado</p>
-                <p class="text-footnote" style="color: var(--label-tertiary);">Mercado libre · tarifa óptima</p>
-              </div>
-              <div class="text-numeric savings-display" style="display: flex; align-items: flex-start; gap: 4px; line-height: 1;">
-                <span class="savings-prefix" style="font-size: 1.25rem; font-weight: 700; color: var(--ios-green); margin-top: 6px;">+</span>
-                <span id="yearly-saving" class="savings-counter" style="font-size: 3.5rem; font-weight: 800; letter-spacing: -0.04em; color: var(--ios-green);">316</span>
-                <span class="savings-suffix" style="font-size: 1.75rem; font-weight: 700; color: var(--ios-green); margin-top: 6px;">€</span>
+                  <!-- Premium Slider -->
+                  <div class="slider-wrapper">
+                    <div class="slider-track">
+                      <div id="slider-fill" class="slider-fill"></div>
+                      <div class="slider-ticks">
+                        <span class="tick"></span>
+                        <span class="tick"></span>
+                        <span class="tick"></span>
+                        <span class="tick"></span>
+                        <span class="tick"></span>
+                      </div>
+                    </div>
+                    <input
+                      type="range"
+                      id="bill-slider"
+                      min="20"
+                      max="500"
+                      value="120"
+                      step="5"
+                      class="slider-input"
+                      aria-label="Factura mensual en euros"
+                    />
+                    <div class="slider-tooltip" id="slider-tooltip">120€</div>
+                  </div>
+                  
+                  <div class="slider-labels">
+                    <span class="slider-label">20€/mes</span>
+                    <span class="slider-label">500€/mes</span>
+                  </div>
+                  
+                  <button class="btn-analyze" id="btn-analyze-manual" type="button">
+                    <span class="btn-shine" aria-hidden="true"></span>
+                    <span class="btn-content">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                      </svg>
+                      Analizar mi factura
+                    </span>
+                  </button>
+                </div>
+                
+                <!-- Drag overlay -->
+                <div class="drag-overlay" id="drag-overlay">
+                  <div class="drag-content">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                      <polyline points="17 8 12 3 7 8"/>
+                      <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    <p>Suelta tu factura aquí</p>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <a href={siteConfig.whatsappUrl} class="btn-green" style="width: 100%; justify-content: center; font-size: 1.0625rem; padding: 18px;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              Obtener este ahorro gratis
-            </a>
-
-            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px;">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--label-quaternary); flex-shrink: 0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <span class="text-footnote" style="color: var(--label-quaternary);">Gestión cifrada y segura · Sin compromiso</span>
+            
+            <!-- STATE: Analyzing -->
+            <div class="state-analyzing" id="state-analyzing" hidden>
+              <div class="analyzing-content">
+                <div class="document-icon">
+                  <div class="document-page page-1"></div>
+                  <div class="document-page page-2"></div>
+                  <div class="document-page page-3"></div>
+                  <div class="scan-line"></div>
+                </div>
+                
+                <h3 class="analyzing-title">Analizando tu factura</h3>
+                <p class="analyzing-subtitle" id="analyzing-status">Extrayendo datos de consumo...</p>
+                
+                <div class="progress-dots">
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                </div>
+                
+                <div class="analysis-steps">
+                  <div class="step" data-step="1">
+                    <div class="step-icon">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </div>
+                    <span>Leyendo factura</span>
+                  </div>
+                  <div class="step" data-step="2">
+                    <div class="step-icon">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </div>
+                    <span>Calculando consumo</span>
+                  </div>
+                  <div class="step" data-step="3">
+                    <div class="step-icon">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </div>
+                    <span>Comparando tarifas</span>
+                  </div>
+                </div>
+              </div>
             </div>
+            
+            <!-- STATE: Results -->
+            <div class="state-results" id="state-results" hidden>
+              <div class="results-header">
+                <button class="btn-back" id="btn-back" type="button" aria-label="Volver">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                  </svg>
+                </button>
+                <h3 class="results-title">Comparativa de tarifas</h3>
+                <div class="results-badge">
+                  <span id="consumption-badge">350 kWh/mes</span>
+                </div>
+              </div>
+              
+              <p class="results-subtitle">
+                Basado en tu consumo de <strong id="monthly-cost">120€/mes</strong>
+              </p>
+              
+              <!-- Savings Highlight -->
+              <div class="savings-highlight" id="savings-highlight">
+                <div class="savings-highlight-specular" aria-hidden="true"></div>
+                <div class="savings-highlight-content">
+                  <div class="savings-highlight-text">
+                    <span class="savings-label">Ahorro máximo anual</span>
+                    <span class="savings-amount" id="max-savings">+256€</span>
+                  </div>
+                  <div class="savings-provider" id="best-provider">
+                    <span>con</span>
+                    <strong>Naturgy</strong>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Providers List -->
+              <div class="providers-list" id="providers-list">
+                <!-- Se genera dinámicamente -->
+              </div>
+              
+              <!-- CTA -->
+              <a href={siteConfig.whatsappUrl} class="results-cta" rel="noopener noreferrer">
+                <span class="cta-bg" aria-hidden="true"></span>
+                <span class="cta-shine" aria-hidden="true"></span>
+                <span class="cta-content">
+                  <MessageCircle size={18} fill="currentColor" aria-hidden="true" />
+                  Quiero este ahorro
+                </span>
+              </a>
+              
+              <p class="results-note">
+                Estudio personalizado gratuito. Sin compromiso.
+              </p>
+            </div>
+            
           </div>
         </div>
 
       </div>
 
-      <!-- Right: Context / Why -->
-      <div class="reveal calc-info-col" style="transition-delay: 150ms;">
-
-        <div style="margin-bottom: 40px;">
-          <h3 class="text-title-1" style="color: var(--label-primary); margin-bottom: 16px; line-height: 1.2;">
+      <!-- Right: Info Cards -->
+      <div class="reveal calc-info-col" style="transition-delay: 200ms;">
+        
+        <!-- Context Block -->
+        <div class="context-block">
+          <h3 class="context-title">
             Por qué muchos pagan de más sin saberlo.
           </h3>
-          <p class="text-body" style="color: var(--label-secondary); line-height: 1.7;">
-            El mercado eléctrico español tiene más de 300 tarifas activas. Las comercializadoras invierten millones en marketing, no en darte la mejor tarifa. El resultado: el 74% de los hogares está pagando más de lo que debería.
+          <p class="context-text">
+            El mercado eléctrico español tiene más de 300 tarifas activas. Las comercializadoras invierten millones en marketing, no en darte la mejor tarifa.
           </p>
         </div>
 
-        <!-- Info cards -->
-        <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
-          <div class="info-card">
-            <div class="icon-frame" style="background: var(--ios-blue-light); color: var(--ios-blue); flex-shrink: 0;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-            </div>
-            <div>
-              <p class="text-subhead" style="color: var(--label-primary); font-weight: 700; margin-bottom: 4px;">Comparativa real del mercado</p>
-              <p class="text-footnote" style="color: var(--label-secondary); line-height: 1.5;">Accedo a datos actualizados de todas las comercializadoras, no solo las que pagan más comisión.</p>
-            </div>
-          </div>
-
-          <div class="info-card">
-            <div class="icon-frame" style="background: var(--ios-green-light); color: var(--ios-green); flex-shrink: 0;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-            <div>
-              <p class="text-subhead" style="color: var(--label-primary); font-weight: 700; margin-bottom: 4px;">Cero coste para ti</p>
-              <p class="text-footnote" style="color: var(--label-secondary); line-height: 1.5;">Mi servicio es completamente gratuito. Cobro una comisión de la comercializadora, nunca de ti.</p>
-            </div>
-          </div>
-
-          <div class="info-card">
-            <div class="icon-frame" style="background: var(--ios-indigo-light); color: var(--ios-indigo); flex-shrink: 0;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-            </div>
-            <div>
-              <p class="text-subhead" style="color: var(--label-primary); font-weight: 700; margin-bottom: 4px;">Asesora certificada</p>
-              <p class="text-footnote" style="color: var(--label-secondary); line-height: 1.5;">8 años de experiencia auditando consumos y optimizando contratos energéticos.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial snippet -->
-        <div class="testimonial-snippet">
-          <div style="display: flex; gap: 2px; margin-bottom: 12px;">
-            <span style="color: var(--ios-orange);">★</span>
-            <span style="color: var(--ios-orange);">★</span>
-            <span style="color: var(--ios-orange);">★</span>
-            <span style="color: var(--ios-orange);">★</span>
-            <span style="color: var(--ios-orange);">★</span>
-          </div>
-          <p class="text-body" style="color: var(--label-primary); line-height: 1.6; margin-bottom: 16px; font-style: italic;">
-            "Pensaba que ya tenía una buena tarifa, pero Mariluz encontró una mejor. Ahora ahorro 27€ al mes sin cambiar mis hábitos."
-          </p>
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div class="avatar avatar-sm" style="background: linear-gradient(135deg, var(--ios-indigo), #8B5CF6); color: white;">CR</div>
-              <div>
-                <p class="text-subhead" style="color: var(--label-primary); font-weight: 600;">Carmen R.</p>
-                <p class="text-footnote" style="color: var(--label-secondary);">Madrid</p>
+        <!-- Feature Cards -->
+        <div class="features-list">
+          
+          <div class="feature-card-glass">
+            <div class="card-specular" aria-hidden="true"></div>
+            <div class="feature-content">
+              <div class="feature-icon icon-blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+                  <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+              </div>
+              <div class="feature-text">
+                <p class="feature-title">Comparativa real del mercado</p>
+                <p class="feature-desc">Accedo a datos actualizados de todas las comercializadoras, no solo las que pagan más comisión.</p>
               </div>
             </div>
-            <span class="badge badge-green" style="font-size: 0.75rem; padding: 5px 10px;">+324€/año</span>
+          </div>
+
+          <div class="feature-card-glass">
+            <div class="card-specular" aria-hidden="true"></div>
+            <div class="feature-content">
+              <div class="feature-icon icon-green">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+                  <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div class="feature-text">
+                <p class="feature-title">Cero coste para ti</p>
+                <p class="feature-desc">Mi servicio es completamente gratuito. Cobro una comisión de la comercializadora, nunca de ti.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card-glass">
+            <div class="card-specular" aria-hidden="true"></div>
+            <div class="feature-content">
+              <div class="feature-icon icon-indigo">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+                  <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                </svg>
+              </div>
+              <div class="feature-text">
+                <p class="feature-title">Asesora certificada</p>
+                <p class="feature-desc">8 años de experiencia auditando consumos y optimizando contratos energéticos.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-number" data-target="300">0</span>
+            <span class="stat-label">Tarifas analizadas</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="74">0</span>
+            <span class="stat-suffix">%</span>
+            <span class="stat-label">Hogares pagando de más</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="24">0</span>
+            <span class="stat-suffix">h</span>
+            <span class="stat-label">Respuesta garantizada</span>
           </div>
         </div>
 
@@ -192,217 +398,1896 @@ import { siteConfig } from '../../config/site';
 </section>
 
 <style>
+  /* ─── Section Base ───────────────────────────────────────────── */
+  .calc-section {
+    position: relative;
+    padding: var(--space-24) 0 var(--space-32);
+    overflow: hidden;
+    /* No background - using global background from Layout */
+  }
+
+  /* ─── Section Header ─────────────────────────────────────────── */
+  .section-header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--space-6);
+    background: rgba(255, 255, 255, 0.70);
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+      0 4px 6px rgba(0, 0, 0, 0.04),
+      0 12px 40px rgba(0, 0, 0, 0.09),
+      0 32px 80px rgba(0, 0, 0, 0.06);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-secondary);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--duration-normal) var(--ease-ios-spring);
+  }
+
+  .eyebrow::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 55%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.88) 0%,
+      rgba(255, 255, 255, 0.40) 35%,
+      rgba(255, 255, 255, 0.08) 65%,
+      transparent 100%
+    );
+    border-radius: 100px 100px 0 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .eyebrow-dot {
+    position: relative;
+    z-index: 2;
+  }
+
+  .eyebrow:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 0.80);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 6px 12px rgba(0, 0, 0, 0.06),
+      0 16px 48px rgba(0, 0, 0, 0.10),
+      0 40px 96px rgba(0, 0, 0, 0.08);
+  }
+
+  .eyebrow-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #5AC8FA 100%);
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 0 0 0 rgba(0,122,255,0.4);
+    animation: dot-pulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes dot-pulse {
+    0%, 100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 0 0 0 rgba(0,122,255,0.4); }
+    50% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 0 0 8px rgba(0,122,255,0); }
+  }
+
+  .headline { margin: 0 0 var(--space-5); }
+
+  .headline-main {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    font-weight: var(--font-extrabold);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .headline-accent {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-section-sub);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--tracking-normal);
+    line-height: 1.2;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #5AC8FA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subhead {
+    font-size: var(--text-lg);
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  /* ─── Calculator Layout ──────────────────────────────────────── */
   .calc-layout {
+    position: relative;
+    z-index: 10;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 48px;
     align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
+  /* ─── Calculator Card ────────────────────────────────────────── */
   .calc-card {
     position: relative;
-    /* Authentic Liquid Glass */
-    background: rgba(255, 255, 255, 0.78);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    border-radius: 24px;
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.95),
-      0 12px 40px rgba(0, 0, 0, 0.08),
-      0 4px 12px rgba(0, 0, 0, 0.03);
+    border-radius: var(--radius-xl);
     overflow: hidden;
-    transition: all 0.4s var(--ease-ios-spring);
+    background: rgba(255, 255, 255, 0.70);
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+      0 4px 6px rgba(0, 0, 0, 0.04),
+      0 12px 40px rgba(0, 0, 0, 0.09),
+      0 32px 80px rgba(0, 0, 0, 0.06);
+    transition: all 0.5s var(--ease-ios-spring);
+    min-height: 520px;
   }
 
-  .calc-card::before {
+  .calc-card:hover {
+    transform: translateY(-4px) scale(1.005);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+      0 8px 12px rgba(0, 0, 0, 0.05),
+      0 20px 60px rgba(0, 0, 0, 0.12),
+      0 48px 100px rgba(0, 0, 0, 0.10);
+  }
+
+  .calc-card .card-specular {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 55%;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.88) 0%,
+      rgba(255, 255, 255, 0.40) 35%,
+      rgba(255, 255, 255, 0.08) 65%,
+      transparent 100%
+    );
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-8);
+  }
+
+  /* ─── State: Upload ──────────────────────────────────────────── */
+  .state-upload {
+    height: 100%;
+  }
+
+  .upload-zone {
+    position: relative;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(248, 250, 252, 0.5) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 1px 2px rgba(0, 0, 0, 0.02),
+      0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s var(--ease-ios-spring);
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .upload-zone::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: calc(var(--radius-lg) - 8px);
+    border: 2px dashed rgba(0, 122, 255, 0.18);
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .upload-zone:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(240, 247, 255, 0.6) 100%);
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      0 8px 24px rgba(0, 122, 255, 0.08),
+      0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .upload-zone:hover::before {
+    border-color: rgba(0, 122, 255, 0.35);
+  }
+
+  .upload-zone:hover .upload-icon-circle {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 122, 255, 0.15);
+  }
+
+  .upload-zone.drag-over {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(0, 122, 255, 0.03) 100%);
+    border-color: rgba(0, 122, 255, 0.4);
+    transform: scale(1.01);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 12px 32px rgba(0, 122, 255, 0.12);
+  }
+
+  .upload-zone.drag-over::before {
+    border-color: var(--color-primary);
+    border-style: solid;
+    background: rgba(0, 122, 255, 0.05);
+  }
+
+  .file-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .upload-content {
+    padding: var(--space-8) var(--space-6);
+    text-align: center;
+  }
+
+  .upload-icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    margin-bottom: var(--space-5);
+  }
+
+  .upload-icon-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, rgba(0,122,255,0.08) 0%, rgba(0,122,255,0.03) 100%);
+    border: 1px solid rgba(0,122,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s var(--ease-ios-spring);
+  }
+
+  .upload-icon-pulse {
+    position: absolute;
+    inset: -6px;
+    border-radius: calc(var(--radius-xl) + 6px);
+    background: rgba(0, 122, 255, 0.06);
+    animation: upload-pulse 2.5s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  @keyframes upload-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.4; }
+  }
+
+  .upload-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-1);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .upload-subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-5);
+  }
+
+  .upload-formats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .format-badge {
+    padding: 4px 10px;
+    background: rgba(118, 118, 128, 0.08);
+    border-radius: 6px;
+    font-size: 0.6875rem;
+    font-weight: var(--font-semibold);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .upload-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: var(--space-5) 0;
+    color: var(--text-quaternary);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+  }
+
+  .upload-divider::before,
+  .upload-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08) 50%, transparent);
+  }
+
+  .drag-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 122, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .upload-zone.drag-over .drag-overlay {
+    opacity: 1;
+  }
+
+  .drag-content {
+    color: white;
+    text-align: center;
+  }
+
+  .drag-content svg {
+    margin-bottom: 12px;
+  }
+
+  .drag-content p {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    margin: 0;
+  }
+
+  /* Error Message */
+  .upload-error {
+    background: rgba(255, 59, 48, 0.1);
+    border: 1px solid rgba(255, 59, 48, 0.3);
+    color: var(--red-500);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    text-align: center;
+    margin-bottom: var(--space-4);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s var(--ease-ios-spring);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .upload-error.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Shake Animation for Error */
+  .upload-zone.shake {
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    border-color: rgba(255, 59, 48, 0.5);
+    background: rgba(255, 59, 48, 0.05);
+  }
+
+  @keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+  }
+
+  /* ─── Segmented Control ──────────────────────────────────────── */
+  .segmented-control {
+    display: flex;
+    background: rgba(118, 118, 128, 0.12);
+    border-radius: var(--radius-md);
+    padding: 3px;
+    margin-bottom: var(--space-6);
+  }
+
+  .segment-btn {
+    flex: 1;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-display);
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 300ms var(--ease-ios), box-shadow 300ms var(--ease-ios), color 300ms var(--ease-ios);
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .segment-btn.active {
+    background: #FFFFFF;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    color: var(--text-primary);
+  }
+
+  .btn-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  /* ─── Amount Display ─────────────────────────────────────────── */
+  .amount-display {
+    text-align: center;
+    margin-bottom: var(--space-5);
+  }
+
+  .amount-label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+  }
+
+  .amount-value {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    line-height: 1;
+  }
+
+  .bill-counter {
+    font-size: clamp(2rem, 6vw, 2.75rem);
+    font-weight: var(--font-extrabold);
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s;
+  }
+
+  .amount-currency {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-semibold);
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* ─── Slider ─────────────────────────────────────────────────── */
+  .slider-wrapper {
+    position: relative;
+    margin-bottom: 12px;
+    padding: 6px 0;
+  }
+
+  .slider-track {
+    position: relative;
+    height: 36px;
+    background: rgba(118, 118, 128, 0.12);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+
+  .slider-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+      rgba(0, 122, 255, 0.9) 0%,
+      var(--color-secondary) 100%
+    );
+    border-radius: 18px;
+    width: 22%;
+    box-shadow: 0 0 30px rgba(0, 122, 255, 0.25);
+  }
+
+  .slider-ticks {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    pointer-events: none;
+  }
+
+  .tick {
+    width: 3px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 2px;
+    transition: background 0.3s;
+  }
+
+  .tick.active {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .slider-input {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 36px;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: grab;
+    margin: 0;
+    padding: 0 6px;
+  }
+
+  .slider-input:active {
+    cursor: grabbing;
+  }
+
+  .slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 100%);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.15),
+      0 2px 6px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(0, 0, 0, 0.06),
+      0 0 0 5px rgba(0, 122, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+    cursor: grab;
+    transition: all 0.2s var(--ease-ios-spring);
+    position: relative;
+  }
+
+  .slider-input::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow:
+      0 6px 20px rgba(0, 0, 0, 0.2),
+      0 3px 8px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(0, 0, 0, 0.06),
+      0 0 0 6px rgba(0, 122, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+
+  .slider-input::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.05);
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(0, 0, 0, 0.06),
+      0 0 0 8px rgba(0, 122, 255, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+
+  .slider-tooltip {
+    position: absolute;
+    top: -40px;
+    left: 22%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 6px var(--space-3);
+    border-radius: var(--space-2);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    font-variant-numeric: tabular-nums;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s var(--ease-ios-spring);
+    backdrop-filter: blur(10px);
+  }
+
+  .slider-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px 5px 0;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.85) transparent transparent;
+  }
+
+  .slider-wrapper:hover .slider-tooltip,
+  .slider-input:active ~ .slider-tooltip {
+    opacity: 1;
+  }
+
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-5);
+    padding: 0 6px;
+  }
+
+  .slider-label {
+    font-size: var(--text-xs);
+    font-weight: var(--font-medium);
+    color: var(--text-tertiary);
+  }
+
+  /* ─── Analyze Button ─────────────────────────────────────────── */
+  .btn-analyze {
+    position: relative;
+    width: 100%;
+    padding: var(--space-3) var(--space-5);
+    border-radius: 14px;
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-display);
+    color: white;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    letter-spacing: var(--tracking-normal);
+    transition: transform 0.3s var(--ease-ios-spring),
+                box-shadow 0.3s var(--ease-ios-spring);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    box-shadow:
+      0 4px 16px rgba(0, 122, 255, 0.35),
+      0 1px 3px rgba(0, 122, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-analyze:hover {
+    transform: scale(1.02) translateY(-2px);
+    box-shadow:
+      0 6px 24px rgba(0, 122, 255, 0.45),
+      0 3px 10px rgba(0, 122, 255, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-analyze:active {
+    transform: scale(0.98) translateY(0);
+  }
+
+  .btn-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: btn-shine 3s ease-in-out infinite;
+  }
+
+  .btn-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  @keyframes btn-shine {
+    0%, 100% { left: -100%; }
+    50% { left: 150%; }
+  }
+
+  /* ─── State: Analyzing ───────────────────────────────────────── */
+  .state-analyzing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+    padding: var(--space-4);
+  }
+
+  .analyzing-content {
+    text-align: center;
+  }
+
+  .document-icon {
+    position: relative;
+    width: 100px;
+    height: 120px;
+    margin: 0 auto var(--space-6);
+  }
+
+  .document-page {
+    position: absolute;
+    width: 80px;
+    height: 100px;
+    background: white;
+    border-radius: var(--space-2);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .page-1 {
+    top: 0;
+    left: 10px;
+    z-index: 3;
+    animation: page-float-1 2s ease-in-out infinite;
+  }
+
+  .page-2 {
+    top: 8px;
+    left: 14px;
+    z-index: 2;
+    opacity: 0.7;
+    transform: scale(0.95);
+    animation: page-float-2 2s ease-in-out infinite 0.1s;
+  }
+
+  .page-3 {
+    top: 16px;
+    left: 18px;
+    z-index: 1;
+    opacity: 0.4;
+    transform: scale(0.9);
+    animation: page-float-3 2s ease-in-out infinite 0.2s;
+  }
+
+  @keyframes page-float-1 {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-8px) rotate(-1deg); }
+  }
+
+  @keyframes page-float-2 {
+    0%, 100% { transform: translateY(0) scale(0.95) rotate(1deg); }
+    50% { transform: translateY(-6px) scale(0.95) rotate(2deg); }
+  }
+
+  @keyframes page-float-3 {
+    0%, 100% { transform: translateY(0) scale(0.9) rotate(2deg); }
+    50% { transform: translateY(-4px) scale(0.9) rotate(3deg); }
+  }
+
+  .scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    box-shadow: 0 0 20px var(--color-primary);
+    animation: scan-down 1.5s ease-in-out infinite;
+    z-index: 10;
+  }
+
+  @keyframes scan-down {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  .analyzing-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-2);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .analyzing-subtitle {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-5);
+  }
+
+  .progress-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-7);
+  }
+
+  .dot {
+    width: var(--space-2);
+    height: var(--space-2);
+    border-radius: 50%;
+    background: rgba(0, 122, 255, 0.3);
+    animation: dot-bounce 1.4s ease-in-out infinite both;
+  }
+
+  .dot:nth-child(1) { animation-delay: -0.32s; }
+  .dot:nth-child(2) { animation-delay: -0.16s; }
+
+  @keyframes dot-bounce {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+    40% { transform: scale(1); opacity: 1; }
+  }
+
+  .analysis-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: flex-start;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    transition: all 0.3s ease;
+  }
+
+  .step.active {
+    color: var(--text-primary);
+  }
+
+  .step.completed {
+    color: var(--color-success);
+  }
+
+  .step-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(118, 118, 128, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .step.active .step-icon {
+    background: var(--color-primary);
+    color: white;
+    animation: step-pulse 1.5s ease-in-out infinite;
+  }
+
+  .step.completed .step-icon {
+    background: var(--color-success);
+    color: white;
+  }
+
+  @keyframes step-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(0, 122, 255, 0); }
+  }
+
+  /* ─── State: Results ─────────────────────────────────────────── */
+  .state-results {
+    padding: 0;
+  }
+
+  .results-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+
+  .btn-back {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(118, 118, 128, 0.12);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .btn-back:hover {
+    background: rgba(118, 118, 128, 0.2);
+    color: var(--text-primary);
+  }
+
+  .results-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    margin: 0;
+    flex: 1;
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .results-badge {
+    padding: 6px var(--space-3);
+    background: rgba(0, 122, 255, 0.1);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-xs);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+  }
+
+  .results-subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-5) 48px;
+  }
+
+  .results-subtitle strong {
+    color: var(--text-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  /* Savings Highlight */
+  .savings-highlight {
+    position: relative;
+    background: linear-gradient(135deg, rgba(52,199,89,0.15) 0%, rgba(52,199,89,0.06) 100%);
+    border: 1.5px solid rgba(52,199,89,0.25);
+    border-radius: var(--radius-xl);
+    padding: var(--space-5);
+    margin-bottom: var(--space-5);
+    overflow: hidden;
+    box-shadow:
+      0 4px 20px rgba(52, 199, 89, 0.12),
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .savings-highlight::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(52, 199, 89, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .savings-highlight-specular {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55%;
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.7) 0%,
+      rgba(255,255,255,0.2) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+
+  .savings-highlight-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .savings-highlight-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .savings-label {
+    font-size: var(--text-xs);
+    font-weight: var(--font-bold);
+    color: var(--color-success);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .savings-amount {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: var(--font-extrabold);
+    color: var(--color-success);
+    letter-spacing: var(--tracking-tight);
+    line-height: 1;
+    text-shadow: 0 2px 8px rgba(52, 199, 89, 0.2);
+  }
+
+  .savings-provider {
+    text-align: right;
+    padding: var(--space-2) var(--space-3);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .savings-provider span {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: 2px;
+  }
+
+  .savings-provider strong {
+    display: block;
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  /* Providers List */
+  .providers-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+
+  .providers-list::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .providers-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 3px;
+  }
+
+  .providers-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+  }
+
+  .providers-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .provider-card {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-lg);
+    transition: all 0.35s var(--ease-ios-spring);
+    overflow: hidden;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      0 1px 2px rgba(0, 0, 0, 0.02),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .provider-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 50%;
-    border-radius: 24px 24px 0 0;
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(255, 255, 255, 0.25) 60%,
-      transparent 100%
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(255, 255, 255, 0.2) 100%
     );
+    pointer-events: none;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .provider-card:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.08),
+      0 4px 8px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+
+  /* Ranking Badge */
+  .provider-rank {
+    position: absolute;
+    top: -6px;
+    left: 16px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+    color: white;
+    font-size: 0.6875rem;
+    font-weight: var(--font-extrabold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .provider-rank.gold {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .provider-rank.silver {
+    background: linear-gradient(135deg, #C0C0C0 0%, #A0A0A0 100%);
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .provider-rank.bronze {
+    background: linear-gradient(135deg, #CD7F32 0%, #B87333 100%);
+    color: white;
+  }
+
+  /* Current Provider Styling */
+  .provider-card.current {
+    background: rgba(142, 142, 147, 0.12);
+    border-color: rgba(142, 142, 147, 0.25);
+    opacity: 0.85;
+  }
+
+  .provider-card.current .provider-main {
+    opacity: 0.7;
+  }
+
+  .provider-card.current .provider-logo {
+    background: rgba(142, 142, 147, 0.2);
+  }
+
+  /* Best Provider - Winner Styling */
+  .provider-card.best {
+    background: linear-gradient(135deg, rgba(52, 199, 89, 0.12) 0%, rgba(52, 199, 89, 0.05) 100%);
+    border-color: rgba(52, 199, 89, 0.4);
+    box-shadow:
+      0 4px 16px rgba(52, 199, 89, 0.15),
+      0 2px 4px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  .provider-card.best::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(225deg, rgba(52, 199, 89, 0.3) 0%, transparent 60%);
+    border-radius: 0 var(--radius-lg) 0 0;
     pointer-events: none;
   }
 
-  .calc-card:hover {
-    background: rgba(255, 255, 255, 0.85);
-    transform: translateY(-2px);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 1),
-      0 20px 56px rgba(0, 0, 0, 0.1),
-      0 8px 16px rgba(0, 0, 0, 0.04);
+  .winner-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-1) 10px;
+    background: var(--color-success);
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: var(--font-bold);
+    text-transform: uppercase;
+    border-radius: var(--radius-pill);
+    letter-spacing: var(--tracking-wide);
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(52, 199, 89, 0.35);
   }
 
-  /* Bill display animation */
-  .bill-display {
-    transition: transform 0.2s var(--ease-ios-spring);
+  .winner-badge svg {
+    width: 12px;
+    height: 12px;
   }
 
-  .bill-display.updating {
-    transform: scale(1.05);
+  /* Card Layout */
+  .provider-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: var(--space-3) var(--space-4);
+    flex: 1;
+    position: relative;
+    z-index: 2;
   }
 
-  .bill-counter {
-    transition: color 0.3s;
-  }
-
-  .bill-display.updating .bill-counter {
-    color: var(--ios-blue) !important;
-  }
-
-  /* Premium slider styles */
-  .slider-container {
-    border-radius: 22px;
-  }
-
-  .slider-premium {
-    cursor: grab;
-    touch-action: none;
-  }
-
-  .slider-premium:active {
-    cursor: grabbing;
-  }
-
-  .slider-premium::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+  .provider-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
     background: white;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
-    margin-top: -14px;
-    cursor: grab;
-    transition: transform 0.2s var(--ease-ios-spring), box-shadow 0.2s;
-  }
-
-  .slider-premium::-webkit-slider-thumb:hover {
-    transform: scale(1.15);
-    box-shadow: 0 4px 20px rgba(0,122,255,0.3), 0 0 0 2px var(--ios-blue);
-  }
-
-  .slider-premium::-webkit-slider-thumb:active {
-    transform: scale(0.95);
-    cursor: grabbing;
-  }
-
-  .slider-fill {
-    background: linear-gradient(90deg, var(--ios-blue), #5856D6) !important;
-  }
-
-  /* Savings display animation */
-  .savings-display {
+    box-shadow:
+      0 3px 12px rgba(0, 0, 0, 0.08),
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
     transition: transform 0.3s var(--ease-ios-spring);
   }
 
-  .savings-display.celebrating {
-    animation: savings-celebrate 0.5s var(--ease-ios-spring);
+  .provider-card:hover .provider-logo {
+    transform: scale(1.08);
   }
 
-  @keyframes savings-celebrate {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-  }
-
-  .savings-shimmer.animating {
-    animation: savings-shimmer 0.8s ease forwards;
-  }
-
-  @keyframes savings-shimmer {
-    to { transform: translateX(100%); }
-  }
-
-  /* Info card hover effects */
-  .info-card {
+  .provider-info {
+    flex: 1;
+    min-width: 0;
     display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 20px;
-    background: var(--bg-secondary);
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--separator);
-    transition: all 0.3s var(--ease-ios-spring);
+    flex-direction: column;
+    gap: 4px;
   }
 
-  .info-card:hover {
-    background: var(--bg-primary);
-    box-shadow: var(--shadow-sm);
-    transform: translateX(4px);
+  .provider-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
   }
 
-  .info-card:hover .icon-frame {
-    transform: scale(1.1);
+  .provider-name {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: var(--tracking-normal);
   }
 
-  /* Testimonial shimmer */
-  .testimonial-snippet {
-    background: var(--bg-primary);
-    border-radius: var(--radius-2xl);
-    border: 1px solid var(--separator);
-    padding: 28px;
-    box-shadow: var(--shadow-xs);
-    transition: all 0.4s var(--ease-ios-spring);
+  .current-badge {
+    padding: 2px var(--space-2);
+    background: rgba(142, 142, 147, 0.2);
+    color: var(--text-tertiary);
+    font-size: var(--text-xs);
+    font-weight: var(--font-bold);
+    text-transform: uppercase;
+    border-radius: var(--radius-pill);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .provider-features {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .provider-feature {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    font-weight: var(--font-medium);
+  }
+
+  .provider-feature::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-success);
+  }
+
+  /* Cost Section */
+  .provider-cost-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding: var(--space-3) var(--space-4);
+    border-left: 1px solid rgba(0, 0, 0, 0.06);
+    min-width: 90px;
+    background: rgba(255, 255, 255, 0.4);
     position: relative;
+    z-index: 2;
+  }
+
+  .cost-amount {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: var(--font-extrabold);
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-tight);
+    line-height: 1;
+  }
+
+  .cost-period {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    font-weight: var(--font-medium);
+    margin-bottom: 4px;
+  }
+
+  .savings-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-1) 10px;
+    background: var(--color-success);
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: var(--font-bold);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 2px 6px rgba(52, 199, 89, 0.3);
+  }
+
+  .savings-pill svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Savings Bar Visualization */
+  .savings-bar-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 2px;
+    margin-top: var(--space-2);
     overflow: hidden;
   }
 
-  .testimonial-snippet::before {
-    content: '';
+  .savings-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-success) 0%, #30D158 100%);
+    border-radius: 2px;
+    transition: width 0.6s var(--ease-ios-spring);
+  }
+
+  .yearly-savings {
+    font-size: var(--text-xs);
+    color: var(--color-success);
+    font-weight: var(--font-semibold);
+    margin-top: 4px;
+  }
+
+  /* Current Tag */
+  .current-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-1) 10px;
+    background: rgba(142, 142, 147, 0.15);
+    color: var(--text-tertiary);
+    font-size: var(--text-xs);
+    font-weight: var(--font-semibold);
+    border-radius: var(--radius-pill);
+  }
+
+  /* Results CTA */
+  .results-cta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-display);
+    color: white;
+    text-decoration: none;
+    overflow: hidden;
+    letter-spacing: var(--tracking-normal);
+    transition: transform 0.3s var(--ease-ios-spring),
+                box-shadow 0.3s var(--ease-ios-spring);
+    background: var(--color-success);
+    box-shadow:
+      0 4px 16px rgba(52, 199, 89, 0.32),
+      0 1px 3px rgba(52, 199, 89, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    margin-bottom: var(--space-3);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .results-cta:hover {
+    transform: scale(1.03) translateY(-2px);
+    box-shadow:
+      0 6px 24px rgba(52, 199, 89, 0.4),
+      0 3px 10px rgba(52, 199, 89, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .results-cta .cta-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.5) 50%, transparent 60%);
-    transform: translateX(-100%);
-    transition: transform 0.6s;
+    background: linear-gradient(135deg, var(--green-500) 0%, var(--green-600) 50%, var(--green-500) 100%);
+    background-size: 200% 100%;
+    animation: gradient-shimmer 4s ease-in-out infinite;
   }
 
-  .testimonial-snippet:hover::before {
-    transform: translateX(100%);
+  .results-cta .cta-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    animation: shine-sweep 3.5s ease-in-out infinite;
   }
 
-  .testimonial-snippet:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+  .results-cta .cta-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
+  @keyframes gradient-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes shine-sweep {
+    0%, 100% { left: -100%; }
+    50% { left: 150%; }
+  }
+
+  .results-note {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--text-quaternary);
+    margin: 0;
+  }
+
+  /* ─── Right Column: Info Cards ───────────────────────────────── */
+  .calc-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .context-block {
+    padding: 0 var(--space-2);
+  }
+
+  .context-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+    font-weight: var(--font-bold);
+    letter-spacing: var(--tracking-normal);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-3);
+    line-height: 1.3;
+  }
+
+  .context-text {
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* ─── Feature Cards ──────────────────────────────────────────── */
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .feature-card-glass {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.70);
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+      0 4px 6px rgba(0, 0, 0, 0.04),
+      0 12px 40px rgba(0, 0, 0, 0.09),
+      0 32px 80px rgba(0, 0, 0, 0.06);
+    transition: all 0.5s var(--ease-ios-spring);
+  }
+
+  /* Color tints for each card */
+  .feature-card-glass:nth-child(1) {
+    background: rgba(236, 246, 255, 0.72);
+  }
+
+  .feature-card-glass:nth-child(2) {
+    background: rgba(238, 255, 245, 0.72);
+  }
+
+  .feature-card-glass:nth-child(3) {
+    background: rgba(243, 240, 255, 0.72);
+  }
+
+  .feature-card-glass:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+      0 8px 24px rgba(0, 0, 0, 0.08),
+      0 20px 60px rgba(0, 0, 0, 0.12),
+      0 40px 100px rgba(0, 0, 0, 0.08);
+  }
+
+  .feature-card-glass .card-specular {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 55%;
+    border-radius: 22px 22px 0 0;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+      175deg,
+      rgba(255,255,255,0.92) 0%,
+      rgba(255,255,255,0.45) 35%,
+      rgba(255,255,255,0.08) 60%,
+      transparent 100%
+    );
+  }
+
+  .feature-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4);
+  }
+
+  .feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    transition: transform 0.3s var(--ease-ios-spring);
+  }
+
+  .icon-blue {
+    background: linear-gradient(135deg, rgba(0,122,255,0.10) 0%, rgba(0,122,255,0.04) 100%);
+    color: var(--color-primary);
+    border: 1px solid rgba(0,122,255,0.12);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 2px 8px rgba(0,122,255,0.08);
+  }
+
+  .icon-green {
+    background: linear-gradient(135deg, rgba(52,199,89,0.10) 0%, rgba(52,199,89,0.04) 100%);
+    color: var(--color-success);
+    border: 1px solid rgba(52,199,89,0.12);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 2px 8px rgba(52,199,89,0.08);
+  }
+
+  .icon-indigo {
+    background: linear-gradient(135deg, rgba(88,86,214,0.10) 0%, rgba(88,86,214,0.04) 100%);
+    color: var(--color-secondary);
+    border: 1px solid rgba(88,86,214,0.12);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 2px 8px rgba(88,86,214,0.08);
+  }
+
+  .feature-card-glass:hover .feature-icon {
+    transform: scale(1.1);
+  }
+
+  .feature-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .feature-title {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    margin: 0 0 3px;
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .feature-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* ─── Stats Row ──────────────────────────────────────────────── */
+  .stats-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-6) var(--space-5);
+    margin-top: var(--space-2);
+    background: rgba(250, 252, 255, 0.75);
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 26px;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+      0 4px 6px rgba(0, 0, 0, 0.04),
+      0 12px 40px rgba(0, 0, 0, 0.09),
+      0 32px 80px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.5s var(--ease-ios-spring);
+  }
+
+  .stats-row::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 55%;
+    border-radius: 26px 26px 0 0;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+      175deg,
+      rgba(255,255,255,0.92) 0%,
+      rgba(255,255,255,0.45) 35%,
+      rgba(255,255,255,0.08) 60%,
+      transparent 100%
+    );
+  }
+
+  .stats-row:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+      0 8px 24px rgba(0, 0, 0, 0.08),
+      0 20px 60px rgba(0, 0, 0, 0.12),
+      0 40px 100px rgba(0, 0, 0, 0.08);
+  }
+
+  .stat-item {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    flex: 1;
+  }
+
+  .stat-number {
+    font-size: 1.625rem;
+    font-weight: var(--font-extrabold);
+    letter-spacing: var(--tracking-tight);
+    background: linear-gradient(135deg, var(--ios-blue) 0%, #5AC8FA 55%, #34AADC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .stat-suffix {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--text-secondary);
+    margin-left: 1px;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: var(--font-medium);
+    color: var(--text-tertiary);
+    margin-top: 4px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .stat-divider {
+    position: relative;
+    z-index: 2;
+    width: 1px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  /* ─── Responsive ─────────────────────────────────────────────── */
   @media (max-width: 1024px) {
     .calc-layout {
       grid-template-columns: 1fr;
-      gap: 48px;
+      gap: var(--space-10);
     }
     .calc-widget-col {
-      max-width: 580px;
+      max-width: 540px;
       margin: 0 auto;
+    }
+    .calc-info-col {
+      max-width: 540px;
+      margin: 0 auto;
+      gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .calc-section { padding: var(--space-20) 0 var(--space-24); }
+    .section-header { margin-bottom: var(--space-12); }
+    .headline-main { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+    .headline-accent { font-size: clamp(1.125rem, 3.5vw, 1.5rem); }
+
+    .card-content { padding: var(--space-6); }
+    .calc-card { border-radius: var(--radius-lg); min-height: auto; }
+    .card-specular { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+
+    .upload-content { padding: var(--space-6); }
+    .upload-title { font-size: var(--text-lg); }
+
+    .state-analyzing { min-height: 380px; }
+    .analyzing-title { font-size: var(--text-xl); }
+
+    .results-title { font-size: var(--text-lg); }
+    .savings-amount { font-size: 1.5rem; }
+    .providers-list { max-height: 260px; gap: 10px; }
+
+    .provider-card { border-radius: var(--radius-md); }
+    .provider-card::before { border-radius: var(--radius-md) var(--radius-md) 0 0; }
+    .provider-card.best::after { border-radius: 0 var(--radius-md) 0 0; }
+
+    .provider-main { padding: 12px; gap: var(--space-3); }
+    .provider-logo { width: 40px; height: 40px; font-size: 1.125rem; border-radius: var(--radius-md); }
+    .provider-name { font-size: var(--text-sm); }
+    .provider-cost-section { padding: 12px; min-width: 80px; }
+    .cost-amount { font-size: 1.125rem; }
+    .savings-pill { padding: 3px var(--space-2); font-size: var(--text-xs); }
+    .winner-badge { padding: 3px var(--space-2); font-size: var(--text-xs); }
+    .provider-rank { width: 18px; height: 18px; font-size: 0.625rem; }
+
+    .context-title { font-size: var(--text-xl); }
+    .context-text { font-size: var(--text-base); }
+
+    .feature-content { padding: var(--space-4); }
+    .feature-icon { width: 36px; height: 36px; }
+    .feature-title { font-size: var(--text-sm); }
+    .feature-desc { font-size: var(--text-sm); }
+
+    .stats-row {
+      padding: var(--space-4);
+      gap: var(--space-3);
+    }
+    .stat-number { font-size: 1.375rem; }
+    .stat-label { font-size: var(--text-xs); }
+  }
+
+  @media (max-width: 480px) {
+    .calc-section { padding: var(--space-16) 0 var(--space-20); }
+    .eyebrow { padding: var(--space-1) var(--space-3); font-size: var(--text-xs); }
+    .subhead { font-size: var(--text-base); }
+
+    .segment-btn { padding: 10px 14px; font-size: var(--text-sm); }
+    .btn-inner svg { width: 14px; height: 14px; }
+
+    .stats-row {
+      padding: var(--space-4) var(--space-3);
+      border-radius: var(--radius-lg);
+    }
+    .stat-number { font-size: 1.125rem; }
+    .stat-divider { height: 28px; }
+  }
+
+  /* ─── Reduced Motion ─────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .orb, .eyebrow-dot, .btn-shine, .cta-shine {
+      animation: none !important;
+    }
+    .calc-card, .feature-card-glass, .upload-zone, .provider-card {
+      transition: none !important;
+    }
+    .upload-icon-pulse, .scan-line, .dot, .document-page, .step.active .step-icon {
+      animation: none !important;
     }
   }
 </style>
 
 <script>
-  const SAVINGS_RATES = { home: 0.22, business: 0.18 };
-  const slider = document.getElementById('bill-slider') as HTMLInputElement | null;
-  const billAmountEl = document.getElementById('bill-amount');
-  const yearlySavingEl = document.getElementById('yearly-saving');
-  const trackFill = document.getElementById('slider-track-fill');
-  const sliderGlow = document.getElementById('slider-glow');
-  const savingsShimmer = document.getElementById('savings-shimmer');
-  const segmentBtns = document.querySelectorAll<HTMLButtonElement>('.segmented-btn');
-  const billDisplay = document.querySelector('.bill-display');
-  const savingsDisplay = document.querySelector('.savings-display');
-  let currentType: 'home' | 'business' = 'home';
-  let currentSaving = 0;
+  // Datos de comercializadoras
+  const PROVIDERS_DATA = [
+    { id: 'current', name: 'Tu comercializadora actual', logo: '🔌', color: '#8E8E93', isCurrent: true },
+    { id: 'iberdrola', name: 'Iberdrola', logo: '⚡', color: '#007AFF', discount: 0.15, rating: 4.2, features: ['Sin permanencia', 'Factura digital', 'App móvil'] },
+    { id: 'endesa', name: 'Endesa', logo: '🔋', color: '#FF9500', discount: 0.12, rating: 4.0, features: ['Tarifa online', 'Descuento 12 meses', 'Gestión online'] },
+    { id: 'naturgy', name: 'Naturgy', logo: '🌿', color: '#34C759', discount: 0.18, rating: 4.4, features: ['Energía verde', 'Sin permanencia', 'Precio fijo'] },
+    { id: 'repsol', name: 'Repsol', logo: '⛽', color: '#FF3B30', discount: 0.10, rating: 3.9, features: ['Puntos descuento', 'Gas+luz', 'Tarifa plana'] },
+  ];
 
-  // Animated counter function
-  function animateCounter(el: HTMLElement, from: number, to: number, duration = 400) {
+  const SAVINGS_RATES = { home: 0.22, business: 0.18 };
+  
+  // Elementos DOM
+  const widget = document.getElementById('calculator-widget');
+  const stateUpload = document.getElementById('state-upload');
+  const stateAnalyzing = document.getElementById('state-analyzing');
+  const stateResults = document.getElementById('state-results');
+  const uploadZone = document.getElementById('upload-zone');
+  const fileInput = document.getElementById('file-input');
+  const dragOverlay = document.getElementById('drag-overlay');
+  const btnAnalyzeManual = document.getElementById('btn-analyze-manual');
+  const btnBack = document.getElementById('btn-back');
+  const slider = document.getElementById('bill-slider');
+  const billAmountEl = document.getElementById('bill-amount');
+  const sliderFill = document.getElementById('slider-fill');
+  const sliderTooltip = document.getElementById('slider-tooltip');
+  const segmentBtns = document.querySelectorAll('.segment-btn');
+  const providersList = document.getElementById('providers-list');
+  const analyzingStatus = document.getElementById('analyzing-status');
+  const analysisSteps = document.querySelectorAll('.step');
+  
+  let currentType = 'home';
+  let currentBillAmount = 120;
+
+  // Estados
+  function showState(state) {
+    if (stateUpload) stateUpload.hidden = state !== 'upload';
+    if (stateAnalyzing) stateAnalyzing.hidden = state !== 'analyzing';
+    if (stateResults) stateResults.hidden = state !== 'results';
+  }
+
+  // Mostrar error de validación
+  function showError(message) {
+    let errorEl = document.getElementById('upload-error');
+    if (!errorEl) {
+      errorEl = document.createElement('div');
+      errorEl.id = 'upload-error';
+      errorEl.className = 'upload-error';
+      const uploadContent = document.querySelector('.upload-content');
+      if (uploadContent) {
+        uploadContent.insertBefore(errorEl, uploadContent.firstChild);
+      }
+    }
+    
+    errorEl.textContent = message;
+    errorEl.classList.add('visible');
+    
+    if (uploadZone) {
+      uploadZone.classList.add('shake');
+      setTimeout(() => uploadZone.classList.remove('shake'), 500);
+    }
+    
+    setTimeout(() => {
+      errorEl.classList.remove('visible');
+    }, 3000);
+  }
+
+  // Animación de contador
+  function animateCounter(el, from, to, duration = 400) {
     const start = performance.now();
-    const step = (now: number) => {
+    const step = (now) => {
       const progress = Math.min((now - start) / duration, 1);
       const easeOut = 1 - Math.pow(1 - progress, 3);
       el.textContent = Math.floor(from + (to - from) * easeOut).toString();
@@ -411,86 +2296,322 @@ import { siteConfig } from '../../config/site';
     requestAnimationFrame(step);
   }
 
-  function updateUI(animate = false) {
+  // Actualizar slider UI
+  function updateSliderUI(value) {
     if (!slider) return;
-    const value = parseInt(slider.value);
     const min = parseInt(slider.min);
     const max = parseInt(slider.max);
     const pct = ((value - min) / (max - min)) * 100;
     
-    if (trackFill) trackFill.style.width = pct + '%';
-    if (sliderGlow) {
-      sliderGlow.style.left = `${pct}%`;
-      sliderGlow.style.opacity = '1';
+    if (sliderFill) sliderFill.style.width = pct + '%';
+    if (sliderTooltip) {
+      sliderTooltip.style.left = pct + '%';
+      sliderTooltip.textContent = value + '€';
     }
     
-    const saving = Math.round(value * SAVINGS_RATES[currentType] * 12);
-    
-    if (billAmountEl) {
-      if (animate) {
-        const current = parseInt(billAmountEl.textContent || '0');
-        animateCounter(billAmountEl, current, value, 200);
-      } else {
-        billAmountEl.textContent = value.toString();
-      }
-    }
-    
-    if (yearlySavingEl && saving !== currentSaving) {
-      animateCounter(yearlySavingEl, currentSaving, saving, 300);
-      currentSaving = saving;
-      
-      // Celebration effect for high savings
-      if (saving > 400 && savingsDisplay) {
-        savingsDisplay.classList.add('celebrating');
-        if (savingsShimmer) savingsShimmer.classList.add('animating');
-        setTimeout(() => {
-          savingsDisplay.classList.remove('celebrating');
-          if (savingsShimmer) savingsShimmer.classList.remove('animating');
-        }, 800);
-      }
-    }
+    const ticks = document.querySelectorAll('.tick');
+    ticks.forEach((tick, i) => {
+      const tickPct = (i / (ticks.length - 1)) * 100;
+      tick.classList.toggle('active', tickPct <= pct + 2);
+    });
   }
 
-  // Slider events with enhanced feedback
-  slider?.addEventListener('input', () => {
-    if (billDisplay) billDisplay.classList.add('updating');
-    updateUI(true);
+  // Generar lista de proveedores
+  function generateProvidersList(monthlyAmount) {
+    if (!providersList) return;
+    
+    const yearlyAmount = monthlyAmount * 12;
+    
+    const providers = PROVIDERS_DATA.map(provider => {
+      if (provider.isCurrent) {
+        return {
+          ...provider,
+          yearlyCost: yearlyAmount,
+          savings: 0,
+        };
+      }
+      const discount = provider.discount || 0;
+      const yearlyCost = Math.round(yearlyAmount * (1 - discount));
+      const savings = yearlyAmount - yearlyCost;
+      return {
+        ...provider,
+        yearlyCost,
+        savings,
+      };
+    }).sort((a, b) => a.yearlyCost - b.yearlyCost);
+
+    const bestProvider = providers.find(p => !p.isCurrent);
+    const maxSavings = bestProvider ? bestProvider.savings : 0;
+
+    // Actualizar highlight
+    const savingsHighlight = document.getElementById('max-savings');
+    const bestProviderEl = document.getElementById('best-provider');
+    const monthlyCostEl = document.getElementById('monthly-cost');
+    const consumptionBadge = document.getElementById('consumption-badge');
+    
+    if (savingsHighlight) savingsHighlight.textContent = '+' + maxSavings + '€';
+    if (bestProviderEl) bestProviderEl.innerHTML = '<span>con</span><strong>' + (bestProvider ? bestProvider.name : '') + '</strong>';
+    if (monthlyCostEl) monthlyCostEl.textContent = monthlyAmount + '€/mes';
+    if (consumptionBadge) consumptionBadge.textContent = Math.round(monthlyAmount * 2.5) + ' kWh/mes';
+
+    // Generar HTML con nuevo diseño premium
+    const maxYearlyCost = Math.max(...providers.map(p => p.yearlyCost));
+    
+    providersList.innerHTML = providers.map((provider, index) => {
+      const isCurrent = provider.isCurrent;
+      const isBest = index === 0 && !isCurrent;
+      const monthlyCost = Math.round(provider.yearlyCost / 12);
+      const yearlySavings = provider.savings;
+      const savingsPercent = maxYearlyCost > 0 ? Math.round((provider.yearlyCost / maxYearlyCost) * 100) : 100;
+      
+      // Ranking badges
+      let rankClass = '';
+      if (index === 0) rankClass = 'gold';
+      else if (index === 1) rankClass = 'silver';
+      else if (index === 2) rankClass = 'bronze';
+      
+      return `
+        <div class="provider-card ${isCurrent ? 'current' : ''} ${isBest ? 'best' : ''}" style="animation: slide-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 0.08}s both;">
+          ${!isCurrent ? `<div class="provider-rank ${rankClass}">${index}</div>` : ''}
+          ${isBest ? `
+            <div class="winner-badge">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              Mejor
+            </div>
+          ` : ''}
+          
+          <div class="provider-main">
+            <div class="provider-logo" style="color: ${provider.color};">${provider.logo}</div>
+            <div class="provider-info">
+              <div class="provider-header">
+                <p class="provider-name">${provider.name}</p>
+                ${isCurrent ? '<span class="current-badge">Actual</span>' : ''}
+              </div>
+              <div class="provider-features">
+                ${(provider.features || []).slice(0, 2).map(f => '<span class="provider-feature">' + f + '</span>').join('')}
+              </div>
+              ${!isCurrent && yearlySavings > 0 ? `
+                <div class="savings-bar-container">
+                  <div class="savings-bar" style="width: ${100 - savingsPercent}%;"></div>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+          
+          <div class="provider-cost-section">
+            <span class="cost-period">/mes</span>
+            <span class="cost-amount">${monthlyCost}€</span>
+            ${isCurrent 
+              ? '<span class="current-tag">Actual</span>' 
+              : yearlySavings > 0 
+                ? `<span class="savings-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    Ahorra ${yearlySavings}€
+                  </span>`
+                : ''
+            }
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Análisis simulado
+  async function simulateAnalysis(file) {
+    showState('analyzing');
+    
+    const steps = [
+      { text: 'Extrayendo datos de consumo...', delay: 800 },
+      { text: 'Calculando potencia contratada...', delay: 1200 },
+      { text: 'Analizando tarifas del mercado...', delay: 1600 },
+      { text: 'Comparando ofertas disponibles...', delay: 2200 },
+    ];
+
+    // Animar pasos
+    for (let i = 0; i < analysisSteps.length; i++) {
+      setTimeout(() => {
+        analysisSteps.forEach((step, idx) => {
+          step.classList.remove('active', 'completed');
+          if (idx < i) step.classList.add('completed');
+          else if (idx === i) step.classList.add('active');
+        });
+      }, i * 600);
+    }
+
+    // Actualizar status
+    for (const step of steps) {
+      await new Promise(r => setTimeout(r, step.delay / 4));
+      if (analyzingStatus) analyzingStatus.textContent = step.text;
+    }
+
+    // Pequeña variación aleatoria en el monto para simular extracción real
+    const variation = Math.floor(Math.random() * 20) - 10;
+    const analyzedAmount = Math.max(30, currentBillAmount + variation);
+    currentBillAmount = analyzedAmount;
+
+    // Mostrar resultados
+    generateProvidersList(analyzedAmount);
+    showState('results');
+  }
+
+  // Drag & Drop
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    if (uploadZone) {
+      uploadZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    }
   });
 
-  slider?.addEventListener('change', () => {
-    if (billDisplay) billDisplay.classList.remove('updating');
-    if (sliderGlow) sliderGlow.style.opacity = '0';
+  ['dragenter', 'dragover'].forEach(eventName => {
+    if (uploadZone) {
+      uploadZone.addEventListener(eventName, () => {
+        uploadZone.classList.add('drag-over');
+      });
+    }
   });
 
-  slider?.addEventListener('mousedown', () => {
-    if (sliderGlow) sliderGlow.style.opacity = '1';
+  ['dragleave', 'drop'].forEach(eventName => {
+    if (uploadZone) {
+      uploadZone.addEventListener(eventName, () => {
+        uploadZone.classList.remove('drag-over');
+      });
+    }
   });
 
-  slider?.addEventListener('mouseup', () => {
-    if (sliderGlow) sliderGlow.style.opacity = '0';
-  });
+  if (uploadZone) {
+    uploadZone.addEventListener('drop', (e) => {
+      const files = e.dataTransfer ? e.dataTransfer.files : null;
+      if (files && files.length > 0) {
+        const file = files[0];
+        if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
+          simulateAnalysis(file);
+        } else {
+          showError('Por favor, sube solo archivos PDF');
+        }
+      }
+    });
+  }
 
-  // Touch events for mobile
-  slider?.addEventListener('touchstart', () => {
-    if (sliderGlow) sliderGlow.style.opacity = '1';
-  });
+  // File input change
+  if (fileInput) {
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files ? fileInput.files[0] : null;
+      if (file) {
+        if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
+          simulateAnalysis(file);
+        } else {
+          showError('Por favor, sube solo archivos PDF');
+          fileInput.value = '';
+        }
+      }
+    });
+  }
 
-  slider?.addEventListener('touchend', () => {
-    if (sliderGlow) sliderGlow.style.opacity = '0';
-  });
+  // Botón analizar manual
+  if (btnAnalyzeManual) {
+    btnAnalyzeManual.addEventListener('click', () => {
+      simulateAnalysis();
+    });
+  }
 
+  // Botón volver
+  if (btnBack) {
+    btnBack.addEventListener('click', () => {
+      showState('upload');
+      analysisSteps.forEach(step => step.classList.remove('active', 'completed'));
+      if (analyzingStatus) analyzingStatus.textContent = 'Extrayendo datos de consumo...';
+    });
+  }
+
+  // Slider events
+  if (slider) {
+    slider.addEventListener('input', () => {
+      const value = parseInt(slider.value);
+      currentBillAmount = value;
+      updateSliderUI(value);
+      if (billAmountEl) billAmountEl.textContent = value.toString();
+    });
+  }
+
+  // Segmented control
   segmentBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      currentType = (btn.dataset.type as 'home' | 'business') || 'home';
+      currentType = btn.dataset.type || 'home';
       segmentBtns.forEach(b => {
         b.classList.remove('active');
         b.setAttribute('aria-pressed', 'false');
       });
       btn.classList.add('active');
       btn.setAttribute('aria-pressed', 'true');
-      updateUI(true);
     });
   });
 
-  updateUI();
+  // Stats counter animation
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const statNumbers = entry.target.querySelectorAll('.stat-number[data-target]');
+        statNumbers.forEach((stat, index) => {
+          const target = parseInt(stat.dataset.target || '0');
+          setTimeout(() => {
+            animateCounter(stat, 0, target, 1500);
+          }, index * 150);
+        });
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const statsRow = document.querySelector('.stats-row');
+  if (statsRow) statsObserver.observe(statsRow);
+
+  // Inicializar
+  updateSliderUI(120);
+
+  // CSS para animaciones premium
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slide-in {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    @keyframes savings-bar-fill {
+      from {
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+      to {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+    
+    .savings-bar {
+      animation: savings-bar-fill 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
+    }
+    
+    @keyframes amount-pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    .cost-amount {
+      animation: amount-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
+    }
+  `;
+  document.head.appendChild(style);
 </script>

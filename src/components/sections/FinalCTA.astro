@@ -1,83 +1,114 @@
 ---
 import { siteConfig } from '../../config/site';
+import { MessageCircle } from 'lucide-astro';
 ---
 
 <section class="final-cta-section" id="final-cta">
+  <div class="container-custom cta-container">
+    <div class="cta-content reveal">
 
-  <!-- Background decorative orbs -->
-  <div class="cta-orbs" aria-hidden="true">
-    <div class="cta-orb orb-main"></div>
-    <div class="cta-orb orb-secondary"></div>
-    <div class="cta-orb orb-tertiary"></div>
-  </div>
-
-  <!-- Floating particles -->
-  <div class="cta-particles" aria-hidden="true">
-    <div class="cta-particle"></div>
-    <div class="cta-particle"></div>
-    <div class="cta-particle"></div>
-    <div class="cta-particle"></div>
-    <div class="cta-particle"></div>
-    <div class="cta-particle"></div>
-    <div class="cta-particle"></div>
-    <div class="cta-particle"></div>
-  </div>
-
-  <!-- Gradient mesh overlay -->
-  <div class="cta-mesh-overlay" aria-hidden="true"></div>
-
-  <div class="container-custom relative z-10" style="padding-top: 120px; padding-bottom: 120px;">
-    <div class="cta-inner reveal">
-
-      <!-- Eyebrow -->
-      <div class="cta-eyebrow">
-        <span class="cta-status-dot"></span>
-        <span class="cta-eyebrow-text">Asesoría disponible ahora</span>
-      </div>
-
-      <!-- Headline -->
-      <h2 class="text-hero cta-headline">
-        <span class="cta-headline-line">¿Listo para pagar</span>
-        <span class="cta-headline-line cta-headline-accent">menos en tu factura?</span>
-      </h2>
-
-      <!-- Subhead -->
-      <p class="cta-subhead">
-        Contacta hoy mismo. Analizo tu factura sin coste y te digo exactamente cuánto puedes ahorrar.
-      </p>
-
-      <!-- CTAs -->
-      <div class="cta-buttons">
-        <a href={siteConfig.whatsappUrl} class="cta-btn-primary">
-          <span class="btn-shimmer-cta"></span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          Estudio gratuito por WhatsApp
-        </a>
-        <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} class="cta-btn-secondary">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.19 2 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          {siteConfig.phone}
-        </a>
-      </div>
-
-      <!-- Trust row -->
-      <div class="cta-trust-row">
-        <div class="cta-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-          <span>Sin compromiso</span>
+      <!-- Two Column Layout -->
+      <div class="cta-grid">
+        
+        <!-- Left: Visual Element -->
+        <div class="cta-visual">
+          <div class="visual-card">
+            <div class="visual-specular"></div>
+            <div class="visual-content">
+              <!-- Savings Preview -->
+              <div class="savings-preview">
+                <div class="savings-header">
+                  <span class="savings-label">Ahorro estimado</span>
+                  <span class="savings-badge">Anual</span>
+                </div>
+                <div class="savings-amount">
+                  <span class="savings-currency">€</span>
+                  <span class="savings-number" id="savings-counter">0</span>
+                </div>
+                <div class="savings-chart">
+                  <div class="chart-bar" style="--height: 40%"></div>
+                  <div class="chart-bar" style="--height: 55%"></div>
+                  <div class="chart-bar" style="--height: 45%"></div>
+                  <div class="chart-bar active" style="--height: 85%"></div>
+                  <div class="chart-bar" style="--height: 70%"></div>
+                </div>
+              </div>
+              
+              <!-- Client Counter -->
+              <div class="client-counter">
+                <div class="counter-avatars">
+                  <div class="avatar avatar-1"></div>
+                  <div class="avatar avatar-2"></div>
+                  <div class="avatar avatar-3"></div>
+                  <div class="avatar avatar-more">+</div>
+                </div>
+                <div class="counter-text">
+                  <strong>450+</strong> clientes ya ahorran
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="cta-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-          <span>Servicio 100% gratuito</span>
-        </div>
-        <div class="cta-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-          <span>Respuesta en menos de 24h</span>
-        </div>
-        <div class="cta-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-          <span>+450 clientes satisfechos</span>
+
+        <!-- Right: Main CTA Content -->
+        <div class="cta-main">
+          
+          <!-- Content Stack -->
+          <div class="content-stack">
+            
+            <!-- Top: Status & Label -->
+            <div class="content-header">
+              <div class="status-pill">
+                <span class="status-dot"></span>
+                <span>Asesoría disponible</span>
+              </div>
+              <p class="availability-note">Respuesta en menos de 24h</p>
+            </div>
+
+            <!-- Middle: Headline with decorative elements -->
+            <div class="headline-wrap">
+              <span class="headline-eyebrow">¿Listo para el cambio?</span>
+              <h2 class="cta-headline">
+                <span class="headline-line">Paga menos</span>
+                <span class="headline-accent">en tu factura.</span>
+              </h2>
+              <p class="headline-sub">
+                Análisis gratuito. Sin compromiso. Resultados reales.
+              </p>
+            </div>
+
+            <!-- Bottom: CTAs -->
+            <div class="cta-actions">
+              <a href={siteConfig.whatsappUrl} class="btn-primary-cta">
+                <span class="btn-shimmer"></span>
+                <span class="btn-content">
+                  <MessageCircle size={18} fill="currentColor" />
+                  WhatsApp
+                </span>
+              </a>
+
+              <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} class="btn-secondary-cta">
+                {siteConfig.phone}
+              </a>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="trust-indicators">
+              <div class="trust-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span>Sin compromiso</span>
+              </div>
+              <div class="trust-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span>100% gratuito</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -86,366 +117,596 @@ import { siteConfig } from '../../config/site';
 </section>
 
 <style>
+  /* ========== Section Base ========== */
   .final-cta-section {
     position: relative;
-    background: linear-gradient(135deg, #007AFF 0%, #5856D6 55%, #007AFF 100%);
+    padding: var(--section-py) 0;
+    overflow: hidden;
+    /* No background - using global background from Layout */
+  }
+
+  /* ========== Container ========== */
+  .cta-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-content {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ========== Two Column Grid ========== */
+  .cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-20);
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  /* ========== Visual Card (Left) ========== */
+  .cta-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .visual-card {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(44px) saturate(220%) brightness(1.04);
+    -webkit-backdrop-filter: blur(44px) saturate(220%) brightness(1.04);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: var(--radius-2xl);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 4px 6px rgba(0, 0, 0, 0.04),
+      0 12px 40px rgba(0, 0, 0, 0.09),
+      0 32px 80px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transform: rotate(-3deg);
+    transition: all 0.5s var(--ease-ios-spring);
+  }
+
+  .visual-card:hover {
+    transform: rotate(0deg) translateY(-10px) scale(1.02);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 8px 24px rgba(0, 0, 0, 0.08),
+      0 24px 64px rgba(0, 0, 0, 0.12),
+      0 48px 120px rgba(0, 0, 0, 0.1);
+  }
+
+  .visual-card:hover .savings-number {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--cyan-400) 50%, var(--color-primary) 100%);
     background-size: 200% 200%;
-    animation: gradient-move 10s ease infinite;
-    overflow: hidden;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease infinite;
   }
 
-  @keyframes gradient-move {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  .visual-card:hover .chart-bar.active {
+    filter: brightness(1.1);
   }
 
-  /* CTA Orbs */
-  .cta-orbs {
+  .visual-specular {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.45) 35%,
+      rgba(255, 255, 255, 0.12) 65%,
+      transparent 100%
+    );
     pointer-events: none;
-    overflow: hidden;
+    z-index: 1;
   }
 
-  .cta-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.6;
-  }
-
-  .orb-main {
-    top: -30%;
-    left: -10%;
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 60%);
-    animation: orb-float 20s ease-in-out infinite;
-  }
-
-  .orb-secondary {
-    bottom: -20%;
-    right: -5%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-    animation: orb-float 25s ease-in-out infinite reverse;
-  }
-
-  .orb-tertiary {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1200px;
-    height: 400px;
-    background: radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 60%);
-    animation: orb-pulse 15s ease-in-out infinite;
-  }
-
-  @keyframes orb-float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(30px, -20px) scale(1.05); }
-    66% { transform: translate(-20px, 30px) scale(0.95); }
-  }
-
-  @keyframes orb-pulse {
-    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
-  }
-
-  /* Floating particles */
-  .cta-particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .cta-particle {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: rgba(255,255,255,0.3);
-    border-radius: 50%;
-    animation: particle-rise 12s ease-in-out infinite;
-  }
-
-  .cta-particle:nth-child(1) { left: 10%; bottom: 0; animation-delay: 0s; }
-  .cta-particle:nth-child(2) { left: 25%; bottom: 0; animation-delay: -2s; }
-  .cta-particle:nth-child(3) { left: 40%; bottom: 0; animation-delay: -4s; }
-  .cta-particle:nth-child(4) { left: 55%; bottom: 0; animation-delay: -6s; }
-  .cta-particle:nth-child(5) { left: 70%; bottom: 0; animation-delay: -8s; }
-  .cta-particle:nth-child(6) { left: 85%; bottom: 0; animation-delay: -10s; }
-  .cta-particle:nth-child(7) { left: 15%; bottom: 0; animation-delay: -3s; }
-  .cta-particle:nth-child(8) { left: 60%; bottom: 0; animation-delay: -7s; }
-
-  @keyframes particle-rise {
-    0% {
-      transform: translateY(0) scale(1);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.6;
-    }
-    90% {
-      opacity: 0.6;
-    }
-    100% {
-      transform: translateY(-600px) scale(0.5);
-      opacity: 0;
-    }
-  }
-
-  /* Mesh overlay */
-  .cta-mesh-overlay {
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(circle at 20% 50%, rgba(255,255,255,0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 50%, rgba(255,255,255,0.03) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  /* Content */
-  .cta-inner {
-    max-width: 860px;
+  .visual-content {
     position: relative;
     z-index: 2;
+    padding: var(--space-8);
   }
 
-  /* Eyebrow */
-  .cta-eyebrow {
-    display: inline-flex;
+  /* Savings Preview */
+  .savings-preview {
+    margin-bottom: var(--space-6);
+  }
+
+  .savings-header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: var(--radius-pill);
-    padding: 8px 20px;
-    margin-bottom: 40px;
-    backdrop-filter: blur(8px);
-    animation: fade-up 0.6s var(--ease-ios-decel) forwards;
-    animation-delay: 0.2s;
-    opacity: 0;
-    transform: translateY(20px);
+    margin-bottom: var(--space-3);
   }
 
-  .cta-status-dot {
-    width: 8px;
-    height: 8px;
-    background: #30D158;
-    border-radius: 50%;
-    box-shadow: 0 0 0 3px rgba(48,209,88,0.3);
-    flex-shrink: 0;
-    animation: status-glow 2s ease-in-out infinite;
-  }
-
-  @keyframes status-glow {
-    0%, 100% { box-shadow: 0 0 0 3px rgba(48,209,88,0.3); }
-    50% { box-shadow: 0 0 0 6px rgba(48,209,88,0); }
-  }
-
-  .cta-eyebrow-text {
-    font-size: 0.8125rem;
+  .savings-label {
+    font-size: var(--text-sm);
     font-weight: 600;
-    color: rgba(255,255,255,0.85);
-    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+  }
+
+  .savings-badge {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: rgba(0, 122, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 100px;
     text-transform: uppercase;
-    font-family: var(--font-display);
+    letter-spacing: 0.05em;
   }
 
-  /* Headline */
-  .cta-headline {
-    color: #FFFFFF;
-    margin-bottom: 24px;
-    max-width: 780px;
+  .savings-amount {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: var(--space-5);
   }
 
-  .cta-headline-line {
-    display: block;
-    overflow: hidden;
+  .savings-currency {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-top: 4px;
   }
 
-  .cta-headline-line:first-child {
-    animation: slide-up-reveal 0.8s var(--ease-ios-decel) forwards;
-    animation-delay: 0.3s;
-    opacity: 0;
-    transform: translateY(100%);
+  .savings-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--cyan-400) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .cta-headline-accent {
-    color: rgba(255,255,255,0.7);
-    animation: slide-up-reveal 0.8s var(--ease-ios-decel) forwards;
-    animation-delay: 0.45s;
-    opacity: 0;
-    transform: translateY(100%);
+  .savings-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 60px;
   }
 
-  @keyframes slide-up-reveal {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .chart-bar {
+    flex: 1;
+    height: var(--height);
+    background: rgba(0, 122, 255, 0.15);
+    border-radius: 4px 4px 0 0;
+    transition: all 0.4s var(--ease-ios-spring);
   }
 
-  @keyframes fade-up {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .chart-bar.active {
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--cyan-400) 100%);
   }
 
-  /* Subhead */
-  .cta-subhead {
-    font-size: 1.25rem;
-    color: rgba(255,255,255,0.7);
-    max-width: 520px;
-    line-height: 1.55;
-    margin-bottom: 52px;
-    font-family: var(--font-display);
-    animation: fade-up 0.6s var(--ease-ios-decel) forwards;
-    animation-delay: 0.6s;
-    opacity: 0;
-    transform: translateY(20px);
+  .visual-card:hover .chart-bar {
+    opacity: 0.5;
   }
 
-  /* Buttons */
-  .cta-buttons {
+  .visual-card:hover .chart-bar.active {
+    opacity: 1;
+  }
+
+  /* Client Counter */
+  .client-counter {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--separator);
+  }
+
+  .counter-avatars {
+    display: flex;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-left: -8px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .avatar:first-child {
+    margin-left: 0;
+  }
+
+  .avatar-1 { background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face'); }
+  .avatar-2 { background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face'); }
+  .avatar-3 { background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face'); }
+
+  .avatar-more {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .counter-text {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .counter-text strong {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  /* ========== Main Content (Right) ========== */
+  .cta-main {
+    text-align: left;
+  }
+
+  .content-stack {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 40px;
-    animation: fade-up 0.6s var(--ease-ios-decel) forwards;
-    animation-delay: 0.75s;
-    opacity: 0;
-    transform: translateY(20px);
+    gap: var(--space-6);
   }
 
-  @media (min-width: 640px) {
-    .cta-buttons {
-      flex-direction: row;
-      align-items: flex-start;
-    }
+  /* Content Header */
+  .content-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
   }
 
-  .cta-btn-primary {
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 100px;
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.92),
+      0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-success);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+  }
+
+  .availability-note {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    margin: 0;
+  }
+
+  /* Headline Wrap */
+  .headline-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .headline-eyebrow {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .cta-headline {
+    margin: 0;
+  }
+
+  .headline-line {
+    display: block;
+    font-size: var(--text-section);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.055em;
+    color: var(--text-primary);
+  }
+
+  .headline-accent {
+    display: block;
+    font-size: var(--text-section);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.055em;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--cyan-400) 55%, var(--cyan-500) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .headline-sub {
+    font-size: var(--text-xl);
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 8px 0 0;
+    max-width: 400px;
+  }
+
+  /* CTAs - Smaller buttons */
+  .cta-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: 8px;
+  }
+
+  .btn-primary-cta {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.0625rem;
-    letter-spacing: -0.01em;
-    color: var(--ios-blue);
-    background: #FFFFFF;
+    gap: 8px;
+    padding: var(--space-3) var(--space-6);
+    background: var(--color-primary);
     border: none;
-    border-radius: var(--radius-pill);
-    padding: 18px 36px;
+    border-radius: 100px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-base);
+    letter-spacing: -0.01em;
+    color: white;
     text-decoration: none;
     cursor: pointer;
-    transition: all 320ms var(--ease-ios-spring);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     overflow: hidden;
+    transition: all 0.35s var(--ease-ios-spring);
+    box-shadow: 
+      0 3px 10px rgba(0, 122, 255, 0.3),
+      0 6px 20px rgba(0, 122, 255, 0.2);
   }
 
-  .btn-shimmer-cta {
+  .btn-shimmer {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      105deg,
-      transparent 40%,
-      rgba(255,255,255,0.4) 50%,
-      transparent 60%
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 100%
     );
-    animation: btn-shimmer 3s ease-in-out infinite;
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
     pointer-events: none;
   }
 
-  @keyframes btn-shimmer {
-    0%, 100% { transform: translateX(-100%); }
-    50% { transform: translateX(100%); }
+  @keyframes shimmer {
+    0%, 100% { background-position: 200% 0; }
+    50% { background-position: -200% 0; }
   }
 
-  .cta-btn-primary:hover {
-    transform: scale(1.04) translateY(-2px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.25), 0 0 40px rgba(255,255,255,0.2);
-  }
-
-  .cta-btn-primary:active {
-    transform: scale(0.98);
-  }
-
-  .cta-btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.0625rem;
-    letter-spacing: -0.01em;
-    color: rgba(255,255,255,0.9);
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: var(--radius-pill);
-    padding: 18px 32px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 320ms var(--ease-ios-spring);
-    backdrop-filter: blur(8px);
-  }
-
-  .cta-btn-secondary:hover {
-    background: rgba(255,255,255,0.2);
-    border-color: rgba(255,255,255,0.4);
-    transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  }
-
-  /* Trust row */
-  .cta-trust-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    align-items: center;
-    animation: fade-up 0.6s var(--ease-ios-decel) forwards;
-    animation-delay: 0.9s;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .cta-trust-item {
+  .btn-content {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.875rem;
-    color: rgba(255,255,255,0.6);
+  }
+
+  .btn-primary-cta:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 
+      0 8px 24px rgba(0, 122, 255, 0.45),
+      0 16px 40px rgba(0, 122, 255, 0.3);
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary-cta:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 
+      0 4px 12px rgba(0, 122, 255, 0.35);
+  }
+
+  .btn-secondary-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 100px;
     font-family: var(--font-display);
-    transition: all 0.3s var(--ease-ios-spring);
+    font-weight: 500;
+    font-size: var(--text-base);
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.35s var(--ease-ios-spring);
   }
 
-  .cta-trust-item svg {
-    stroke: rgba(255,255,255,0.5);
-    transition: all 0.3s;
+  .btn-secondary-cta:hover {
+    background: rgba(0, 122, 255, 0.08);
+    border-color: rgba(0, 122, 255, 0.15);
+    color: var(--color-primary);
+    transform: translateY(-2px);
   }
 
-  .cta-trust-item:hover {
-    color: rgba(255,255,255,0.9);
-    transform: translateX(4px);
+  /* Trust Indicators */
+  .trust-indicators {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
   }
 
-  .cta-trust-item:hover svg {
-    stroke: rgba(255,255,255,0.8);
-    transform: scale(1.1);
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-tertiary);
+  }
+
+  .trust-item svg {
+    stroke: var(--color-success);
+    flex-shrink: 0;
+  }
+
+  /* ========== Responsive ========== */
+  @media (max-width: 900px) {
+    .cta-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+      text-align: center;
+    }
+
+    .cta-main {
+      text-align: center;
+    }
+
+    .content-stack {
+      align-items: center;
+    }
+
+    .content-header {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .headline-sub {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-actions {
+      justify-content: center;
+    }
+
+    .trust-indicators {
+      justify-content: center;
+    }
+
+    .visual-card {
+      max-width: 300px;
+      transform: rotate(0deg);
+    }
   }
 
   @media (max-width: 640px) {
-    .cta-btn-primary,
-    .cta-btn-secondary {
+    .final-cta-section {
+      padding: 100px 0;
+    }
+
+    .headline-line,
+    .headline-accent {
+      font-size: 2rem;
+    }
+
+    .btn-primary-cta,
+    .btn-secondary-cta {
+      width: auto;
+      min-width: 140px;
+    }
+
+    .savings-number {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .final-cta-section {
+      padding: var(--space-20) 0;
+    }
+
+    .headline-line,
+    .headline-accent {
+      font-size: 1.75rem;
+    }
+
+    .headline-eyebrow {
+      font-size: var(--text-sm);
+    }
+
+    .headline-sub {
+      font-size: var(--text-md);
+    }
+
+    .visual-content {
+      padding: var(--space-6);
+    }
+
+    .savings-number {
+      font-size: 2rem;
+    }
+
+    .cta-actions {
+      flex-direction: row;
       width: 100%;
+    }
+
+    .btn-primary-cta,
+    .btn-secondary-cta {
+      flex: 1;
+      min-width: 0;
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--text-sm);
+    }
+
+    .trust-indicators {
+      flex-wrap: wrap;
+      gap: var(--space-3);
     }
   }
 </style>
+
+<script>
+  // Animate savings counter
+  const counter = document.getElementById('savings-counter');
+  if (counter) {
+    const target = 324;
+    const duration = 2000;
+    const start = performance.now();
+    
+    function updateCounter(currentTime: number) {
+      const elapsed = currentTime - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(easeOut * target);
+      counter.textContent = current.toLocaleString();
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      }
+    }
+    
+    // Start animation when element is visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          requestAnimationFrame(updateCounter);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    observer.observe(counter);
+  }
+</script>

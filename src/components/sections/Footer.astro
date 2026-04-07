@@ -1,177 +1,480 @@
 ---
 import { siteConfig } from '../../config/site';
-
-const footerLinks = [
-  { label: 'Cómo funciona', href: '#como-funciona' },
-  { label: 'Calculadora', href: '#calculadora' },
-  { label: 'Sobre mí', href: '#sobre-mi' },
-  { label: 'FAQ', href: '#faq' },
-];
-
-const legalLinks = [
-  { label: 'Aviso legal', href: '#' },
-  { label: 'Privacidad', href: '#' },
-  { label: 'Cookies', href: '#' },
-];
+import { MessageCircle, Phone, Mail } from 'lucide-astro';
 ---
 
-<footer class="footer-dark">
-  <div class="container-custom" style="padding-top: 80px; padding-bottom: 40px;">
+<footer class="footer" aria-label="Pie de página">
+  <div class="container-custom footer-container">
 
-    <!-- Main Footer Grid -->
-    <div class="footer-grid">
-
-      <!-- Brand Column -->
-      <div>
-        <a href="/" class="footer-brand" aria-label="Mariluz — Inicio">
-          Mariluz<span style="color: var(--ios-blue);">.</span>
+    <!-- CTA Banner -->
+    <div class="cta-banner reveal">
+      <div class="banner-specular"></div>
+      <div class="banner-content">
+        <h3 class="banner-title">¿Listo para ahorrar?</h3>
+        <p class="banner-text">Análisis gratuito en menos de 24 horas</p>
+        <a href={siteConfig.whatsappUrl} class="banner-cta">
+          <MessageCircle size={18} fill="currentColor" />
+          Hablar por WhatsApp
         </a>
-        <p class="text-body" style="color: rgba(255,255,255,0.5); max-width: 280px; line-height: 1.65; margin-bottom: 32px; margin-top: 16px;">
-          Asesoramiento energético independiente. Ayudando a familias y empresas a reducir su factura de la luz desde 2016.
-        </p>
+      </div>
+    </div>
 
-        <!-- Stats row -->
-        <div style="display: flex; gap: 28px; flex-wrap: wrap;">
-          <div>
-            <p class="text-numeric" style="font-size: 1.5rem; font-weight: 800; color: #FFFFFF; letter-spacing: -0.04em;">450+</p>
-            <p style="font-size: 0.75rem; color: rgba(255,255,255,0.4); font-family: var(--font-display); font-weight: 500; margin-top: 2px;">Hogares asesorados</p>
-          </div>
-          <div>
-            <p class="text-numeric" style="font-size: 1.5rem; font-weight: 800; color: var(--ios-green); letter-spacing: -0.04em;">280€</p>
-            <p style="font-size: 0.75rem; color: rgba(255,255,255,0.4); font-family: var(--font-display); font-weight: 500; margin-top: 2px;">Ahorro medio / año</p>
-          </div>
+    <!-- Main Footer Content -->
+    <div class="footer-main">
+      
+      <!-- Brand Column -->
+      <div class="footer-brand-col reveal">
+        <a href="/" class="footer-brand">
+          Mariluz<span class="dot">.</span>
+        </a>
+        <p class="brand-tagline">
+          Asesoría energética independiente. Ahorra en tu factura de luz sin complicaciones.
+        </p>
+        <div class="trust-badges">
+          <span class="badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Sin permanencia
+          </span>
+          <span class="badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+            24h respuesta
+          </span>
         </div>
       </div>
 
-      <!-- Navigation -->
-      <div>
-        <h4 class="footer-col-title">Navegación</h4>
-        <ul class="footer-links">
-          {footerLinks.map(link => (
+      <!-- Links Columns -->
+      <div class="footer-links reveal">
+        <div class="links-col">
+          <h4 class="links-title">Servicio</h4>
+          <ul class="links-list">
+            <li><a href="#como-funciona">Cómo funciona</a></li>
+            <li><a href="#calculadora">Calculadora</a></li>
+            <li><a href="#beneficios">Beneficios</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+          </ul>
+        </div>
+        <div class="links-col">
+          <h4 class="links-title">Contacto</h4>
+          <ul class="links-list">
             <li>
-              <a href={link.href} class="footer-link">{link.label}</a>
+              <a href={siteConfig.whatsappUrl} class="link-with-icon">
+                <MessageCircle size={14} fill="currentColor" />
+                WhatsApp
+              </a>
             </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Contact -->
-      <div>
-        <h4 class="footer-col-title">Contacto</h4>
-        <ul class="footer-links">
-          <li>
-            <a href={siteConfig.whatsappUrl} class="footer-link" style="display: flex; align-items: center; gap: 8px;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color: #25D366; flex-shrink: 0;">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              WhatsApp
-            </a>
-          </li>
-          <li>
-            <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} class="footer-link">{siteConfig.phone}</a>
-          </li>
-          <li>
-            <a href={`mailto:${siteConfig.email}`} class="footer-link" style="word-break: break-all;">{siteConfig.email}</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Legal -->
-      <div>
-        <h4 class="footer-col-title">Legal</h4>
-        <ul class="footer-links">
-          {legalLinks.map(link => (
             <li>
-              <a href={link.href} class="footer-link">{link.label}</a>
+              <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} class="link-with-icon">
+                <Phone size={14} />
+                {siteConfig.phone}
+              </a>
             </li>
-          ))}
-        </ul>
+            <li>
+              <a href={`mailto:${siteConfig.email}`} class="link-with-icon">
+                <Mail size={14} />
+                Email
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
     </div>
 
-    <!-- Bottom bar -->
-    <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 32px; margin-top: 64px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;">
-      <p style="font-size: 0.8125rem; color: rgba(255,255,255,0.3); font-family: var(--font-display);">
-        &copy; {new Date().getFullYear()} {siteConfig.name}. Todos los derechos reservados.
-      </p>
+    <!-- Footer Bottom -->
+    <div class="footer-bottom reveal">
+      <div class="bottom-content">
+        <p class="copyright">
+          © {new Date().getFullYear()} {siteConfig.name}. Todos los derechos reservados.
+        </p>
+        <div class="legal-links">
+          <a href="/privacidad">Privacidad</a>
+          <span class="divider"></span>
+          <a href="/cookies">Cookies</a>
+          <span class="divider"></span>
+          <a href="/legal">Aviso legal</a>
+        </div>
+      </div>
     </div>
 
   </div>
 </footer>
 
 <style>
-  .footer-dark {
-    background: #1D1D1F;
+  /* ═══════════════════════════════════════════════════════════════
+     FOOTER - Premium iOS 26 Edition
+     ═══════════════════════════════════════════════════════════════ */
+
+  .footer {
+    position: relative;
+    padding: 80px 0 40px;
+    overflow: hidden;
+    isolation: isolate;
+    /* No background - using global background from Layout */
+  }
+
+  .footer-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── CTA Banner ──────────────────────────────────────────────── */
+  .cta-banner {
+    position: relative;
+    margin-bottom: 64px;
+    padding: 40px;
+    border-radius: 28px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+    box-shadow: 
+      0 20px 60px rgba(0,122,255,0.2),
+      0 8px 24px rgba(0,122,255,0.12);
+  }
+
+  .banner-specular {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 55%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    pointer-events: none;
+    border-radius: 28px 28px 0 0;
+  }
+
+  .banner-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .banner-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .banner-text {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+  }
+
+  .banner-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    background: rgba(255,255,255,0.95);
+    color: #007AFF;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 100px;
+    box-shadow: 
+      0 4px 16px rgba(0,0,0,0.15),
+      inset 0 1px 1px rgba(255,255,255,1);
+    transition: all 0.3s var(--ease-ios-spring);
+    flex-shrink: 0;
+  }
+
+  .banner-cta:hover {
+    transform: translateY(-3px) scale(1.03);
+    background: white;
+    box-shadow: 
+      0 12px 32px rgba(0,0,0,0.25),
+      inset 0 1px 1px rgba(255,255,255,1);
+    letter-spacing: 0.01em;
+  }
+
+  .banner-cta:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 
+      0 6px 16px rgba(0,0,0,0.2),
+      inset 0 1px 1px rgba(255,255,255,1);
+  }
+
+  /* ─── Main Footer ─────────────────────────────────────────────── */
+  .footer-main {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 64px;
+    padding: 48px 0;
+    border-top: 1px solid var(--separator);
+    border-bottom: 1px solid var(--separator);
+  }
+
+  /* Brand Column */
+  .footer-brand-col {
+    max-width: 360px;
   }
 
   .footer-brand {
     display: inline-flex;
-    align-items: center;
     font-size: 1.75rem;
     font-weight: 800;
-    color: #FFFFFF;
+    color: var(--label-primary);
     letter-spacing: -0.04em;
     text-decoration: none;
-    transition: opacity 200ms;
+    margin-bottom: 16px;
+    transition: all 0.3s var(--ease-ios-spring);
   }
 
   .footer-brand:hover {
-    opacity: 0.75;
+    opacity: 0.7;
+    transform: scale(1.02);
   }
 
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 64px;
+  .dot {
+    color: var(--ios-blue);
   }
 
-  .footer-col-title {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: rgba(255,255,255,0.35);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    font-family: var(--font-display);
+  .brand-tagline {
+    font-size: 0.9375rem;
+    color: var(--label-secondary);
+    line-height: 1.6;
+    margin: 0 0 24px;
   }
 
+  .trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px) saturate(160%);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--label-secondary);
+    box-shadow: 
+      inset 0 1px 1px rgba(255,255,255,1),
+      0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  /* Links Section */
   .footer-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+  }
+
+  .links-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .links-title {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--label-primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+  }
+
+  .links-list {
     list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 14px;
   }
 
-  .footer-link {
+  .links-list a {
+    display: inline-flex;
+    align-items: center;
     font-size: 0.9375rem;
-    color: rgba(255,255,255,0.5);
+    color: var(--label-secondary);
     text-decoration: none;
-    font-family: var(--font-display);
-    transition: color 200ms;
+    transition: all 0.25s var(--ease-ios-spring);
+    position: relative;
   }
 
-  .footer-link:hover {
-    color: rgba(255,255,255,0.9);
+  .links-list a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--ios-blue);
+    transition: width 0.3s var(--ease-ios);
   }
 
-  @media (max-width: 900px) {
-    .footer-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
+  .links-list a:hover {
+    color: var(--ios-blue);
+  }
+
+  .links-list a:hover::after {
+    width: 100%;
+  }
+
+  .link-with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .link-with-icon svg {
+    opacity: 0.7;
+  }
+
+  /* ─── Footer Bottom ───────────────────────────────────────────── */
+  .footer-bottom {
+    padding-top: 32px;
+  }
+
+  .bottom-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .copyright {
+    font-size: 0.8125rem;
+    color: var(--label-tertiary);
+    margin: 0;
+  }
+
+  .legal-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .legal-links a {
+    font-size: 0.8125rem;
+    color: var(--label-tertiary);
+    text-decoration: none;
+    transition: color 0.25s var(--ease-ios);
+  }
+
+  .legal-links a:hover {
+    color: var(--ios-blue);
+  }
+
+  .divider {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--label-quaternary);
+  }
+
+  /* ─── Responsive ──────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .footer {
+      padding: 60px 0 32px;
     }
-    .footer-grid > div:first-child {
-      grid-column: span 2;
-    }
-  }
 
-  @media (max-width: 580px) {
-    .footer-grid {
+    .cta-banner {
+      padding: 32px 24px;
+      margin-bottom: 48px;
+    }
+
+    .banner-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .banner-title {
+      font-size: 1.5rem;
+    }
+
+    .banner-cta {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .footer-main {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 48px;
+      padding: 40px 0;
     }
-    .footer-grid > div:first-child {
-      grid-column: span 1;
+
+    .footer-brand-col {
+      max-width: 100%;
+      text-align: center;
     }
+
+    .trust-badges {
+      justify-content: center;
+    }
+
+    .footer-links {
+      gap: 32px;
+    }
+
+    .bottom-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 16px;
+    }
+
+    .legal-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-links {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .links-list a {
+      justify-content: center;
+    }
+  }
+
+  /* ─── Reveal Animation ────────────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s var(--ease-ios-decel), transform 0.6s var(--ease-ios-decel);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
+
+<script>
+  const footerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        footerObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -30px 0px'
+  });
+
+  document.querySelectorAll('.footer .reveal').forEach(el => {
+    footerObserver.observe(el);
+  });
+</script>

@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '../../config/site';
+import { MessageCircle } from 'lucide-astro';
 
 const navLinks = [
   { label: 'Cómo funciona', href: '#como-funciona' },
@@ -12,71 +13,90 @@ const navLinks = [
 <div id="navbar-wrapper" class="navbar-wrapper">
   <header id="navbar" class="navbar-pill" role="banner">
 
+    <!-- Specular highlight overlay -->
+    <div class="navbar-specular" aria-hidden="true"></div>
+
     <!-- Wordmark -->
     <a
       href="/"
       class="navbar-brand"
       aria-label="Mariluz — Inicio"
     >
-      Mariluz<span class="brand-dot">.</span>
+      <span class="brand-text">Mariluz</span>
+      <span class="brand-dot">.</span>
     </a>
 
     <!-- Desktop Links -->
     <nav class="navbar-links" aria-label="Navegación principal">
       {navLinks.map(link => (
-        <a href={link.href} class="navbar-link">{link.label}</a>
+        <a href={link.href} class="navbar-link">
+          <span class="link-text">{link.label}</span>
+          <span class="link-bg" aria-hidden="true"></span>
+        </a>
       ))}
     </nav>
 
     <!-- CTA -->
     <div class="navbar-cta-wrap">
-      <a href={siteConfig.whatsappUrl} class="navbar-cta btn-primary btn-small btn-shimmer">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        Contactar
+      <a href={siteConfig.whatsappUrl} class="navbar-cta" rel="noopener noreferrer">
+        <span class="cta-bg" aria-hidden="true"></span>
+        <MessageCircle size={15} fill="currentColor" aria-hidden="true" style="position: relative; z-index: 1;" />
+        <span style="position: relative; z-index: 1;">Contactar</span>
       </a>
 
       <!-- Mobile hamburger -->
       <button
         id="mobile-menu-btn"
-        class="mobile-menu-btn md-hidden"
+        class="mobile-menu-btn"
         aria-label="Abrir menú"
         aria-expanded="false"
         aria-controls="mobile-menu"
         type="button"
       >
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
       </button>
     </div>
 
   </header>
 </div>
 
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu-overlay"
+  class="mobile-menu-overlay"
+  aria-hidden="true"
+></div>
+
 <!-- Mobile Menu -->
 <div
   id="mobile-menu"
-  class="mobile-menu liquid-glass"
+  class="mobile-menu"
   aria-hidden="true"
 >
+  <!-- Specular highlight -->
+  <div class="mobile-specular" aria-hidden="true"></div>
+
   <nav class="mobile-menu-links" aria-label="Menú móvil">
     {navLinks.map(link => (
-      <a href={link.href} class="mobile-menu-link">{link.label}</a>
+      <a href={link.href} class="mobile-menu-link">
+        <span class="mobile-link-text">{link.label}</span>
+        <span class="mobile-link-bg" aria-hidden="true"></span>
+      </a>
     ))}
   </nav>
   <div class="mobile-menu-footer">
-    <a href={siteConfig.whatsappUrl} class="btn-primary" style="width: 100%; justify-content: center;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      Contactar por WhatsApp
+    <a href={siteConfig.whatsappUrl} class="mobile-cta" rel="noopener noreferrer">
+      <span class="mobile-cta-bg" aria-hidden="true"></span>
+      <MessageCircle size={18} fill="currentColor" aria-hidden="true" style="position: relative; z-index: 1;" />
+      <span style="position: relative; z-index: 1;">Contactar por WhatsApp</span>
     </a>
   </div>
 </div>
 
 <style>
+  /* ─── Navbar Wrapper ─────────────────────────────────────────── */
   .navbar-wrapper {
     position: fixed;
     top: 0;
@@ -85,41 +105,58 @@ const navLinks = [
     z-index: 1000;
     display: flex;
     justify-content: center;
-    padding: 14px 24px;
+    padding: var(--space-4) var(--space-6);
     pointer-events: none;
-    transition: transform 0.4s var(--ease-ios-spring);
+    transition: transform 0.5s var(--ease-ios-spring), opacity 0.4s var(--ease-ios);
   }
 
   .navbar-wrapper.hidden {
     transform: translateY(-100%);
+    opacity: 0;
   }
 
+  /* ─── Navbar Pill — Premium Liquid Glass ─────────────────────── */
   .navbar-pill {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-2);
     pointer-events: auto;
-    /* Authentic Liquid Glass */
-    background: rgba(250, 250, 252, 0.82);
-    backdrop-filter: blur(32px) saturate(220%);
-    -webkit-backdrop-filter: blur(32px) saturate(220%);
-    border: 1px solid rgba(255, 255, 255, 0.65);
+    /* Premium Liquid Glass — consistente con Hero */
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(40px) saturate(220%) brightness(1.05);
+    -webkit-backdrop-filter: blur(40px) saturate(220%) brightness(1.05);
+    border: 1px solid rgba(255, 255, 255, 0.72);
     border-radius: 100px;
     box-shadow:
+      /* Luminous top edge */
       inset 0 1px 0 rgba(255, 255, 255, 0.98),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.01),
-      0 4px 20px rgba(0, 0, 0, 0.06),
-      0 1px 2px rgba(0, 0, 0, 0.03);
-    padding: 7px 7px 7px 22px;
-    transition: all 400ms var(--ease-ios-spring);
-    max-width: 820px;
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+      /* Multi-layer ambient shadow */
+      0 1px 2px rgba(0, 0, 0, 0.03),
+      0 4px 12px rgba(0, 0, 0, 0.05),
+      0 12px 40px rgba(0, 0, 0, 0.08),
+      0 24px 60px rgba(0, 0, 0, 0.04);
+    padding: var(--space-1) var(--space-1) var(--space-1) var(--space-5);
+    transition: all 0.5s var(--ease-ios-spring);
+    max-width: 800px;
     width: 100%;
     position: relative;
+    /* Entrance animation */
+    opacity: 0;
+    transform: translateY(-20px) scale(0.96);
+    animation: navbarEnter 0.8s var(--ease-ios-decel) forwards;
+    animation-delay: 0.2s;
   }
 
-  /* Specular highlight */
-  .navbar-pill::before {
-    content: '';
+  @keyframes navbarEnter {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Specular highlight — consistente con Hero */
+  .navbar-specular {
     position: absolute;
     top: 0;
     left: 0;
@@ -128,188 +165,462 @@ const navLinks = [
     border-radius: 100px 100px 0 0;
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(255, 255, 255, 0.3) 60%,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.45) 35%,
+      rgba(255, 255, 255, 0.08) 65%,
       transparent 100%
     );
     pointer-events: none;
+    z-index: 1;
+    opacity: 0.9;
   }
 
   .navbar-pill:hover {
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.82);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 1),
-      0 8px 28px rgba(0, 0, 0, 0.08),
-      0 2px 4px rgba(0, 0, 0, 0.04);
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 2px 6px rgba(0, 0, 0, 0.04),
+      0 8px 24px rgba(0, 0, 0, 0.08),
+      0 20px 56px rgba(0, 0, 0, 0.10);
   }
 
-  /* Scrolled state - compact mode */
+  /* Scrolled state — compact & enhanced */
   .navbar-pill.scrolled {
-    padding: 5px 5px 5px 18px;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(36px) saturate(240%);
+    padding: var(--space-1) var(--space-1) var(--space-1) var(--space-4);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(44px) saturate(240%) brightness(1.06);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 1),
-      0 4px 16px rgba(0, 0, 0, 0.06);
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 2px 6px rgba(0, 0, 0, 0.04),
+      0 6px 16px rgba(0, 0, 0, 0.06),
+      0 16px 44px rgba(0, 0, 0, 0.08);
   }
 
   .navbar-pill.scrolled .navbar-brand {
-    font-size: 1rem;
+    font-size: var(--text-sm);
   }
 
   .navbar-pill.scrolled .navbar-link {
-    font-size: 0.85rem;
-    padding: 6px 12px;
+    font-size: var(--text-sm);
+    padding: var(--space-1) var(--space-3);
   }
 
   .navbar-pill.scrolled .navbar-cta {
-    padding: 8px 16px !important;
-    font-size: 0.8125rem !important;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
   }
 
+  /* ─── Brand ──────────────────────────────────────────────────── */
   .navbar-brand {
-    font-size: 1.125rem;
+    font-size: var(--text-lg);
     font-weight: 800;
-    color: var(--label-primary);
+    color: var(--text-primary);
     text-decoration: none;
     letter-spacing: -0.04em;
     flex-shrink: 0;
-    transition: opacity 200ms;
+    transition: all 0.3s var(--ease-ios);
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: baseline;
   }
 
   .navbar-brand:hover {
-    opacity: 0.65;
+    opacity: 0.7;
+  }
+
+  .brand-text {
+    position: relative;
   }
 
   .brand-dot {
-    color: var(--ios-blue);
+    color: var(--color-primary);
+    transition: transform 0.3s var(--ease-ios-spring);
   }
 
+  .navbar-brand:hover .brand-dot {
+    transform: scale(1.2);
+  }
+
+  /* ─── Navigation Links ───────────────────────────────────────── */
   .navbar-links {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: var(--space-1);
     flex: 1;
     justify-content: center;
+    position: relative;
+    z-index: 2;
   }
 
   .navbar-link {
-    font-size: 0.9rem;
+    position: relative;
+    font-size: var(--text-sm);
     font-weight: 500;
-    color: var(--label-secondary);
+    color: var(--text-secondary);
     text-decoration: none;
-    padding: 7px 14px;
+    padding: var(--space-1) var(--space-3);
     border-radius: var(--radius-pill);
-    transition: all 200ms var(--ease-ios);
+    transition: color 0.25s var(--ease-ios);
     white-space: nowrap;
     font-family: var(--font-display);
+    overflow: hidden;
+  }
+
+  .link-text {
+    position: relative;
+    z-index: 2;
+    transition: color 0.25s var(--ease-ios);
+  }
+
+  .link-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 8%, transparent) 0%, color-mix(in srgb, var(--color-primary) 4%, transparent) 100%);
+    border-radius: var(--radius-pill);
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.3s var(--ease-ios-spring);
+    z-index: 1;
   }
 
   .navbar-link:hover {
-    color: var(--label-primary);
-    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-primary);
   }
 
+  .navbar-link:hover .link-bg {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .navbar-link:hover .link-text {
+    transform: translateY(-1px);
+  }
+
+  .link-text {
+    transition: transform 0.3s var(--ease-ios-spring), color 0.25s var(--ease-ios);
+  }
+
+  /* Active state */
+  .navbar-link.active {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .navbar-link.active .link-bg {
+    opacity: 1;
+    transform: scale(1);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 12%, transparent) 0%, color-mix(in srgb, var(--color-primary) 6%, transparent) 100%);
+  }
+
+  /* ─── CTA Button ─────────────────────────────────────────────── */
   .navbar-cta-wrap {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-2);
     flex-shrink: 0;
+    position: relative;
+    z-index: 2;
   }
 
   .navbar-cta {
-    font-size: 0.875rem !important;
-    padding: 9px 18px !important;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    font-family: var(--font-display);
+    color: #fff;
+    text-decoration: none;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    letter-spacing: -0.01em;
+    transition: all 0.35s var(--ease-ios-spring);
+    box-shadow:
+      0 4px 14px color-mix(in srgb, var(--color-primary) 32%, transparent),
+      0 1px 3px color-mix(in srgb, var(--color-primary) 18%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    will-change: transform;
   }
 
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 50%, var(--color-primary) 100%);
+    background-size: 200% 100%;
+    animation: shimmer-btn 4s ease-in-out infinite;
+  }
+
+  .navbar-cta:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow:
+      0 8px 24px color-mix(in srgb, var(--color-primary) 45%, transparent),
+      0 3px 8px color-mix(in srgb, var(--color-primary) 25%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.01em;
+  }
+
+  .navbar-cta:active {
+    transform: scale(0.97) translateY(0);
+    transition-duration: 0.1s;
+  }
+
+  .navbar-cta:hover .cta-bg {
+    animation-duration: 2.5s;
+  }
+
+  @keyframes shimmer-btn {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* ─── Mobile Menu Button ─────────────────────────────────────── */
   .mobile-menu-btn {
     display: none;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border: none;
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
+    background: var(--separator);
+    border-radius: var(--radius-md);
     cursor: pointer;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
-    transition: background 200ms;
+    gap: var(--space-1);
+    transition: all 0.3s var(--ease-ios);
     padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mobile-menu-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 8%, transparent) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
   }
 
   .mobile-menu-btn:hover {
-    background: rgba(0, 0, 0, 0.08);
+    background: var(--separator-strong);
+  }
+
+  .mobile-menu-btn:hover::before {
+    opacity: 1;
+  }
+
+  .mobile-menu-btn.active::before {
+    opacity: 1;
   }
 
   .hamburger-line {
-    width: 16px;
-    height: 1.5px;
-    background: var(--label-primary);
+    width: 18px;
+    height: 2px;
+    background: var(--text-primary);
     border-radius: 2px;
-    transition: all 300ms var(--ease-ios-spring);
+    transition: all 0.3s var(--ease-ios-spring);
     display: block;
+    position: relative;
   }
 
-  /* Mobile menu */
+  .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ─── Mobile Menu Overlay ────────────────────────────────────── */
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s var(--ease-ios);
+  }
+
+  .mobile-menu-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* ─── Mobile Menu ────────────────────────────────────────────── */
   .mobile-menu {
     position: fixed;
-    top: 76px;
-    left: 16px;
-    right: 16px;
+    top: 80px;
+    left: var(--space-4);
+    right: var(--space-4);
     z-index: 999;
     border-radius: var(--radius-2xl);
     overflow: hidden;
+    /* Premium Liquid Glass — consistente con Hero */
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(44px) saturate(220%) brightness(1.05);
+    -webkit-backdrop-filter: blur(44px) saturate(220%) brightness(1.05);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 8px 32px rgba(0, 0, 0, 0.12),
+      0 4px 16px rgba(0, 0, 0, 0.06);
     max-height: 0;
     opacity: 0;
     pointer-events: none;
-    transition: max-height 500ms var(--ease-ios-spring), opacity 350ms ease, transform 500ms var(--ease-ios-spring);
-    transform: translateY(-10px) scale(0.97);
+    transition: all 0.5s var(--ease-ios-spring);
+    transform: translateY(-12px) scale(0.96);
   }
 
   .mobile-menu.open {
-    max-height: 400px;
+    max-height: 420px;
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0) scale(1);
   }
 
+  /* Mobile specular highlight */
+  .mobile-specular {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55%;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.4) 40%,
+      rgba(255, 255, 255, 0.08) 70%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
   .mobile-menu-links {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    padding: 16px 16px 8px;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-4) var(--space-2);
   }
 
   .mobile-menu-link {
-    font-size: 1.0625rem;
+    position: relative;
+    font-size: var(--text-lg);
     font-weight: 500;
-    color: var(--label-primary);
+    color: var(--text-primary);
     text-decoration: none;
-    padding: 12px 16px;
+    padding: var(--space-3) var(--space-4);
     border-radius: 14px;
-    transition: background 200ms;
+    transition: color 0.25s;
     font-family: var(--font-display);
+    overflow: hidden;
+  }
+
+  .mobile-link-text {
+    position: relative;
+    z-index: 2;
+  }
+
+  .mobile-link-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 8%, transparent) 0%, color-mix(in srgb, var(--color-primary) 4%, transparent) 100%);
+    border-radius: 14px;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.3s var(--ease-ios-spring);
+    z-index: 1;
   }
 
   .mobile-menu-link:hover {
-    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-primary);
+  }
+
+  .mobile-menu-link:hover .mobile-link-bg {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .mobile-menu-link.active {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .mobile-menu-link.active .mobile-link-bg {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .mobile-menu-footer {
-    padding: 8px 16px 16px;
-    border-top: 1px solid var(--separator);
-    margin-top: 4px;
+    position: relative;
+    z-index: 2;
+    padding: var(--space-3) var(--space-4) var(--space-4);
+    margin-top: var(--space-1);
   }
 
-  /* Responsive */
+  .mobile-cta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-size: var(--text-base);
+    font-weight: 600;
+    font-family: var(--font-display);
+    color: #fff;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    letter-spacing: -0.01em;
+    transition: all 0.35s var(--ease-ios-spring);
+    box-shadow:
+      0 4px 14px color-mix(in srgb, var(--color-primary) 32%, transparent),
+      0 1px 3px color-mix(in srgb, var(--color-primary) 18%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+
+  .mobile-cta-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 50%, var(--color-primary) 100%);
+    background-size: 200% 100%;
+    animation: shimmer-btn 4s ease-in-out infinite;
+  }
+
+  .mobile-cta:hover {
+    transform: scale(1.02);
+    box-shadow:
+      0 6px 20px color-mix(in srgb, var(--color-primary) 40%, transparent),
+      0 2px 6px color-mix(in srgb, var(--color-primary) 22%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  }
+
+  /* ─── Responsive ─────────────────────────────────────────────── */
   @media (max-width: 768px) {
     .navbar-wrapper {
-      padding: 10px 16px;
+      padding: var(--space-3) var(--space-4);
     }
 
     .navbar-pill {
-      padding: 6px 6px 6px 18px;
+      padding: var(--space-1) var(--space-1) var(--space-1) var(--space-4);
     }
 
     .navbar-links {
@@ -327,8 +638,41 @@ const navLinks = [
 
   @media (max-width: 900px) and (min-width: 769px) {
     .navbar-link {
-      padding: 7px 10px;
-      font-size: 0.8375rem;
+      padding: var(--space-1) var(--space-3);
+      font-size: var(--text-sm);
+    }
+
+    .navbar-pill {
+      padding: var(--space-1) var(--space-1) var(--space-1) var(--space-4);
+    }
+
+    .navbar-cta {
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-sm);
+    }
+  }
+
+  /* ─── Reduced Motion ─────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .navbar-pill,
+    .navbar-cta .cta-bg,
+    .mobile-cta .mobile-cta-bg,
+    .hamburger-line {
+      animation: none !important;
+    }
+
+    .navbar-pill {
+      opacity: 1;
+      transform: none;
+    }
+
+    .navbar-wrapper,
+    .navbar-pill,
+    .navbar-link,
+    .mobile-menu,
+    .mobile-menu-btn,
+    .mobile-menu-overlay {
+      transition: none !important;
     }
   }
 </style>
@@ -336,29 +680,43 @@ const navLinks = [
 <script>
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
+  const mobileOverlay = document.getElementById('mobile-menu-overlay');
   const navbarPill = document.querySelector('.navbar-pill');
+  const navbarWrapper = document.querySelector('.navbar-wrapper');
   let lastScrollY = window.scrollY;
   let ticking = false;
+  let scrollDirection: 'up' | 'down' = 'up';
 
-  // Scroll behavior for navbar
+  // Smooth scroll behavior for navbar
   const updateNavbar = () => {
     const scrollY = window.scrollY;
-    
+
+    // Toggle scrolled class
     if (navbarPill) {
-      if (scrollY > 100) {
+      if (scrollY > 80) {
         navbarPill.classList.add('scrolled');
       } else {
         navbarPill.classList.remove('scrolled');
       }
     }
-    
-    // Hide/show on scroll direction
-    if (scrollY > lastScrollY && scrollY > 200) {
-      document.querySelector('.navbar-wrapper')?.classList.add('hidden');
-    } else {
-      document.querySelector('.navbar-wrapper')?.classList.remove('hidden');
+
+    // Determine scroll direction
+    const newDirection = scrollY > lastScrollY ? 'down' : 'up';
+
+    // Hide/show on scroll with direction awareness
+    if (navbarWrapper) {
+      if (scrollDirection === 'down' && newDirection === 'up') {
+        // Scrolling up - show navbar
+        navbarWrapper.classList.remove('hidden');
+      } else if (scrollDirection === 'up' && newDirection === 'down' && scrollY > 150) {
+        // Scrolling down past threshold - hide navbar
+        navbarWrapper.classList.add('hidden');
+        // Also close mobile menu if open
+        closeMobileMenu();
+      }
     }
-    
+
+    scrollDirection = newDirection;
     lastScrollY = scrollY;
     ticking = false;
   };
@@ -370,37 +728,87 @@ const navLinks = [
     }
   }, { passive: true });
 
-  mobileMenuBtn?.addEventListener('click', () => {
+  // Mobile menu functions
+  const openMobileMenu = () => {
+    mobileMenu?.classList.add('open');
+    mobileMenu?.setAttribute('aria-hidden', 'false');
+    mobileOverlay?.classList.add('open');
+    mobileOverlay?.setAttribute('aria-hidden', 'false');
+    mobileMenuBtn?.classList.add('active');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMobileMenu = () => {
+    mobileMenu?.classList.remove('open');
+    mobileMenu?.setAttribute('aria-hidden', 'true');
+    mobileOverlay?.classList.remove('open');
+    mobileOverlay?.setAttribute('aria-hidden', 'true');
+    mobileMenuBtn?.classList.remove('active');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  const toggleMobileMenu = () => {
     const isOpen = mobileMenu?.classList.contains('open');
     if (isOpen) {
-      mobileMenu?.classList.remove('open');
-      mobileMenu?.setAttribute('aria-hidden', 'true');
-      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      closeMobileMenu();
     } else {
-      mobileMenu?.classList.add('open');
-      mobileMenu?.setAttribute('aria-hidden', 'false');
-      mobileMenuBtn.setAttribute('aria-expanded', 'true');
+      openMobileMenu();
+    }
+  };
+
+  mobileMenuBtn?.addEventListener('click', toggleMobileMenu);
+
+  // Close menu when clicking overlay
+  mobileOverlay?.addEventListener('click', closeMobileMenu);
+
+  // Close menu when clicking links
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  // Active link highlighting based on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.navbar-link, .mobile-menu-link');
+
+  const highlightActiveLink = () => {
+    const scrollPos = window.scrollY + 150;
+
+    sections.forEach(section => {
+      const sectionTop = (section as HTMLElement).offsetTop;
+      const sectionHeight = (section as HTMLElement).offsetHeight;
+      const sectionId = section.getAttribute('id');
+
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  };
+
+  window.addEventListener('scroll', () => {
+    requestAnimationFrame(highlightActiveLink);
+  }, { passive: true });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
+      closeMobileMenu();
     }
   });
 
-  mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      mobileMenuBtn?.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    const target = e.target;
-    if (
-      mobileMenu?.classList.contains('open') &&
-      !mobileMenu.contains(target) &&
-      !mobileMenuBtn?.contains(target)
-    ) {
-      mobileMenu.classList.remove('open');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+  // Handle visibility change (tab switch)
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      // Pause animations when tab is not visible
+      navbarPill?.classList.add('paused');
+    } else {
+      navbarPill?.classList.remove('paused');
     }
   });
 </script>

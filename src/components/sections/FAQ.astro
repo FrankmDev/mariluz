@@ -1,5 +1,7 @@
 ---
 import { siteConfig } from '../../config/site';
+import aboutPhoto from '../../assets/about.jpeg';
+import { MessageCircle, Phone } from 'lucide-astro';
 
 const faqs = [
   {
@@ -29,90 +31,122 @@ const faqs = [
 ];
 ---
 
-<section id="faq" class="section" style="background: var(--bg-secondary);">
-  <div class="container-custom">
+<section id="faq" class="faq-section">
+  <div class="container-custom faq-container">
 
     <!-- Section Header -->
-    <div class="text-center reveal" style="margin-bottom: 72px;">
-      <span class="badge" style="margin-bottom: 20px; display: inline-flex;">Preguntas frecuentes</span>
-      <h2 class="text-large-title" style="color: var(--label-primary); margin-bottom: 16px;">
-        Todo lo que necesitas saber.
-      </h2>
-      <p class="text-body-large" style="color: var(--label-secondary); max-width: 480px; margin: 0 auto;">
-        Respuestas honestas a las dudas más habituales.
-      </p>
+    <div class="faq-header reveal">
+      <div class="faq-eyebrow">
+        <span class="faq-eyebrow-dot"></span>
+        <span class="text-caption">Preguntas frecuentes</span>
+      </div>
+      <h2 class="faq-title">Todo lo que necesitas saber.</h2>
+      <p class="faq-subtitle">Respuestas honestas a las dudas más habituales.</p>
     </div>
 
     <div class="faq-layout">
 
-      <!-- Left: FAQ Accordion -->
-      <div class="reveal faq-col" style="transition-delay: 0ms;">
-        {faqs.map((faq, index) => (
-          <details class="faq-item" data-faq={index} style={`--faq-index: ${index}`}>
-            <summary class="faq-summary">
-              <span class="faq-number">{String(index + 1).padStart(2, '0')}</span>
-              <span class="text-title-3 faq-question" style="color: var(--label-primary); padding-right: 20px; line-height: 1.4; flex: 1;">{faq.question}</span>
-              <div class="faq-icon-btn">
-                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6"/>
-                </svg>
+      <!-- Left: FAQ Accordion with Liquid Glass -->
+      <div class="faq-col reveal" style="--delay: 0ms;">
+        <div class="faq-list">
+          {faqs.map((faq, index) => (
+            <details class="faq-item" data-faq={index} style={`--faq-index: ${index}`}>
+              <summary class="faq-summary">
+                <div class="faq-summary-content">
+                  <span class="faq-number">{String(index + 1).padStart(2, '0')}</span>
+                  <span class="faq-question">{faq.question}</span>
+                </div>
+                <div class="faq-icon-btn">
+                  <div class="faq-icon-bg">
+                    <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                  </div>
+                </div>
+              </summary>
+              <div class="faq-body">
+                <div class="faq-body-inner">
+                  <div class="faq-answer">
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
               </div>
-            </summary>
-            <div class="faq-body">
-              <div class="faq-answer">
-                <p class="text-body" style="color: var(--label-secondary); line-height: 1.7;">
-                  {faq.answer}
-                </p>
-              </div>
-            </div>
-          </details>
-        ))}
+            </details>
+          ))}
+        </div>
       </div>
 
       <!-- Right: Contact Card -->
-      <div class="reveal faq-contact-col" style="transition-delay: 150ms;">
+      <div class="faq-contact-col reveal" style="--delay: 150ms;">
 
         <div class="contact-card" data-contact-card>
-          <!-- Avatar -->
-          <div style="display: flex; justify-content: center; margin-bottom: 24px;">
-            <div class="avatar-container">
-              <div class="avatar avatar-3d" style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--ios-blue) 0%, var(--ios-indigo) 100%); color: white; font-size: 2rem; font-weight: 700; border-radius: 50%;">M</div>
-              <div class="status-dot status-pulse" style="position: absolute; bottom: 4px; right: 4px; width: 16px; height: 16px; border: 3px solid var(--bg-primary); border-radius: 50%; background: var(--ios-green);"></div>
+          <!-- Specular Highlight Layer -->
+          <div class="contact-specular"></div>
+
+          <!-- Card Content -->
+          <div class="contact-card-content">
+            <!-- Avatar -->
+            <div class="contact-avatar-wrap">
+              <div class="contact-avatar">
+                <img 
+                  src={aboutPhoto.src}
+                  alt="Mariluz Marín"
+                  width="88"
+                  height="88"
+                />
+              </div>
+              <div class="contact-status">
+                <span class="status-ping"></span>
+              </div>
             </div>
-          </div>
 
-          <h3 class="text-title-2" style="color: var(--label-primary); text-align: center; margin-bottom: 8px;">¿Tienes más dudas?</h3>
-          <p class="text-body" style="color: var(--label-secondary); text-align: center; margin-bottom: 28px; line-height: 1.5;">
-            Escríbeme directamente. Respondo en menos de 24 horas y sin compromiso.
-          </p>
+            <h3 class="contact-title">¿Tienes más dudas?</h3>
+            <p class="contact-description">
+              Escríbeme directamente. Respondo en menos de 24 horas y sin compromiso.
+            </p>
 
-          <!-- WhatsApp CTA -->
-          <a href={siteConfig.whatsappUrl} class="btn-primary" style="width: 100%; justify-content: center; margin-bottom: 12px;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            Escribir por WhatsApp
-          </a>
+            <!-- CTAs -->
+            <div class="contact-actions">
+              <a href={siteConfig.whatsappUrl} class="contact-cta contact-cta-primary">
+                <span class="cta-bg"></span>
+                <span class="cta-content">
+                  <MessageCircle size={18} fill="currentColor" aria-hidden="true" />
+                  Escribir por WhatsApp
+                </span>
+              </a>
 
-          <!-- Phone CTA -->
-          <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} class="btn-secondary" style="width: 100%; justify-content: center; margin-bottom: 24px;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.19 2 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            {siteConfig.phone}
-          </a>
-
-          <!-- Trust indicators -->
-          <div style="border-top: 1px solid var(--separator); padding-top: 20px; display: flex; flex-direction: column; gap: 10px;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-green)" stroke-width="2.5" stroke-linecap="round" flex-shrink="0"><path d="M20 6L9 17l-5-5"/></svg>
-              <span class="text-footnote" style="color: var(--label-secondary);">Sin compromiso ni permanencia</span>
+              <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} class="contact-cta contact-cta-secondary">
+                <Phone size={18} aria-hidden="true" />
+                {siteConfig.phone}
+              </a>
             </div>
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-green)" stroke-width="2.5" stroke-linecap="round" flex-shrink="0"><path d="M20 6L9 17l-5-5"/></svg>
-              <span class="text-footnote" style="color: var(--label-secondary);">Respuesta garantizada en 24h</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-green)" stroke-width="2.5" stroke-linecap="round" flex-shrink="0"><path d="M20 6L9 17l-5-5"/></svg>
-              <span class="text-footnote" style="color: var(--label-secondary);">Servicio 100% gratuito siempre</span>
+
+            <!-- Trust indicators -->
+            <div class="contact-trust">
+              <div class="trust-item">
+                <div class="trust-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6L9 17l-5-5"/>
+                  </svg>
+                </div>
+                <span class="text-caption">Sin compromiso ni permanencia</span>
+              </div>
+              <div class="trust-item">
+                <div class="trust-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6L9 17l-5-5"/>
+                  </svg>
+                </div>
+                <span class="text-caption">Respuesta garantizada en 24h</span>
+              </div>
+              <div class="trust-item">
+                <div class="trust-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6L9 17l-5-5"/>
+                  </svg>
+                </div>
+                <span class="text-caption">Servicio 100% gratuito siempre</span>
+              </div>
             </div>
           </div>
         </div>
@@ -124,82 +158,210 @@ const faqs = [
 </section>
 
 <style>
+  /* ========== FAQ Section Base ========== */
+  .faq-section {
+    position: relative;
+    padding: var(--section-py) 0;
+    overflow: hidden;
+    /* No background - using global background from Layout */
+  }
+
+  .faq-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ========== Section Header ========== */
+  .faq-header {
+    text-align: center;
+    margin-bottom: var(--space-20);
+  }
+
+  .faq-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 10px var(--space-4);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    border-radius: var(--radius-pill);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 2px 8px rgba(0, 0, 0, 0.04);
+    margin-bottom: var(--space-6);
+    color: var(--text-secondary);
+  }
+
+  .faq-eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+  }
+
+  .faq-title {
+    font-size: var(--text-section);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--space-5);
+  }
+
+  .faq-subtitle {
+    font-size: var(--text-xl);
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ========== FAQ Layout ========== */
   .faq-layout {
     display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 64px;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-20);
     align-items: start;
   }
 
+  /* ========== FAQ List with Liquid Glass Cards ========== */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
   .faq-item {
+    position: relative;
     display: block;
-    border-bottom: 1px solid var(--separator);
-    transition: all 0.3s var(--ease-ios-spring);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: var(--radius-xl);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 2px 8px rgba(0, 0, 0, 0.03),
+      0 4px 20px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    transition: all 0.5s var(--ease-ios-spring);
+  }
+
+  .faq-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.4) 40%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
   }
 
   .faq-item:hover {
-    background: rgba(0, 122, 255, 0.02);
-    padding-left: 12px;
-    margin-left: -12px;
-    padding-right: 12px;
-    margin-right: -12px;
-    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      0 12px 32px rgba(0, 0, 0, 0.08),
+      0 6px 16px rgba(0, 0, 0, 0.05);
+  }
+
+  .faq-item:hover .faq-number {
+    color: var(--color-primary);
+    transform: scale(1.1);
+  }
+
+  .faq-number {
+    transition: all 0.3s var(--ease-ios-spring);
   }
 
   .faq-item[open] {
-    background: rgba(0, 122, 255, 0.03);
-    padding-left: 16px;
-    margin-left: -16px;
-    padding-right: 16px;
-    margin-right: -16px;
-    border-radius: var(--radius-xl);
-    border-bottom-color: transparent;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      0 16px 40px rgba(0, 0, 0, 0.1),
+      0 6px 20px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  .faq-item[open]:hover {
+    transform: translateY(-4px) scale(1.01);
   }
 
   .faq-summary {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
-    padding: 24px 0;
+    justify-content: space-between;
+    padding: var(--space-6);
     cursor: pointer;
     list-style: none;
     user-select: none;
     -webkit-user-select: none;
-    gap: 16px;
-    transition: all 0.3s var(--ease-ios-spring);
-  }
-
-  .faq-summary:hover {
-    opacity: 0.8;
+    gap: var(--space-4);
+    transition: all 0.4s var(--ease-ios-spring);
   }
 
   .faq-summary::-webkit-details-marker {
     display: none;
   }
 
+  .faq-summary-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    flex: 1;
+  }
+
   .faq-number {
-    font-size: 0.75rem;
+    font-size: var(--text-sm);
     font-weight: 700;
-    color: var(--label-quaternary);
+    color: var(--text-quaternary);
     font-family: var(--font-display);
-    letter-spacing: 0.05em;
-    transition: all 0.3s var(--ease-ios-spring);
-    min-width: 24px;
+    letter-spacing: 0.08em;
+    transition: all 0.4s var(--ease-ios-spring);
+    min-width: 28px;
   }
 
   .faq-item[open] .faq-number {
-    color: var(--ios-blue);
+    color: var(--color-primary);
   }
 
   .faq-question {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
+    flex: 1;
     transition: color 0.3s;
   }
 
   .faq-item:hover .faq-question {
-    color: var(--ios-blue) !important;
+    color: var(--color-primary);
   }
 
   .faq-icon-btn {
     flex-shrink: 0;
+    position: relative;
+  }
+
+  .faq-icon-bg {
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -211,13 +373,12 @@ const faqs = [
   }
 
   .faq-chevron {
-    color: var(--label-tertiary);
+    color: var(--text-tertiary);
     transition: all 400ms var(--ease-ios-spring);
   }
 
-  .faq-item[open] .faq-icon-btn {
-    background: var(--ios-blue);
-    transform: rotate(0deg);
+  .faq-item[open] .faq-icon-bg {
+    background: var(--color-primary);
   }
 
   .faq-item[open] .faq-chevron {
@@ -226,25 +387,33 @@ const faqs = [
     stroke: white;
   }
 
+  /* FAQ Body Animation */
   .faq-body {
     overflow: hidden;
     max-height: 0;
     opacity: 0;
-    transition: max-height 500ms var(--ease-ios), opacity 350ms ease, padding 500ms var(--ease-ios);
-    padding-right: 56px;
-    padding-left: 40px;
+    transition: all 500ms var(--ease-ios);
+  }
+
+  .faq-body-inner {
+    padding: 0 var(--space-6) var(--space-6) 76px;
   }
 
   .faq-item[open] .faq-body {
     max-height: 400px;
     opacity: 1;
-    padding-bottom: 24px;
   }
 
   .faq-answer {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     opacity: 0;
     transition: all 0.4s var(--ease-ios-decel) 0.1s;
+  }
+
+  .faq-answer p {
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--text-secondary);
   }
 
   .faq-item[open] .faq-answer {
@@ -252,92 +421,360 @@ const faqs = [
     opacity: 1;
   }
 
-  .contact-card {
-    position: sticky;
-    top: 88px;
-    /* Authentic Liquid Glass */
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(28px) saturate(200%);
-    -webkit-backdrop-filter: blur(28px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 24px;
-    padding: 36px 32px;
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.95),
-      0 8px 32px rgba(0, 0, 0, 0.06),
-      0 2px 8px rgba(0, 0, 0, 0.03);
-    transition: all 0.4s var(--ease-ios-spring);
+  /* ========== Contact Card (Premium Liquid Glass) ========== */
+  .faq-contact-col {
+    position: relative;
   }
 
-  .contact-card::before {
-    content: '';
+  .contact-card {
+    position: sticky;
+    top: 100px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(44px) saturate(220%) brightness(1.04);
+    -webkit-backdrop-filter: blur(44px) saturate(220%) brightness(1.04);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: var(--radius-2xl);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 4px 6px rgba(0, 0, 0, 0.04),
+      0 12px 40px rgba(0, 0, 0, 0.09),
+      0 32px 80px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.5s var(--ease-ios-spring);
+  }
+
+  .contact-specular {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 55%;
-    border-radius: 24px 24px 0 0;
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.45) 35%,
+      rgba(255, 255, 255, 0.12) 65%,
       transparent 100%
     );
     pointer-events: none;
-    border-radius: inherit;
+    z-index: 1;
+  }
+
+  .contact-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 44px 36px var(--space-10);
   }
 
   .contact-card:hover {
-    background: rgba(255, 255, 255, 0.85);
-    transform: translateY(-4px);
+    transform: translateY(-6px) scale(1.02);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 1),
-      0 16px 48px rgba(0, 0, 0, 0.08),
-      0 4px 12px rgba(0, 0, 0, 0.04);
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 12px 24px rgba(0, 0, 0, 0.08),
+      0 28px 72px rgba(0, 0, 0, 0.14),
+      0 48px 120px rgba(0, 0, 0, 0.1);
   }
 
-  /* Avatar animations */
-  .avatar-container {
+  .contact-card:hover .contact-avatar {
+    transform: scale(1.08);
+  }
+
+  /* Avatar */
+  .contact-avatar-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-6);
     position: relative;
-    transition: transform 0.4s var(--ease-ios-spring);
   }
 
-  .contact-card:hover .avatar-container {
-    transform: scale(1.05);
-  }
-
-  .avatar-3d {
+  .contact-avatar {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    box-shadow: 0 8px 32px color-mix(in srgb, var(--color-primary) 35%, transparent);
     transition: all 0.4s var(--ease-ios-spring);
-    box-shadow: 0 8px 32px rgba(0, 122, 255, 0.25);
   }
 
-  .contact-card:hover .avatar-3d {
-    box-shadow: 0 12px 40px rgba(0, 122, 255, 0.35);
+  .contact-card:hover .contact-avatar {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--color-primary) 45%, transparent);
   }
 
-  .status-pulse {
-    animation: status-breathe 2s ease-in-out infinite;
+  .contact-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
   }
 
-  @keyframes status-breathe {
-    0%, 100% { 
-      box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.4);
+  .contact-status {
+    position: absolute;
+    bottom: 0;
+    right: calc(50% - 44px);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-success);
+    border: 3px solid white;
+  }
+
+  .status-ping {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--color-success);
+    animation: status-pulse 2s ease-out infinite;
+  }
+
+  @keyframes status-pulse {
+    0% { 
       transform: scale(1);
+      opacity: 0.8;
     }
-    50% { 
-      box-shadow: 0 0 0 6px rgba(52, 199, 89, 0);
-      transform: scale(1.1);
+    100% { 
+      transform: scale(2.5);
+      opacity: 0;
     }
   }
 
-  @media (max-width: 900px) {
+  /* Card Text */
+  .contact-title {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .contact-description {
+    font-size: var(--text-md);
+    line-height: 1.6;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  /* Contact Actions */
+  .contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .contact-cta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px var(--space-6);
+    border-radius: var(--radius-xl);
+    font-size: var(--text-md);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.4s var(--ease-ios-spring);
+    overflow: hidden;
+  }
+
+  .contact-cta-primary {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { background-position: 200% 0; }
+    50% { background-position: -200% 0; }
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contact-cta-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 28px color-mix(in srgb, var(--color-primary) 50%, transparent);
+  }
+
+  .contact-cta-secondary {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-primary);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .contact-cta-secondary:hover {
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    color: var(--color-primary);
+    border-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    transform: translateY(-2px);
+  }
+
+  /* Trust Indicators */
+  .contact-trust {
+    border-top: 1px solid var(--separator);
+    padding-top: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-success);
+  }
+
+  .trust-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-success) 10%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .trust-item span {
+    color: var(--text-secondary);
+  }
+
+  /* ========== Responsive ========== */
+  @media (max-width: 1024px) {
     .faq-layout {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: var(--space-16);
     }
 
     .contact-card {
       position: static;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .faq-section {
+      padding: var(--section-py-mobile) 0;
+    }
+
+    .faq-header {
+      margin-bottom: var(--space-16);
+    }
+
+    .faq-title {
+      font-size: var(--text-5xl);
+    }
+
+    .faq-subtitle {
+      font-size: var(--text-lg);
+    }
+
+    .faq-summary {
+      padding: var(--space-5);
+    }
+
+    .faq-summary-content {
+      gap: var(--space-3);
+    }
+
+    .faq-question {
+      font-size: var(--text-md);
+    }
+
+    .faq-body-inner {
+      padding: 0 var(--space-5) var(--space-5) 62px;
+    }
+
+    .contact-card-content {
+      padding: 36px var(--space-6) var(--space-8);
+    }
+
+    .contact-avatar {
+      width: 84px;
+      height: 84px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .faq-title {
+      font-size: var(--text-4xl);
+    }
+
+    .faq-number {
+      font-size: var(--text-xs);
+      min-width: 24px;
+    }
+
+    .faq-icon-bg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .faq-chevron {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-eyebrow-dot {
+      animation: none !important;
+    }
+
+    .faq-item {
+      transition: background 0.2s ease !important;
+    }
+
+    .faq-body,
+    .faq-answer,
+    .faq-icon-bg,
+    .faq-chevron {
+      transition: none !important;
+    }
+
+    .contact-card:hover {
+      transform: none;
+    }
+
+    .contact-avatar,
+    .cta-bg {
+      animation: none !important;
+    }
+
+    .status-ping::after {
+      animation: none !important;
+    }
+
+    .faq-item[open] .faq-body {
+      max-height: none;
+      opacity: 1;
+    }
+
+    .faq-answer {
+      transform: translateY(0) !important;
+      opacity: 1 !important;
     }
   }
 </style>
@@ -349,12 +786,12 @@ const faqs = [
     
     // Staggered entrance animation
     item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
+    item.style.transform = 'translateY(30px) scale(0.98)';
     setTimeout(() => {
-      item.style.transition = 'opacity 0.5s var(--ease-ios-decel), transform 0.5s var(--ease-ios-spring)';
+      item.style.transition = 'opacity 0.6s var(--ease-ios-decel), transform 0.6s var(--ease-ios-spring)';
       item.style.opacity = '1';
-      item.style.transform = 'translateY(0)';
-    }, index * 80);
+      item.style.transform = 'translateY(0) scale(1)';
+    }, index * 100);
     
     summary?.addEventListener('click', (e) => {
       e.preventDefault();
@@ -370,7 +807,6 @@ const faqs = [
             requestAnimationFrame(() => {
               body.style.maxHeight = '0';
               body.style.opacity = '0';
-              body.style.paddingBottom = '0';
             });
           }
           if (answer) {
@@ -389,7 +825,6 @@ const faqs = [
           requestAnimationFrame(() => {
             body.style.maxHeight = '0';
             body.style.opacity = '0';
-            body.style.paddingBottom = '0';
           });
         }
         if (answer) {
@@ -410,7 +845,7 @@ const faqs = [
     });
   });
 
-  // Contact card 3D tilt effect
+  // Contact card 3D tilt effect (desktop only)
   const contactCard = document.querySelector('[data-contact-card]');
   if (contactCard && !window.matchMedia('(pointer: coarse)').matches) {
     contactCard.addEventListener('mousemove', (e) => {
@@ -420,8 +855,8 @@ const faqs = [
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
       
-      const rotateX = (y - centerY) / centerY * -3;
-      const rotateY = (x - centerX) / centerX * 3;
+      const rotateX = (y - centerY) / centerY * -4;
+      const rotateY = (x - centerX) / centerX * 4;
       
       (contactCard as HTMLElement).style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
     });
