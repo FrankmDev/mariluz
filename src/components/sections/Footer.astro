@@ -55,7 +55,7 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
             <li><a href="#como-funciona">Cómo funciona</a></li>
             <li><a href="#calculadora">Calculadora</a></li>
             <li><a href="#beneficios">Beneficios</a></li>
-            <li><a href="#testimonios">Testimonios</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
           </ul>
         </div>
         <div class="links-col">
@@ -97,6 +97,10 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
           <a href="/cookies">Cookies</a>
           <span class="divider"></span>
           <a href="/legal">Aviso legal</a>
+          <span class="divider"></span>
+          <a href="https://frnq.studio" target="_blank" rel="noopener noreferrer" class="developer-link">
+            Desarrollado por FRN.Q
+          </a>
         </div>
       </div>
     </div>
@@ -378,6 +382,15 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
     height: 3px;
     border-radius: 50%;
     background: var(--label-quaternary);
+  }
+
+  .developer-link {
+    font-weight: 500;
+    color: var(--label-secondary) !important;
+  }
+
+  .developer-link:hover {
+    color: var(--ios-blue) !important;
   }
 
   /* ─── Responsive ──────────────────────────────────────────────── */
