@@ -83,36 +83,19 @@ const PROVIDERS = [
             
             <!-- STATE: Upload -->
             <div class="state-upload" id="state-upload">
-              <div class="upload-zone" id="upload-zone">
-                <input 
-                  type="file" 
-                  id="file-input" 
-                  class="file-input" 
-                  accept=".pdf,application/pdf"
-                  aria-label="Subir factura eléctrica (PDF)"
-                />
-                
-                <div class="upload-content">
-                  <div class="upload-icon-wrapper">
-                    <div class="upload-icon-circle">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-                        <polyline points="17 8 12 3 7 8"/>
-                        <line x1="12" y1="3" x2="12" y2="15"/>
-                      </svg>
+              <div class="calculator-simple" id="calculator-simple">
+                <div class="calculator-simple-content">
+                  <div class="calculator-header">
+                    <div class="calculator-icon-wrapper">
+                      <div class="calculator-icon-circle">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                          <circle cx="12" cy="12" r="10"/>
+                          <path d="M12 6v6l4 2"/>
+                        </svg>
+                      </div>
                     </div>
-                    <div class="upload-icon-pulse"></div>
-                  </div>
-                  
-                  <h3 class="upload-title">Arrastra tu factura aquí</h3>
-                  <p class="upload-subtitle">o haz clic para seleccionar archivo</p>
-                  
-                  <div class="upload-formats">
-                    <span class="format-badge">Solo PDF</span>
-                  </div>
-                  
-                  <div class="upload-divider">
-                    <span>o</span>
+                    <h3 class="calculator-title">¿Cuánto pagas de luz?</h3>
+                    <p class="calculator-subtitle">Indica tu factura mensual y te calculo el ahorro</p>
                   </div>
                   
                   <!-- Segmented Control para modo manual -->
@@ -186,18 +169,6 @@ const PROVIDERS = [
                       Analizar mi factura
                     </span>
                   </button>
-                </div>
-                
-                <!-- Drag overlay -->
-                <div class="drag-overlay" id="drag-overlay">
-                  <div class="drag-content">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-                      <polyline points="17 8 12 3 7 8"/>
-                      <line x1="12" y1="3" x2="12" y2="15"/>
-                    </svg>
-                    <p>Suelta tu factura aquí</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -363,8 +334,8 @@ const PROVIDERS = [
                 </svg>
               </div>
               <div class="feature-text">
-                <p class="feature-title">Asesora certificada</p>
-                <p class="feature-desc">8 años de experiencia auditando consumos y optimizando contratos energéticos.</p>
+                <p class="feature-title">Asesora independiente</p>
+                <p class="feature-desc">Trabajo por y para ti. Mi único objetivo es encontrarte la mejor tarifa del mercado.</p>
               </div>
             </div>
           </div>
@@ -584,12 +555,12 @@ const PROVIDERS = [
     padding: var(--space-8);
   }
 
-  /* ─── State: Upload ──────────────────────────────────────────── */
+  /* ─── State: Upload / Simple Calculator ───────────────────────── */
   .state-upload {
     height: 100%;
   }
 
-  .upload-zone {
+  .calculator-simple {
     position: relative;
     border-radius: var(--radius-lg);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(248, 250, 252, 0.5) 100%);
@@ -600,21 +571,10 @@ const PROVIDERS = [
       0 1px 2px rgba(0, 0, 0, 0.02),
       0 4px 12px rgba(0, 0, 0, 0.03);
     transition: all 0.4s var(--ease-ios-spring);
-    cursor: pointer;
     overflow: hidden;
   }
 
-  .upload-zone::before {
-    content: '';
-    position: absolute;
-    inset: 8px;
-    border-radius: calc(var(--radius-lg) - 8px);
-    border: 2px dashed rgba(0, 122, 255, 0.18);
-    pointer-events: none;
-    transition: all 0.3s ease;
-  }
-
-  .upload-zone:hover {
+  .calculator-simple:hover {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(240, 247, 255, 0.6) 100%);
     transform: translateY(-2px);
     box-shadow:
@@ -623,57 +583,27 @@ const PROVIDERS = [
       0 4px 12px rgba(0, 0, 0, 0.04);
   }
 
-  .upload-zone:hover::before {
-    border-color: rgba(0, 122, 255, 0.35);
-  }
-
-  .upload-zone:hover .upload-icon-circle {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 122, 255, 0.15);
-  }
-
-  .upload-zone.drag-over {
-    background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(0, 122, 255, 0.03) 100%);
-    border-color: rgba(0, 122, 255, 0.4);
-    transform: scale(1.01);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.8),
-      0 12px 32px rgba(0, 122, 255, 0.12);
-  }
-
-  .upload-zone.drag-over::before {
-    border-color: var(--color-primary);
-    border-style: solid;
-    background: rgba(0, 122, 255, 0.05);
-  }
-
-  .file-input {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 10;
-  }
-
-  .upload-content {
+  .calculator-simple-content {
     padding: var(--space-8) var(--space-6);
     text-align: center;
   }
 
-  .upload-icon-wrapper {
-    position: relative;
-    display: inline-flex;
-    margin-bottom: var(--space-5);
+  .calculator-header {
+    margin-bottom: var(--space-6);
   }
 
-  .upload-icon-circle {
+  .calculator-icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    margin-bottom: var(--space-4);
+  }
+
+  .calculator-icon-circle {
     width: 56px;
     height: 56px;
     border-radius: var(--radius-xl);
-    background: linear-gradient(135deg, rgba(0,122,255,0.08) 0%, rgba(0,122,255,0.03) 100%);
-    border: 1px solid rgba(0,122,255,0.12);
+    background: linear-gradient(135deg, rgba(0,122,255,0.1) 0%, rgba(0,122,255,0.04) 100%);
+    border: 1px solid rgba(0,122,255,0.15);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -683,139 +613,23 @@ const PROVIDERS = [
     transition: all 0.3s var(--ease-ios-spring);
   }
 
-  .upload-icon-pulse {
-    position: absolute;
-    inset: -6px;
-    border-radius: calc(var(--radius-xl) + 6px);
-    background: rgba(0, 122, 255, 0.06);
-    animation: upload-pulse 2.5s ease-in-out infinite;
-    z-index: 1;
+  .calculator-icon-circle svg {
+    color: var(--color-primary);
   }
 
-  @keyframes upload-pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.4; }
-  }
-
-  .upload-title {
+  .calculator-title {
     font-family: var(--font-display);
-    font-size: var(--text-lg);
-    font-weight: var(--font-semibold);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
     color: var(--text-primary);
-    margin: 0 0 var(--space-1);
+    margin: 0 0 var(--space-2);
     letter-spacing: var(--tracking-normal);
   }
 
-  .upload-subtitle {
+  .calculator-subtitle {
     font-size: var(--text-sm);
     color: var(--text-secondary);
-    margin: 0 0 var(--space-5);
-  }
-
-  .upload-formats {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-5);
-  }
-
-  .format-badge {
-    padding: 4px 10px;
-    background: rgba(118, 118, 128, 0.08);
-    border-radius: 6px;
-    font-size: 0.6875rem;
-    font-weight: var(--font-semibold);
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
-
-  .upload-divider {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin: var(--space-5) 0;
-    color: var(--text-quaternary);
-    font-size: var(--text-sm);
-    font-weight: var(--font-medium);
-  }
-
-  .upload-divider::before,
-  .upload-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08) 50%, transparent);
-  }
-
-  .drag-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 122, 255, 0.92);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-  }
-
-  .upload-zone.drag-over .drag-overlay {
-    opacity: 1;
-  }
-
-  .drag-content {
-    color: white;
-    text-align: center;
-  }
-
-  .drag-content svg {
-    margin-bottom: 12px;
-  }
-
-  .drag-content p {
-    font-size: var(--text-base);
-    font-weight: var(--font-semibold);
     margin: 0;
-  }
-
-  /* Error Message */
-  .upload-error {
-    background: rgba(255, 59, 48, 0.1);
-    border: 1px solid rgba(255, 59, 48, 0.3);
-    color: var(--red-500);
-    padding: var(--space-3) var(--space-4);
-    border-radius: var(--radius-md);
-    font-size: var(--text-base);
-    font-weight: var(--font-semibold);
-    text-align: center;
-    margin-bottom: var(--space-4);
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s var(--ease-ios-spring);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-
-  .upload-error.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Shake Animation for Error */
-  .upload-zone.shake {
-    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-    border-color: rgba(255, 59, 48, 0.5);
-    background: rgba(255, 59, 48, 0.05);
-  }
-
-  @keyframes shake {
-    10%, 90% { transform: translate3d(-1px, 0, 0); }
-    20%, 80% { transform: translate3d(2px, 0, 0); }
-    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-    40%, 60% { transform: translate3d(4px, 0, 0); }
   }
 
   /* ─── Segmented Control ──────────────────────────────────────── */

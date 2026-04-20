@@ -66,20 +66,7 @@ const averageYearly = siteConfig.savings.averageYearly;
         <div class="glass-card">
           <div class="card-shine"></div>
           <div class="stats-grid">
-            <div class="stat-box">
-              <div class="stat-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-              </div>
-              <div class="stat-data">
-                <span class="stat-number"><Counter endValue={advisor.experience} suffix="+" /></span>
-                <span class="stat-label">Años de<br/>experiencia</span>
-              </div>
-            </div>
-            
-            <div class="stat-divider"></div>
+
             
             <div class="stat-box">
               <div class="stat-icon icon-clients">
@@ -93,6 +80,21 @@ const averageYearly = siteConfig.savings.averageYearly;
               <div class="stat-data">
                 <span class="stat-number"><Counter endValue={advisor.clients} suffix="+" /></span>
                 <span class="stat-label">Clientes<br/>satisfechos</span>
+              </div>
+            </div>
+            
+            <div class="stat-divider horizontal"></div>
+            
+            <div class="stat-box">
+              <div class="stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div class="stat-data">
+                <span class="stat-number"><Counter endValue={24} suffix="h" /></span>
+                <span class="stat-label">Respuesta<br/>garantizada</span>
               </div>
             </div>
             

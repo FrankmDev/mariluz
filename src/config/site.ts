@@ -24,13 +24,13 @@ export const siteConfig = {
   },
   advisor: {
     name: 'Mariluz Marín',
-    title: 'Asesora Energética Certificada',
-    experience: 8,
+    title: 'Asesora Energética Independiente',
+    experience: 0,
     clients: 450,
     satisfaction: 4.9,
     reviews: 127,
     photo: '/mariluz.jpg',
-    since: 2016,
+    since: 2020,
   },
   location: {
     country: 'España',
@@ -63,7 +63,7 @@ export const faqData = [
   },
   {
     question: '¿Cuánto tiempo tarda el cambio de compañía eléctrica?',
-    answer: 'El proceso suele tardar entre 5 y 15 días hábiles desde que firmas la solicitud. No hay interrupción en tu suministro eléctrico. El cambio es automático y sin cortes.',
+    answer: 'El proceso puede ser muy rápido: desde 2 días hábiles desde que firmas la solicitud. No hay interrupción en tu suministro eléctrico. El cambio es automático y sin cortes.',
   },
   {
     question: '¿Qué documentación necesito para cambiar de tarifa de luz?',
