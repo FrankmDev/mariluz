@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { siteConfig } from '../../config/site';
 import Counter from '../ui/Counter.astro';
 import aboutPhoto from '../../assets/about.jpeg';
@@ -35,13 +36,14 @@ const averageYearly = siteConfig.savings.averageYearly;
             <div class="card-content profile-content">
               <div class="profile-image-full">
                 <div class="image-frame">
-                  <img 
-                    src={aboutPhoto.src} 
+                  <Image
+                    src={aboutPhoto}
                     alt={advisor.name}
                     class="profile-image"
-                    width="1200"
-                    height="1600"
+                    width={600}
+                    height={800}
                     loading="lazy"
+                    decoding="async"
                   />
                   <div class="image-overlay"></div>
                 </div>
@@ -614,7 +616,7 @@ const averageYearly = siteConfig.savings.averageYearly;
   }
 
   .badge-text {
-    font-size: 0.6875rem;
+    font-size: var(--text-xs);
     font-weight: 600;
     color: var(--green-700);
   }
@@ -831,7 +833,7 @@ const averageYearly = siteConfig.savings.averageYearly;
   }
 
   .bio-body {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
@@ -848,7 +850,7 @@ const averageYearly = siteConfig.savings.averageYearly;
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     color: var(--text-secondary);
     font-weight: 500;
   }
@@ -887,7 +889,7 @@ const averageYearly = siteConfig.savings.averageYearly;
     padding: 6px 12px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: var(--radius-pill);
-    font-size: 0.75rem;
+    font-size: var(--text-xs);
     font-weight: 600;
     color: var(--color-accent);
     margin-bottom: var(--space-4);
@@ -903,7 +905,7 @@ const averageYearly = siteConfig.savings.averageYearly;
   }
 
   .cta-desc {
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     color: var(--text-secondary);
     margin: 0 0 var(--space-5);
   }
@@ -1076,16 +1078,21 @@ const averageYearly = siteConfig.savings.averageYearly;
     }
 
     .bento-profile {
-      grid-column: span 1;
+      grid-column: span 2;
       grid-row: span 1;
     }
 
     .bento-stats {
-      grid-column: span 1;
+      grid-column: span 2;
     }
 
     .profile-layers {
-      min-height: 400px;
+      min-height: 360px;
+    }
+
+    .profile-image-full {
+      border-radius: var(--radius-2xl);
+      max-height: 360px;
     }
   }
 

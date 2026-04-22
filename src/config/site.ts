@@ -7,7 +7,7 @@ export const siteConfig = {
   meta: {
     title: 'Asesora Energética | Ahorra hasta 280€/año en tu factura de luz',
     description: 'Asesoría energética gratuita en España. Comparo +200 tarifas de luz y gas. Cambio de comercializadora sin coste ni permanencia. 450+ clientes ahorrando.',
-    ogImage: '/og-image.jpg',
+    ogImage: '/og-image.svg',
     ogImageAlt: 'Mariluz Asesora Energética - Ahorra en tu factura de luz',
     canonical: 'https://asesoraenergetica.es',
     keywords: 'asesor energético, ahorrar luz, tarifa luz, comparador luz, cambiar compañía luz, asesoría energética España, factura de la luz',

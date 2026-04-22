@@ -46,10 +46,10 @@ const featuredTestimonial = {
     <!-- Section Header -->
     <div class="text-center reveal" style="margin-bottom: var(--space-16);">
       <span class="badge" style="margin-bottom: var(--space-5); display: inline-flex;">Testimonios</span>
-      <h2 class="text-large-title" style="color: var(--text-primary); margin-bottom: var(--space-4);">
+      <h2 class="text-section" style="color: var(--text-primary); margin-bottom: var(--space-4);">
         Lo que dicen mis clientes.
       </h2>
-      <p class="text-body-large" style="color: var(--text-secondary);">
+      <p class="text-section-sub" style="color: var(--text-secondary);">
         Resultados reales de quienes confiaron en mi asesoría.
       </p>
     </div>
@@ -315,20 +315,25 @@ const featuredTestimonial = {
     z-index: 2;
   }
 
+  @media (max-width: 1024px) and (min-width: 641px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: none;
+    }
+  }
+
   @media (max-width: 900px) {
     .social-proof-bar {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1px 1fr;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto 1px auto;
     }
 
-    .proof-sep:first-of-type {
+    .proof-sep {
       display: none;
     }
 
-    .testimonials-grid {
-      grid-template-columns: 1fr;
-      max-width: 520px;
-      margin: 0 auto;
+    .proof-item {
+      padding: var(--space-5) var(--space-4);
     }
 
     .featured-testimonial {
@@ -336,10 +341,23 @@ const featuredTestimonial = {
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
     .social-proof-bar {
       grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+      padding: var(--space-4);
     }
+
+    .proof-item {
+      padding: var(--space-3) var(--space-2);
+    }
+
     .proof-sep {
       display: none;
     }

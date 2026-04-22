@@ -99,13 +99,13 @@
   --bg-tertiary: var(--gray-200);
   --bg-elevated: rgba(255, 255, 255, 0.8);
   
-  /* Glass System */
-  --glass-bg: rgba(255, 255, 255, 0.70);
-  --glass-bg-hover: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.72);
-  --glass-border-subtle: rgba(255, 255, 255, 0.50);
-  --glass-blur: blur(40px) saturate(220%) brightness(1.04);
-  --glass-blur-heavy: blur(60px) saturate(240%);
+  /* Glass System — iOS 26 Liquid Glass */
+  --glass-bg: rgba(255, 255, 255, 0.68);
+  --glass-bg-hover: rgba(255, 255, 255, 0.84);
+  --glass-border: rgba(255, 255, 255, 0.78);
+  --glass-border-subtle: rgba(255, 255, 255, 0.55);
+  --glass-blur: blur(44px) saturate(240%) brightness(1.05);
+  --glass-blur-heavy: blur(64px) saturate(260%) brightness(1.06);
   
   /* Separators */
   --separator: rgba(0, 0, 0, 0.04);
@@ -137,21 +137,21 @@
      ============================================ */
   --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
   
-  /* Font Sizes — rem-based scale */
-  --text-xs: 0.75rem;      /* 12px */
-  --text-sm: 0.8125rem;    /* 13px */
-  --text-base: 0.9375rem;  /* 15px */
-  --text-md: 1rem;         /* 16px */
-  --text-lg: 1.0625rem;    /* 17px */
-  --text-xl: 1.125rem;     /* 18px */
-  --text-2xl: 1.25rem;     /* 20px */
-  --text-3xl: 1.5rem;      /* 24px */
-  --text-4xl: 1.75rem;     /* 28px */
-  --text-5xl: 2rem;        /* 32px */
-  --text-6xl: 2.25rem;     /* 36px */
-  --text-7xl: 2.5rem;      /* 40px */
-  --text-8xl: 3rem;        /* 48px */
-  --text-9xl: 3.5rem;      /* 56px */
+  /* Font Sizes — rem-based scale (Apple Human Interface aligned) */
+  --text-xs: 0.8125rem;    /* 13px — captions, badges */
+  --text-sm: 0.875rem;     /* 14px — secondary labels, footnotes */
+  --text-base: 1rem;       /* 16px — standard body */
+  --text-md: 1.0625rem;    /* 17px — primary body (Apple default) */
+  --text-lg: 1.125rem;     /* 18px — callout */
+  --text-xl: 1.25rem;      /* 20px — title-3 */
+  --text-2xl: 1.375rem;    /* 22px — title-2 */
+  --text-3xl: 1.625rem;    /* 26px — title-1 small */
+  --text-4xl: 2rem;        /* 32px — title-1 */
+  --text-5xl: 2.25rem;     /* 36px — large title small */
+  --text-6xl: 2.5rem;      /* 40px — large title */
+  --text-7xl: 2.75rem;     /* 44px — hero mobile */
+  --text-8xl: 3.25rem;     /* 52px — hero tablet */
+  --text-9xl: 4rem;        /* 64px — hero desktop */
   
   /* Hero Sizes — Fluid */
   --text-hero: clamp(2.5rem, 8vw, 6rem);
@@ -228,22 +228,20 @@
   --shadow-glow-blue: 0 0 60px rgba(0, 122, 255, 0.15);
   --shadow-glow-green: 0 0 60px rgba(52, 199, 89, 0.15);
   
-  /* Glass Shadow Formula */
-  --shadow-glass: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.02),
-    0 1px 2px rgba(0, 0, 0, 0.02),
-    0 4px 12px rgba(0, 0, 0, 0.04),
-    0 16px 40px rgba(0, 0, 0, 0.06),
-    0 32px 80px rgba(0, 0, 0, 0.04);
-  
-  --shadow-glass-hover:
+  /* Glass Shadow Formula — iOS 26 depth layers */
+  --shadow-glass:
     inset 0 1px 0 rgba(255, 255, 255, 0.98),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+    0 4px 6px rgba(0, 0, 0, 0.04),
+    0 12px 40px rgba(0, 0, 0, 0.09),
+    0 32px 80px rgba(0, 0, 0, 0.06);
+
+  --shadow-glass-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
     inset 0 -1px 0 rgba(0, 0, 0, 0.02),
-    0 2px 6px rgba(0, 0, 0, 0.02),
-    0 8px 24px rgba(0, 0, 0, 0.06),
-    0 24px 56px rgba(0, 0, 0, 0.08),
-    0 44px 96px rgba(0, 0, 0, 0.06);
+    0 6px 12px rgba(0, 0, 0, 0.05),
+    0 16px 48px rgba(0, 0, 0, 0.10),
+    0 40px 96px rgba(0, 0, 0, 0.08);
   
 /* ============================================
     MOTION — Premium Unified Easing
@@ -465,8 +463,8 @@ body {
   height: 55%;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.92) 0%,
-    rgba(255, 255, 255, 0.45) 35%,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.50) 35%,
     rgba(255, 255, 255, 0.12) 65%,
     transparent 100%
   );
@@ -489,12 +487,7 @@ body {
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.98),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.025),
-    0 4px 6px rgba(0, 0, 0, 0.04),
-    0 12px 40px rgba(0, 0, 0, 0.09),
-    0 32px 80px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-glass);
   overflow: hidden;
   transition: all var(--duration-normal) var(--ease-ios-spring);
 }
@@ -508,9 +501,9 @@ body {
   height: 55%;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.88) 0%,
-    rgba(255, 255, 255, 0.40) 35%,
-    rgba(255, 255, 255, 0.08) 65%,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.45) 35%,
+    rgba(255, 255, 255, 0.10) 65%,
     transparent 100%
   );
   pointer-events: none;
@@ -519,12 +512,7 @@ body {
 
 .glass-premium:hover {
   transform: translateY(-4px) scale(1.01);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.02),
-    0 8px 24px rgba(0, 0, 0, 0.06),
-    0 24px 56px rgba(0, 0, 0, 0.10),
-    0 44px 96px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-glass-hover);
 }
 
 /* Glass with tinted background */
@@ -539,12 +527,12 @@ body {
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.68);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(28px) saturate(200%) brightness(1.03);
+  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.03);
+  border: 1px solid rgba(255, 255, 255, 0.70);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
     0 2px 8px rgba(0, 0, 0, 0.04);
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
@@ -554,7 +542,7 @@ body {
 
 .glass-pill:hover {
   transform: translateY(-2px) scale(1.02);
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.82);
 }
 
 /* Specular Highlight — Reusable */
@@ -1335,6 +1323,16 @@ a:focus:not(:focus-visible) {
   .float-gentle, .float-slow,
   .gradient-text-animated, .btn-shimmer::after {
     animation: none !important;
+  }
+}
+
+/* Reduced Transparency (iOS accessibility) */
+@media (prefers-reduced-transparency: reduce) {
+  .glass, .glass-premium, .glass-pill,
+  .liquid-glass, .liquid-glass-premium {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.95) !important;
   }
 }
 

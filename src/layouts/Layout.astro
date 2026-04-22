@@ -188,28 +188,33 @@ const allSchemas = [websiteSchema, localBusinessSchema, serviceSchema, faqSchema
 		<!-- Performance Optimizations -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		
+		<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="apple-touch-icon" href="/favicon.svg" />
-		<meta name="theme-color" content="#007AFF" />
+		<meta name="theme-color" content="#007AFF" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
 		<meta name="generator" content={Astro.generator} />
-		
+
 		<!-- Primary Meta Tags -->
 		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
 		<meta name="keywords" content={keywords} />
 		<meta name="author" content={siteConfig.meta.author} />
 		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'} />
-		
+
 		<!-- Language & Region -->
+		<meta http-equiv="Content-Language" content="es-ES" />
 		<meta property="og:locale" content={siteConfig.meta.locale} />
+		<meta name="geo.region" content="ES" />
+		<meta name="geo.placename" content="España" />
 		<link rel="alternate" hreflang="es-ES" href={canonical} />
 		<link rel="alternate" hreflang="x-default" href={canonical} />
-		
+
 		<!-- Canonical URL -->
 		<link rel="canonical" href={canonical} />
-		
+
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content={ogType} />
 		<meta property="og:url" content={canonical} />
@@ -220,8 +225,7 @@ const allSchemas = [websiteSchema, localBusinessSchema, serviceSchema, faqSchema
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:site_name" content={siteConfig.name} />
-		<meta property="og:updated_time" content={new Date().toISOString()} />
-		
+
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:url" content={canonical} />
@@ -270,24 +274,7 @@ const allSchemas = [websiteSchema, localBusinessSchema, serviceSchema, faqSchema
 			<div class="bg-noise"></div>
 		</div>
 
-		<!-- Hidden SVG Filters for Premium Glass Effects -->
-		<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
-			<defs>
-				<filter id="glass-distortion" x="-50%" y="-50%" width="200%" height="200%">
-					<feGaussianBlur in="SourceGraphic" stdDeviation="0.4" result="blur"/>
-					<feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="3" seed="42" result="noise"/>
-					<feDisplacementMap in="blur" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
-					<feComposite in="displaced" in2="SourceGraphic" operator="in"/>
-				</filter>
-				<filter id="glass-shimmer" x="-10%" y="-10%" width="120%" height="120%">
-					<feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
-					<feOffset dx="0" dy="1" in="blur" result="offset"/>
-					<feFlood flood-color="white" flood-opacity="0.6" result="color"/>
-					<feComposite in="color" in2="offset" operator="in" result="inner-glow"/>
-					<feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="inner-glow"/></feMerge>
-				</filter>
-			</defs>
-		</svg>
+
 
 		<slot />
 
@@ -478,24 +465,27 @@ const allSchemas = [websiteSchema, localBusinessSchema, serviceSchema, faqSchema
 		</style>
 
 		<script>
-			// Scroll reveal observer
-			document.addEventListener('DOMContentLoaded', () => {
-				const observer = new IntersectionObserver((entries) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
+			// Unified scroll reveal observer (single instance for entire page)
+			const revealObserver = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const delay = parseInt((entry.target).dataset.delay || '0') * 80;
+						if (delay > 0) {
+							setTimeout(() => entry.target.classList.add('visible'), delay);
+						} else {
 							entry.target.classList.add('visible');
-							observer.unobserve(entry.target);
 						}
-					});
-				}, {
-					root: null,
-					rootMargin: '0px 0px -60px 0px',
-					threshold: 0.1
+						revealObserver.unobserve(entry.target);
+					}
 				});
+			}, {
+				root: null,
+				rootMargin: '0px 0px -50px 0px',
+				threshold: 0.08
+			});
 
-				document.querySelectorAll('.reveal, .reveal-scale').forEach(el => {
-					observer.observe(el);
-				});
+			document.querySelectorAll('.reveal, .reveal-scale').forEach(el => {
+				revealObserver.observe(el);
 			});
 
 			// Navbar scroll behavior
@@ -509,6 +499,14 @@ const allSchemas = [websiteSchema, localBusinessSchema, serviceSchema, faqSchema
 					}
 				}, { passive: true });
 			}
+
+			// Pause CSS animations when tab is hidden to save GPU
+			document.addEventListener('visibilitychange', () => {
+				const orbs = document.querySelectorAll('.bg-orb');
+				orbs.forEach(orb => {
+					(orb as HTMLElement).style.animationPlayState = document.hidden ? 'paused' : 'running';
+				});
+			});
 		</script>
 	</body>
 </html>
