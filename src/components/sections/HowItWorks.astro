@@ -27,13 +27,6 @@ const steps = [
 ---
 
 <section id="como-funciona" class="how-section" aria-label="Cómo funciona">
-  
-  <!-- Ambient Background -->
-  <div class="ambient-bg" aria-hidden="true">
-    <div class="ambient-orb orb-1"></div>
-    <div class="ambient-orb orb-2"></div>
-  </div>
-
   <div class="container-custom">
 
     <!-- Section Header -->
@@ -191,49 +184,6 @@ const steps = [
     overflow: hidden;
   }
 
-  /* Ambient Background */
-  .ambient-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .ambient-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(110px);
-    opacity: 0.42;
-  }
-
-  .orb-1 {
-    width: 70vw;
-    height: 70vw;
-    max-width: 900px;
-    max-height: 900px;
-    top: -25%;
-    right: -15%;
-    background: radial-gradient(circle, rgba(0,122,255,0.45) 0%, transparent 70%);
-    animation: orb-float 25s ease-in-out infinite;
-  }
-
-  .orb-2 {
-    width: 50vw;
-    height: 50vw;
-    max-width: 600px;
-    max-height: 600px;
-    bottom: -5%;
-    left: -5%;
-    background: radial-gradient(circle, rgba(90,200,250,0.38) 0%, transparent 70%);
-    animation: orb-float 20s ease-in-out infinite reverse;
-  }
-
-  @keyframes orb-float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(30px, -20px) scale(1.02); }
-    66% { transform: translate(-20px, 15px) scale(0.98); }
-  }
-
   /* Header */
   .section-header {
     position: relative;
@@ -380,7 +330,8 @@ const steps = [
     min-height: 360px;
     display: flex;
     flex-direction: column;
-    transition: transform 0.5s var(--ease-ios-spring), box-shadow 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.4s ease;
+    will-change: transform;
     cursor: pointer;
   }
 
@@ -399,7 +350,8 @@ const steps = [
       0 4px 6px rgba(0, 0, 0, 0.04),
       0 12px 40px rgba(0, 0, 0, 0.09),
       0 32px 80px rgba(0, 0, 0, 0.06);
-    transition: all 0.5s var(--ease-ios-spring);
+    transform: translateZ(0);
+    transition: box-shadow 0.4s ease;
   }
 
   /* Specular Highlight */
@@ -568,7 +520,7 @@ const steps = [
     font-size: var(--text-sm);
     font-weight: var(--font-semibold);
     width: fit-content;
-    transition: all 0.3s var(--ease-ios-spring);
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), background 0.3s ease, border-color 0.3s ease;
   }
 
   .pill-icon {
@@ -616,17 +568,17 @@ const steps = [
     display: flex;
     flex-direction: column;
     gap: 6px;
-    box-shadow: 
+    box-shadow:
       0 4px 12px rgba(0,122,255,0.1),
       0 1px 3px rgba(0,0,0,0.05);
     position: relative;
     overflow: hidden;
-    transform: rotate(-3deg);
-    transition: transform 0.4s var(--ease-ios-spring);
+    transform: rotate(-3deg) translateZ(0);
+    transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
   }
 
   .step-card:hover .bill-paper {
-    transform: rotate(0deg) translateY(-4px);
+    transform: rotate(-3deg) translateY(-6px);
   }
 
   .bill-shine {
@@ -913,7 +865,7 @@ const steps = [
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .ambient-orb, .eyebrow-dot, .bill-shine, .particle, .sparticle, .donut-segment {
+    .eyebrow-dot, .bill-shine, .particle, .sparticle, .donut-segment {
       animation: none !important;
     }
     .step-card, .glass-base, .card-glow, .specular-highlight {

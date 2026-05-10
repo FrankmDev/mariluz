@@ -1,35 +1,13 @@
 ---
 import { Image } from 'astro:assets';
-import { siteConfig } from '../../config/site';
+import { siteConfig, faqData } from '../../config/site';
 import aboutPhoto from '../../assets/about.jpeg';
 import { MessageCircle, Phone } from 'lucide-astro';
 
-const faqs = [
-  {
-    question: '¿Cuánto cuesta el servicio de asesoría?',
-    answer: 'El servicio es completamente gratuito para ti. Como asesora independiente, recibo una comisión de la comercializadora a la que te cambias, nunca cobro directamente a mis clientes. Tu ahorro es real desde el primer día.',
-  },
-  {
-    question: '¿Cuánto tiempo tarda el cambio de compañía?',
-    answer: 'El proceso puede ser muy rápido: desde 2 días hábiles desde que firmas la solicitud. Durante este tiempo, no hay ninguna interrupción en tu suministro eléctrico. El cambio es automático y sin cortes.',
-  },
-  {
-    question: '¿Qué documentación necesito aportar?',
-    answer: 'Solo necesito una copia de tu última factura de luz y tu DNI. Con esto puedo analizar tu consumo real y encontrar la mejor tarifa. Yo me encargo de todo el papeleo posterior.',
-  },
-  {
-    question: '¿Y si ya tengo una tarifa con discriminación horaria?',
-    answer: 'Perfecto. Analizaré si tu perfil de consumo se adapta bien a las horas valle y si hay opciones más ventajosas. Muchas veces se puede optimizar aún más el ahorro ajustando el tipo de tarifa a tus hábitos reales.',
-  },
-  {
-    question: '¿El cambio afecta a la instalación eléctrica?',
-    answer: 'No, absolutamente. El cambio solo implica modificar la comercializadora que te factura. Los cables, el contador y toda la instalación física siguen siendo exactamente los mismos.',
-  },
-  {
-    question: '¿Puedo volver a mi compañía anterior si quiero?',
-    answer: 'Sí, siempre tienes libertad para cambiar. Aunque mis clientes suelen estar tan satisfechos con el ahorro que no quieren volver. De cualquier forma, no hay permanencia en la mayoría de tarifas que recomiendo.',
-  },
-];
+const faqs = faqData.map(faq => ({
+  question: faq.question,
+  answer: faq.answer,
+}));
 ---
 
 <section id="faq" class="faq-section">
@@ -91,7 +69,7 @@ const faqs = [
               <div class="contact-avatar">
                 <Image
                   src={aboutPhoto}
-                  alt="Mariluz Marín"
+                  alt="Mariluz Marín, asesora energética independiente"
                   width={88}
                   height={88}
                   loading="lazy"
@@ -257,7 +235,7 @@ const faqs = [
       0 12px 40px rgba(0, 0, 0, 0.09),
       0 32px 80px rgba(0, 0, 0, 0.06);
     overflow: hidden;
-    transition: all 0.5s var(--ease-ios-spring);
+    transition: transform 0.5s var(--ease-ios-spring), background 0.4s ease, box-shadow 0.4s ease;
   }
 
   .faq-item::before {
@@ -296,10 +274,10 @@ const faqs = [
   }
 
   .faq-number {
-    transition: all 0.3s var(--ease-ios-spring);
+    transition: color 0.3s ease, transform 0.3s var(--ease-ios-spring);
   }
 
-  .faq-item[open] {
+  .faq-item.is-open {
     background: rgba(255, 255, 255, 0.85);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 1),
@@ -310,7 +288,7 @@ const faqs = [
     transform: translateY(-2px) scale(1.01);
   }
 
-  .faq-item[open]:hover {
+  .faq-item.is-open:hover {
     transform: translateY(-4px) scale(1.01);
   }
 
@@ -326,7 +304,7 @@ const faqs = [
     user-select: none;
     -webkit-user-select: none;
     gap: var(--space-4);
-    transition: all 0.4s var(--ease-ios-spring);
+    transition: color 0.3s ease;
   }
 
   .faq-summary::-webkit-details-marker {
@@ -346,11 +324,11 @@ const faqs = [
     color: var(--text-quaternary);
     font-family: var(--font-display);
     letter-spacing: 0.08em;
-    transition: all 0.4s var(--ease-ios-spring);
+    transition: color 0.3s ease, transform 0.3s var(--ease-ios-spring);
     min-width: 28px;
   }
 
-  .faq-item[open] .faq-number {
+  .faq-item.is-open .faq-number {
     color: var(--color-primary);
   }
 
@@ -380,54 +358,56 @@ const faqs = [
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 400ms var(--ease-ios-spring);
+    transition: background 0.4s ease, transform 0.4s var(--ease-ios-spring);
   }
 
   .faq-chevron {
     color: var(--text-tertiary);
-    transition: all 400ms var(--ease-ios-spring);
+    transition: transform 0.4s var(--ease-ios-spring), color 0.4s ease;
   }
 
-  .faq-item[open] .faq-icon-bg {
+  .faq-item.is-open .faq-icon-bg {
     background: var(--color-primary);
   }
 
-  .faq-item[open] .faq-chevron {
+  .faq-item.is-open .faq-chevron {
     transform: rotate(180deg);
     color: white;
     stroke: white;
   }
 
-  /* FAQ Body Animation */
+  /* FAQ Body Animation — grid-template-rows for buttery smooth height */
   .faq-body {
-    overflow: hidden;
-    max-height: 0;
+    display: grid;
+    grid-template-rows: 0fr;
     opacity: 0;
-    transition: all 500ms var(--ease-ios);
+    transition: grid-template-rows 0.5s var(--ease-ios-decel), opacity 0.35s ease;
   }
 
   .faq-body-inner {
-    padding: 0 var(--space-6) var(--space-6) 76px;
+    overflow: hidden;
+    padding: 0 var(--space-6) 0 76px;
   }
 
-  .faq-item[open] .faq-body {
-    max-height: 400px;
+  .faq-item.is-open .faq-body {
+    grid-template-rows: 1fr;
     opacity: 1;
   }
 
   .faq-answer {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     opacity: 0;
-    transition: all 0.4s var(--ease-ios-decel) 0.1s;
+    transition: transform 0.45s var(--ease-ios-decel) 0.05s, opacity 0.35s ease 0.05s;
   }
 
   .faq-answer p {
     font-size: var(--text-base);
     line-height: 1.7;
     color: var(--text-secondary);
+    padding-bottom: var(--space-6);
   }
 
-  .faq-item[open] .faq-answer {
+  .faq-item.is-open .faq-answer {
     transform: translateY(0);
     opacity: 1;
   }
@@ -452,7 +432,7 @@ const faqs = [
       0 12px 40px rgba(0, 0, 0, 0.09),
       0 32px 80px rgba(0, 0, 0, 0.06);
     overflow: hidden;
-    transition: all 0.5s var(--ease-ios-spring);
+    transition: transform 0.5s var(--ease-ios-spring), box-shadow 0.4s ease;
   }
 
   .contact-specular {
@@ -508,7 +488,7 @@ const faqs = [
     padding: 4px;
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     box-shadow: 0 8px 32px color-mix(in srgb, var(--color-primary) 35%, transparent);
-    transition: all 0.4s var(--ease-ios-spring);
+    transition: transform 0.4s var(--ease-ios-spring), box-shadow 0.4s ease;
   }
 
   .contact-card:hover .contact-avatar {
@@ -591,7 +571,7 @@ const faqs = [
     font-size: var(--text-md);
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.4s var(--ease-ios-spring);
+    transition: transform 0.4s var(--ease-ios-spring), background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     overflow: hidden;
   }
 
@@ -778,80 +758,77 @@ const faqs = [
       animation: none !important;
     }
 
-    .faq-item[open] .faq-body {
-      max-height: none;
+    .faq-item.is-open .faq-body {
+      grid-template-rows: 1fr;
       opacity: 1;
     }
 
     .faq-answer {
-      transform: translateY(0) !important;
-      opacity: 1 !important;
+      transform: translateY(0);
+      opacity: 1;
     }
   }
 </style>
 
 <script>
-  // FAQ Accordion with smooth animations
+  // FAQ Accordion — smooth grid-template-rows animation
   document.querySelectorAll('.faq-item').forEach((item, index) => {
     const summary = item.querySelector('.faq-summary');
-    
+    const body = item.querySelector('.faq-body');
+
     // Staggered entrance animation
     item.style.opacity = '0';
     item.style.transform = 'translateY(30px) scale(0.98)';
     setTimeout(() => {
-      item.style.transition = 'opacity 0.6s var(--ease-ios-decel), transform 0.6s var(--ease-ios-spring)';
+      item.style.transition = 'opacity 0.6s var(--ease-ios-decel), transform 0.6s var(--ease-ios-spring), background 0.4s ease, box-shadow 0.4s ease';
       item.style.opacity = '1';
       item.style.transform = 'translateY(0) scale(1)';
     }, index * 100);
-    
+
     summary?.addEventListener('click', (e) => {
       e.preventDefault();
-      const isOpen = item.hasAttribute('open');
+      const isOpen = item.classList.contains('is-open');
 
-      // Close other items with animation
-      document.querySelectorAll('.faq-item[open]').forEach(openItem => {
+      // Close other items
+      document.querySelectorAll('.faq-item.is-open').forEach(openItem => {
         if (openItem !== item) {
-          const body = openItem.querySelector('.faq-body');
-          const answer = openItem.querySelector('.faq-answer');
-          if (body) {
-            body.style.maxHeight = body.scrollHeight + 'px';
-            requestAnimationFrame(() => {
-              body.style.maxHeight = '0';
-              body.style.opacity = '0';
-            });
-          }
-          if (answer) {
-            answer.style.transform = 'translateY(-10px)';
-            answer.style.opacity = '0';
-          }
-          setTimeout(() => openItem.removeAttribute('open'), 400);
+          openItem.classList.remove('is-open');
+          // Remove [open] after CSS transition finishes
+          const onTransitionEnd = (ev) => {
+            if (ev.target === openItem.querySelector('.faq-body')) {
+              openItem.removeAttribute('open');
+              openItem.removeEventListener('transitionend', onTransitionEnd);
+            }
+          };
+          openItem.addEventListener('transitionend', onTransitionEnd);
+          // Fallback: remove after 550ms if transitionend doesn't fire
+          setTimeout(() => {
+            openItem.removeAttribute('open');
+            openItem.removeEventListener('transitionend', onTransitionEnd);
+          }, 550);
         }
       });
 
       if (isOpen) {
-        const body = item.querySelector('.faq-body');
-        const answer = item.querySelector('.faq-answer');
-        if (body) {
-          body.style.maxHeight = body.scrollHeight + 'px';
-          requestAnimationFrame(() => {
-            body.style.maxHeight = '0';
-            body.style.opacity = '0';
-          });
-        }
-        if (answer) {
-          answer.style.transform = 'translateY(-10px)';
-          answer.style.opacity = '0';
-        }
-        setTimeout(() => item.removeAttribute('open'), 400);
+        item.classList.remove('is-open');
+        const onTransitionEnd = (ev) => {
+          if (ev.target === body) {
+            item.removeAttribute('open');
+            item.removeEventListener('transitionend', onTransitionEnd);
+          }
+        };
+        item.addEventListener('transitionend', onTransitionEnd);
+        setTimeout(() => {
+          item.removeAttribute('open');
+          item.removeEventListener('transitionend', onTransitionEnd);
+        }, 550);
       } else {
         item.setAttribute('open', '');
-        const body = item.querySelector('.faq-body');
-        if (body) {
+        requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            body.style.maxHeight = body.scrollHeight + 'px';
-            body.style.opacity = '1';
+            item.classList.add('is-open');
           });
-        }
+        });
       }
     });
   });
@@ -865,15 +842,15 @@ const faqs = [
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      
+
       const rotateX = (y - centerY) / centerY * -4;
       const rotateY = (x - centerX) / centerX * 4;
-      
-      (contactCard as HTMLElement).style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+
+      (contactCard).style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
     });
-    
+
     contactCard.addEventListener('mouseleave', () => {
-      (contactCard as HTMLElement).style.transform = '';
+      (contactCard).style.transform = '';
     });
   }
 </script>

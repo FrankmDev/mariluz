@@ -2,25 +2,12 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://asesoraenergetica.es/sitemap.xml
+Sitemap: https://asesoraenergetica.es/sitemap-index.xml
 
 # Bloquear URLs no relevantes
 Disallow: /404
 Disallow: /500
 Disallow: /offline
-
-# Permitir acceso a assets
-Allow: /_astro/
-Allow: /*.js$
-Allow: /*.css$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.png$
-Allow: /*.svg$
-Allow: /*.webp$
-
-# Crawl-delay para crawlers agresivos (opcional)
-# Crawl-delay: 10
 
 # Host preferido
 Host: https://asesoraenergetica.es

@@ -1,0 +1,1308 @@
+---
+import { siteConfig } from '../../config/site';
+import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkles } from 'lucide-astro';
+---
+
+<section id="enviar-factura" class="sendbill-section" aria-label="Envía tu factura de la luz">
+  <div class="container-custom">
+
+    <!-- Section Header -->
+    <header class="section-header reveal">
+      <div class="eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>Empieza ahora</span>
+      </div>
+      <h2 class="headline">
+        <span class="headline-main">Una foto.</span>
+        <span class="headline-accent">Un ahorro real.</span>
+      </h2>
+      <p class="subhead">
+        Envíame tu última factura por WhatsApp, email o déjame tu teléfono. En menos de 24 horas tendrás <strong>tu propuesta personalizada de ahorro</strong>.
+      </p>
+    </header>
+
+    <!-- Two Column Layout -->
+    <div class="two-col">
+
+      <!-- LEFT: Bill Mockup -->
+      <div class="col-bill reveal" data-delay="1">
+        <div class="bill-scene">
+          <!-- Decorative backdrop orb -->
+          <div class="bill-backdrop" aria-hidden="true"></div>
+
+          <div class="bill-mockup">
+            <div class="bill-glass"></div>
+            <div class="bill-specular"></div>
+            <div class="bill-glow"></div>
+            <!-- Shimmer scan effect -->
+            <div class="bill-shimmer" aria-hidden="true"></div>
+            <!-- Page curl -->
+            <div class="bill-curl" aria-hidden="true"></div>
+
+            <div class="bill-content">
+              <!-- Bill Header -->
+              <div class="bill-header">
+                <div class="bill-logo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <div class="bill-company">
+                  <span class="bill-company-name">Endesa Energía</span>
+                  <span class="bill-period">Feb 2026 — Factura de luz</span>
+                </div>
+                <span class="bill-badge">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  PDF
+                </span>
+              </div>
+
+              <!-- Bill Divider -->
+              <div class="bill-divider"></div>
+
+              <!-- Bill Lines -->
+              <div class="bill-lines">
+                <div class="bill-line">
+                  <span class="bill-label">
+                    <span class="bill-dot" aria-hidden="true"></span>
+                    Consumo kWh
+                  </span>
+                  <span class="bill-val">245 kWh</span>
+                </div>
+                <div class="bill-line">
+                  <span class="bill-label">
+                    <span class="bill-dot bill-dot-orange" aria-hidden="true"></span>
+                    Potencia contratada
+                  </span>
+                  <span class="bill-val">4.6 kW</span>
+                </div>
+                <div class="bill-line">
+                  <span class="bill-label">
+                    <span class="bill-dot bill-dot-purple" aria-hidden="true"></span>
+                    Tarifa actual
+                  </span>
+                  <span class="bill-val">One Luz</span>
+                </div>
+              </div>
+
+              <!-- Bill Consumption Bar -->
+              <div class="bill-bar-wrap">
+                <div class="bill-bar-labels">
+                  <span>Punta <strong>62%</strong></span>
+                  <span>Valle <strong>38%</strong></span>
+                </div>
+                <div class="bill-bar-track">
+                  <div class="bill-bar-fill bill-bar-punta"></div>
+                  <div class="bill-bar-fill bill-bar-valle"></div>
+                </div>
+              </div>
+
+              <!-- Bill Subtotal & IVA -->
+              <div class="bill-subtotal">
+                <div class="bill-line bill-line-small">
+                  <span class="bill-label">Importe sin IVA</span>
+                  <span class="bill-val">72,25 €</span>
+                </div>
+                <div class="bill-line bill-line-small">
+                  <span class="bill-label">IVA (21%)</span>
+                  <span class="bill-val">15,17 €</span>
+                </div>
+              </div>
+
+              <!-- Bill Total -->
+              <div class="bill-total">
+                <div class="bill-total-left">
+                  <span class="bill-total-label">Importe total</span>
+                  <span class="bill-total-sublabel">Período 01/02 – 28/02</span>
+                </div>
+                <span class="bill-total-amount">87,42<span class="bill-currency">€</span></span>
+              </div>
+
+              <!-- Bill Stamp -->
+              <div class="bill-stamp">
+                <div class="stamp-ring" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <span>Factura válida para análisis</span>
+              </div>
+            </div>
+
+            <!-- Floating accent dot -->
+            <div class="bill-float-dot" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Actions -->
+      <div class="col-actions">
+        <div class="actions-stack">
+
+          <!-- WhatsApp Action Card -->
+          <a href={siteConfig.whatsappUrl} class="action-card action-whatsapp reveal" data-delay="2" rel="noopener noreferrer">
+            <div class="action-glass"></div>
+            <div class="action-specular"></div>
+            <div class="action-glow"></div>
+            <div class="action-content">
+              <div class="action-icon-wrap">
+                <MessageCircle size={28} fill="currentColor" aria-hidden="true" />
+              </div>
+              <div class="action-text">
+                <h3 class="action-title">WhatsApp</h3>
+                <p class="action-desc">Envía una foto de tu factura y te respondo con el análisis en 24h.</p>
+              </div>
+              <div class="action-cta">
+                <span>Enviar factura</span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </div>
+            </div>
+          </a>
+
+          <!-- Email Action Card -->
+          <a href={`mailto:${siteConfig.email}?subject=Análisis de factura de luz&body=Hola Mariluz, adjunto mi última factura para que me hagas un análisis.`} class="action-card action-email reveal" data-delay="3">
+            <div class="action-glass"></div>
+            <div class="action-specular"></div>
+            <div class="action-glow"></div>
+            <div class="action-content">
+              <div class="action-icon-wrap">
+                <Mail size={28} aria-hidden="true" />
+              </div>
+              <div class="action-text">
+                <h3 class="action-title">Correo electrónico</h3>
+                <p class="action-desc">Adjunta tu factura en PDF o imagen. Te preparo un informe detallado.</p>
+              </div>
+              <div class="action-cta">
+                <span>Enviar por email</span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </div>
+            </div>
+          </a>
+
+          <!-- Phone Action Card -->
+          <a href={`tel:${siteConfig.phoneClean}`} class="action-card action-phone reveal" data-delay="4">
+            <div class="action-glass"></div>
+            <div class="action-specular"></div>
+            <div class="action-glow"></div>
+            <div class="action-content">
+              <div class="action-icon-wrap">
+                <Phone size={26} aria-hidden="true" />
+              </div>
+              <div class="action-text">
+                <h3 class="action-title">Te llamo yo</h3>
+                <p class="action-desc">Prefieres hablar? Déjame tu número y te llamo para analizar tu factura.</p>
+              </div>
+              <div class="action-cta">
+                <span>Llamar ahora</span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </div>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Trust Row -->
+        <div class="trust reveal" data-delay="5">
+          <span class="pill">
+            <ShieldCheck size={13} aria-hidden="true" />
+            Sin coste
+          </span>
+          <span class="pill">
+            <Lock size={13} aria-hidden="true" />
+            Sin permanencia
+          </span>
+          <span class="pill pill-gold">
+            <Star size={13} fill="currentColor" aria-hidden="true" />
+            4.9 / 5
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     SEND BILL CTA — Bill Mockup + Action Cards
+     ═══════════════════════════════════════════════════════════════ */
+
+  .sendbill-section {
+    position: relative;
+    padding: var(--section-py) 0;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  /* ─── Section Header ──────────────────────────────────────────── */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--space-4);
+    background: rgba(255,255,255,0.68);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.65);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.92), 0 2px 8px rgba(0,0,0,0.04);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-secondary);
+  }
+
+  .eyebrow-dot {
+    width: var(--space-2);
+    height: var(--space-2);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ios-blue) 0%, #5AC8FA 100%);
+    box-shadow: 0 0 0 0 rgba(0,122,255,0.4);
+    animation: dot-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dot-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,122,255,0.4); }
+    50% { box-shadow: 0 0 0 var(--space-2) rgba(0,122,255,0); }
+  }
+
+  .headline { margin: 0 0 var(--space-4); }
+
+  .headline-main {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    font-weight: var(--font-extrabold);
+    letter-spacing: var(--tracking-tighter);
+    line-height: var(--leading-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .headline-accent {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    font-weight: var(--font-extrabold);
+    letter-spacing: var(--tracking-tighter);
+    line-height: var(--leading-tight);
+    background: linear-gradient(135deg, var(--ios-blue) 0%, #5AC8FA 55%, #34AADC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subhead {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    letter-spacing: var(--tracking-normal);
+    margin: 0 auto;
+    max-width: 540px;
+  }
+
+  .subhead strong {
+    color: var(--text-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  /* ─── Two Column Layout ───────────────────────────────────────── */
+  .two-col {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+    min-height: 520px;
+  }
+
+  /* ─── Left Column: Bill Mockup ────────────────────────────────── */
+  .col-bill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Scene wrapper for orb + mockup */
+  .bill-scene {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+    min-height: 560px;
+  }
+
+  /* Backdrop orb behind the bill */
+  .bill-backdrop {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, rgba(0,122,255,0.14) 0%, rgba(90,200,250,0.08) 40%, transparent 70%);
+    filter: blur(60px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    animation: orb-breathe 8s ease-in-out infinite;
+  }
+
+  @keyframes orb-breathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+  }
+
+  .bill-mockup {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 28px;
+    padding: var(--space-6);
+    transform: rotate(-2deg);
+    transition: transform 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+    animation: bill-float 6s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .bill-mockup:hover {
+    transform: rotate(0deg) scale(1.02);
+    animation-play-state: paused;
+  }
+
+  @keyframes bill-float {
+    0%, 100% { transform: rotate(-2deg) translateY(0); }
+    50% { transform: rotate(-2deg) translateY(-10px); }
+  }
+
+  /* Glass base */
+  .bill-glass {
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 8px 16px rgba(0, 0, 0, 0.06),
+      0 24px 64px rgba(0, 0, 0, 0.10),
+      0 48px 120px rgba(0, 0, 0, 0.08),
+      0 1px 0 rgba(0,122,255,0.06);
+    z-index: 1;
+  }
+
+  /* Specular */
+  .bill-specular {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    height: 55%;
+    border-radius: 27px 27px 0 0;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.95) 0%,
+      rgba(255,255,255,0.55) 30%,
+      rgba(255,255,255,0.12) 60%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.95;
+  }
+
+  /* Glow */
+  .bill-glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: 30px;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,122,255,0.20) 0%, transparent 70%);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Shimmer scan effect */
+  .bill-shimmer {
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.35;
+  }
+
+  .bill-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255,255,255,0.4) 45%,
+      rgba(255,255,255,0.7) 50%,
+      rgba(255,255,255,0.4) 55%,
+      transparent 100%
+    );
+    animation: shimmer-sweep 5s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  @keyframes shimmer-sweep {
+    0% { left: -100%; }
+    40%, 100% { left: 200%; }
+  }
+
+  /* Page curl in bottom-right corner */
+  .bill-curl {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 44px;
+    height: 44px;
+    border-radius: 0 0 26px 0;
+    pointer-events: none;
+    z-index: 4;
+    overflow: hidden;
+  }
+
+  .bill-curl::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.12) 100%);
+    border-radius: 44px 0 26px 0;
+    box-shadow: -2px -2px 6px rgba(0,0,0,0.06);
+  }
+
+  .bill-curl::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 36px 36px;
+    border-color: transparent transparent rgba(255,255,255,0.65) transparent;
+    filter: drop-shadow(-2px -2px 3px rgba(0,0,0,0.08));
+  }
+
+  .bill-content {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Bill Header */
+  .bill-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .bill-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(0,122,255,0.28), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+
+  .bill-company {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bill-company-name {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .bill-period {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    line-height: 1.3;
+    margin-top: 1px;
+  }
+
+  .bill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--text-xs);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    background: rgba(0,122,255,0.08);
+    padding: 5px 10px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,122,255,0.1);
+  }
+
+  /* Divider */
+  .bill-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--separator) 15%, var(--separator) 85%, transparent 100%);
+    margin-bottom: var(--space-4);
+  }
+
+  /* Bill Lines */
+  .bill-lines {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .bill-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .bill-line-small {
+    gap: var(--space-2);
+  }
+
+  .bill-line-small .bill-label,
+  .bill-line-small .bill-val {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+  }
+
+  .bill-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+  }
+
+  /* Color dots next to labels */
+  .bill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    flex-shrink: 0;
+  }
+
+  .bill-dot-orange {
+    background: linear-gradient(135deg, #FF9500 0%, #FF6B00 100%);
+  }
+
+  .bill-dot-purple {
+    background: linear-gradient(135deg, #AF52DE 0%, #5856D6 100%);
+  }
+
+  .bill-val {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  /* Consumption Bar */
+  .bill-bar-wrap {
+    margin-bottom: var(--space-4);
+    padding: var(--space-3);
+    background: rgba(0,0,0,0.02);
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.03);
+  }
+
+  .bill-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-2);
+  }
+
+  .bill-bar-labels strong {
+    color: var(--text-primary);
+    font-weight: var(--font-semibold);
+    margin-left: 2px;
+  }
+
+  .bill-bar-track {
+    display: flex;
+    gap: 3px;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.04);
+  }
+
+  .bill-bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bill-bar-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+  }
+
+  .bill-bar-punta {
+    width: 62%;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  }
+
+  .bill-bar-valle {
+    width: 38%;
+    background: linear-gradient(90deg, var(--color-success) 0%, var(--green-400) 100%);
+  }
+
+  /* Subtotal */
+  .bill-subtotal {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-3) 0;
+    border-top: 1px dashed var(--separator);
+    border-bottom: 1px dashed var(--separator);
+    margin-bottom: var(--space-3);
+  }
+
+  /* Total */
+  .bill-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+
+  .bill-total-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .bill-total-label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--text-secondary);
+  }
+
+  .bill-total-sublabel {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+  }
+
+  .bill-total-amount {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .bill-currency {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-left: 1px;
+    color: var(--text-secondary);
+  }
+
+  /* Stamp */
+  .bill-stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--text-xs);
+    color: var(--color-success);
+    background: rgba(52,199,89,0.08);
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    font-weight: var(--font-semibold);
+    border: 1px solid rgba(52,199,89,0.12);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+
+  .stamp-ring {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(52,199,89,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .stamp-ring svg {
+    stroke: var(--color-success);
+  }
+
+  /* Floating dot */
+  .bill-float-dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    top: -7px;
+    right: 36px;
+    box-shadow: 0 0 0 5px rgba(0,122,255,0.12), 0 4px 16px rgba(0,122,255,0.35);
+    z-index: 5;
+    animation: dot-bounce 3s ease-in-out infinite;
+  }
+
+  @keyframes dot-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* ─── Right Column: Action Cards ──────────────────────────────── */
+  .col-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-6);
+  }
+
+  .actions-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* Action Card Base */
+  .action-card {
+    position: relative;
+    display: flex;
+    border-radius: 22px;
+    padding: var(--space-5) var(--space-6);
+    text-decoration: none;
+    transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.4s ease;
+    will-change: transform;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .action-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  /* Glass base per action */
+  .action-glass {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+      0 4px 6px rgba(0, 0, 0, 0.04),
+      0 12px 40px rgba(0, 0, 0, 0.09),
+      0 32px 80px rgba(0, 0, 0, 0.06);
+    z-index: 1;
+    transition: box-shadow 0.4s ease;
+  }
+
+  .action-whatsapp .action-glass {
+    background: rgba(238, 255, 245, 0.72);
+  }
+
+  .action-email .action-glass {
+    background: rgba(236, 246, 255, 0.72);
+  }
+
+  .action-phone .action-glass {
+    background: rgba(255, 248, 235, 0.72);
+  }
+
+  .action-card:hover .action-glass {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+      0 8px 12px rgba(0, 0, 0, 0.05),
+      0 20px 60px rgba(0, 0, 0, 0.12),
+      0 48px 100px rgba(0, 0, 0, 0.10);
+  }
+
+  /* Specular */
+  .action-specular {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    height: 55%;
+    border-radius: 21px 21px 0 0;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.92) 0%,
+      rgba(255,255,255,0.50) 35%,
+      rgba(255,255,255,0.10) 65%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.9;
+  }
+
+  /* Glow */
+  .action-glow {
+    position: absolute;
+    inset: -1px;
+    border-radius: 23px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .action-whatsapp .action-glow {
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(52,199,89,0.22) 0%, transparent 70%);
+  }
+
+  .action-email .action-glow {
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,122,255,0.22) 0%, transparent 70%);
+  }
+
+  .action-phone .action-glow {
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,149,0,0.22) 0%, transparent 70%);
+  }
+
+  .action-card:hover .action-glow {
+    opacity: 1;
+  }
+
+  /* Content layout */
+  .action-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    width: 100%;
+  }
+
+  /* Icon wrap */
+  .action-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s var(--ease-ios-spring);
+  }
+
+  .action-whatsapp .action-icon-wrap {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 6px 20px rgba(37,211,102,0.25);
+  }
+
+  .action-email .action-icon-wrap {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 6px 20px rgba(0,122,255,0.25);
+  }
+
+  .action-phone .action-icon-wrap {
+    background: linear-gradient(135deg, #FF9500 0%, #FF6B00 100%);
+    color: white;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 6px 20px rgba(255,149,0,0.25);
+  }
+
+  .action-card:hover .action-icon-wrap {
+    transform: scale(1.1);
+  }
+
+  /* Text */
+  .action-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .action-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-1);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .action-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* CTA arrow */
+  .action-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+    flex-shrink: 0;
+    transition: gap 0.3s var(--ease-ios-spring), color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .action-whatsapp .action-cta {
+    color: var(--color-success);
+  }
+
+  .action-phone .action-cta {
+    color: #FF9500;
+  }
+
+  .action-card:hover .action-cta {
+    gap: var(--space-2);
+  }
+
+  .action-card:hover .action-cta svg {
+    transform: translateX(2px);
+  }
+
+  .action-cta svg {
+    transition: transform 0.3s var(--ease-ios-spring);
+  }
+
+  /* ─── Trust Pills ─────────────────────────────────────────────── */
+  .trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+  }
+
+  .pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 14px;
+    border-radius: 100px;
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.70);
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+      0 4px 6px rgba(0, 0, 0, 0.04),
+      0 12px 40px rgba(0, 0, 0, 0.09),
+      0 32px 80px rgba(0, 0, 0, 0.06);
+    transition: transform var(--duration-normal) var(--ease-ios-spring), box-shadow var(--duration-normal) var(--ease-ios), background var(--duration-normal) var(--ease-ios);
+    overflow: hidden;
+  }
+
+  .pill::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 55%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.88) 0%,
+      rgba(255, 255, 255, 0.40) 35%,
+      rgba(255, 255, 255, 0.08) 65%,
+      transparent 100%
+    );
+    pointer-events: none;
+    border-radius: 100px 100px 0 0;
+    z-index: 1;
+  }
+
+  .pill > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .pill:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 0.80);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 6px 12px rgba(0, 0, 0, 0.06),
+      0 16px 48px rgba(0, 0, 0, 0.10),
+      0 40px 96px rgba(0, 0, 0, 0.08);
+  }
+
+  .pill svg {
+    stroke: var(--text-tertiary);
+    flex-shrink: 0;
+  }
+
+  .pill-gold {
+    color: var(--color-primary);
+    background: rgba(236, 246, 255, 0.72);
+    border-color: rgba(0, 122, 255, 0.25);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 0 rgba(0, 122, 255, 0.05),
+      0 4px 6px rgba(0, 122, 255, 0.08),
+      0 12px 40px rgba(0, 122, 255, 0.12),
+      0 32px 80px rgba(0, 0, 0, 0.05);
+  }
+
+  .pill-gold::before {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.50) 35%,
+      rgba(255, 255, 255, 0.10) 65%,
+      transparent 100%
+    );
+  }
+
+  .pill-gold:hover {
+    background: rgba(236, 246, 255, 0.85);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      inset 0 -1px 0 rgba(0, 122, 255, 0.03),
+      0 6px 12px rgba(0, 122, 255, 0.10),
+      0 16px 48px rgba(0, 122, 255, 0.15),
+      0 40px 96px rgba(0, 0, 0, 0.08);
+  }
+
+  .pill-gold svg {
+    fill: var(--color-primary);
+    stroke: none;
+  }
+
+  /* ─── Responsive ──────────────────────────────────────────────── */
+  @media (max-width: 1023px) {
+    .section-header {
+      margin-bottom: var(--space-10);
+    }
+
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+      min-height: auto;
+    }
+
+    .col-bill {
+      order: 2;
+    }
+
+    .col-actions {
+      order: 1;
+    }
+
+    .actions-stack {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .action-card {
+      flex: 1 1 calc(50% - var(--space-2));
+      min-width: 260px;
+    }
+
+    .action-content {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .bill-scene {
+      max-width: 380px;
+      min-height: 480px;
+    }
+
+    .bill-mockup {
+      max-width: 360px;
+      padding: var(--space-6);
+      transform: rotate(-1deg);
+    }
+
+    .bill-backdrop {
+      width: 260px;
+      height: 260px;
+    }
+
+    @keyframes bill-float {
+      0%, 100% { transform: rotate(-1deg) translateY(0); }
+      50% { transform: rotate(-1deg) translateY(-6px); }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .sendbill-section { padding: var(--section-py-mobile) 0; }
+
+    .headline-main,
+    .headline-accent {
+      font-size: clamp(2rem, 8vw, 2.75rem);
+    }
+
+    .eyebrow {
+      padding: var(--space-2) var(--space-4);
+      margin-bottom: var(--space-3);
+    }
+
+    .subhead {
+      font-size: var(--text-md);
+      max-width: 400px;
+    }
+
+    .two-col {
+      gap: var(--space-8);
+    }
+
+    .actions-stack {
+      flex-direction: column;
+    }
+
+    .action-card {
+      flex: 1 1 100%;
+      min-width: auto;
+    }
+
+    .action-content {
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+    }
+
+    .bill-scene {
+      max-width: 340px;
+      min-height: 440px;
+    }
+
+    .bill-mockup {
+      max-width: 320px;
+      padding: var(--space-5);
+    }
+
+    .bill-backdrop {
+      width: 220px;
+      height: 220px;
+    }
+
+    .action-card {
+      padding: var(--space-5);
+    }
+
+    .action-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+    }
+
+    .action-title {
+      font-size: var(--text-base);
+    }
+
+    .bill-total-amount {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-header {
+      margin-bottom: var(--space-8);
+    }
+
+    .bill-scene {
+      max-width: 300px;
+      min-height: 400px;
+    }
+
+    .bill-mockup {
+      max-width: 290px;
+      padding: var(--space-4);
+      border-radius: 24px;
+    }
+
+    .bill-glass,
+    .bill-specular,
+    .bill-shimmer {
+      border-radius: 24px;
+    }
+
+    .bill-glow {
+      border-radius: 26px;
+    }
+
+    .bill-backdrop {
+      width: 180px;
+      height: 180px;
+    }
+
+    .action-card {
+      padding: var(--space-4);
+    }
+
+    .action-content {
+      gap: var(--space-3);
+    }
+
+    .trust {
+      gap: var(--space-1);
+    }
+
+    .pill {
+      font-size: var(--text-sm);
+      padding: 8px 14px;
+    }
+
+    .bill-bar-wrap {
+      padding: var(--space-2);
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .bill-mockup,
+    .bill-float-dot,
+    .eyebrow-dot,
+    .bill-backdrop,
+    .bill-shimmer::after {
+      animation: none !important;
+    }
+    .action-card,
+    .action-glass,
+    .action-glow,
+    .action-specular,
+    .pill {
+      transition: none !important;
+    }
+  }
+</style>
