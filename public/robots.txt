@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://asesoraenergetica.es/sitemap-index.xml
+Sitemap: https://www.luzaria.es/sitemap-index.xml
 
 # Bloquear URLs no relevantes
 Disallow: /404
@@ -10,4 +10,10 @@ Disallow: /500
 Disallow: /offline
 
 # Host preferido
-Host: https://asesoraenergetica.es
+Host: https://www.luzaria.es
+
+# Redirección www -> non-www (configurar en servidor/hosting)
+# Si el hosting soporta directivas de redirección en robots.txt:
+# La canonical y todas las URLs internas apuntan a https://www.luzaria.es
+# Configurar redirección 301 en el servidor:
+#   luzaria.es -> www.luzaria.es

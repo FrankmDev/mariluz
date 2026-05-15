@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://asesoraenergetica.es',
+  site: 'https://www.luzaria.es',
   integrations: [
     sitemap({
       changefreq: 'weekly',
@@ -17,6 +17,11 @@ export default defineConfig({
         locales: {
           es: 'es-ES'
         }
+      },
+      // Exclude non-indexable pages from sitemap
+      filter(page) {
+        const excluded = ['/cookies', '/privacidad', '/legal'];
+        return !excluded.some(path => page.includes(path));
       }
     })
   ],

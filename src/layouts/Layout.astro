@@ -21,14 +21,19 @@ const {
   description = siteConfig.meta.description,
   ogImage = siteConfig.meta.ogImage,
   ogType = 'website',
-  canonical = siteConfig.meta.canonical,
+  canonical,
   noindex = false,
   keywords = siteConfig.meta.keywords,
   article
 } = Astro.props;
 
+const baseUrl = siteConfig.meta.canonical.replace(/\/$/, '');
+const pagePath = Astro.url.pathname.replace(/\/$/, '');
+const selfCanonical = pagePath === '/' ? baseUrl : `${baseUrl}${pagePath}`;
+const resolvedCanonical = canonical || selfCanonical;
+
 const fullTitle = title === siteConfig.meta.title ? title : `${title} | ${siteConfig.name}`;
-const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteConfig.meta.canonical}${ogImage}`;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
 
 // Enhanced LocalBusiness Schema
 const localBusinessSchema = {
@@ -64,6 +69,23 @@ const localBusinessSchema = {
       ? ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
       : hours.startsWith('Sa') ? ["Saturday"] : []
   })),
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": siteConfig.phone,
+    "contactType": "customer service",
+    "availableLanguage": "Spanish",
+    "areaServed": "ES"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "ES",
+    "addressLocality": "España"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.4168,
+    "longitude": -3.7038
+  },
   "founder": {
     "@type": "Person",
     "name": siteConfig.advisor.name,
@@ -79,7 +101,7 @@ const localBusinessSchema = {
     "worstRating": "1"
   },
   "sameAs": [
-    siteConfig.whatsappUrl
+    siteConfig.social.whatsapp
   ]
 };
 
@@ -175,8 +197,33 @@ const breadcrumbSchema = {
   ]
 };
 
+// Organization Schema for brand recognition
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteConfig.meta.canonical}/#organization`,
+  "name": siteConfig.name,
+  "url": siteConfig.meta.canonical,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${siteConfig.meta.canonical}/favicon.svg`,
+    "width": 512,
+    "height": 512
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": siteConfig.phone,
+    "contactType": "customer service",
+    "availableLanguage": "Spanish"
+  },
+  "sameAs": [
+    siteConfig.social.whatsapp
+  ],
+  "knowsAbout": ["Ahorro energético", "Tarifas eléctricas", "Eficiencia energética"]
+};
+
 // Combine all schemas
-const allSchemas = [websiteSchema, localBusinessSchema, serviceSchema, faqSchema, breadcrumbSchema];
+const allSchemas = [websiteSchema, localBusinessSchema, serviceSchema, faqSchema, breadcrumbSchema, organizationSchema];
 ---
 
 <!doctype html>
@@ -210,30 +257,33 @@ const allSchemas = [websiteSchema, localBusinessSchema, serviceSchema, faqSchema
 		<meta property="og:locale" content={siteConfig.meta.locale} />
 		<meta name="geo.region" content="ES" />
 		<meta name="geo.placename" content="España" />
-		<link rel="alternate" hreflang="es-ES" href={canonical} />
-		<link rel="alternate" hreflang="x-default" href={canonical} />
+		<link rel="alternate" hreflang="es-ES" href={resolvedCanonical} />
+		<link rel="alternate" hreflang="x-default" href={resolvedCanonical} />
 
 		<!-- Canonical URL -->
-		<link rel="canonical" href={canonical} />
+		<link rel="canonical" href={resolvedCanonical} />
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content={ogType} />
-		<meta property="og:url" content={canonical} />
+		<meta property="og:url" content={resolvedCanonical} />
 		<meta property="og:title" content={fullTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={ogImageUrl} />
 		<meta property="og:image:alt" content={siteConfig.meta.ogImageAlt} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
+		<meta property="og:image:type" content="image/svg+xml" />
 		<meta property="og:site_name" content={siteConfig.name} />
 
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:url" content={canonical} />
+		<meta name="twitter:url" content={resolvedCanonical} />
 		<meta name="twitter:title" content={fullTitle} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImageUrl} />
 		<meta name="twitter:image:alt" content={siteConfig.meta.ogImageAlt} />
+		<meta name="twitter:image:width" content="1200" />
+		<meta name="twitter:image:height" content="630" />
 		
 		<!-- Article Specific (if applicable) -->
 		{article && (

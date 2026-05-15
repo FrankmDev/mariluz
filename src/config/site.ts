@@ -1,34 +1,34 @@
 export const siteConfig = {
-  name: 'Mariluz Asesora Energética',
+  name: 'LUZARIA',
   phone: '+34 630 715 378',
   phoneClean: '34630715378',
-  whatsappUrl: 'https://wa.me/34630715378?text=Hola%20Mariluz,%20me%20interesa%20ahorrar%20en%20mi%20factura%20de%20la%20luz',
-  email: 'mariluz@asesoraenergetica.es',
+  whatsappUrl: 'https://wa.me/34630715378?text=Hola,%20me%20interesa%20ahorrar%20en%20mi%20factura%20de%20la%20luz',
+  email: 'hola@luzaria.es',
   meta: {
-    title: 'Asesora Energética | Ahorra hasta 280€/año en tu factura de luz',
-    description: 'Asesoría energética gratuita en España. Comparo +200 tarifas de luz y gas. Cambio de comercializadora sin coste ni permanencia. 450+ clientes ahorrando.',
+    title: 'LUZARIA | Comparador de tarifas de luz gratuito en España',
+    description: 'Comparador de tarifas de luz gratuito. Análisis personalizado de tu factura, cambio de comercializadora sin coste ni permanencia. Cientos de clientes ahorrando cada mes en España.',
     ogImage: '/og-image.svg',
-    ogImageAlt: 'Mariluz Asesora Energética - Ahorra en tu factura de luz',
-    canonical: 'https://asesoraenergetica.es',
+    ogImageAlt: 'LUZARIA - Ahorra en tu factura de luz',
+    canonical: 'https://www.luzaria.es',
     keywords: 'asesor energético, ahorrar luz, tarifa luz, comparador luz, cambiar compañía luz, asesoría energética España, factura de la luz',
     author: 'Mariluz Marín',
     locale: 'es_ES',
     type: 'website',
   },
   savings: {
-    homeRate: 0.22, // 22% ahorro hogar
-    businessRate: 0.18, // 18% ahorro negocio
+    homeRate: 0.15, // 15% ahorro medio hogar
+    businessRate: 0.12, // 12% ahorro medio negocio
     minSaving: 0, // Sin mínimo
-    averageYearly: 280,
-    maxYearly: 450,
+    averageYearly: 180,
+    maxYearly: 300,
   },
   advisor: {
     name: 'Mariluz Marín',
     title: 'Asesora Energética Independiente',
     experience: 0,
-    clients: 450,
+    clients: 300,
     satisfaction: 4.9,
-    reviews: 127,
+    reviews: 87,
     photo: '/mariluz.jpg',
     since: 2020,
   },
