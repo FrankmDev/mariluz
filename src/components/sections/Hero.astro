@@ -109,8 +109,8 @@ import { MessageCircle, Clock } from 'lucide-astro';
     </div>
 
     <h1 class="headline reveal stagger-2" itemprop="headline">
-      <span class="line line-1">Ahorra en tu factura de luz.</span>
-      <span class="line line-accent">Sin complicaciones.</span>
+      <span class="line line-1">Tu factura de luz</span>
+      <span class="line line-accent">Reducida.</span>
     </h1>
 
     <p class="subhead reveal stagger-3">
@@ -788,6 +788,7 @@ import { MessageCircle, Clock } from 'lucide-astro';
   /* ─── Headline ──────────────────────────────────────────── */
   .headline {
     margin: 0 0 var(--space-6);
+    text-align: center;
   }
 
   .line {
@@ -796,7 +797,7 @@ import { MessageCircle, Clock } from 'lucide-astro';
     font-size: clamp(2.75rem, 8vw, 6rem);
     font-weight: var(--font-extrabold);
     letter-spacing: var(--tracking-tight);
-    line-height: var(--leading-none);
+    line-height: 1.05;
     text-wrap: balance;
     overflow-wrap: break-word;
     opacity: 0;
