@@ -1,14 +1,14 @@
 export const siteConfig = {
-  name: 'LUZARIA',
+  name: 'luzaria',
   phone: '+34 630 715 378',
   phoneClean: '34630715378',
   whatsappUrl: 'https://wa.me/34630715378?text=Hola,%20me%20interesa%20ahorrar%20en%20mi%20factura%20de%20la%20luz',
-  email: 'hola@luzaria.es',
+  email: 'mluzmarin1969@gmail.com',
   meta: {
-    title: 'LUZARIA | Comparador de tarifas de luz gratuito en España',
+    title: 'luzaria | Comparador de tarifas de luz gratuito en España',
     description: 'Comparador de tarifas de luz gratuito. Análisis personalizado de tu factura, cambio de comercializadora sin coste ni permanencia. Cientos de clientes ahorrando cada mes en España.',
     ogImage: '/og-image.svg',
-    ogImageAlt: 'LUZARIA - Ahorra en tu factura de luz',
+    ogImageAlt: 'luzaria - Ahorra en tu factura de luz',
     canonical: 'https://www.luzaria.es',
     keywords: 'asesor energético, ahorrar luz, tarifa luz, comparador luz, cambiar compañía luz, asesoría energética España, factura de la luz',
     author: 'Mariluz Marín',
