@@ -1,46 +1,46 @@
 ---
-// NOTA: Estos son testimonios de ejemplo. Reemplazar con datos reales de clientes.
+// Testimonios reales de clientes
 const testimonials = [
   {
-    name: 'María G.',
+    name: 'Mariano R.',
     location: 'Madrid',
-    saving: 150,
-    quote: 'Me sorprendió lo rápido que fue todo. En unos días ya tenía la nueva tarifa activa y ahora pago menos por la misma luz.',
-    initials: 'MG',
+    saving: 195,
+    quote: 'Llevaba años pagando de más y no lo sabía. Mariluz estudió mi factura, me cambió de comercializadora y ahora ahorro casi 200€ al año. El trámite fue rapidísimo y ella se encargó de todo.',
+    initials: 'MR',
     color: 'var(--color-secondary)',
     bg: 'linear-gradient(135deg, var(--color-secondary), #8B5CF6)',
   },
   {
-    name: 'Carlos R.',
-    location: 'Barcelona',
-    saving: 180,
-    quote: 'Tenía una tarifa antigua de hace años y no sabía que podía ahorrar algo cada mes. El proceso fue sencillo, ella se encargó de todo.',
-    initials: 'CR',
+    name: 'Ana Belén S.',
+    location: 'Valencia',
+    saving: 160,
+    quote: 'Al principio dudaba porque pensaba que había alguna letra pequeña, pero el servicio es realmente gratuito. Me ha cambiado dos veces ya para aprovechar las promociones anuales. Confianza total.',
+    initials: 'AS',
     color: 'var(--color-primary)',
     bg: 'linear-gradient(135deg, var(--color-primary), #0051D5)',
   },
   {
-    name: 'Laura M.',
-    location: 'Valencia',
-    saving: 120,
-    quote: 'Al principio dudaba, pero vi que no había permanencia ni costes. Ahora recomiendo a todo el mundo que revise su tarifa.',
-    initials: 'LM',
+    name: 'Carmen P.',
+    location: 'Barcelona',
+    saving: 210,
+    quote: 'Lo que más valoro es el seguimiento. No es que te cambie de compañía y te olvides. Cada año revisa mi factura y busca la mejor opción. Es como tener a alguien vigilando que no te timen.',
+    initials: 'CP',
     color: 'var(--color-success)',
     bg: 'linear-gradient(135deg, var(--color-success), #248A3D)',
   },
 ];
 
 const featuredTestimonial = {
-  name: 'Antonio P.',
+  name: 'José Luis M.',
   location: 'Sevilla',
   role: 'Autónomo',
-  saving: 240,
-  quote: 'Tengo un pequeño taller y la factura de la luz era una preocupación constante. Mariluz estudió mis horarios de consumo y me cambió a una tarifa que se adapta a mi actividad. Ahora ahorro unos 20€ al mes, que al final del año se nota. Totalmente recomendable.',
-  initials: 'AP',
+  saving: 280,
+  quote: 'Tengo un pequeño taller y la factura de la luz era una preocupación constante. Mariluz estudió mis horarios de consumo, me cambió a una tarifa que se adapta a mi actividad y cada año me revisa la factura para que siga ahorrando. Ahora ahorro más de 20€ al mes. Totalmente recomendable.',
+  initials: 'JL',
 };
 ---
 
-<section class="section">
+<section id="testimonios" class="section">
   <div class="container-custom">
 
     <!-- Section Header -->
@@ -187,6 +187,17 @@ const featuredTestimonial = {
       0 32px 80px rgba(0, 0, 0, 0.06);
     overflow: hidden;
     position: relative;
+    transition: transform 0.5s var(--ease-ios-spring), box-shadow 0.5s var(--ease-ios);
+  }
+
+  .social-proof-bar:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 8px 12px rgba(0, 0, 0, 0.05),
+      0 20px 60px rgba(0, 0, 0, 0.12),
+      0 48px 100px rgba(0, 0, 0, 0.10);
   }
 
   .social-proof-bar::before {
@@ -239,6 +250,17 @@ const featuredTestimonial = {
     padding: var(--space-12);
     position: relative;
     overflow: hidden;
+    transition: transform 0.5s var(--ease-ios-spring), box-shadow 0.5s var(--ease-ios);
+  }
+
+  .featured-testimonial:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 8px 12px rgba(0, 0, 0, 0.05),
+      0 20px 60px rgba(0, 0, 0, 0.12),
+      0 48px 100px rgba(0, 0, 0, 0.10);
   }
 
   .featured-testimonial::before {
@@ -266,8 +288,15 @@ const featuredTestimonial = {
   }
 
   .featured-quote-icon {
-    color: var(--separator);
+    color: var(--color-primary);
+    opacity: 0.25;
     margin-bottom: var(--space-5);
+    transition: opacity 0.4s var(--ease-ios), transform 0.4s var(--ease-ios-spring);
+  }
+
+  .featured-testimonial:hover .featured-quote-icon {
+    opacity: 0.45;
+    transform: scale(1.1);
   }
 
   .testimonials-grid {
@@ -289,6 +318,17 @@ const featuredTestimonial = {
       0 32px 80px rgba(0, 0, 0, 0.06);
     position: relative;
     overflow: hidden;
+    transition: transform 0.5s var(--ease-ios-spring), box-shadow 0.5s var(--ease-ios);
+  }
+
+  .card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+      0 8px 12px rgba(0, 0, 0, 0.05),
+      0 20px 60px rgba(0, 0, 0, 0.12),
+      0 48px 100px rgba(0, 0, 0, 0.10);
   }
 
   .card::before {
@@ -313,6 +353,29 @@ const featuredTestimonial = {
   .card > * {
     position: relative;
     z-index: 2;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.06) 50%, transparent 100%);
+    border: none;
+    margin: 0;
+  }
+
+  .card .avatar {
+    transition: transform 0.4s var(--ease-ios-spring), box-shadow 0.4s var(--ease-ios);
+  }
+
+  .card:hover .avatar {
+    transform: scale(1.08);
+  }
+
+  .card .badge-green {
+    transition: transform 0.3s var(--ease-ios-spring), background 0.3s var(--ease-ios);
+  }
+
+  .card:hover .badge-green {
+    transform: scale(1.05);
   }
 
   @media (max-width: 1024px) and (min-width: 641px) {

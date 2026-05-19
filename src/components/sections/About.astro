@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { siteConfig } from '../../config/site';
 import Counter from '../ui/Counter.astro';
 import aboutPhoto from '../../assets/about.jpeg';
-import { MessageCircle } from 'lucide-astro';
+
 
 const { advisor } = siteConfig;
 const averageYearly = siteConfig.savings.averageYearly;
@@ -104,9 +104,10 @@ const averageYearly = siteConfig.savings.averageYearly;
             
             <div class="stat-box stat-highlight">
               <div class="stat-icon icon-savings">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="12" y1="1" x2="12" y2="23"/>
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 4a6 6 0 0 0-6 6v4a6 6 0 0 0 6 6"/>
+                  <path d="M4 10h8"/>
+                  <path d="M4 14h7"/>
                 </svg>
               </div>
               <div class="stat-data">
@@ -134,12 +135,7 @@ const averageYearly = siteConfig.savings.averageYearly;
             
             <div class="bio-text">
               <p class="bio-lead">
-                Ayudo a familias y negocios a pagar menos por su electricidad. 
-                <span class="highlight-text">Sin complicaciones.</span>
-              </p>
-              <p class="bio-body">
-                Analizo tu consumo real, comparo todas las comercializadoras del mercado 
-                y encuentro la tarifa que mejor se adapta a ti.
+                Analizo tu consumo y encuentro la mejor tarifa. Siempre pensando en tu ahorro, no en mi comisión.
               </p>
             </div>
 
@@ -158,7 +154,7 @@ const averageYearly = siteConfig.savings.averageYearly;
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 </div>
-                <span>Sin costes ocultos</span>
+                <span>Seguimiento anual</span>
               </div>
               <div class="feature-item">
                 <div class="feature-check">
@@ -166,7 +162,7 @@ const averageYearly = siteConfig.savings.averageYearly;
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 </div>
-                <span>100% independiente</span>
+                <span>Sin coste para ti</span>
               </div>
             </div>
           </div>
@@ -185,14 +181,13 @@ const averageYearly = siteConfig.savings.averageYearly;
               <span>Valoración 4.9/5</span>
             </div>
             
-            <h4 class="cta-title">¿Empezamos a ahorrar?</h4>
-            <p class="cta-desc">Análisis gratuito en menos de 24h</p>
+            <h4 class="cta-title">¿Quieres saber más?</h4>
+            <p class="cta-desc">Te explico todo sin compromiso</p>
             
-            <a href={siteConfig.whatsappUrl} class="cta-button" rel="noopener noreferrer">
+            <a href="#contacto" class="cta-button">
               <span class="btn-bg"></span>
               <span class="btn-shine"></span>
-              <MessageCircle size={20} fill="currentColor" />
-              <span class="btn-text">Habla conmigo</span>
+              <span class="btn-text">Más información</span>
             </a>
           </div>
         </div>

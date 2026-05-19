@@ -59,7 +59,7 @@ export const siteConfig = {
 export const faqData = [
   {
     question: '¿Cuánto cuesta el servicio de asesoría energética?',
-    answer: 'El servicio es completamente gratuito. Recibo una comisión de la comercializadora a la que te cambias, nunca cobro directamente a mis clientes. Tu ahorro es real desde el primer día.',
+    answer: 'El servicio es completamente gratuito para ti. Recibo una comisión de la comercializadora, pero mi prioridad siempre es encontrar la opción que más te beneficie a ti, no la que más comisión me genere.',
   },
   {
     question: '¿Cuánto tiempo tarda el cambio de compañía eléctrica?',
@@ -78,7 +78,7 @@ export const faqData = [
     answer: 'No, absolutamente. El cambio solo implica modificar la comercializadora que te factura. Los cables, el contador y toda la instalación física siguen siendo exactamente los mismos.',
   },
   {
-    question: '¿Puedo volver a mi compañía anterior si quiero?',
-    answer: 'Sí, siempre tienes libertad para cambiar. La mayoría de tarifas que recomiendo no tienen permanencia. Mis clientes suelen estar tan satisfechos con el ahorro que no quieren volver.',
+    question: '¿Hacéis seguimiento después del cambio?',
+    answer: 'Sí, eso es lo que me diferencia. Hago seguimiento anual de tu facturación para comprobar que el ahorro es real. Cada año reviso si hay promociones mejores y te cambio si conviene. Tú no tienes que preocuparte de nada.',
   },
 ] as const;

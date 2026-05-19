@@ -275,14 +275,48 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Selection color */
+::selection {
+  background: rgba(0, 122, 255, 0.18);
+  color: var(--text-primary);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.22);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
 body {
   font-family: var(--font-display);
-  background: var(--bg-secondary);
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(0, 122, 255, 0.045) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 85% 5%, rgba(90, 200, 250, 0.035) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(88, 86, 214, 0.025) 0%, transparent 50%),
+    var(--bg-secondary);
+  background-attachment: fixed;
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
