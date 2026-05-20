@@ -668,6 +668,15 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
       font-size: clamp(2rem, 8vw, 2.75rem);
     }
 
+    .subhead {
+      max-width: 400px;
+      padding: 0 var(--space-2);
+    }
+
+    .contact-form {
+      gap: var(--space-4);
+    }
+
     .submit-btn {
       padding: 15px 28px;
       font-size: var(--text-md);
@@ -679,6 +688,10 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
   @media (max-width: 480px) {
     .form-content {
       padding: var(--space-5) var(--space-4);
+    }
+
+    .contact-form {
+      gap: var(--space-3);
     }
 
     .upload-zone {
@@ -693,6 +706,15 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
     .alt-link {
       width: 100%;
       justify-content: center;
+    }
+
+    .form-card {
+      border-radius: 20px;
+    }
+
+    .form-specular,
+    .form-glow {
+      border-radius: 21px;
     }
   }
 

@@ -383,6 +383,7 @@ const averageYearly = siteConfig.savings.averageYearly;
   .bento-item {
     position: relative;
     border-radius: var(--radius-2xl);
+    overflow: hidden;
     transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
@@ -1106,6 +1107,7 @@ const averageYearly = siteConfig.savings.averageYearly;
     .bento-bio,
     .bento-cta {
       grid-column: span 1;
+      grid-row: span 1;
     }
 
     .section-header {
@@ -1139,8 +1141,86 @@ const averageYearly = siteConfig.savings.averageYearly;
   }
 
   @media (max-width: 480px) {
+    .about {
+      padding: 60px 0 48px;
+    }
+
     .container {
       padding: 0 var(--space-4);
+    }
+
+    .bento-grid {
+      gap: var(--space-3);
+    }
+
+    .section-header {
+      margin-bottom: var(--space-8);
+    }
+
+    .title-accent {
+      font-size: var(--text-5xl);
+    }
+
+    .section-subtitle {
+      font-size: var(--text-md);
+    }
+
+    .profile-layers {
+      min-height: 260px;
+    }
+
+    .profile-image-full {
+      max-height: 260px;
+    }
+
+    .card-content {
+      padding: var(--space-5);
+    }
+
+    .bio-content {
+      padding: var(--space-5);
+    }
+
+    .bio-features {
+      margin-top: var(--space-4);
+      gap: 8px;
+    }
+
+    .cta-content {
+      padding: var(--space-5);
+    }
+
+    .stats-grid {
+      padding: var(--space-5);
+      gap: var(--space-4);
+    }
+
+    .stat-box {
+      min-width: 100%;
+    }
+
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+    }
+
+    .trust-bar {
+      gap: var(--space-3);
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .trust-item {
+      font-size: var(--text-xs);
+    }
+
+    .trust-icon {
+      width: 30px;
+      height: 30px;
     }
 
     .stat-box {
@@ -1148,7 +1228,7 @@ const averageYearly = siteConfig.savings.averageYearly;
     }
 
     .profile-layers {
-      min-height: 350px;
+      min-height: 300px;
     }
 
     .profile-meta {
