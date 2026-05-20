@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.luzaria.es',
+  site: 'https://luzaria.es',
   integrations: [
     sitemap({
       i18n: {

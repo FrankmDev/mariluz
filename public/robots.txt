@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.luzaria.es/sitemap-index.xml
+Sitemap: https://luzaria.es/sitemap-index.xml

@@ -9,7 +9,7 @@ export const siteConfig = {
     description: 'Comparador de tarifas de luz gratuito. Análisis personalizado de tu factura, cambio de comercializadora sin coste ni permanencia. Cientos de clientes ahorrando cada mes en España.',
     ogImage: '/og-image.svg',
     ogImageAlt: 'luzaria - Ahorra en tu factura de luz',
-    canonical: 'https://www.luzaria.es',
+    canonical: 'https://luzaria.es',
     keywords: 'asesor energético, ahorrar luz, tarifa luz, comparador luz, cambiar compañía luz, asesoría energética España, factura de la luz',
     author: 'Mariluz Marín',
     locale: 'es_ES',
