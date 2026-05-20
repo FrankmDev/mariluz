@@ -59,7 +59,7 @@ export const siteConfig = {
 export const faqData = [
   {
     question: '¿Cuánto cuesta el servicio de asesoría energética?',
-    answer: 'El servicio es completamente gratuito para ti. Recibo una comisión de la comercializadora, pero mi prioridad siempre es encontrar la opción que más te beneficie a ti, no la que más comisión me genere.',
+    answer: 'El servicio es completamente gratuito para ti. Mi prioridad siempre es encontrar la opción que más te beneficie.',
   },
   {
     question: '¿Cuánto tiempo tarda el cambio de compañía eléctrica?',
