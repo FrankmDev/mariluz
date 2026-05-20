@@ -6,7 +6,6 @@ const testimonials = [
     location: 'Córdoba',
     saving: 185,
     quote: 'Estaba pagando una barbaridad y no era consciente. Mariluz revisó mi factura, me explicó todas las opciones y me cambió a una tarifa mucho más barata. El proceso fue rapidísimo y ella gestionó todos los papeleos. Ahora ahorro casi 190€ al año sin hacer nada.',
-    initials: 'MD',
     color: 'var(--color-secondary)',
     bg: 'linear-gradient(135deg, var(--color-secondary), #8B5CF6)',
   },
@@ -15,7 +14,6 @@ const testimonials = [
     location: 'Córdoba',
     saving: 170,
     quote: 'Desconfiaba al principio porque pensaba que tendría algún coste oculto, pero todo es tal y como lo explica. Me ayudó a entender mi consumo, encontró la mejor tarifa para mi casa y cada año se asegura de que siga siendo la mejor opción. Un servicio impecable.',
-    initials: 'FM',
     color: 'var(--color-primary)',
     bg: 'linear-gradient(135deg, var(--color-primary), #0051D5)',
   },
@@ -24,7 +22,6 @@ const testimonials = [
     location: 'Córdoba',
     saving: 195,
     quote: 'Lo que más me gusta es la tranquilidad de saber que alguien revisa mi factura cada año. Mariluz es muy cercana y profesional, me resolvió todas las dudas con paciencia y encontró un ahorro que ni sabía que podía tener. La recomiendo sin dudarlo.',
-    initials: 'EM',
     color: 'var(--color-success)',
     bg: 'linear-gradient(135deg, var(--color-success), #248A3D)',
   },
@@ -36,7 +33,6 @@ const featuredTestimonial = {
   role: 'Particular',
   saving: 210,
   quote: 'Quiero destacar el excelente trabajo de Mariluz Marín. Desde el primer momento mostró una atención cercana, profesional y transparente. Me explicó todo con claridad, resolvió cada duda con paciencia y me ayudó a encontrar la opción más conveniente para ahorrar en mi factura eléctrica. Se nota que tiene mucha experiencia y un trato humano excepcional. Todo el proceso fue rápido, sencillo y sin complicaciones. Hoy en día cuesta encontrar personas tan comprometidas y honestas en este sector. Sin duda la recomiendo al 100% a cualquiera que necesite asesoramiento energético de confianza.',
-  initials: 'SV',
 };
 ---
 
@@ -106,8 +102,11 @@ const featuredTestimonial = {
         </blockquote>
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4);">
           <div style="display: flex; align-items: center; gap: 14px;">
-            <div class="avatar avatar-md" style="background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%); color: white; font-size: var(--text-md); font-weight: 700; width: 52px; height: 52px;">
-              {featuredTestimonial.initials}
+             <div class="avatar avatar-md" style="background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%); color: white; width: 52px; height: 52px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
             </div>
             <div>
               <p class="text-headline" style="color: var(--text-primary); font-weight: 700;">{featuredTestimonial.name}</p>
@@ -148,10 +147,13 @@ const featuredTestimonial = {
             <div style="display: flex; align-items: center; gap: var(--space-3);">
               <div
                 class="avatar avatar-md"
-                style={`background: ${t.bg}; color: white; font-weight: 700;`}
+                style={`background: ${t.bg}; color: white;`}
                 aria-hidden="true"
               >
-                {t.initials}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
               </div>
               <div>
                 <p class="text-subhead" style="color: var(--text-primary); font-weight: 600;">{t.name}</p>
