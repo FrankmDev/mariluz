@@ -24,7 +24,7 @@ export const siteConfig = {
   },
   advisor: {
     name: 'Mariluz Marín',
-    title: 'Asesora Energética Independiente',
+    title: 'Asesora energética en Zoco Energía',
     experience: 0,
     clients: 300,
     satisfaction: 4.9,
