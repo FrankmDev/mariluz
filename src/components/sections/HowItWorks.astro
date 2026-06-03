@@ -6,21 +6,21 @@ const steps = [
   {
     number: '01',
     title: 'Envías la factura',
-    description: 'Con tu última factura puedo revisar consumo, potencia y condiciones actuales.',
+    description: 'Puedes enviarla por WhatsApp o mediante el formulario. Revisaré los datos necesarios para entender tu contrato actual.',
     highlight: 'Revisión inicial',
     tint: 'blue',
   },
   {
     number: '02',
-    title: 'Reviso el caso',
-    description: 'Comparo lo que pagas con opciones reales y descarto cambios que no compensen.',
-    highlight: 'Comparación documentada',
+    title: 'Analizo tu situación',
+    description: 'Compruebo potencia, consumo, precio por kWh, servicios añadidos, permanencia y posibles alternativas.',
+    highlight: 'Condiciones reales',
     tint: 'indigo',
   },
   {
     number: '03',
-    title: 'Tú decides',
-    description: 'Recibes una explicación clara. Si hay una mejora relevante y la aceptas, se gestiona el cambio.',
+    title: 'Te explico la opción',
+    description: 'Si hay margen de mejora, te indico qué cambiar y por qué. Si tu tarifa ya es adecuada, también te lo diré.',
     highlight: 'Decisión informada',
     tint: 'teal',
   },
@@ -38,9 +38,9 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
 
     <SectionHeader
       eyebrow="El proceso"
-      title="Así funciona."
-      accent="Primero se revisa."
-      subtitle="Revisión técnica, comparación clara y decisión solo cuando compensa."
+      title="Un análisis claro."
+      accent="Antes de decidir."
+      subtitle="Primero se revisa tu factura. Después te explico condiciones, alternativas y si compensa cambiar o mantener."
     />
 
     <!-- Process Timeline -->

@@ -91,7 +91,7 @@ const localBusinessSchema = {
     "@type": "Person",
     "name": siteConfig.advisor.name,
     "jobTitle": siteConfig.advisor.title,
-    "knowsAbout": ["Energía", "Tarifas eléctricas", "Ahorro energético"]
+    "knowsAbout": ["Energía", "Tarifas eléctricas", "Revisión de facturas de luz"]
   },
   "foundingDate": `${siteConfig.founded}-01-01`,
   "sameAs": [
@@ -121,7 +121,7 @@ const serviceSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Análisis de factura de luz",
-          "description": "Estudio gratuito de tu factura para valorar si hay margen real de mejora"
+          "description": "Revisión inicial de tu factura para valorar consumo, potencia, condiciones y posible margen de mejora"
         },
         "price": "0",
         "priceCurrency": "EUR"
@@ -131,7 +131,7 @@ const serviceSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Cambio de comercializadora",
-          "description": "Gestión del cambio de comercializadora solo cuando el cliente acepta una propuesta con ahorro"
+          "description": "Gestión del cambio de comercializadora solo cuando el cliente entiende y autoriza expresamente una propuesta"
         },
         "price": "0",
         "priceCurrency": "EUR"
@@ -213,7 +213,7 @@ const organizationSchema = {
   "sameAs": [
     siteConfig.social.whatsapp
   ],
-  "knowsAbout": ["Ahorro energético", "Tarifas eléctricas", "Eficiencia energética"]
+  "knowsAbout": ["Revisión de facturas de luz", "Tarifas eléctricas", "Eficiencia energética"]
 };
 
 // Combine all schemas

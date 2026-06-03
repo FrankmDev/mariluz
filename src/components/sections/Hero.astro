@@ -4,7 +4,7 @@ import { MessageCircle, Clock } from 'lucide-astro';
 import LiquidAction from '../ui/LiquidAction.astro';
 ---
 
-<section class="hero" aria-label="Revisión gratuita de tu factura de luz" id="hero" itemscope itemtype="https://schema.org/WebPageElement">
+<section class="hero" aria-label="Revisión inicial de tu factura de luz" id="hero" itemscope itemtype="https://schema.org/WebPageElement">
 
   <!-- Floating Cards — premium Liquid Glass dashboard widgets -->
   <div class="card-wrapper" data-card="1" aria-hidden="true">
@@ -16,14 +16,14 @@ import LiquidAction from '../ui/LiquidAction.astro';
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
           </div>
           <div class="card-title-wrap">
-            <p class="card-title">Factura recibida</p>
-            <p class="card-sub">lectura en curso</p>
+            <p class="card-title">Factura en revisión</p>
+            <p class="card-sub">sin compromiso</p>
           </div>
           <div class="pulse-dot"></div>
         </div>
         <div class="review-summary">
           <div class="summary-status">
-            <span class="summary-label">Análisis inicial</span>
+            <span class="summary-label">Primera lectura</span>
             <span class="summary-badge">24 h</span>
           </div>
           <div class="summary-scope">
@@ -31,7 +31,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
             <span>Potencia</span>
             <span>Extras</span>
           </div>
-          <p class="summary-note">Recibes una explicación antes de tocar nada</p>
+          <p class="summary-note">Ningún cambio sin explicación previa</p>
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
           </div>
           <div class="card-title-wrap">
             <p class="card-title">Coste por kWh</p>
-            <p class="card-sub">actual vs alternativa</p>
+            <p class="card-sub">factura actual</p>
           </div>
         </div>
         <div class="comparison-chart">
@@ -63,7 +63,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
           </div>
         </div>
         <div class="comp-footer">
-          <span class="savings-pill">Brecha revisada: 2,7 cts/kWh</span>
+          <span class="savings-pill">Diferencia revisada con calma</span>
         </div>
       </div>
     </div>
@@ -79,7 +79,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
           </div>
           <div class="card-title-wrap">
             <p class="card-title">Revisión de factura</p>
-            <p class="card-sub">puntos que sí importan</p>
+            <p class="card-sub">lo que conviene mirar</p>
           </div>
         </div>
         <div class="review-panel">
@@ -113,7 +113,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
     <div class="reveal stagger-1">
       <div class="eyebrow">
         <span class="eyebrow-dot"></span>
-        <span class="eyebrow-text">Revisión de factura</span>
+        <span class="eyebrow-text">Asesoría energética personal</span>
         <span class="eyebrow-sep"></span>
         <span class="eyebrow-free">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
@@ -123,24 +123,24 @@ import LiquidAction from '../ui/LiquidAction.astro';
     </div>
 
     <h1 class="headline reveal stagger-2" itemprop="headline">
-      <span class="line line-1">Analizo tu factura.</span>
-      <span class="line line-accent">Decides con datos.</span>
+      <span class="line line-1">Reviso tu factura.</span>
+      <span class="line line-accent">Decides claro.</span>
     </h1>
 
     <p class="subhead reveal stagger-3">
-      Reviso tu factura y te digo, con datos, si conviene cambiar algo.
-      <strong>Sin cambios automáticos.</strong>
+      Analizo tu consumo, tu tarifa actual y las condiciones del contrato para explicarte si existe una opción más adecuada.
+      <strong>Sin cambios sin tu autorización.</strong>
     </p>
 
     <div class="cta-group reveal stagger-4">
       <LiquidAction
         href="#contacto"
         class="cta-btn"
-        ariaLabel="Enviar factura para estudio gratuito"
+        ariaLabel="Enviar factura para revisión inicial"
         bgClass="cta-btn-bg"
       >
         <MessageCircle size={20} fill="currentColor" style="position:relative;z-index:1" aria-hidden="true" />
-        <span style="position:relative;z-index:1">Enviar factura</span>
+        <span style="position:relative;z-index:1">Enviar factura para revisión</span>
       </LiquidAction>
       <p class="cta-note">
         <Clock size={12} aria-hidden="true" />
@@ -151,11 +151,11 @@ import LiquidAction from '../ui/LiquidAction.astro';
     <div class="trust reveal stagger-5">
       <span class="pill">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
-        Sin cambio automático
+        Sin cambios sin autorización
       </span>
       <span class="pill">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Datos cifrados
+        Uso limitado de datos
       </span>
       <span class="pill">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
@@ -163,7 +163,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
       </span>
       <span class="pill pill-gold">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        Sin coste inicial
+        Revisión inicial sin coste
       </span>
     </div>
   </div>
@@ -179,7 +179,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 100px var(--space-6);
+    padding: 96px var(--space-6);
     overflow: hidden;
     /* No background - using global background from Layout */
   }
@@ -750,6 +750,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
     align-items: center;
     text-align: center;
     max-width: 760px;
+    margin-top: clamp(2.5rem, 6vh, 4.75rem);
     padding: 0 var(--space-4);
   }
 
@@ -1136,21 +1137,24 @@ import LiquidAction from '../ui/LiquidAction.astro';
   /* ─── Responsive ─────────────────────────────────────────────── */
   @media (max-width: 1199px) and (min-width: 992px) {
     .float-card { display: none; }
-    .hero { padding: 100px var(--space-5); }
+    .hero { padding: 96px var(--space-5); }
   }
 
   @media (max-width: 991px) and (min-width: 768px) {
     .float-card { display: none; }
-    .hero { padding: 100px var(--space-5); }
+    .hero { padding: 96px var(--space-5); }
     .headline { margin-bottom: var(--space-5); }
     .subhead { margin-bottom: var(--space-6); max-width: 400px; }
     .trust { margin-top: var(--space-6); }
   }
 
   @media (max-width: 767px) {
-    .hero { padding: 100px var(--space-4); }
+    .hero { padding: 88px var(--space-4); }
     .float-card { display: none; }
-    .content { padding: 0 var(--space-3); }
+    .content {
+      margin-top: clamp(2rem, 5vh, 3.25rem);
+      padding: 0 var(--space-3);
+    }
 
     .line {
       font-size: clamp(2rem, 8.8vw, 2.9rem);
@@ -1195,7 +1199,8 @@ import LiquidAction from '../ui/LiquidAction.astro';
   }
 
   @media (max-width: 379px) {
-    .hero { padding: 90px var(--space-4) 32px; }
+    .hero { padding: 80px var(--space-4); }
+    .content { margin-top: 2.25rem; }
     .line { font-size: var(--text-7xl); }
     .subhead { font-size: var(--text-sm); max-width: 300px; }
     :global(.cta-btn) { padding: 14px var(--space-5); }

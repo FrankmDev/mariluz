@@ -4,45 +4,45 @@ import { ClipboardCheck, HandCoins, MessageCircle, PlugZap, RefreshCw } from 'lu
 
 const benefits = [
   {
-    title: 'Sin coste directo',
-    text: siteConfig.transparency.freeServiceCopy,
+    title: 'Potencia contratada',
+    text: 'Compruebo si la potencia tiene sentido para tu uso real o si puede estar sobredimensionada.',
     icon: HandCoins,
     className: 'benefit-large benefit-blue',
   },
   {
-    title: 'Sin cambio en la instalación',
-    text: 'No se toca el contador, los cables ni el suministro. El cambio, si lo hay, es administrativo.',
+    title: 'Precio de energía',
+    text: 'Reviso el precio por kWh, horarios, tipo de tarifa y cómo encaja con tu consumo habitual.',
     icon: PlugZap,
     className: 'benefit-green',
   },
   {
-    title: 'Decisión explicada',
-    text: 'Antes de firmar nada sabes qué tarifa se propone, qué cambia y dónde estaría la mejora.',
+    title: 'Servicios añadidos',
+    text: 'Busco conceptos extra, mantenimientos o condiciones que puedan estar encareciendo la factura.',
     icon: MessageCircle,
     className: 'benefit-purple',
   },
   {
-    title: 'Seguimiento posterior',
-    text: 'Revisamos si la nueva factura refleja lo acordado y si sigue teniendo sentido con el paso del tiempo.',
+    title: 'Permanencia',
+    text: 'Antes de proponer nada, reviso si hay compromisos, penalizaciones o condiciones que conviene tener claras.',
     icon: RefreshCw,
     className: 'benefit-cyan',
   },
   {
-    title: 'Criterio conservador',
-    text: 'Si la diferencia es pequeña, temporal o no compensa, la recomendación puede ser no cambiar.',
+    title: 'Alternativas reales',
+    text: 'Comparo opciones y descarto cambios cuando la mejora no es clara, no es estable o no compensa.',
     icon: ClipboardCheck,
     className: 'benefit-large benefit-warm',
   },
 ];
 ---
 
-<section id="beneficios" class="benefits-section" aria-label="Ventajas de la asesoría energética">
+<section id="beneficios" class="benefits-section" aria-label="Qué se revisa en tu factura de luz">
   <div class="benefits-container">
     <header class="benefits-header reveal">
-      <p class="benefits-kicker">Confianza antes que prisa</p>
-      <h2>Una asesoría que también sabe decir “no cambies”.</h2>
+      <p class="benefits-kicker">Qué reviso</p>
+      <h2>Antes de cambiar, hay que entender la factura.</h2>
       <p>
-        La asesoría no promete magia: muestra un proceso claro, con límites honestos y acompañamiento humano.
+        Una revisión profesional mira precio, potencia, servicios, permanencia y condiciones. No solo una cifra de ahorro.
       </p>
     </header>
 
@@ -65,7 +65,7 @@ const benefits = [
     </div>
 
     <aside class="benefits-footnote reveal" data-delay="5">
-      <span>Nota sobre ahorro</span>
+      <span>Criterio de revisión</span>
       <p>{siteConfig.savings.disclaimer}</p>
     </aside>
   </div>

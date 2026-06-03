@@ -6,11 +6,11 @@ export const siteConfig = {
   email: 'mluzmarin1969@gmail.com',
   meta: {
     title: 'luzaria | Revisión clara de tu factura de luz',
-    description: 'Mariluz Marín revisa tu factura de la luz, te explica si existe margen real de mejora y solo propone un cambio cuando compensa.',
+    description: 'Mariluz Marín revisa tu factura de luz, analiza tus condiciones y te explica si conviene cambiar, ajustar o mantener tu tarifa.',
     ogImage: '/og-image.svg',
     ogImageAlt: 'luzaria - Revisión clara de tu factura de luz',
     canonical: 'https://luzaria.es',
-    keywords: 'estudio factura luz, revisar factura luz, asesor energético, cambiar comercializadora luz, tarifa luz, ahorro factura luz',
+    keywords: 'revisión factura luz, asesoría energética, entender factura luz, potencia contratada, tarifa luz, cambiar comercializadora luz',
     author: 'Mariluz Marín',
     locale: 'es_ES',
     type: 'website',
@@ -21,7 +21,7 @@ export const siteConfig = {
     minSaving: 0, // Sin mínimo
     averageYearly: 180,
     maxYearly: 300,
-    disclaimer: 'No todas las facturas tienen margen de ahorro. La recomendación depende de potencia, consumo, contrato vigente, servicios añadidos y condiciones reales de la oferta.',
+    disclaimer: 'No todas las facturas tienen margen de mejora. La recomendación depende de potencia, consumo, contrato vigente, servicios añadidos y condiciones reales de la oferta.',
   },
   advisor: {
     name: 'Mariluz Marín',
@@ -34,11 +34,11 @@ export const siteConfig = {
     since: 2016,
   },
   transparency: {
-    noSavingCopy: 'Si no veo un ahorro claro, la recomendación será no cambiar.',
+    noSavingCopy: 'Si no veo una mejora clara, la recomendación será no cambiar.',
     freeServiceCopy: 'La revisión inicial de la factura no tiene coste para ti. Si después decides contratar una opción propuesta, la comercializadora puede remunerar la gestión.',
     privacyCopy: 'Uso tu factura solo para estudiar tu caso y responderte. No la publico ni la comparto para otros fines.',
     reviewCopy: 'Revisión individual de tu factura, con una explicación clara antes de cualquier decisión.',
-    decisionCopy: 'Solo se propone un cambio cuando mejora precio o condiciones de forma clara.',
+    decisionCopy: 'Solo se propone un cambio cuando mejora precio o condiciones de forma clara y lo autorizas expresamente.',
     remunerationCopy: 'Si aceptas una propuesta y se tramita el cambio, la gestión puede estar remunerada por la comercializadora.',
   },
   location: {
@@ -67,27 +67,27 @@ export const siteConfig = {
 // FAQ data for structured data
 export const faqData = [
   {
-    question: '¿La revisión de la factura es gratuita?',
-    answer: 'Sí. La revisión inicial de tu factura no tiene coste. Si después aceptas una propuesta y se tramita el cambio, la gestión puede estar remunerada por la comercializadora.',
+    question: '¿Por qué la revisión no tiene coste para mí?',
+    answer: 'La revisión inicial de tu factura no tiene coste directo para ti. Si después aceptas una propuesta y se tramita el cambio, la gestión puede estar remunerada por la comercializadora colaboradora. Antes de avanzar, te explicaré las condiciones.',
   },
   {
     question: '¿Se cambia la comercializadora sin mi autorización?',
-    answer: 'No. Primero reviso tu factura y te explico el resultado. Solo se inicia un cambio si hay una propuesta clara, la entiendes y la autorizas expresamente.',
+    answer: 'No. Enviar la factura no implica contratar nada. Primero reviso tu caso y te explico el resultado; solo se inicia un cambio si entiendes la propuesta y la autorizas expresamente.',
   },
   {
     question: '¿Qué documentación necesito enviar?',
-    answer: 'Para la revisión inicial basta con tu última factura de luz. Si más adelante decides contratar otra opción, podrían solicitarse datos adicionales para tramitarlo correctamente.',
+    answer: 'Para una primera revisión normalmente basta con tu última factura de luz. Si más adelante decides avanzar, te indicaré qué documentación sería necesaria antes de cualquier gestión.',
   },
   {
-    question: '¿Qué ocurre si no hay ahorro suficiente?',
-    answer: 'Te lo indicaré con claridad. Si el ahorro no es relevante, no es estable o las condiciones no compensan, la recomendación será no cambiar.',
+    question: '¿Qué pasa si mi tarifa actual ya está bien?',
+    answer: 'Te lo diré con claridad. Si la diferencia es pequeña, temporal o las condiciones no compensan, la recomendación será mantener lo que tienes.',
   },
   {
     question: '¿Un cambio afecta al suministro o la instalación?',
-    answer: 'No. Cambiar de comercializadora no modifica contador, cableado ni instalación. El suministro continúa igual; lo que cambia es la empresa que factura y las condiciones contratadas.',
+    answer: 'No. Cambiar de comercializadora es un trámite administrativo: no modifica contador, cableado ni instalación eléctrica. El suministro continúa igual.',
   },
   {
     question: '¿Cómo se tratan mi factura y mis datos?',
-    answer: 'La información se utiliza únicamente para estudiar tu caso y responder a tu solicitud. No se publica ni se usa para fines distintos a la revisión y, si procede, la gestión autorizada.',
+    answer: 'La información se utiliza únicamente para estudiar tu consulta y responderte. No se publica ni se usa para fines distintos a la revisión y, si procede, la gestión que autorices.',
   },
 ] as const;
