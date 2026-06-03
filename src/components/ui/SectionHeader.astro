@@ -1,0 +1,177 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  accent?: string;
+  subtitle?: string;
+  class?: string;
+  reveal?: boolean;
+  variant?: 'default' | 'compact' | 'left' | 'editorial';
+}
+
+const {
+  eyebrow,
+  title,
+  accent,
+  subtitle,
+  class: className = '',
+  reveal = true,
+  variant = 'default',
+} = Astro.props;
+---
+
+<header class:list={['section-header', `section-header--${variant}`, reveal && 'reveal', className]}>
+  <div class="eyebrow">
+    <span class="eyebrow-dot" aria-hidden="true"></span>
+    <span>{eyebrow}</span>
+  </div>
+
+  <h2 class="headline">
+    <span class="headline-main">{title}</span>
+    {accent && <span class="headline-accent">{accent}</span>}
+  </h2>
+
+  {subtitle && <p class="headline-sub" set:html={subtitle} />}
+</header>
+
+<style>
+  .section-header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    margin-bottom: var(--space-20);
+  }
+
+  .section-header--compact {
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header--left,
+  .section-header--editorial {
+    text-align: left;
+  }
+
+  .section-header--editorial .headline-main,
+  .section-header--editorial .headline-accent {
+    max-width: 14ch;
+  }
+
+  .section-header--left .headline-sub,
+  .section-header--editorial .headline-sub {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-5);
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--space-6);
+    background: rgba(255,255,255,0.68);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.65);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.92), 0 2px 8px rgba(0,0,0,0.04);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-secondary);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .section-header--left .eyebrow,
+  .section-header--editorial .eyebrow {
+    justify-content: flex-start;
+  }
+
+  .eyebrow-dot {
+    width: var(--space-2);
+    height: var(--space-2);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ios-blue) 0%, #5AC8FA 100%);
+    box-shadow: 0 0 0 0 rgba(0,122,255,0.4);
+    animation: dot-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dot-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,122,255,0.4); }
+    50% { box-shadow: 0 0 0 var(--space-2) rgba(0,122,255,0); }
+  }
+
+  .headline {
+    margin: 0;
+  }
+
+  .headline-main,
+  .headline-accent {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    font-weight: var(--font-extrabold);
+    letter-spacing: var(--tracking-tighter);
+    line-height: var(--leading-tight);
+    text-wrap: balance;
+  }
+
+  .headline-main {
+    color: var(--text-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .headline-accent {
+    background: linear-gradient(135deg, var(--ios-blue) 0%, #5AC8FA 55%, #34AADC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .headline-sub {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    letter-spacing: var(--tracking-normal);
+    margin: var(--space-4) auto 0;
+    max-width: 560px;
+    text-wrap: balance;
+  }
+
+  .headline-sub :global(strong) {
+    color: var(--text-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  @media (max-width: 767px) {
+    .section-header {
+      margin-bottom: var(--space-12);
+    }
+
+    .headline-main,
+    .headline-accent {
+      font-size: clamp(2rem, 8vw, 2.75rem);
+    }
+
+    .headline-sub {
+      max-width: 400px;
+      padding: 0 var(--space-2);
+    }
+
+    .section-header--left .headline-sub,
+    .section-header--editorial .headline-sub {
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-header {
+      margin-bottom: var(--space-10);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .eyebrow-dot {
+      animation: none !important;
+    }
+  }
+</style>

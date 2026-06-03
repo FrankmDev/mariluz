@@ -1,13 +1,21 @@
 ---
 interface Props {
   class?: string;
-  surface?: 'white' | 'gray';
+  surface?: 'default' | 'muted' | 'blue' | 'green' | 'violet' | 'warm';
 }
 
-const { class: className = '', surface = 'white' } = Astro.props;
-const base = surface === 'gray' ? 'apple-surface' : 'apple-card';
+const { class: className = '', surface = 'default' } = Astro.props;
+
+const surfaces = {
+  default: 'surface-panel',
+  muted: 'surface-panel surface-panel-muted',
+  blue: 'surface-panel surface-tint-blue',
+  green: 'surface-panel surface-tint-green',
+  violet: 'surface-panel surface-tint-violet',
+  warm: 'surface-panel surface-tint-warm',
+};
 ---
 
-<div class={`${base} ${className}`}>
+<div class={`${surfaces[surface]} ${className}`}>
   <slot />
 </div>

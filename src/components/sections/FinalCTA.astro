@@ -18,12 +18,12 @@ import { MessageCircle } from 'lucide-astro';
               <!-- Savings Preview -->
               <div class="savings-preview">
                 <div class="savings-header">
-                  <span class="savings-label">Ahorro estimado</span>
-                  <span class="savings-badge">Anual</span>
+                  <span class="savings-label">Resumen claro</span>
+                  <span class="savings-badge">Antes de decidir</span>
                 </div>
                 <div class="savings-amount">
-                  <span class="savings-currency">€</span>
-                  <span class="savings-number" id="savings-counter">0</span>
+                  <span class="savings-currency">3</span>
+                  <span class="savings-number">puntos</span>
                 </div>
                 <div class="savings-chart">
                   <div class="chart-bar" style="--height: 40%"></div>
@@ -33,7 +33,7 @@ import { MessageCircle } from 'lucide-astro';
                   <div class="chart-bar" style="--height: 70%"></div>
                 </div>
               </div>
-              
+
               <!-- Client Counter -->
               <div class="client-counter">
                 <div class="counter-avatars">
@@ -43,7 +43,7 @@ import { MessageCircle } from 'lucide-astro';
                   <div class="avatar avatar-more">+</div>
                 </div>
                 <div class="counter-text">
-                  <strong>300+</strong> clientes ya ahorran
+                  Revisión con criterios concretos
                 </div>
               </div>
             </div>
@@ -62,28 +62,27 @@ import { MessageCircle } from 'lucide-astro';
                 <span class="status-dot"></span>
                 <span>Asesoría disponible</span>
               </div>
-              <p class="availability-note">Respuesta en menos de 24h</p>
             </div>
 
             <!-- Middle: Headline with decorative elements -->
             <div class="headline-wrap">
-              <span class="headline-eyebrow">Tu tranquilidad, mi compromiso</span>
+              <span class="headline-eyebrow">Entiende primero, decide después</span>
               <h2 class="cta-headline">
-                <span class="headline-line">Ahorra hoy.</span>
-                <span class="headline-accent">Y mañana también.</span>
+                <span class="headline-line">Entiende qué pagas</span>
+                <span class="headline-accent">en tu factura de luz.</span>
               </h2>
               <p class="headline-sub">
-                Con el seguimiento anual, tu factura siempre estará optimizada. Sin que tengas que pensar en ello.
+                Analizo tu factura, te explico qué estás contratando y te digo si hay una opción mejor. Si no hay margen claro, también te lo diré.
               </p>
             </div>
 
             <!-- Bottom: CTAs -->
             <div class="cta-actions">
-              <a href={siteConfig.whatsappUrl} class="btn-primary-cta">
+              <a href={siteConfig.whatsappUrl} class="btn-primary-cta" rel="noopener noreferrer">
                 <span class="btn-shimmer"></span>
                 <span class="btn-content">
                   <MessageCircle size={18} fill="currentColor" />
-                  WhatsApp
+                  Enviar mi factura por WhatsApp
                 </span>
               </a>
 
@@ -96,15 +95,15 @@ import { MessageCircle } from 'lucide-astro';
             <div class="trust-indicators">
               <div class="trust-item">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 6L9 17l-5-5"/>
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
                 </svg>
-                <span>Sin compromiso</span>
+                <span>Revisión personalizada de la factura</span>
               </div>
               <div class="trust-item">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 6L9 17l-5-5"/>
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                 </svg>
-                <span>100% gratuito</span>
+                <span>Asesoría energética en Zoco Energía</span>
               </div>
             </div>
           </div>
@@ -159,14 +158,9 @@ import { MessageCircle } from 'lucide-astro';
     background: rgba(255, 255, 255, 0.72);
     backdrop-filter: blur(44px) saturate(220%) brightness(1.04);
     -webkit-backdrop-filter: blur(44px) saturate(220%) brightness(1.04);
-    border: 1px solid rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.58);
     border-radius: var(--radius-2xl);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.95),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
-      0 4px 6px rgba(0, 0, 0, 0.04),
-      0 12px 40px rgba(0, 0, 0, 0.09),
-      0 32px 80px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-glass);
     overflow: hidden;
     transform: rotate(-3deg);
     transition: all 0.5s var(--ease-ios-spring);
@@ -174,12 +168,7 @@ import { MessageCircle } from 'lucide-astro';
 
   .visual-card:hover {
     transform: rotate(0deg) translateY(-10px) scale(1.02);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.98),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
-      0 8px 24px rgba(0, 0, 0, 0.08),
-      0 24px 64px rgba(0, 0, 0, 0.12),
-      0 48px 120px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-glass-hover);
   }
 
   .visual-card:hover .savings-number {
@@ -677,37 +666,3 @@ import { MessageCircle } from 'lucide-astro';
     }
   }
 </style>
-
-<script>
-  // Animate savings counter
-  const counter = document.getElementById('savings-counter');
-  if (counter) {
-    const target = 180;
-    const duration = 2000;
-    const start = performance.now();
-    
-    function updateCounter(currentTime: number) {
-      const elapsed = currentTime - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(easeOut * target);
-      counter.textContent = current.toLocaleString();
-      
-      if (progress < 1) {
-        requestAnimationFrame(updateCounter);
-      }
-    }
-    
-    // Start animation when element is visible
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          requestAnimationFrame(updateCounter);
-          observer.disconnect();
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    observer.observe(counter);
-  }
-</script>

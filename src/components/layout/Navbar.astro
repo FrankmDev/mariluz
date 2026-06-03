@@ -3,12 +3,10 @@ import { ArrowRight, MessageCircle, Phone } from 'lucide-astro';
 import { siteConfig } from '../../config/site';
 
 const navLinks = [
-  { label: 'Cómo funciona', shortLabel: 'Proceso', caption: 'Tres pasos sencillos', href: '#como-funciona' },
-  { label: 'Beneficios', shortLabel: 'Beneficios', caption: 'Ventajas reales', href: '#beneficios' },
-  { label: 'Sobre mí', shortLabel: 'Sobre mí', caption: 'Asesoría personal', href: '#sobre-mi' },
-  { label: 'Testimonios', shortLabel: 'Opiniones', caption: 'Experiencias reales', href: '#testimonios' },
-  { label: 'Contacto', shortLabel: 'Contacto', caption: 'Envía tu factura', href: '#contacto' },
-  { label: 'FAQ', shortLabel: 'Dudas', caption: 'Respuestas rápidas', href: '#faq' },
+  { label: 'Cómo funciona', shortLabel: 'Proceso', caption: 'Factura, revisión, decisión', href: '#como-funciona' },
+  { label: 'Sobre mí', shortLabel: 'Mariluz', caption: 'Trato directo', href: '#sobre-mi' },
+  { label: 'Enviar factura', shortLabel: 'Factura', caption: 'Revisión inicial', href: '#contacto' },
+  { label: 'Dudas', shortLabel: 'Dudas', caption: 'Antes de enviar', href: '#faq' },
 ];
 ---
 
@@ -36,7 +34,7 @@ const navLinks = [
       <a href={siteConfig.whatsappUrl} class="navbar-cta" rel="noopener noreferrer">
         <span class="cta-bg" aria-hidden="true"></span>
         <MessageCircle size={15} fill="currentColor" aria-hidden="true" style="position: relative; z-index: 1;" />
-        <span class="cta-text">Contactar</span>
+        <span class="cta-text">Enviar factura</span>
       </a>
 
       <button
@@ -72,11 +70,11 @@ const navLinks = [
     <div class="mobile-menu-heading">
       <div>
         <p class="mobile-menu-title">Menú</p>
-        <p class="mobile-menu-note">Mariluz García · Asesoría energética</p>
+        <p class="mobile-menu-note">Mariluz Marín · revisión inicial</p>
       </div>
       <span class="mobile-status-pill">
         <span class="mobile-status-dot" aria-hidden="true"></span>
-        Disponible
+        Atención directa
       </span>
     </div>
   </div>
@@ -101,8 +99,8 @@ const navLinks = [
       <span class="mobile-cta-bg" aria-hidden="true"></span>
       <MessageCircle size={18} fill="currentColor" aria-hidden="true" style="position: relative; z-index: 1;" />
       <span class="mobile-cta-copy">
-        <span class="mobile-cta-title">WhatsApp</span>
-        <span class="mobile-cta-caption">Respuesta rápida</span>
+        <span class="mobile-cta-title">Enviar factura</span>
+        <span class="mobile-cta-caption">Por WhatsApp</span>
       </span>
     </a>
 

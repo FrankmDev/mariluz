@@ -13,11 +13,11 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
         <span>Empieza ahora</span>
       </div>
       <h2 class="headline">
-        <span class="headline-main">Una foto.</span>
-        <span class="headline-accent">Un ahorro real.</span>
+        <span class="headline-main">Una foto de tu factura.</span>
+        <span class="headline-accent">Una explicación clara.</span>
       </h2>
       <p class="subhead">
-        Envíame tu última factura por WhatsApp, email o déjame tu teléfono. En menos de 24 horas tendrás <strong>tu propuesta personalizada de ahorro</strong>.
+        Envíame tu última factura por WhatsApp, email o déjame tu teléfono. Normalmente respondo en menos de 24 horas con una <strong>lectura clara de tu factura</strong>, sin compromiso.
       </p>
     </header>
 
@@ -146,7 +146,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
               </div>
               <div class="action-text">
                 <h3 class="action-title">WhatsApp</h3>
-                <p class="action-desc">Envía una foto de tu factura y te respondo con el análisis en 24h.</p>
+                <p class="action-desc">Envíame una foto de tu factura y te digo qué veo.</p>
               </div>
               <div class="action-cta">
                 <span>Enviar factura</span>
@@ -166,7 +166,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
               </div>
               <div class="action-text">
                 <h3 class="action-title">Correo electrónico</h3>
-                <p class="action-desc">Adjunta tu factura en PDF o imagen. Te preparo un informe detallado.</p>
+                <p class="action-desc">Adjunta tu factura por email y te preparo una explicación clara.</p>
               </div>
               <div class="action-cta">
                 <span>Enviar por email</span>
@@ -186,7 +186,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
               </div>
               <div class="action-text">
                 <h3 class="action-title">Te llamo yo</h3>
-                <p class="action-desc">Prefieres hablar? Déjame tu número y te llamo para analizar tu factura.</p>
+                <p class="action-desc">Prefieres hablar? Llámame o escríbeme y vemos tu factura juntos.</p>
               </div>
               <div class="action-cta">
                 <span>Llamar ahora</span>
@@ -205,7 +205,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
           </span>
           <span class="pill">
             <Lock size={13} aria-hidden="true" />
-            Sin permanencia
+            Sin compromiso
           </span>
           <span class="pill pill-gold">
             <Star size={13} fill="currentColor" aria-hidden="true" />
@@ -386,14 +386,8 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     background: rgba(255, 255, 255, 0.78);
     backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
     -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
-    border: 1px solid rgba(255, 255, 255, 0.78);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 1),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
-      0 8px 16px rgba(0, 0, 0, 0.06),
-      0 24px 64px rgba(0, 0, 0, 0.10),
-      0 48px 120px rgba(0, 0, 0, 0.08),
-      0 1px 0 rgba(0,122,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    box-shadow: var(--shadow-glass);
     z-index: 1;
   }
 
@@ -822,13 +816,8 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     border-radius: 22px;
     backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
     -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.98),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
-      0 4px 6px rgba(0, 0, 0, 0.04),
-      0 12px 40px rgba(0, 0, 0, 0.09),
-      0 32px 80px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    box-shadow: var(--shadow-glass);
     z-index: 1;
     transition: box-shadow 0.4s ease;
   }
@@ -846,12 +835,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
   }
 
   .action-card:hover .action-glass {
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.98),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
-      0 8px 12px rgba(0, 0, 0, 0.05),
-      0 20px 60px rgba(0, 0, 0, 0.12),
-      0 48px 100px rgba(0, 0, 0, 0.10);
+    box-shadow: var(--shadow-glass-hover);
   }
 
   /* Specular */
@@ -1020,13 +1004,8 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     background: rgba(255, 255, 255, 0.70);
     backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
     -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.98),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
-      0 4px 6px rgba(0, 0, 0, 0.04),
-      0 12px 40px rgba(0, 0, 0, 0.09),
-      0 32px 80px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    box-shadow: var(--shadow-glass);
     transition: transform var(--duration-normal) var(--ease-ios-spring), box-shadow var(--duration-normal) var(--ease-ios), background var(--duration-normal) var(--ease-ios);
     overflow: hidden;
   }
@@ -1056,12 +1035,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
   .pill:hover {
     transform: translateY(-2px) scale(1.02);
     background: rgba(255, 255, 255, 0.80);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 1),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.02),
-      0 6px 12px rgba(0, 0, 0, 0.06),
-      0 16px 48px rgba(0, 0, 0, 0.10),
-      0 40px 96px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-glass-hover);
   }
 
   .pill svg {
@@ -1073,12 +1047,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     color: var(--color-primary);
     background: rgba(236, 246, 255, 0.72);
     border-color: rgba(0, 122, 255, 0.25);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.95),
-      inset 0 -1px 0 rgba(0, 122, 255, 0.05),
-      0 4px 6px rgba(0, 122, 255, 0.08),
-      0 12px 40px rgba(0, 122, 255, 0.12),
-      0 32px 80px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-glass);
   }
 
   .pill-gold::before {
@@ -1093,12 +1062,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
 
   .pill-gold:hover {
     background: rgba(236, 246, 255, 0.85);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 1),
-      inset 0 -1px 0 rgba(0, 122, 255, 0.03),
-      0 6px 12px rgba(0, 122, 255, 0.10),
-      0 16px 48px rgba(0, 122, 255, 0.15),
-      0 40px 96px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-glass-hover);
   }
 
   .pill-gold svg {

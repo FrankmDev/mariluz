@@ -9,10 +9,10 @@ interface Props {
 const { variant = 'primary', href, type = 'button', class: className = '' } = Astro.props;
 
 const variants = {
-  primary: 'btn-primary',
-  secondary: 'btn-secondary',
-  ghost: 'btn-ghost',
-  green: 'btn-green',
+  primary: 'btn btn-primary',
+  secondary: 'btn btn-secondary',
+  ghost: 'btn btn-tertiary',
+  green: 'btn btn-green',
 };
 
 const classes = `${variants[variant]} ${className}`;

@@ -6,16 +6,13 @@ interface Props {
 
 const { variant = 'default', class: className = '' } = Astro.props;
 
-const variantStyles: Record<string, string> = {
-  default: '',
-  green: 'background: var(--apple-green-light); color: var(--apple-green); border-color: rgba(52,199,89,0.15);',
-  blue: 'background: var(--apple-blue-light); color: var(--apple-blue); border-color: rgba(0,113,227,0.15);',
+const variantClasses: Record<string, string> = {
+  default: 'badge badge-neutral',
+  green: 'badge badge-green',
+  blue: 'badge badge-blue',
 };
 ---
 
-<span
-  class={`apple-badge ${className}`}
-  style={variantStyles[variant]}
->
+<span class={`${variantClasses[variant]} ${className}`}>
   <slot />
 </span>

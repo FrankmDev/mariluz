@@ -1,6 +1,7 @@
 ---
 import { siteConfig } from '../../config/site';
 import { MessageCircle, Phone, Mail } from 'lucide-astro';
+import LiquidAction from '../ui/LiquidAction.astro';
 ---
 
 <footer class="footer" aria-label="Pie de página">
@@ -10,12 +11,12 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
     <div class="cta-banner reveal">
       <div class="banner-specular"></div>
       <div class="banner-content">
-        <h3 class="banner-title">Empieza a ahorrar ya</h3>
-        <p class="banner-text">Envía tu factura y recibe tu estudio en 24h</p>
-        <a href={siteConfig.whatsappUrl} class="banner-cta">
+        <h3 class="banner-title">Solicita una revisión clara de tu factura</h3>
+        <p class="banner-text">Primero se revisa. Solo se propone un cambio cuando mejora el caso.</p>
+        <LiquidAction href="#contacto" class="banner-cta">
           <MessageCircle size={18} fill="currentColor" />
-          Contactar por WhatsApp
-        </a>
+          Enviar factura
+        </LiquidAction>
       </div>
     </div>
 
@@ -28,21 +29,21 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
           luzaria<span class="dot">.</span>
         </a>
         <p class="brand-tagline">
-          Asesoría energética en Zoco Energía. Ahorra en tu factura de luz sin complicaciones.
+          Asesoría energética personal, con revisión previa y decisión informada.
         </p>
         <div class="trust-badges">
           <span class="badge">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
-            Sin permanencia
+            Sin cambio automático
           </span>
           <span class="badge">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"/>
               <path d="M12 6v6l4 2"/>
             </svg>
-            24h respuesta
+            Revisión inicial
           </span>
         </div>
       </div>
@@ -53,10 +54,8 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
           <h4 class="links-title">Servicio</h4>
           <ul class="links-list">
             <li><a href="#como-funciona">Cómo funciona</a></li>
-            <li><a href="#beneficios">Beneficios</a></li>
             <li><a href="#sobre-mi">Sobre mí</a></li>
-            <li><a href="#testimonios">Testimonios</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#contacto">Enviar factura</a></li>
             <li><a href="#faq">Preguntas frecuentes</a></li>
           </ul>
         </div>
@@ -133,21 +132,52 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
     position: relative;
     margin-bottom: 64px;
     padding: 40px;
-    border-radius: 28px;
+    border-radius: var(--radius-2xl);
     overflow: hidden;
-    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
-    box-shadow: 
-      0 20px 60px rgba(0,122,255,0.2),
-      0 8px 24px rgba(0,122,255,0.12);
+    background: linear-gradient(135deg, rgba(236, 246, 255, 0.86) 0%, rgba(243, 240, 255, 0.8) 100%);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: var(--shadow-glass);
+    transition: transform 0.45s var(--ease-ios-spring), box-shadow 0.35s var(--ease-ios);
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .cta-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    background:
+      linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.20) 20%, transparent 38%),
+      radial-gradient(ellipse 78% 46% at 50% -10%, rgba(0,122,255,0.10), transparent 72%);
+    opacity: 0;
+    transform: translateX(-14%);
+    pointer-events: none;
+    transition: opacity 0.35s var(--ease-ios), transform 0.7s var(--ease-ios-decel);
+  }
+
+  .cta-banner:hover {
+    transform: translateY(-4px) scale(1.003);
+    box-shadow: var(--shadow-glass-hover);
+  }
+
+  .cta-banner:hover::after {
+    opacity: 0.74;
+    transform: translateX(0);
   }
 
   .banner-specular {
     position: absolute;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 55%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 58%, transparent 100%);
     pointer-events: none;
-    border-radius: 28px 28px 0 0;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
   }
 
   .banner-content {
@@ -163,45 +193,44 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
     font-family: var(--font-display);
     font-size: 1.75rem;
     font-weight: 700;
-    color: white;
+    color: var(--text-primary);
     margin: 0 0 8px;
     letter-spacing: -0.02em;
   }
 
   .banner-text {
     font-size: var(--text-md);
-    color: rgba(255,255,255,0.8);
+    color: var(--text-secondary);
     margin: 0;
   }
 
-  .banner-cta {
+  :global(.banner-cta) {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     padding: 16px 28px;
-    background: rgba(255,255,255,0.95);
-    color: #007AFF;
+    background: var(--color-primary);
+    color: white;
     font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
     border-radius: 100px;
     box-shadow: 
-      0 4px 16px rgba(0,0,0,0.15),
-      inset 0 1px 1px rgba(255,255,255,1);
-    transition: all 0.3s var(--ease-ios-spring);
+      0 8px 24px rgba(0, 122, 255, 0.22),
+      inset 0 1px 1px rgba(255,255,255,0.25);
+    transition: transform 0.3s var(--ease-ios-spring), background 0.3s var(--ease-ios), box-shadow 0.3s var(--ease-ios);
     flex-shrink: 0;
   }
 
-  .banner-cta:hover {
-    transform: translateY(-3px) scale(1.03);
-    background: white;
+  :global(.banner-cta:hover) {
+    transform: translateY(-3px);
+    background: var(--color-primary-hover);
     box-shadow: 
-      0 12px 32px rgba(0,0,0,0.25),
-      inset 0 1px 1px rgba(255,255,255,1);
-    letter-spacing: 0.01em;
+      0 12px 32px rgba(0, 122, 255, 0.28),
+      inset 0 1px 1px rgba(255,255,255,0.28);
   }
 
-  .banner-cta:active {
+  :global(.banner-cta:active) {
     transform: translateY(-1px) scale(0.98);
     box-shadow: 
       0 6px 16px rgba(0,0,0,0.2),
@@ -231,7 +260,7 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
     letter-spacing: -0.04em;
     text-decoration: none;
     margin-bottom: 16px;
-    transition: all 0.3s var(--ease-ios-spring);
+    transition: transform 0.3s var(--ease-ios-spring), opacity 0.3s var(--ease-ios);
   }
 
   .footer-brand:hover {
@@ -264,14 +293,21 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
     background: rgba(255,255,255,0.7);
     backdrop-filter: blur(10px) saturate(160%);
     -webkit-backdrop-filter: blur(10px) saturate(160%);
-    border: 1px solid rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.58);
     border-radius: 100px;
     font-size: 0.8125rem;
     font-weight: 500;
     color: var(--label-secondary);
     box-shadow: 
       inset 0 1px 1px rgba(255,255,255,1),
-      0 2px 8px rgba(0,0,0,0.04);
+      0 1px 0 rgba(255,255,255,0.4);
+    transition: transform 0.3s var(--ease-ios-spring), background 0.3s var(--ease-ios), border-color 0.3s var(--ease-ios);
+  }
+
+  .badge:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.82);
+    border-color: rgba(255,255,255,0.68);
   }
 
   /* Links Section */
@@ -311,7 +347,7 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
     font-size: 0.9375rem;
     color: var(--label-secondary);
     text-decoration: none;
-    transition: all 0.25s var(--ease-ios-spring);
+    transition: color 0.25s var(--ease-ios), transform 0.25s var(--ease-ios-spring);
     position: relative;
   }
 
@@ -328,6 +364,7 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
 
   .links-list a:hover {
     color: var(--ios-blue);
+    transform: translateX(3px);
   }
 
   .links-list a:hover::after {
@@ -425,7 +462,7 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
       font-size: var(--text-base);
     }
 
-    .banner-cta {
+    :global(.banner-cta) {
       width: 100%;
       justify-content: center;
       padding: 14px 24px;
@@ -508,5 +545,20 @@ import { MessageCircle, Phone, Mail } from 'lucide-astro';
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-banner,
+    .cta-banner::after,
+    .badge,
+    .links-list a {
+      transition: none !important;
+    }
+
+    .cta-banner:hover,
+    .badge:hover,
+    .links-list a:hover {
+      transform: none;
+    }
   }
 </style>

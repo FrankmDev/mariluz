@@ -1,0 +1,39 @@
+---
+interface Props {
+  href?: string;
+  type?: 'button' | 'submit';
+  class?: string;
+  ariaLabel?: string;
+  rel?: string;
+  target?: string;
+  bgClass?: string;
+  shineClass?: string;
+  contentClass?: string;
+}
+
+const {
+  href,
+  type = 'button',
+  class: className = '',
+  ariaLabel,
+  rel,
+  target,
+  bgClass,
+  shineClass,
+  contentClass,
+} = Astro.props;
+---
+
+{href ? (
+  <a href={href} class={className} aria-label={ariaLabel} rel={rel} target={target}>
+    {bgClass && <span class={bgClass} aria-hidden="true"></span>}
+    {shineClass && <span class={shineClass} aria-hidden="true"></span>}
+    {contentClass ? <span class={contentClass}><slot /></span> : <slot />}
+  </a>
+) : (
+  <button type={type} class={className} aria-label={ariaLabel}>
+    {bgClass && <span class={bgClass} aria-hidden="true"></span>}
+    {shineClass && <span class={shineClass} aria-hidden="true"></span>}
+    {contentClass ? <span class={contentClass}><slot /></span> : <slot />}
+  </button>
+)}

@@ -94,13 +94,6 @@ const localBusinessSchema = {
     "knowsAbout": ["Energía", "Tarifas eléctricas", "Ahorro energético"]
   },
   "foundingDate": `${siteConfig.founded}-01-01`,
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": siteConfig.advisor.satisfaction.toString(),
-    "reviewCount": siteConfig.advisor.reviews.toString(),
-    "bestRating": "5",
-    "worstRating": "1"
-  },
   "sameAs": [
     siteConfig.social.whatsapp
   ]
@@ -128,7 +121,7 @@ const serviceSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Análisis de factura de luz",
-          "description": "Estudio gratuito de tu factura para encontrar la mejor tarifa"
+          "description": "Estudio gratuito de tu factura para valorar si hay margen real de mejora"
         },
         "price": "0",
         "priceCurrency": "EUR"
@@ -138,7 +131,7 @@ const serviceSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Cambio de comercializadora",
-          "description": "Gestión completa del cambio de compañía eléctrica sin coste"
+          "description": "Gestión del cambio de comercializadora solo cuando el cliente acepta una propuesta con ahorro"
         },
         "price": "0",
         "priceCurrency": "EUR"

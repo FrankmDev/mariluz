@@ -1,25 +1,20 @@
 ---
 import { siteConfig } from '../../config/site';
 import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import LiquidAction from '../ui/LiquidAction.astro';
 ---
 
 <section id="contacto" class="contact-section" aria-label="Envía tu factura">
   <div class="container-custom">
 
-    <!-- Section Header -->
-    <header class="section-header reveal">
-      <div class="eyebrow">
-        <span class="eyebrow-dot" aria-hidden="true"></span>
-        <span>Empieza a ahorrar ya</span>
-      </div>
-      <h2 class="headline">
-        <span class="headline-main">Envía tu factura.</span>
-        <span class="headline-accent">Te llamo yo.</span>
-      </h2>
-      <p class="subhead">
-        Adjunta tu última factura de luz y déjame tu teléfono. En menos de 24 horas tendrás <strong>tu estudio personalizado de ahorro</strong>, sin compromiso.
-      </p>
-    </header>
+    <SectionHeader
+      eyebrow="Revisión inicial"
+      title="Envía tu factura."
+      accent="La reviso."
+      subtitle="Adjunta tu última factura de luz y déjame tu teléfono. Haré una <strong>revisión inicial</strong> y solo propondré un cambio cuando haya una mejora clara."
+      variant="compact"
+    />
 
     <!-- Form Card -->
     <div class="form-wrapper reveal" data-delay="1">
@@ -43,11 +38,11 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
             <div class="field-group">
               <label for="name" class="field-label">Nombre completo</label>
               <div class="input-wrap">
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  class="form-input" 
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-input surface-field"
                   placeholder="Tu nombre"
                   required
                 />
@@ -58,11 +53,11 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
             <div class="field-group">
               <label for="phone" class="field-label">Teléfono de contacto</label>
               <div class="input-wrap">
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  name="phone" 
-                  class="form-input" 
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="form-input surface-field"
                   placeholder="Ej: 612 345 678"
                   required
                 />
@@ -73,11 +68,11 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
             <div class="field-group">
               <label for="email" class="field-label">Correo electrónico</label>
               <div class="input-wrap">
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email" 
-                  class="form-input" 
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input surface-field"
                   placeholder="tu@email.com"
                 />
               </div>
@@ -93,6 +88,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
                   name="attachment" 
                   class="file-input"
                   accept=".pdf,.jpg,.jpeg,.png"
+                  required
                 />
                 <div class="upload-content">
                   <div class="upload-icon">
@@ -115,12 +111,12 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
             <div class="field-group">
               <label for="message" class="field-label">Mensaje (opcional)</label>
               <div class="input-wrap">
-                <textarea 
-                  id="message" 
-                  name="body" 
-                  class="form-textarea" 
+                <textarea
+                  id="message"
+                  name="body"
+                  class="form-textarea surface-field"
                   rows="3"
-                  placeholder="Cuéntame algo sobre tu consumo o cualquier duda..."
+                  placeholder="Cuéntame si te ha subido la factura o si quieres revisar algo concreto."
                 ></textarea>
               </div>
             </div>
@@ -128,24 +124,26 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
             <!-- File notice -->
             <div class="file-notice file-notice--info" id="file-notice">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <span>Tu factura se enviará <strong>automáticamente</strong> junto con el formulario.</span>
+              <span>La factura se adjuntará al enviar el formulario.</span>
             </div>
 
             <!-- Submit -->
-            <button type="submit" class="submit-btn">
-              <span class="submit-bg"></span>
-              <span class="submit-shine"></span>
-              <span class="submit-content">
-                <Mail size={18} aria-hidden="true" />
-                Solicitar análisis gratuito
-                <ArrowRight size={16} aria-hidden="true" />
-              </span>
-            </button>
+            <LiquidAction
+              type="submit"
+              class="submit-btn"
+              bgClass="submit-bg"
+              shineClass="submit-shine"
+              contentClass="submit-content"
+            >
+              <Mail size={18} aria-hidden="true" />
+              Solicitar revisión
+              <ArrowRight size={16} aria-hidden="true" />
+            </LiquidAction>
 
             <!-- Trust note -->
             <div class="form-trust">
               <CheckCircle size={14} aria-hidden="true" />
-              <span>Sin compromiso. Sin costes. Respuesta en menos de 24h.</span>
+              <span>Revisión inicial sin coste. Sin cambio automático. Si no compensa, no se cambia.</span>
             </div>
           </form>
         </div>
@@ -154,7 +152,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
 
     <!-- Secondary contact options -->
     <div class="alt-contact reveal" data-delay="2">
-      <p class="alt-text">¿Prefieres enviarlo por otro canal?</p>
+      <p class="alt-text">También puedes enviarla por otro canal si te resulta más cómodo.</p>
       <div class="alt-links">
         <a href={siteConfig.whatsappUrl} class="alt-link alt-whatsapp" rel="noopener noreferrer">
           WhatsApp
@@ -178,83 +176,6 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
     overflow: hidden;
   }
 
-  /* Header */
-  .section-header {
-    text-align: center;
-    margin-bottom: var(--space-12);
-  }
-
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-pill);
-    margin-bottom: var(--space-4);
-    background: rgba(255,255,255,0.68);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgba(255,255,255,0.65);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.92), 0 2px 8px rgba(0,0,0,0.04);
-    font-size: var(--text-sm);
-    font-weight: var(--font-medium);
-    color: var(--text-secondary);
-  }
-
-  .eyebrow-dot {
-    width: var(--space-2);
-    height: var(--space-2);
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--ios-blue) 0%, #5AC8FA 100%);
-    box-shadow: 0 0 0 0 rgba(0,122,255,0.4);
-    animation: dot-pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes dot-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(0,122,255,0.4); }
-    50% { box-shadow: 0 0 0 var(--space-2) rgba(0,122,255,0); }
-  }
-
-  .headline { margin: 0 0 var(--space-4); }
-
-  .headline-main {
-    display: block;
-    font-family: var(--font-display);
-    font-size: var(--text-section);
-    font-weight: var(--font-extrabold);
-    letter-spacing: var(--tracking-tighter);
-    line-height: var(--leading-tight);
-    color: var(--text-primary);
-    margin-bottom: var(--space-1);
-  }
-
-  .headline-accent {
-    display: block;
-    font-family: var(--font-display);
-    font-size: var(--text-section);
-    font-weight: var(--font-extrabold);
-    letter-spacing: var(--tracking-tighter);
-    line-height: var(--leading-tight);
-    background: linear-gradient(135deg, var(--ios-blue) 0%, #5AC8FA 55%, #34AADC 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .subhead {
-    font-size: var(--text-md);
-    line-height: var(--leading-relaxed);
-    color: var(--text-secondary);
-    letter-spacing: var(--tracking-normal);
-    margin: 0 auto;
-    max-width: 540px;
-  }
-
-  .subhead strong {
-    color: var(--text-primary);
-    font-weight: var(--font-semibold);
-  }
-
   /* Form Card */
   .form-wrapper {
     max-width: 560px;
@@ -263,24 +184,49 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
 
   .form-card {
     position: relative;
-    border-radius: 26px;
+    border-radius: var(--radius-2xl);
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
-    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.98),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.025),
-      0 4px 6px rgba(0, 0, 0, 0.04),
-      0 12px 40px rgba(0, 0, 0, 0.09),
-      0 32px 80px rgba(0, 0, 0, 0.06);
-    transition: all 0.5s var(--ease-ios-spring);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-glass);
+    transition: transform 0.45s var(--ease-ios-spring), box-shadow 0.35s var(--ease-ios), background 0.35s var(--ease-ios);
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .form-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    background:
+      linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.20) 20%, transparent 38%),
+      radial-gradient(ellipse 78% 45% at 50% -10%, rgba(0,122,255,0.10), transparent 72%);
+    opacity: 0;
+    transform: translateX(-14%);
+    pointer-events: none;
+    transition: opacity 0.35s var(--ease-ios), transform 0.7s var(--ease-ios-decel);
+  }
+
+  .form-card:hover {
+    transform: translateY(-4px) scale(1.003);
+    background: var(--glass-bg-hover);
+    box-shadow: var(--shadow-glass-hover);
+  }
+
+  .form-card:hover::after {
+    opacity: 0.74;
+    transform: translateX(0);
   }
 
   .form-specular {
     position: absolute;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 55%;
     background: linear-gradient(180deg,
       rgba(255,255,255,0.92) 0%,
@@ -295,11 +241,17 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
   .form-glow {
     position: absolute;
     inset: -1px;
-    border-radius: 27px;
+    border-radius: inherit;
     background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,122,255,0.18) 0%, transparent 70%);
     opacity: 0.6;
+    transition: opacity 0.35s var(--ease-ios), transform 0.7s var(--ease-ios-decel);
     pointer-events: none;
     z-index: 0;
+  }
+
+  .form-card:hover .form-glow {
+    opacity: 0.78;
+    transform: translateY(-3px) scale(1.025);
   }
 
   .form-content {
@@ -334,36 +286,12 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
 
   .form-input,
   .form-textarea {
-    width: 100%;
-    padding: var(--space-3) var(--space-4);
-    font-family: var(--font-display);
-    font-size: var(--text-base);
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: var(--radius-lg);
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
-    transition: all 0.25s var(--ease-ios);
-    outline: none;
     resize: vertical;
   }
 
   .form-input::placeholder,
   .form-textarea::placeholder {
     color: var(--text-quaternary);
-  }
-
-  .form-input:hover,
-  .form-textarea:hover {
-    border-color: rgba(0, 122, 255, 0.2);
-    background: rgba(255, 255, 255, 0.75);
-  }
-
-  .form-input:focus,
-  .form-textarea:focus {
-    border-color: var(--color-primary);
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1), inset 0 1px 2px rgba(0, 0, 0, 0.02);
   }
 
   /* File Upload */
@@ -373,8 +301,8 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
     border-radius: var(--radius-lg);
     padding: var(--space-6);
     text-align: center;
-    background: rgba(255, 255, 255, 0.4);
-    transition: all 0.3s var(--ease-ios);
+    background: rgba(255, 255, 255, 0.46);
+    transition: border-color 0.3s var(--ease-ios), background 0.3s var(--ease-ios), box-shadow 0.3s var(--ease-ios), transform 0.3s var(--ease-ios-spring);
     cursor: pointer;
   }
 
@@ -382,6 +310,13 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
   .upload-zone.drag-over {
     border-color: var(--color-primary);
     background: rgba(0, 122, 255, 0.04);
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .upload-zone:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.12);
   }
 
   .file-input {
@@ -411,6 +346,14 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
     background: linear-gradient(135deg, rgba(0,122,255,0.1) 0%, rgba(0,122,255,0.05) 100%);
     color: var(--color-primary);
     margin-bottom: var(--space-1);
+    transition: transform 0.35s var(--ease-ios-spring), box-shadow 0.35s var(--ease-ios), background 0.35s var(--ease-ios);
+  }
+
+  .upload-zone:hover .upload-icon,
+  .upload-zone.drag-over .upload-icon {
+    transform: translateY(-2px) scale(1.035);
+    background: linear-gradient(135deg, rgba(0,122,255,0.16) 0%, rgba(90,200,250,0.08) 100%);
+    box-shadow: 0 14px 30px rgba(0, 122, 255, 0.12);
   }
 
   .upload-text {
@@ -469,7 +412,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
     cursor: pointer;
     padding: 0;
     margin-left: var(--space-1);
-    transition: all 0.2s var(--ease-ios);
+    transition: background 0.2s var(--ease-ios), transform 0.2s var(--ease-ios-spring);
   }
 
   .preview-remove:hover {
@@ -478,7 +421,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
   }
 
   /* Submit Button */
-  .submit-btn {
+  :global(.submit-btn) {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -505,7 +448,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
     margin-top: var(--space-2);
   }
 
-  .submit-bg {
+  :global(.submit-bg) {
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 50%, var(--color-primary) 100%);
@@ -513,7 +456,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
     animation: shimmer-btn 4.5s ease-in-out infinite;
   }
 
-  .submit-shine {
+  :global(.submit-shine) {
     position: absolute;
     top: 0;
     left: -100%;
@@ -523,7 +466,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
     animation: shine 3.5s ease-in-out infinite;
   }
 
-  .submit-content {
+  :global(.submit-content) {
     position: relative;
     z-index: 1;
     display: flex;
@@ -531,7 +474,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
     gap: var(--space-2);
   }
 
-  .submit-btn:hover {
+  :global(.submit-btn:hover) {
     transform: scale(1.04) translateY(-3px);
     box-shadow:
       0 8px 28px rgba(0,122,255,0.45),
@@ -539,7 +482,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
       inset 0 1px 0 rgba(255,255,255,0.35);
   }
 
-  .submit-btn:active {
+  :global(.submit-btn:active) {
     transform: scale(0.97) translateY(0);
   }
 
@@ -621,7 +564,8 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
     font-size: var(--text-sm);
     font-weight: var(--font-medium);
     text-decoration: none;
-    transition: all 0.3s var(--ease-ios-spring);
+    transition: transform 0.3s var(--ease-ios-spring), background 0.3s var(--ease-ios), border-color 0.3s var(--ease-ios), box-shadow 0.3s var(--ease-ios);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.72);
   }
 
   .alt-whatsapp {
@@ -632,7 +576,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
 
   .alt-whatsapp:hover {
     background: rgba(37, 211, 102, 0.18);
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.018);
   }
 
   .alt-email {
@@ -643,7 +587,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
 
   .alt-email:hover {
     background: rgba(0, 122, 255, 0.14);
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.018);
   }
 
   .alt-phone {
@@ -654,7 +598,7 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
 
   .alt-phone:hover {
     background: rgba(255, 149, 0, 0.14);
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.018);
   }
 
   /* Responsive */
@@ -663,21 +607,11 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
       padding: var(--space-6) var(--space-5);
     }
 
-    .headline-main,
-    .headline-accent {
-      font-size: clamp(2rem, 8vw, 2.75rem);
-    }
-
-    .subhead {
-      max-width: 400px;
-      padding: 0 var(--space-2);
-    }
-
     .contact-form {
       gap: var(--space-4);
     }
 
-    .submit-btn {
+    :global(.submit-btn) {
       padding: 15px 28px;
       font-size: var(--text-md);
       width: 100%;
@@ -709,19 +643,30 @@ import { Mail, Upload, ArrowRight, FileText, CheckCircle } from 'lucide-astro';
     }
 
     .form-card {
-      border-radius: 20px;
+      border-radius: var(--radius-xl);
     }
 
     .form-specular,
     .form-glow {
-      border-radius: 21px;
+      border-radius: inherit;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .submit-bg,
-    .submit-shine {
+    .form-card,
+    .form-card::after,
+    .form-glow,
+    .upload-zone,
+    :global(.submit-bg),
+    :global(.submit-shine) {
       animation: none !important;
+      transition: none !important;
+    }
+
+    .form-card:hover,
+    .upload-zone:hover,
+    :global(.submit-btn:hover) {
+      transform: none;
     }
   }
 </style>
