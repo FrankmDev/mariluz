@@ -2,11 +2,11 @@ export const siteConfig = {
   name: 'luzaria',
   phone: '+34 630 715 378',
   phoneClean: '34630715378',
-  whatsappUrl: 'https://wa.me/34630715378?text=Hola%20Mariluz,%20me%20gustaría%20que%20revisaras%20mi%20factura%20de%20luz',
+  whatsappUrl: 'https://wa.me/34630715378?text=Hola%20Mariluz,%20me%20gustaría%20solicitar%20una%20revisión%20gratuita%20de%20mi%20factura%20de%20luz',
   email: 'mluzmarin1969@gmail.com',
   meta: {
     title: 'luzaria | Revisión clara de tu factura de luz',
-    description: 'Mariluz Marín revisa tu factura de luz, analiza tus condiciones y te explica si conviene cambiar, ajustar o mantener tu tarifa.',
+    description: 'Mariluz Marín revisa tu factura de luz y te explica si hay margen real de ahorro antes de proponer cualquier cambio.',
     ogImage: '/og-image.svg',
     ogImageAlt: 'luzaria - Revisión clara de tu factura de luz',
     canonical: 'https://luzaria.es',
@@ -35,7 +35,7 @@ export const siteConfig = {
   },
   transparency: {
     noSavingCopy: 'Si no veo una mejora clara, la recomendación será no cambiar.',
-    freeServiceCopy: 'La revisión inicial de la factura no tiene coste para ti. Si después decides contratar una opción propuesta, la comercializadora puede remunerar la gestión.',
+    freeServiceCopy: 'El estudio inicial de la factura no tiene coste para ti. Si después decides contratar una opción propuesta, la comercializadora puede remunerar la gestión.',
     privacyCopy: 'Uso tu factura solo para estudiar tu caso y responderte. No la publico ni la comparto para otros fines.',
     reviewCopy: 'Revisión individual de tu factura, con una explicación clara antes de cualquier decisión.',
     decisionCopy: 'Solo se propone un cambio cuando mejora precio o condiciones de forma clara y lo autorizas expresamente.',
@@ -67,8 +67,8 @@ export const siteConfig = {
 // FAQ data for structured data
 export const faqData = [
   {
-    question: '¿Por qué la revisión no tiene coste para mí?',
-    answer: 'La revisión inicial de tu factura no tiene coste directo para ti. Si después aceptas una propuesta y se tramita el cambio, la gestión puede estar remunerada por la comercializadora colaboradora. Antes de avanzar, te explicaré las condiciones.',
+    question: '¿La revisión de la factura es gratuita?',
+    answer: 'Sí. El estudio inicial no tiene coste para ti. Si después aceptas una propuesta y se tramita un cambio, la comercializadora puede remunerar la gestión. Antes de avanzar, te explicaré las condiciones.',
   },
   {
     question: '¿Se cambia la comercializadora sin mi autorización?',
@@ -76,7 +76,7 @@ export const faqData = [
   },
   {
     question: '¿Qué documentación necesito enviar?',
-    answer: 'Para una primera revisión normalmente basta con tu última factura de luz. Si más adelante decides avanzar, te indicaré qué documentación sería necesaria antes de cualquier gestión.',
+    answer: 'Para una primera revisión normalmente basta con tu última factura de luz. Si decides avanzar, te indicaré qué documentación haría falta antes de cualquier gestión.',
   },
   {
     question: '¿Qué pasa si mi tarifa actual ya está bien?',

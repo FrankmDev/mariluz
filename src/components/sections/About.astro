@@ -29,7 +29,7 @@ const averageYearly = siteConfig.savings.averageYearly;
       eyebrow="Tu asesora"
       title="Quién te atiende."
       accent="Mariluz Marín."
-      subtitle="Luzaria es la marca personal de asesoría energética de Mariluz Marín, asesora en Zoco Energía."
+      subtitle="Luzaria es la asesoría energética personal de Mariluz Marín, asesora en Zoco Energía."
     />
 
     <div class="about-grid">
@@ -62,7 +62,7 @@ const averageYearly = siteConfig.savings.averageYearly;
           <div class="profile-meta-pills">
             <span class="surface-pill profile-pill">
               <BadgeCheck size={13} aria-hidden="true" />
-              Desde {advisor.since}
+              Experiencia contrastada
             </span>
             <span class="surface-pill profile-pill">
               <Shield size={13} aria-hidden="true" />
@@ -105,7 +105,7 @@ const averageYearly = siteConfig.savings.averageYearly;
             </span>
             <div class="stat-copy">
               <div class="stat-value stat-value-accent"><Counter endValue={averageYearly} suffix="€" /></div>
-              <p class="stat-label">referencia orientativa</p>
+              <p class="stat-label">ahorro orientativo</p>
             </div>
           </div>
         </div>
@@ -117,7 +117,7 @@ const averageYearly = siteConfig.savings.averageYearly;
           <p class="panel-kicker panel-kicker-green">Forma de trabajar</p>
           <h3 class="panel-title">Entender primero. Proponer después.</h3>
           <p class="panel-text">
-            Mi trabajo no consiste en cambiarte de compañía sin más. Reviso qué tienes contratado, qué condiciones conviene mirar y qué alternativa puede encajar con tu consumo.
+            Mi trabajo no consiste en cambiarte de compañía sin más. Reviso qué tienes contratado y solo propongo una alternativa si puede aportar ahorro o mejores condiciones.
           </p>
 
           <ul class="panel-list">
@@ -125,7 +125,7 @@ const averageYearly = siteConfig.savings.averageYearly;
               <span class="list-icon icon-tile icon-tile-green">
                 <CheckCircle2 size={14} aria-hidden="true" />
               </span>
-              Precios y condiciones explicadas antes
+              Precios y condiciones claros
             </li>
             <li>
               <span class="list-icon icon-tile icon-tile-green">
@@ -137,7 +137,7 @@ const averageYearly = siteConfig.savings.averageYearly;
               <span class="list-icon icon-tile icon-tile-green">
                 <CheckCircle2 size={14} aria-hidden="true" />
               </span>
-              También te diré si no conviene cambiar
+              Si no compensa, no se cambia
             </li>
           </ul>
         </div>
@@ -147,7 +147,7 @@ const averageYearly = siteConfig.savings.averageYearly;
         <div class="card-specular"></div>
         <div class="panel-body">
           <p class="panel-kicker panel-kicker-blue">Siguiente paso</p>
-          <h3 class="panel-title">Envía la factura y reviso tu caso.</h3>
+          <h3 class="panel-title">Envía tu factura y la estudio.</h3>
           <p class="panel-text">
             Recibirás una explicación clara antes de tomar cualquier decisión. Si no veo una mejora suficiente, no te propondré cambiar.
           </p>
@@ -159,19 +159,19 @@ const averageYearly = siteConfig.savings.averageYearly;
             </span>
             <span class="surface-pill trust-pill">
               <Sparkles size={13} aria-hidden="true" />
-              Sin cambio automático
+              Sin contratación automática
             </span>
           </div>
 
           <LiquidAction
             href="#contacto"
             class="about-cta-button"
-            ariaLabel="Enviar factura para revisión inicial"
+            ariaLabel="Solicitar revisión gratuita de factura"
             bgClass="about-cta-bg"
             contentClass="about-cta-content"
           >
             <Send size={17} aria-hidden="true" />
-            <span>Enviar factura</span>
+            <span>Solicitar revisión</span>
           </LiquidAction>
         </div>
       </article>
@@ -263,17 +263,7 @@ const averageYearly = siteConfig.savings.averageYearly;
     box-shadow: var(--shadow-glass-pressed);
   }
 
-  .about-stats {
-    background: var(--surface-tint-blue);
-  }
-
-  .about-bio {
-    background: var(--surface-tint-green);
-  }
-
-  .about-cta {
-    background: var(--surface-tint-violet);
-  }
+  /* All cards now share the same neutral glass background from .about-card */
 
   .card-specular {
     position: absolute;
@@ -444,10 +434,19 @@ const averageYearly = siteConfig.savings.averageYearly;
   }
 
   .stat-value-accent {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--cyan-500) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-primary);
+  }
+
+  /* Unify all icon-tiles to a single subtle blue-gray style */
+  .icon-tile-blue,
+  .icon-tile-violet,
+  .icon-tile-gradient,
+  .icon-tile-green,
+  .list-icon {
+    color: var(--color-primary);
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.10) 0%, rgba(0, 122, 255, 0.03) 100%);
+    border: 1px solid rgba(0, 122, 255, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.84);
   }
 
   .stat-label {
@@ -479,12 +478,10 @@ const averageYearly = siteConfig.savings.averageYearly;
     text-transform: uppercase;
   }
 
-  .panel-kicker-green {
-    color: var(--color-success-hover);
-  }
-
+  /* Unified neutral kickers */
+  .panel-kicker-green,
   .panel-kicker-blue {
-    color: var(--color-primary);
+    color: var(--text-tertiary);
   }
 
   .panel-title {

@@ -10,14 +10,14 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     <header class="section-header reveal">
       <div class="eyebrow">
         <span class="eyebrow-dot" aria-hidden="true"></span>
-        <span>Empieza ahora</span>
+        <span>Estudio gratuito</span>
       </div>
       <h2 class="headline">
-        <span class="headline-main">Una foto de tu factura.</span>
+        <span class="headline-main">Tu factura revisada.</span>
         <span class="headline-accent">Una explicación clara.</span>
       </h2>
       <p class="subhead">
-        Envíame tu última factura por WhatsApp, email o déjame tu teléfono. Normalmente respondo en menos de 24 horas con una <strong>lectura clara de tu factura</strong>, sin compromiso.
+        Envíame tu última factura por WhatsApp, email o déjame tu teléfono. Normalmente respondo en menos de 24 horas con un <strong>estudio claro de tu factura</strong>, sin compromiso.
       </p>
     </header>
 
@@ -146,17 +146,17 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
               </div>
               <div class="action-text">
                 <h3 class="action-title">WhatsApp</h3>
-                <p class="action-desc">Envíame una foto de tu factura y te digo qué veo.</p>
+                <p class="action-desc">Envíame tu factura y te explico si hay margen real.</p>
               </div>
               <div class="action-cta">
-                <span>Enviar factura</span>
+                <span>Solicitar revisión</span>
                 <ArrowRight size={16} aria-hidden="true" />
               </div>
             </div>
           </a>
 
           <!-- Email Action Card -->
-          <a href={`mailto:${siteConfig.email}?subject=Análisis de factura de luz&body=Hola, adjunto mi última factura para que me hagáis un análisis.`} class="action-card action-email reveal" data-delay="3">
+          <a href={`mailto:${siteConfig.email}?subject=Revisión de factura de luz&body=Hola, adjunto mi última factura para solicitar una revisión gratuita.`} class="action-card action-email reveal" data-delay="3">
             <div class="action-glass"></div>
             <div class="action-specular"></div>
             <div class="action-glow"></div>
@@ -166,7 +166,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
               </div>
               <div class="action-text">
                 <h3 class="action-title">Correo electrónico</h3>
-                <p class="action-desc">Adjunta tu factura por email y te preparo una explicación clara.</p>
+                <p class="action-desc">Adjunta tu factura y te preparo una explicación clara.</p>
               </div>
               <div class="action-cta">
                 <span>Enviar por email</span>
@@ -186,7 +186,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
               </div>
               <div class="action-text">
                 <h3 class="action-title">Te llamo yo</h3>
-                <p class="action-desc">Prefieres hablar? Llámame o escríbeme y vemos tu factura juntos.</p>
+                <p class="action-desc">¿Prefieres hablar? Llámame o escríbeme y revisamos tu factura.</p>
               </div>
               <div class="action-cta">
                 <span>Llamar ahora</span>
@@ -201,7 +201,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
         <div class="trust reveal" data-delay="5">
           <span class="pill">
             <ShieldCheck size={13} aria-hidden="true" />
-            Sin coste
+            Sin coste inicial
           </span>
           <span class="pill">
             <Lock size={13} aria-hidden="true" />
@@ -209,7 +209,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
           </span>
           <span class="pill pill-gold">
             <Star size={13} fill="currentColor" aria-hidden="true" />
-            4.9 / 5
+            Trato directo
           </span>
         </div>
       </div>
@@ -510,13 +510,13 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     width: 40px;
     height: 40px;
     border-radius: 12px;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--text-secondary);
     flex-shrink: 0;
-    box-shadow: 0 4px 16px rgba(0,122,255,0.28), inset 0 1px 0 rgba(255,255,255,0.3);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
   }
 
   .bill-company {
@@ -548,12 +548,12 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     gap: 4px;
     font-size: var(--text-xs);
     font-weight: var(--font-bold);
-    color: var(--color-primary);
-    background: rgba(0,122,255,0.08);
+    color: var(--text-secondary);
+    background: rgba(0,0,0,0.04);
     padding: 5px 10px;
     border-radius: 8px;
     flex-shrink: 0;
-    border: 1px solid rgba(0,122,255,0.1);
+    border: 1px solid var(--separator);
   }
 
   /* Divider */
@@ -595,21 +595,15 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     color: var(--text-tertiary);
   }
 
-  /* Color dots next to labels */
-  .bill-dot {
+  /* Unified neutral dots */
+  .bill-dot,
+  .bill-dot-orange,
+  .bill-dot-purple {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background: var(--gray-400);
     flex-shrink: 0;
-  }
-
-  .bill-dot-orange {
-    background: linear-gradient(135deg, #FF9500 0%, #FF6B00 100%);
-  }
-
-  .bill-dot-purple {
-    background: linear-gradient(135deg, #AF52DE 0%, #5856D6 100%);
   }
 
   .bill-val {
@@ -668,12 +662,12 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
 
   .bill-bar-punta {
     width: 62%;
-    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background: var(--color-primary);
   }
 
   .bill-bar-valle {
     width: 38%;
-    background: linear-gradient(90deg, var(--color-success) 0%, var(--green-400) 100%);
+    background: var(--gray-300);
   }
 
   /* Subtotal */
@@ -735,12 +729,12 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     align-items: center;
     gap: 8px;
     font-size: var(--text-xs);
-    color: var(--color-success);
-    background: rgba(52,199,89,0.08);
+    color: var(--text-secondary);
+    background: rgba(0,0,0,0.03);
     padding: 8px 14px;
     border-radius: var(--radius-pill);
     font-weight: var(--font-semibold);
-    border: 1px solid rgba(52,199,89,0.12);
+    border: 1px solid var(--separator);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
   }
 
@@ -748,7 +742,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: rgba(52,199,89,0.12);
+    background: rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -756,7 +750,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
   }
 
   .stamp-ring svg {
-    stroke: var(--color-success);
+    stroke: var(--text-tertiary);
   }
 
   /* Floating dot */
@@ -765,7 +759,7 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background: var(--color-primary);
     top: -7px;
     right: 36px;
     box-shadow: 0 0 0 5px rgba(0,122,255,0.12), 0 4px 16px rgba(0,122,255,0.35);
@@ -822,16 +816,11 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     transition: box-shadow 0.4s ease;
   }
 
-  .action-whatsapp .action-glass {
-    background: rgba(238, 255, 245, 0.72);
-  }
-
-  .action-email .action-glass {
-    background: rgba(236, 246, 255, 0.72);
-  }
-
+  /* Neutral glass for all action cards */
+  .action-whatsapp .action-glass,
+  .action-email .action-glass,
   .action-phone .action-glass {
-    background: rgba(255, 248, 235, 0.72);
+    background: rgba(255, 255, 255, 0.72);
   }
 
   .action-card:hover .action-glass {
@@ -868,16 +857,11 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     z-index: 0;
   }
 
-  .action-whatsapp .action-glow {
-    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(52,199,89,0.22) 0%, transparent 70%);
-  }
-
-  .action-email .action-glow {
-    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,122,255,0.22) 0%, transparent 70%);
-  }
-
+  /* Subtle blue glow for all action cards */
+  .action-whatsapp .action-glow,
+  .action-email .action-glow,
   .action-phone .action-glow {
-    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,149,0,0.22) 0%, transparent 70%);
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,122,255,0.15) 0%, transparent 70%);
   }
 
   .action-card:hover .action-glow {
@@ -906,22 +890,13 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     transition: transform 0.3s var(--ease-ios-spring);
   }
 
-  .action-whatsapp .action-icon-wrap {
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-    color: white;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 6px 20px rgba(37,211,102,0.25);
-  }
-
-  .action-email .action-icon-wrap {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    color: white;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 6px 20px rgba(0,122,255,0.25);
-  }
-
+  /* Neutral icon frames for all actions */
+  .action-whatsapp .action-icon-wrap,
+  .action-email .action-icon-wrap,
   .action-phone .action-icon-wrap {
-    background: linear-gradient(135deg, #FF9500 0%, #FF6B00 100%);
-    color: white;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 6px 20px rgba(255,149,0,0.25);
+    background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+    color: var(--color-primary);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 4px 12px rgba(0,0,0,0.05);
   }
 
   .action-card:hover .action-icon-wrap {
@@ -963,12 +938,10 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     white-space: nowrap;
   }
 
-  .action-whatsapp .action-cta {
-    color: var(--color-success);
-  }
-
+  .action-whatsapp .action-cta,
+  .action-email .action-cta,
   .action-phone .action-cta {
-    color: #FF9500;
+    color: var(--color-primary);
   }
 
   .action-card:hover .action-cta {
@@ -1043,31 +1016,32 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     flex-shrink: 0;
   }
 
+  /* De-emphasize the gold pill to match standard neutral pills */
   .pill-gold {
-    color: var(--color-primary);
-    background: rgba(236, 246, 255, 0.72);
-    border-color: rgba(0, 122, 255, 0.25);
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.70);
+    border-color: rgba(255, 255, 255, 0.58);
     box-shadow: var(--shadow-glass);
   }
 
   .pill-gold::before {
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(255, 255, 255, 0.50) 35%,
-      rgba(255, 255, 255, 0.10) 65%,
+      rgba(255, 255, 255, 0.88) 0%,
+      rgba(255, 255, 255, 0.40) 35%,
+      rgba(255, 255, 255, 0.08) 65%,
       transparent 100%
     );
   }
 
   .pill-gold:hover {
-    background: rgba(236, 246, 255, 0.85);
+    background: rgba(255, 255, 255, 0.80);
     box-shadow: var(--shadow-glass-hover);
   }
 
   .pill-gold svg {
-    fill: var(--color-primary);
-    stroke: none;
+    fill: none;
+    stroke: var(--text-tertiary);
   }
 
   /* ─── Responsive ──────────────────────────────────────────────── */

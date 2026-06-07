@@ -9,10 +9,10 @@ import LiquidAction from '../ui/LiquidAction.astro';
   <div class="container-custom">
 
     <SectionHeader
-      eyebrow="Revisión inicial"
+      eyebrow="Estudio gratuito"
       title="Envía tu factura."
-      accent="La reviso."
-      subtitle="Adjunta tu última factura de luz y déjame tu teléfono. Haré una <strong>revisión inicial</strong> de consumo, potencia y condiciones antes de proponerte nada."
+      accent="La estudio."
+      subtitle="Adjunta tu última factura de luz y déjame tu teléfono. Haré un <strong>estudio inicial</strong> de consumo, potencia y condiciones antes de proponerte nada."
       variant="compact"
     />
 
@@ -80,7 +80,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
 
             <!-- File Upload -->
             <div class="field-group">
-              <label for="bill-file" class="field-label">Adjunta tu factura</label>
+              <label for="bill-file" class="field-label">Factura de luz</label>
               <div class="upload-zone" id="upload-zone">
                 <input 
                   type="file" 
@@ -116,7 +116,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
                   name="body"
                   class="form-textarea surface-field"
                   rows="3"
-                  placeholder="Cuéntame si te ha subido la factura o si quieres revisar algo concreto."
+                  placeholder="Cuéntame si quieres revisar subida de precio, potencia o alguna duda concreta."
                 ></textarea>
               </div>
             </div>
@@ -136,7 +136,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
               contentClass="submit-content"
             >
               <Mail size={18} aria-hidden="true" />
-              Solicitar revisión
+              Solicitar estudio gratuito
               <ArrowRight size={16} aria-hidden="true" />
             </LiquidAction>
 

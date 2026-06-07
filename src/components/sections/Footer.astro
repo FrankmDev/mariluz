@@ -1,24 +1,14 @@
 ---
 import { siteConfig } from '../../config/site';
-import { MessageCircle, Phone, Mail } from 'lucide-astro';
-import LiquidAction from '../ui/LiquidAction.astro';
+import { MessageCircle, Phone, Mail, ShieldCheck, Clock } from 'lucide-astro';
 ---
 
 <footer class="footer" aria-label="Pie de página">
-  <div class="container-custom footer-container">
+  <!-- Atmospheric orbs -->
+  <div class="orb orb-blue-soft float-slow" style="width: 300px; height: 300px; top: -10%; left: -6%; opacity: 0.22;" aria-hidden="true"></div>
+  <div class="orb orb-cyan-soft float-breathe" style="width: 220px; height: 220px; bottom: 20%; right: -5%; opacity: 0.18;" aria-hidden="true"></div>
 
-    <!-- CTA Banner -->
-    <div class="cta-banner reveal">
-      <div class="banner-specular"></div>
-      <div class="banner-content">
-        <h3 class="banner-title">Solicita una revisión clara de tu factura</h3>
-        <p class="banner-text">Primero se revisa. Después decides con las condiciones claras.</p>
-        <LiquidAction href="#contacto" class="banner-cta">
-          <MessageCircle size={18} fill="currentColor" />
-          Enviar factura
-        </LiquidAction>
-      </div>
-    </div>
+  <div class="container-custom footer-container">
 
     <!-- Main Footer Content -->
     <div class="footer-main">
@@ -29,21 +19,16 @@ import LiquidAction from '../ui/LiquidAction.astro';
           luzaria<span class="dot">.</span>
         </a>
         <p class="brand-tagline">
-          Asesoría energética personal para entender tu factura antes de cambiar nada.
+          Asesoría energética personal para entender tu factura y valorar si compensa cambiar.
         </p>
         <div class="trust-badges">
           <span class="badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-            Sin cambios sin permiso
+            <ShieldCheck size={13} aria-hidden="true" />
+            Sin cambios sin autorización
           </span>
           <span class="badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-            Revisión inicial
+            <Clock size={13} aria-hidden="true" />
+            Estudio gratuito
           </span>
         </div>
       </div>
@@ -55,7 +40,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
           <ul class="links-list">
             <li><a href="#como-funciona">Cómo funciona</a></li>
             <li><a href="#sobre-mi">Sobre mí</a></li>
-            <li><a href="#contacto">Enviar factura</a></li>
+            <li><a href="#contacto">Revisar factura</a></li>
             <li><a href="#faq">Preguntas frecuentes</a></li>
           </ul>
         </div>
@@ -88,20 +73,20 @@ import LiquidAction from '../ui/LiquidAction.astro';
 
     <!-- Footer Bottom -->
     <div class="footer-bottom reveal">
-      <div class="bottom-content">
-        <p class="copyright">
-          © {new Date().getFullYear()} {siteConfig.name}. Todos los derechos reservados.
-        </p>
-        <div class="legal-links">
-          <a href="/privacidad" rel="nofollow noopener">Privacidad</a>
-          <span class="divider"></span>
-          <a href="/cookies" rel="nofollow noopener">Cookies</a>
-          <span class="divider"></span>
-          <a href="/legal" rel="nofollow noopener">Aviso legal</a>
-          <span class="divider"></span>
-          <a href="https://frnq.studio" target="_blank" rel="noopener noreferrer" class="developer-link">
-            Desarrollado por FRN.Q
-          </a>
+      <div class="bottom-glass">
+        <div class="bottom-specular" aria-hidden="true"></div>
+        <div class="bottom-content">
+          <p class="copyright">
+            © {new Date().getFullYear()} {siteConfig.name}. Todos los derechos reservados.
+          </p>
+          <div class="legal-links">
+            <a href="/privacidad" rel="nofollow noopener">Privacidad</a>
+            <a href="/cookies" rel="nofollow noopener">Cookies</a>
+            <a href="/legal" rel="nofollow noopener">Aviso legal</a>
+            <a href="https://frnq.studio" target="_blank" rel="noopener noreferrer" class="developer-link">
+              Desarrollado por FRN.Q
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -125,116 +110,6 @@ import LiquidAction from '../ui/LiquidAction.astro';
   .footer-container {
     position: relative;
     z-index: 1;
-  }
-
-  /* ─── CTA Banner ──────────────────────────────────────────────── */
-  .cta-banner {
-    position: relative;
-    margin-bottom: 64px;
-    padding: 40px;
-    border-radius: var(--radius-2xl);
-    overflow: hidden;
-    background: linear-gradient(135deg, rgba(236, 246, 255, 0.86) 0%, rgba(243, 240, 255, 0.8) 100%);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    box-shadow: var(--shadow-glass);
-    transition: transform 0.45s var(--ease-ios-spring), box-shadow 0.35s var(--ease-ios);
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  .cta-banner::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    border-radius: inherit;
-    background:
-      linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.20) 20%, transparent 38%),
-      radial-gradient(ellipse 78% 46% at 50% -10%, rgba(0,122,255,0.10), transparent 72%);
-    opacity: 0;
-    transform: translateX(-14%);
-    pointer-events: none;
-    transition: opacity 0.35s var(--ease-ios), transform 0.7s var(--ease-ios-decel);
-  }
-
-  .cta-banner:hover {
-    transform: translateY(-4px) scale(1.003);
-    box-shadow: var(--shadow-glass-hover);
-  }
-
-  .cta-banner:hover::after {
-    opacity: 0.74;
-    transform: translateX(0);
-  }
-
-  .banner-specular {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 55%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 58%, transparent 100%);
-    pointer-events: none;
-    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
-  }
-
-  .banner-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-  }
-
-  .banner-title {
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0 0 8px;
-    letter-spacing: -0.02em;
-  }
-
-  .banner-text {
-    font-size: var(--text-md);
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  :global(.banner-cta) {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 28px;
-    background: var(--color-primary);
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 100px;
-    box-shadow: 
-      0 8px 24px rgba(0, 122, 255, 0.22),
-      inset 0 1px 1px rgba(255,255,255,0.25);
-    transition: transform 0.3s var(--ease-ios-spring), background 0.3s var(--ease-ios), box-shadow 0.3s var(--ease-ios);
-    flex-shrink: 0;
-  }
-
-  :global(.banner-cta:hover) {
-    transform: translateY(-3px);
-    background: var(--color-primary-hover);
-    box-shadow: 
-      0 12px 32px rgba(0, 122, 255, 0.28),
-      inset 0 1px 1px rgba(255,255,255,0.28);
-  }
-
-  :global(.banner-cta:active) {
-    transform: translateY(-1px) scale(0.98);
-    box-shadow: 
-      0 6px 16px rgba(0,0,0,0.2),
-      inset 0 1px 1px rgba(255,255,255,1);
   }
 
   /* ─── Main Footer ─────────────────────────────────────────────── */
@@ -290,24 +165,31 @@ import LiquidAction from '../ui/LiquidAction.astro';
     align-items: center;
     gap: 6px;
     padding: 8px 14px;
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(10px) saturate(160%);
-    -webkit-backdrop-filter: blur(10px) saturate(160%);
-    border: 1px solid rgba(255,255,255,0.58);
-    border-radius: 100px;
-    font-size: 0.8125rem;
-    font-weight: 500;
+    background: rgba(255,255,255,0.68);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.60);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
     color: var(--label-secondary);
-    box-shadow: 
-      inset 0 1px 1px rgba(255,255,255,1),
-      0 1px 0 rgba(255,255,255,0.4);
-    transition: transform 0.3s var(--ease-ios-spring), background 0.3s var(--ease-ios), border-color 0.3s var(--ease-ios);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.92),
+      0 2px 6px rgba(0,0,0,0.03);
+    transition: transform 0.3s var(--ease-ios-spring), background 0.3s var(--ease-ios), box-shadow 0.3s var(--ease-ios);
   }
 
   .badge:hover {
     transform: translateY(-2px);
     background: rgba(255,255,255,0.82);
-    border-color: rgba(255,255,255,0.68);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.98),
+      0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  .badge svg {
+    color: var(--color-success);
+    flex-shrink: 0;
   }
 
   /* Links Section */
@@ -383,10 +265,50 @@ import LiquidAction from '../ui/LiquidAction.astro';
 
   /* ─── Footer Bottom ───────────────────────────────────────────── */
   .footer-bottom {
-    padding-top: 32px;
+    padding-top: var(--space-6);
+  }
+
+  .bottom-glass {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: 16px;
+    padding: var(--space-4) var(--space-6);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(32px) saturate(180%) brightness(1.02);
+    -webkit-backdrop-filter: blur(32px) saturate(180%) brightness(1.02);
+    border: 1px solid rgba(255, 255, 255, 0.60);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.90),
+      0 2px 8px rgba(0,0,0,0.03);
+    transition: transform 0.45s var(--ease-ios-spring), box-shadow 0.35s var(--ease-ios);
+  }
+
+  .bottom-glass:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.95),
+      0 6px 16px rgba(0,0,0,0.05);
+  }
+
+  .bottom-specular {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 45%;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.85) 0%,
+      rgba(255,255,255,0.25) 50%,
+      transparent 100%
+    );
+    border-radius: 16px 16px 0 0;
   }
 
   .bottom-content {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -394,79 +316,54 @@ import LiquidAction from '../ui/LiquidAction.astro';
   }
 
   .copyright {
-    font-size: 0.8125rem;
+    font-size: var(--text-sm);
     color: var(--label-tertiary);
     margin: 0;
+    font-weight: var(--font-medium);
   }
 
   .legal-links {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: var(--space-2);
   }
 
   .legal-links a {
-    font-size: 0.8125rem;
-    color: var(--label-tertiary);
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(255,255,255,0.45);
+    border: 1px solid rgba(255,255,255,0.55);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.70);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--label-secondary);
     text-decoration: none;
-    transition: color 0.25s var(--ease-ios);
+    transition: all 0.25s var(--ease-ios);
+    white-space: nowrap;
   }
 
   .legal-links a:hover {
-    color: var(--ios-blue);
-  }
-
-  .divider {
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: var(--label-quaternary);
+    color: var(--color-primary);
+    background: rgba(255,255,255,0.70);
+    transform: translateY(-1px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 2px 6px rgba(0,0,0,0.04);
   }
 
   .developer-link {
-    font-weight: 500;
+    font-weight: var(--font-semibold);
     color: var(--label-secondary) !important;
   }
 
   .developer-link:hover {
-    color: var(--ios-blue) !important;
+    color: var(--color-primary) !important;
   }
 
   /* ─── Responsive ──────────────────────────────────────────────── */
   @media (max-width: 768px) {
     .footer {
       padding: 60px 0 32px;
-    }
-
-    .cta-banner {
-      padding: 28px var(--space-5);
-      margin-bottom: 48px;
-      border-radius: 22px;
-    }
-
-    .banner-specular {
-      border-radius: 22px 22px 0 0;
-    }
-
-    .banner-content {
-      flex-direction: column;
-      text-align: center;
-      gap: 20px;
-    }
-
-    .banner-title {
-      font-size: 1.375rem;
-    }
-
-    .banner-text {
-      font-size: var(--text-base);
-    }
-
-    :global(.banner-cta) {
-      width: 100%;
-      justify-content: center;
-      padding: 14px 24px;
-      font-size: var(--text-base);
     }
 
     .footer-main {
@@ -488,6 +385,10 @@ import LiquidAction from '../ui/LiquidAction.astro';
       gap: 32px;
     }
 
+    .bottom-glass {
+      padding: var(--space-3) var(--space-4);
+    }
+
     .bottom-content {
       flex-direction: column;
       text-align: center;
@@ -503,10 +404,6 @@ import LiquidAction from '../ui/LiquidAction.astro';
   @media (max-width: 480px) {
     .footer {
       padding: 48px 0 24px;
-    }
-
-    .cta-banner {
-      margin-bottom: 36px;
     }
 
     .footer-links {
@@ -526,12 +423,26 @@ import LiquidAction from '../ui/LiquidAction.astro';
       font-size: var(--text-sm);
     }
 
+    .bottom-glass {
+      border-radius: 14px;
+      padding: var(--space-3);
+    }
+
+    .bottom-specular {
+      border-radius: 14px 14px 0 0;
+    }
+
     .copyright {
-      font-size: 0.75rem;
+      font-size: var(--text-xs);
+    }
+
+    .legal-links {
+      gap: var(--space-1);
     }
 
     .legal-links a {
-      font-size: 0.75rem;
+      font-size: var(--text-xs);
+      padding: 4px 10px;
     }
   }
 
@@ -548,17 +459,18 @@ import LiquidAction from '../ui/LiquidAction.astro';
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .cta-banner,
-    .cta-banner::after,
     .badge,
-    .links-list a {
+    .links-list a,
+    .legal-links a,
+    .bottom-glass {
       transition: none !important;
     }
 
-    .cta-banner:hover,
     .badge:hover,
-    .links-list a:hover {
-      transform: none;
+    .links-list a:hover,
+    .legal-links a:hover,
+    .bottom-glass:hover {
+      transform: none !important;
     }
   }
 </style>

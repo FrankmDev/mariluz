@@ -1,10 +1,9 @@
 ---
-import { siteConfig } from '../../config/site';
 import { MessageCircle, Clock } from 'lucide-astro';
 import LiquidAction from '../ui/LiquidAction.astro';
 ---
 
-<section class="hero" aria-label="Revisión inicial de tu factura de luz" id="hero" itemscope itemtype="https://schema.org/WebPageElement">
+<section class="hero" aria-label="Estudio gratuito de tu factura de luz" id="hero" itemscope itemtype="https://schema.org/WebPageElement">
 
   <!-- Floating Cards — premium Liquid Glass dashboard widgets -->
   <div class="card-wrapper" data-card="1" aria-hidden="true">
@@ -16,22 +15,15 @@ import LiquidAction from '../ui/LiquidAction.astro';
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
           </div>
           <div class="card-title-wrap">
-            <p class="card-title">Factura en revisión</p>
-            <p class="card-sub">sin compromiso</p>
+            <p class="card-title">Datos clave</p>
+            <p class="card-sub">lectura inicial</p>
           </div>
-          <div class="pulse-dot"></div>
+          <div class="data-badge">3</div>
         </div>
-        <div class="review-summary">
-          <div class="summary-status">
-            <span class="summary-label">Primera lectura</span>
-            <span class="summary-badge">24 h</span>
-          </div>
-          <div class="summary-scope">
-            <span>Tarifa</span>
-            <span>Potencia</span>
-            <span>Extras</span>
-          </div>
-          <p class="summary-note">Ningún cambio sin explicación previa</p>
+        <div class="key-pills" aria-label="Datos clave de la factura">
+          <span>Potencia</span>
+          <span>kWh</span>
+          <span>Extras</span>
         </div>
       </div>
     </div>
@@ -57,13 +49,13 @@ import LiquidAction from '../ui/LiquidAction.astro';
             <span class="comp-val">0,178€</span>
           </div>
           <div class="comp-row">
-            <span class="comp-label accent">Alternativa</span>
+            <span class="comp-label accent">Opción revisada</span>
             <div class="comp-bar-wrap"><div class="comp-bar comp-bar-new"></div></div>
             <span class="comp-val accent">0,151€</span>
           </div>
         </div>
         <div class="comp-footer">
-          <span class="savings-pill">Diferencia revisada con calma</span>
+          <span class="savings-pill">Comparación sin compromiso</span>
         </div>
       </div>
     </div>
@@ -75,33 +67,27 @@ import LiquidAction from '../ui/LiquidAction.astro';
       <div class="card-inner">
         <div class="card-header">
           <div class="icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M13 2 3 14h8l-1 8 11-14h-8z"/></svg>
           </div>
           <div class="card-title-wrap">
-            <p class="card-title">Revisión de factura</p>
-            <p class="card-sub">lo que conviene mirar</p>
+            <p class="card-title">Suministro intacto</p>
+            <p class="card-sub">sin cortes ni obra</p>
           </div>
         </div>
-        <div class="review-panel">
-          <div class="review-row">
-            <span class="review-dot review-dot-blue" aria-hidden="true"></span>
-            <div class="review-copy">
-              <span class="review-label">Potencia</span>
-              <span class="review-value">4,6 kW contratados</span>
+        <div class="supply-shield" aria-label="Garantía de suministro">
+          <div class="shield-ring">
+            <div class="shield-core">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
-            <span class="review-status">ajustar</span>
           </div>
-          <div class="review-row">
-            <span class="review-dot review-dot-green" aria-hidden="true"></span>
-            <div class="review-copy">
-              <span class="review-label">Condiciones</span>
-              <span class="review-value">extras y permanencia</span>
-            </div>
-            <span class="review-status">ver</span>
+          <div class="shield-copy">
+            <strong>Suministro protegido</strong>
+            <span>Sin cortes ni cambios físicos</span>
           </div>
-        </div>
-        <div class="activity-total">
-          <span>Propuesta solo si compensa</span>
+          <div class="shield-meta">
+            <span class="meta-pill">Mismo contador</span>
+            <span class="meta-pill">Misma instalación</span>
+          </div>
         </div>
       </div>
     </div>
@@ -113,34 +99,34 @@ import LiquidAction from '../ui/LiquidAction.astro';
     <div class="reveal stagger-1">
       <div class="eyebrow">
         <span class="eyebrow-dot"></span>
-        <span class="eyebrow-text">Asesoría energética personal</span>
+        <span class="eyebrow-text">Revisión energética personal</span>
         <span class="eyebrow-sep"></span>
         <span class="eyebrow-free">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-          Revisión inicial
+          Sin coste inicial
         </span>
       </div>
     </div>
 
     <h1 class="headline reveal stagger-2" itemprop="headline">
       <span class="line line-1">Reviso tu factura.</span>
-      <span class="line line-accent">Decides claro.</span>
+      <span class="line line-accent">Tú decides.</span>
     </h1>
 
     <p class="subhead reveal stagger-3">
-      Analizo tu consumo, tu tarifa actual y las condiciones del contrato para explicarte si existe una opción más adecuada.
-      <strong>Sin cambios sin tu autorización.</strong>
+      Analizo consumo, tarifa y condiciones para explicarte si hay una opción que aporte ahorro real.
+      <strong>Solo se tramita con tu autorización.</strong>
     </p>
 
     <div class="cta-group reveal stagger-4">
       <LiquidAction
         href="#contacto"
         class="cta-btn"
-        ariaLabel="Enviar factura para revisión inicial"
+        ariaLabel="Solicitar revisión gratuita de factura"
         bgClass="cta-btn-bg"
       >
         <MessageCircle size={20} fill="currentColor" style="position:relative;z-index:1" aria-hidden="true" />
-        <span style="position:relative;z-index:1">Enviar factura para revisión</span>
+        <span style="position:relative;z-index:1">Solicitar revisión gratuita</span>
       </LiquidAction>
       <p class="cta-note">
         <Clock size={12} aria-hidden="true" />
@@ -151,19 +137,19 @@ import LiquidAction from '../ui/LiquidAction.astro';
     <div class="trust reveal stagger-5">
       <span class="pill">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
-        Sin cambios sin autorización
+        Cambio solo autorizado
       </span>
       <span class="pill">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Uso limitado de datos
+        Datos solo para revisar
       </span>
       <span class="pill">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-        Tú decides
+        Sin presión comercial
       </span>
       <span class="pill pill-gold">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        Revisión inicial sin coste
+        Estudio inicial gratuito
       </span>
     </div>
   </div>
@@ -235,10 +221,10 @@ import LiquidAction from '../ui/LiquidAction.astro';
     opacity: 1;
   }
 
-  /* Color tint per card */
-  .card-1 { background: rgba(238, 255, 245, 0.72); }
-  .card-2 { background: rgba(236, 246, 255, 0.72); }
-  .card-3 { background: rgba(243, 240, 255, 0.72); }
+  /* Color tint per card — ultra-subtle */
+  .card-1 { background: rgba(245, 250, 255, 0.72); }
+  .card-2 { background: rgba(245, 250, 255, 0.72); }
+  .card-3 { background: rgba(245, 250, 255, 0.72); }
 
   /* Individual float animations */
   .card-1 {
@@ -319,7 +305,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
     display: flex;
     align-items: center;
     gap: var(--space-2);
-    margin-bottom: var(--space-3);
+    margin-bottom: 10px;
   }
 
   .icon {
@@ -352,6 +338,17 @@ import LiquidAction from '../ui/LiquidAction.astro';
     pointer-events: none;
   }
 
+  /* Card-3 icon tint: purple/indigo */
+  .card-3 .icon {
+    background: linear-gradient(135deg, rgba(88,86,214,0.12) 0%, rgba(88,86,214,0.06) 100%);
+    border-color: rgba(88,86,214,0.18);
+    color: var(--ios-indigo);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.65),
+      0 2px 6px rgba(88,86,214,0.12),
+      0 4px 12px rgba(88,86,214,0.06);
+  }
+
   .card-wrapper:hover .icon {
     transform: scale(1.12) rotate(-3deg);
     box-shadow:
@@ -359,6 +356,14 @@ import LiquidAction from '../ui/LiquidAction.astro';
       0 4px 14px rgba(0,122,255,0.22),
       0 8px 24px rgba(0,122,255,0.12);
     border-color: rgba(0,122,255,0.28);
+  }
+
+  .card-wrapper:hover .card-3 .icon {
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.85),
+      0 4px 14px rgba(88,86,214,0.22),
+      0 8px 24px rgba(88,86,214,0.12);
+    border-color: rgba(88,86,214,0.28);
   }
 
   .card-wrapper:hover .icon svg {
@@ -374,7 +379,6 @@ import LiquidAction from '../ui/LiquidAction.astro';
     .card-1,
     .card-2,
     .card-3,
-    .pulse-dot,
     .cta-btn-bg {
       animation: none !important;
       opacity: 1;
@@ -406,133 +410,55 @@ import LiquidAction from '../ui/LiquidAction.astro';
     margin: 2px 0 0;
   }
 
-  .pulse-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--cyan-400) 100%);
-    flex-shrink: 0;
-    position: relative;
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.50),
-      0 0 0 0 rgba(0,122,255,0.45);
-    animation: pulse-glass 2.2s ease-in-out infinite;
-  }
-
-  .pulse-dot::before {
-    content: '';
-    position: absolute;
-    top: 1px; left: 1px; right: 1px; bottom: 1px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.65) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  @keyframes pulse-glass {
-    0%, 100% {
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.50),
-        0 0 0 0 rgba(0,122,255,0.45);
-    }
-    50% {
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.50),
-        0 0 0 8px rgba(0,122,255,0);
-    }
-  }
-
-  /* Card-1: Review summary */
-  .review-summary {
-    display: grid;
-    gap: 10px;
-    padding: 12px;
-    background: linear-gradient(135deg, rgba(0,122,255,0.06) 0%, rgba(0,122,255,0.02) 100%);
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(0,122,255,0.08);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .review-summary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.40) 0%, transparent 100%);
-    pointer-events: none;
-  }
-
-  .summary-status,
-  .summary-scope,
-  .summary-note {
-    position: relative;
-    z-index: 1;
-  }
-
-  .summary-status {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-2);
-  }
-
-  .summary-label {
-    color: var(--text-primary);
-    font-size: 1.02rem;
-    font-weight: var(--font-extrabold);
-    line-height: 1;
-    letter-spacing: -0.04em;
-  }
-
-  .summary-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 3px;
-    background: linear-gradient(135deg, rgba(52,199,89,0.14) 0%, rgba(52,199,89,0.07) 100%);
-    color: var(--color-success);
-    font-size: var(--text-xs);
-    font-weight: var(--font-bold);
-    padding: 3px 8px;
-    border-radius: var(--radius-pill);
-    border: 1px solid rgba(52,199,89,0.18);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
-  }
-
-  .summary-badge::before {
-    content: '';
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: currentColor;
-  }
-
-  .summary-scope {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 6px;
-  }
-
-  .summary-scope span {
+  /* Card-1: Key data rows — ultra-minimal */
+  .data-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 28px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.46);
-    border: 1px solid rgba(255,255,255,0.48);
-    color: var(--text-secondary);
-    font-size: 0.68rem;
-    font-weight: var(--font-semibold);
+    min-width: 20px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: var(--radius-pill);
+    color: var(--color-primary);
+    background: rgba(0, 122, 255, 0.08);
+    border: 1px solid rgba(0, 122, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.50);
+    font-size: 0.60rem;
+    font-weight: var(--font-bold);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
   }
 
-  .summary-note {
-    margin: 0;
-    color: var(--text-tertiary);
-    font-size: 0.72rem;
-    line-height: 1.35;
+  /* Card-1: Key pills — clean glass tags */
+  .key-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .key-pills span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.60);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.70);
+    font-size: 0.74rem;
+    font-weight: var(--font-semibold);
+    color: var(--text-secondary);
+    line-height: 1;
+    white-space: nowrap;
+    transition: all 0.25s var(--ease-ios);
+  }
+
+  .card-wrapper:hover .key-pills span {
+    background: rgba(255, 255, 255, 0.65);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 3px 10px rgba(0,0,0,0.04);
   }
 
   /* Card-2: Comparison chart */
@@ -656,89 +582,119 @@ import LiquidAction from '../ui/LiquidAction.astro';
       0 3px 10px rgba(0,122,255,0.12);
   }
 
-  /* Card-3: Technical review */
-  .review-panel {
-    display: grid;
-    gap: 6px;
-    margin-bottom: var(--space-2);
-  }
-
-  .review-row {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding: 9px 10px;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.44);
-    border: 1px solid rgba(255,255,255,0.46);
-  }
-
-  .review-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.64);
-  }
-
-  .review-dot-blue { background: var(--color-primary); }
-  .review-dot-green { background: var(--color-success); }
-
-  .review-copy {
-    flex: 1;
-    min-width: 0;
+  /* Card-3: Shield status — premium glass emblem */
+  .supply-shield {
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 6px;
   }
 
-  .review-label {
-    font-size: var(--text-xs);
-    font-weight: var(--font-semibold);
-    color: var(--text-primary);
-    line-height: 1.3;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .review-value {
-    font-size: 11px;
-    color: var(--text-tertiary);
-    font-weight: var(--font-medium);
-    line-height: 1.3;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .review-status {
-    padding: 3px 7px;
-    border-radius: var(--radius-pill);
-    background: rgba(255,255,255,0.62);
-    border: 1px solid rgba(255,255,255,0.56);
-    color: var(--text-secondary);
-    font-size: 9px;
-    font-weight: var(--font-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    flex-shrink: 0;
-  }
-
-  .activity-total {
+  .shield-ring {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: 5px;
-    font-size: var(--text-xs);
-    color: var(--color-primary);
-    font-weight: var(--font-semibold);
-    padding: var(--space-1) var(--space-2);
-    background: linear-gradient(135deg, rgba(0,122,255,0.06) 0%, rgba(0,122,255,0.02) 100%);
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, rgba(52,199,89,0.18) 0%, rgba(0,122,255,0.10) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.70);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.85),
+      0 8px 24px rgba(52,199,89,0.14),
+      0 4px 12px rgba(0,122,255,0.08);
+    transition: all 0.4s var(--ease-ios-spring);
+  }
+
+  .card-wrapper:hover .shield-ring {
+    transform: scale(1.06);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.95),
+      0 12px 32px rgba(52,199,89,0.20),
+      0 6px 16px rgba(0,122,255,0.12);
+  }
+
+  .shield-core {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--ios-green) 0%, #30D158 50%, var(--ios-blue) 130%);
+    color: white;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.40), 0 4px 14px rgba(52,199,89,0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shield-core::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, transparent 100%);
+    pointer-events: none;
+    border-radius: 50% 50% 0 0;
+  }
+
+  .shield-core svg {
+    position: relative;
+    z-index: 1;
+    stroke-width: 2.8;
+  }
+
+  .shield-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-align: center;
+  }
+
+  .shield-copy strong {
+    font-size: 0.82rem;
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .shield-copy span {
+    font-size: 0.68rem;
+    font-weight: var(--font-medium);
+    color: var(--text-tertiary);
+    line-height: 1.2;
+  }
+
+  .shield-meta {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
     border-radius: var(--radius-pill);
-    border: 1px solid rgba(0,122,255,0.10);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.70);
+    font-size: 0.62rem;
+    font-weight: var(--font-semibold);
+    color: var(--text-secondary);
+    line-height: 1;
+    white-space: nowrap;
+    transition: all 0.25s var(--ease-ios);
+  }
+
+  .card-wrapper:hover .meta-pill {
+    background: rgba(255, 255, 255, 0.62);
+    color: var(--text-primary);
   }
 
   /* ─── Hero content ───────────────────────────────────────────── */
