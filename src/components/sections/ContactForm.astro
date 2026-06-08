@@ -621,7 +621,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
 
   @media (max-width: 480px) {
     .form-content {
-      padding: var(--space-5) var(--space-4);
+      padding: var(--space-5) max(var(--space-4), env(safe-area-inset-left));
     }
 
     .contact-form {
@@ -630,6 +630,10 @@ import LiquidAction from '../ui/LiquidAction.astro';
 
     .upload-zone {
       padding: var(--space-4);
+    }
+
+    .upload-text {
+      font-size: var(--text-sm);
     }
 
     .alt-links {
@@ -649,6 +653,11 @@ import LiquidAction from '../ui/LiquidAction.astro';
     .form-specular,
     .form-glow {
       border-radius: inherit;
+    }
+
+    .form-trust {
+      font-size: var(--text-xs);
+      text-align: center;
     }
   }
 

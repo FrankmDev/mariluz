@@ -217,9 +217,15 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
   @media (max-width: 900px) {
     .steps-grid {
       grid-template-columns: 1fr;
-      max-width: 480px;
+      max-width: 640px;
       margin: 0 auto;
       gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .steps-grid {
+      max-width: 100%;
     }
   }
 
@@ -498,7 +504,7 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
     }
 
     .step-island {
-      padding: var(--space-6);
+      padding: var(--space-5);
       border-radius: var(--radius-xl);
     }
 
@@ -512,7 +518,9 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
     }
 
     .step-watermark {
-      font-size: 3.5rem;
+      font-size: 3rem;
+      top: var(--space-4);
+      right: var(--space-4);
     }
 
     .step-title {
@@ -530,6 +538,10 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
     .meta-tag {
       font-size: 0.6875rem;
       padding: 1px 8px;
+    }
+
+    .step-meta {
+      gap: var(--space-2);
     }
   }
 

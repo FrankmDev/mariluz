@@ -978,6 +978,7 @@ const navLinks = [
 
     .navbar-pill {
       min-height: 3.65rem;
+      padding: 0.28rem 0.3rem 0.28rem 0.34rem;
     }
 
     .brand-meta {
@@ -1006,6 +1007,32 @@ const navLinks = [
     .mobile-cta {
       justify-content: flex-start;
       min-height: 3.35rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .navbar-wrapper {
+      padding: 0.65rem 0.75rem;
+    }
+
+    .navbar-pill {
+      min-height: 3.45rem;
+      gap: 0.45rem;
+      padding: 0.24rem 0.28rem 0.24rem 0.3rem;
+    }
+
+    .navbar-brand {
+      padding: 0.38rem 0.48rem;
+    }
+
+    .brand-text {
+      font-size: 0.9rem;
+    }
+
+    .mobile-menu-btn {
+      width: 38px;
+      min-width: 38px;
+      height: 38px;
     }
   }
 

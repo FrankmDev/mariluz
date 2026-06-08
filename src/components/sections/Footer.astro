@@ -409,6 +409,7 @@ import { MessageCircle, Phone, Mail, ShieldCheck, Clock } from 'lucide-astro';
     .footer-links {
       grid-template-columns: 1fr;
       text-align: center;
+      gap: 28px;
     }
 
     .links-list a {
@@ -437,12 +438,27 @@ import { MessageCircle, Phone, Mail, ShieldCheck, Clock } from 'lucide-astro';
     }
 
     .legal-links {
-      gap: var(--space-1);
+      gap: 4px;
     }
 
     .legal-links a {
       font-size: var(--text-xs);
       padding: 4px 10px;
+    }
+
+    .trust-badges {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .footer-brand {
+      font-size: 1.35rem;
+    }
+
+    .legal-links a {
+      padding: 3px 8px;
+      font-size: 0.75rem;
     }
   }
 

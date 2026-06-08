@@ -392,6 +392,40 @@ import { MessageCircle, Phone, ShieldCheck, Clock, ArrowRight } from 'lucide-ast
     }
   }
 
+  @media (max-width: 480px) {
+    .cta-card {
+      padding: var(--space-6) var(--space-4);
+      gap: var(--space-6);
+    }
+
+    .cta-headline {
+      font-size: clamp(1.65rem, 7.5vw, 2.2rem);
+    }
+
+    .cta-body {
+      font-size: var(--text-base);
+    }
+
+    .trust-pills {
+      gap: 6px;
+    }
+
+    .trust-pill {
+      font-size: var(--text-xs);
+      padding: 6px 12px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .cta-card {
+      padding: var(--space-5) var(--space-3);
+    }
+
+    .cta-headline {
+      font-size: 1.5rem;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .kicker-dot,
     .btn-shimmer,
