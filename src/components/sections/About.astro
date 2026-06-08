@@ -104,8 +104,8 @@ const averageYearly = siteConfig.savings.averageYearly;
               <TrendingDown size={18} aria-hidden="true" />
             </span>
             <div class="stat-copy">
-              <div class="stat-value stat-value-accent"><Counter endValue={averageYearly} suffix="€" /></div>
-              <p class="stat-label">mejora orientativa</p>
+              <div class="stat-value stat-value-accent"><Counter endValue={15} suffix="%" /></div>
+              <p class="stat-label">ahorro orientativo</p>
             </div>
           </div>
         </div>
@@ -182,7 +182,7 @@ const averageYearly = siteConfig.savings.averageYearly;
 <style>
   .about-section {
     position: relative;
-    padding: var(--space-32) 0 var(--space-40);
+    padding: var(--section-py) 0;
     overflow: hidden;
     isolation: isolate;
   }
@@ -603,7 +603,7 @@ const averageYearly = siteConfig.savings.averageYearly;
 
   @media (max-width: 767px) {
     .about-section {
-      padding: var(--space-20) 0;
+      padding: var(--section-py-mobile) 0;
     }
 
     .about-grid {

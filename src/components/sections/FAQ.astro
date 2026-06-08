@@ -343,10 +343,13 @@ const faqs = faqData.map(faq => ({
     display: grid;
     grid-template-rows: 0fr;
     opacity: 0;
-    transition: grid-template-rows 0.5s var(--ease-ios-decel), opacity 0.35s ease;
+    overflow: hidden;
+    will-change: grid-template-rows, opacity;
+    transition: grid-template-rows 0.55s var(--ease-ios-decel), opacity 0.4s ease;
   }
 
   .faq-body-inner {
+    min-height: 0;
     overflow: hidden;
     padding: 0 var(--space-6) 0 76px;
   }
@@ -357,9 +360,10 @@ const faqs = faqData.map(faq => ({
   }
 
   .faq-answer {
-    transform: translateY(-6px);
+    transform: translateY(6px);
     opacity: 0;
-    transition: transform 0.45s var(--ease-ios-decel) 0.05s, opacity 0.35s ease 0.05s;
+    will-change: transform, opacity;
+    transition: transform 0.5s var(--ease-ios-decel) 0.05s, opacity 0.4s ease 0.08s;
   }
 
   .faq-answer p {
@@ -786,10 +790,15 @@ const faqs = faqData.map(faq => ({
     // Staggered entrance animation
     item.style.opacity = '0';
     item.style.transform = 'translateY(30px) scale(0.98)';
+    item.style.willChange = 'transform, opacity';
     setTimeout(() => {
       item.style.transition = 'opacity 0.6s var(--ease-ios-decel), transform 0.6s var(--ease-ios-spring), background 0.35s var(--ease-ios), box-shadow 0.35s var(--ease-ios)';
       item.style.opacity = '1';
       item.style.transform = 'translateY(0) scale(1)';
+      // Clean up will-change after animation completes
+      setTimeout(() => {
+        item.style.willChange = '';
+      }, 700);
     }, index * 100);
 
     summary?.addEventListener('click', (e) => {
@@ -800,35 +809,13 @@ const faqs = faqData.map(faq => ({
       document.querySelectorAll('.faq-item.is-open').forEach(openItem => {
         if (openItem !== item) {
           openItem.classList.remove('is-open');
-          // Remove [open] after CSS transition finishes
-          const onTransitionEnd = (ev) => {
-            if (ev.target === openItem.querySelector('.faq-body')) {
-              openItem.removeAttribute('open');
-              openItem.removeEventListener('transitionend', onTransitionEnd);
-            }
-          };
-          openItem.addEventListener('transitionend', onTransitionEnd);
-          // Fallback: remove after 550ms if transitionend doesn't fire
-          setTimeout(() => {
-            openItem.removeAttribute('open');
-            openItem.removeEventListener('transitionend', onTransitionEnd);
-          }, 550);
+          setTimeout(() => openItem.removeAttribute('open'), 600);
         }
       });
 
       if (isOpen) {
         item.classList.remove('is-open');
-        const onTransitionEnd = (ev) => {
-          if (ev.target === body) {
-            item.removeAttribute('open');
-            item.removeEventListener('transitionend', onTransitionEnd);
-          }
-        };
-        item.addEventListener('transitionend', onTransitionEnd);
-        setTimeout(() => {
-          item.removeAttribute('open');
-          item.removeEventListener('transitionend', onTransitionEnd);
-        }, 550);
+        setTimeout(() => item.removeAttribute('open'), 600);
       } else {
         item.setAttribute('open', '');
         requestAnimationFrame(() => {

@@ -206,8 +206,8 @@
   --space-40: 10rem;    /* 160px */
   
   /* Section Spacing */
-  --section-py: var(--space-32);
-  --section-py-mobile: var(--space-16);
+  --section-py: var(--space-20);
+  --section-py-mobile: var(--space-10);
   --container-max: 1200px;
   --container-padding: var(--space-6);
   
@@ -1157,13 +1157,6 @@ body {
   .section {
     padding-top: var(--section-py-mobile);
     padding-bottom: var(--section-py-mobile);
-  }
-}
-
-@media (max-width: 480px) {
-  .section {
-    padding-top: var(--space-12);
-    padding-bottom: var(--space-12);
   }
 }
 

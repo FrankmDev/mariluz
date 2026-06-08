@@ -67,9 +67,15 @@ import { MessageCircle, Phone, ShieldCheck, Clock, ArrowRight } from 'lucide-ast
 <style>
   .final-cta-section {
     position: relative;
-    padding: clamp(80px, 10vw, 140px) 0 clamp(64px, 8vw, 120px);
+    padding: var(--section-py) 0;
     overflow: hidden;
     isolation: isolate;
+  }
+
+  @media (max-width: 767px) {
+    .final-cta-section {
+      padding: var(--section-py-mobile) 0;
+    }
   }
 
   /* ─── Card ──────────────────────────────────────────────────── */
@@ -363,10 +369,6 @@ import { MessageCircle, Phone, ShieldCheck, Clock, ArrowRight } from 'lucide-ast
   }
 
   @media (max-width: 560px) {
-    .final-cta-section {
-      padding: var(--space-20) 0 var(--space-16);
-    }
-
     .cta-card {
       padding: var(--space-7) var(--space-5);
       border-radius: 20px;
@@ -393,10 +395,6 @@ import { MessageCircle, Phone, ShieldCheck, Clock, ArrowRight } from 'lucide-ast
   }
 
   @media (max-width: 480px) {
-    .final-cta-section {
-      padding: var(--space-16) 0 var(--space-12);
-    }
-
     .cta-card {
       padding: var(--space-8) var(--space-6);
       gap: var(--space-8);
