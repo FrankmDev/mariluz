@@ -137,19 +137,19 @@ import LiquidAction from '../ui/LiquidAction.astro';
     <div class="trust reveal stagger-5">
       <span class="pill">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
-        Cambio solo autorizado
+        Solo con autorización
       </span>
       <span class="pill">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Datos solo para revisar
+        Datos confidenciales
       </span>
       <span class="pill">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-        Sin presión comercial
+        Sin presión
       </span>
       <span class="pill pill-gold">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        Estudio inicial gratuito
+        Estudio gratuito
       </span>
     </div>
   </div>
@@ -1161,8 +1161,21 @@ import LiquidAction from '../ui/LiquidAction.astro';
     .line { font-size: clamp(1.85rem, 8.5vw, 2.6rem); }
     .subhead { font-size: var(--text-base); max-width: 100%; padding: 0 var(--space-1); }
     :global(.cta-btn) { padding: 14px var(--space-5); font-size: var(--text-base); }
-    .trust { gap: 4px; margin-top: var(--space-5); }
-    .pill { font-size: 0.75rem; padding: 7px 11px; }
+    .trust {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: var(--space-5);
+      width: 100%;
+      max-width: 340px;
+    }
+    .pill {
+      font-size: 0.75rem;
+      padding: 8px 10px;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+    }
     .eyebrow { padding: var(--space-1) var(--space-3); gap: var(--space-1); flex-wrap: wrap; justify-content: center; }
     .eyebrow-free { font-size: var(--text-sm); gap: 3px; }
   }
@@ -1172,6 +1185,8 @@ import LiquidAction from '../ui/LiquidAction.astro';
     .line { font-size: 1.75rem; }
     .subhead { font-size: var(--text-sm); }
     :global(.cta-btn) { padding: 13px var(--space-4); }
+    .trust { max-width: 300px; }
+    .pill { font-size: 0.7rem; padding: 7px 8px; }
   }
 
   /* ─── Reduced Motion ─────────────────────────────────────────── */
