@@ -2,11 +2,11 @@ export const siteConfig = {
   name: 'luzaria',
   phone: '+34 630 715 378',
   phoneClean: '34630715378',
-  whatsappUrl: 'https://wa.me/34630715378?text=Hola%20Mariluz,%20me%20gustaría%20solicitar%20una%20revisión%20gratuita%20de%20mi%20factura%20de%20luz',
+  whatsappUrl: 'https://wa.me/34630715378?text=Hola%20Mariluz,%20quiero%20enviarte%20mi%20factura%20de%20luz%20para%20una%20revisión',
   email: 'mluzmarin1969@gmail.com',
   meta: {
     title: 'luzaria | Revisión clara de tu factura de luz',
-    description: 'Mariluz Marín revisa tu factura de luz y te explica si hay margen real de ahorro antes de proponer cualquier cambio.',
+    description: 'Mariluz Marín revisa tu factura de luz y te explica si hay margen real de mejora antes de proponer cualquier cambio.',
     ogImage: '/og-image.svg',
     ogImageAlt: 'luzaria - Revisión clara de tu factura de luz',
     canonical: 'https://luzaria.es',
@@ -21,7 +21,7 @@ export const siteConfig = {
     minSaving: 0, // Sin mínimo
     averageYearly: 180,
     maxYearly: 300,
-    disclaimer: 'No todas las facturas tienen margen de mejora. La recomendación depende de potencia, consumo, contrato vigente, servicios añadidos y condiciones reales de la oferta.',
+    disclaimer: 'No todas las facturas tienen margen de mejora. La recomendación depende de potencia, consumo, contrato vigente, servicios añadidos y condiciones reales de las alternativas disponibles.',
   },
   advisor: {
     name: 'Mariluz Marín',
@@ -71,16 +71,20 @@ export const faqData = [
     answer: 'Sí. El estudio inicial no tiene coste para ti. Si después aceptas una propuesta y se tramita un cambio, la comercializadora puede remunerar la gestión. Antes de avanzar, te explicaré las condiciones.',
   },
   {
-    question: '¿Se cambia la comercializadora sin mi autorización?',
-    answer: 'No. Enviar la factura no implica contratar nada. Primero reviso tu caso y te explico el resultado; solo se inicia un cambio si entiendes la propuesta y la autorizas expresamente.',
+    question: '¿Se cambia mi contrato automáticamente?',
+    answer: 'No. Primero reviso tu factura, comparo opciones y te explico el resultado. Solo se gestiona un cambio si existe una mejora clara y tú lo confirmas.',
   },
   {
     question: '¿Qué documentación necesito enviar?',
     answer: 'Para una primera revisión normalmente basta con tu última factura de luz. Si decides avanzar, te indicaré qué documentación haría falta antes de cualquier gestión.',
   },
   {
-    question: '¿Qué pasa si mi tarifa actual ya está bien?',
-    answer: 'Te lo diré con claridad. Si la diferencia es pequeña, temporal o las condiciones no compensan, la recomendación será mantener lo que tienes.',
+    question: '¿Siempre merece la pena cambiar de compañía?',
+    answer: 'No. A veces la mejor decisión es mantener tus condiciones actuales. Si no encuentro una mejora clara, te lo diré directamente.',
+  },
+  {
+    question: '¿Tengo que volver a contactar cada año para revisar mi contrato?',
+    answer: 'No necesariamente. Una vez revisado tu caso, puedo hacer seguimiento de tus condiciones y avisarte cuando se acerque la finalización del precio acordado o exista una revisión relevante. Así no tienes que estar pendiente año tras año.',
   },
   {
     question: '¿Un cambio afecta al suministro o la instalación?',
