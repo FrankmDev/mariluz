@@ -144,7 +144,7 @@ const faqs = faqData.map(faq => ({
   /* ========== FAQ Section Base ========== */
   .faq-section {
     position: relative;
-    padding: var(--section-py) 0;
+    padding: var(--section-py) 0 var(--space-24) 0;
     overflow: hidden;
     /* No background - using global background from Layout */
   }
@@ -345,7 +345,7 @@ const faqs = faqData.map(faq => ({
     opacity: 0;
     overflow: hidden;
     will-change: grid-template-rows, opacity;
-    transition: grid-template-rows 0.55s var(--ease-ios-decel), opacity 0.4s ease;
+    transition: grid-template-rows 0.45s var(--ease-ios-spring), opacity 0.35s var(--ease-ios);
   }
 
   .faq-body-inner {
@@ -360,10 +360,10 @@ const faqs = faqData.map(faq => ({
   }
 
   .faq-answer {
-    transform: translateY(6px);
+    transform: translateY(8px);
     opacity: 0;
     will-change: transform, opacity;
-    transition: transform 0.5s var(--ease-ios-decel) 0.05s, opacity 0.4s ease 0.08s;
+    transition: transform 0.4s var(--ease-ios-spring) 0.04s, opacity 0.35s var(--ease-ios) 0.06s;
   }
 
   .faq-answer p {
@@ -371,6 +371,7 @@ const faqs = faqData.map(faq => ({
     line-height: 1.7;
     color: var(--text-secondary);
     padding-bottom: var(--space-6);
+    text-wrap: pretty;
   }
 
   .faq-item.is-open .faq-answer {
@@ -520,6 +521,7 @@ const faqs = faqData.map(faq => ({
     color: var(--text-primary);
     text-align: center;
     margin-bottom: 10px;
+    text-wrap: balance;
   }
 
   .contact-description {
@@ -528,6 +530,7 @@ const faqs = faqData.map(faq => ({
     color: var(--text-secondary);
     text-align: center;
     margin-bottom: var(--space-8);
+    text-wrap: pretty;
   }
 
   /* Contact Actions */
@@ -646,7 +649,7 @@ const faqs = faqData.map(faq => ({
 
   @media (max-width: 768px) {
     .faq-section {
-      padding: var(--section-py-mobile) 0;
+      padding: var(--section-py-mobile) 0 var(--space-12) 0;
     }
 
     .faq-summary {

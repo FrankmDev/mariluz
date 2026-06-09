@@ -152,6 +152,7 @@ import { MessageCircle, Phone, Mail, ShieldCheck, Clock } from 'lucide-astro';
     color: var(--label-secondary);
     line-height: 1.6;
     margin: 0 0 24px;
+    text-wrap: pretty;
   }
 
   .trust-badges {
@@ -238,10 +239,12 @@ import { MessageCircle, Phone, Mail, ShieldCheck, Clock } from 'lucide-astro';
     position: absolute;
     bottom: -2px;
     left: 0;
-    width: 0;
+    width: 100%;
     height: 1px;
     background: var(--ios-blue);
-    transition: width 0.3s var(--ease-ios);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--ease-ios);
   }
 
   .links-list a:hover {
@@ -250,7 +253,7 @@ import { MessageCircle, Phone, Mail, ShieldCheck, Clock } from 'lucide-astro';
   }
 
   .links-list a:hover::after {
-    width: 100%;
+    transform: scaleX(1);
   }
 
   .link-with-icon {

@@ -1,0 +1,184 @@
+---
+import { siteConfig } from '../../config/site';
+---
+
+<section id="calculadora" class="savings-section" aria-label="Calculadora de ahorro estimado">
+  <div class="container-custom">
+    <div class="savings-layout">
+      <div class="savings-col-input">
+        <header class="savings-header">
+          <p class="savings-kicker">Calculadora</p>
+          <h2 class="savings-title">
+            <span>¿Cuánto podrías ahorrar?</span>
+          </h2>
+          <p class="savings-intro">
+            Introduce tu factura mensual de luz para ver una estimación orientativa. Cada caso es distinto: la revisión real determina si hay margen real.
+          </p>
+        </header>
+
+        <div class="savings-controls">
+          <div class="segmented-toggle" role="tablist" aria-label="Tipo de tarifa">
+            <button
+              type="button"
+              class="segmented-btn active"
+              data-type="home"
+              role="tab"
+              aria-selected="true"
+            >
+              Hogar
+            </button>
+            <button
+              type="button"
+              class="segmented-btn"
+              data-type="business"
+              role="tab"
+              aria-selected="false"
+            >
+              Negocio
+            </button>
+          </div>
+
+          <div class="slider-group">
+            <label for="bill-slider" class="slider-label">
+              Factura mensual estimada
+            </label>
+            <div class="slider-wrap">
+              <input
+                id="bill-slider"
+                type="range"
+                min="30"
+                max="500"
+                step="5"
+                value="120"
+                class="slider-input"
+                aria-valuemin="30"
+                aria-valuemax="500"
+                aria-valuenow="120"
+              />
+              <div class="slider-track">
+                <div class="slider-fill" id="slider-fill" style="width: 19.15%;"></div>
+              </div>
+            </div>
+            <div class="slider-value">
+              <span class="slider-amount" id="slider-amount">120 €</span>
+              <span class="slider-period">/mes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="savings-col-result">
+        <div class="result-card">
+          <div class="result-specular"></div>
+          <div class="result-glow"></div>
+          <div class="result-content">
+            <div class="result-header">
+              <span class="result-badge">Estimación orientativa</span>
+            </div>
+
+            <div class="result-figure">
+              <span class="result-label">Ahorro estimado al año</span>
+              <span class="result-value" id="result-value">216 €</span>
+              <span class="result-range" id="result-range">
+                Rango estimado: 151 € – 300 €
+              </span>
+            </div>
+
+            <div class="result-details">
+              <div class="detail-row">
+                <span>Factura anual</span>
+                <span id="detail-yearly">1.440 €</span>
+              </div>
+              <div class="detail-row">
+                <span>Porcentaje medio</span>
+                <span id="detail-rate">15%</span>
+              </div>
+              <div class="detail-row">
+                <span>Ahorro mensual estimado</span>
+                <span id="detail-monthly">18 €</span>
+              </div>
+            </div>
+
+            <p class="result-disclaimer">
+              {siteConfig.savings.disclaimer}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const slider = document.getElementById('bill-slider');
+    const fill = document.getElementById('slider-fill');
+    const amount = document.getElementById('slider-amount');
+    const resultValue = document.getElementById('result-value');
+    const resultRange = document.getElementById('result-range');
+    const detailYearly = document.getElementById('detail-yearly');
+    const detailRate = document.getElementById('detail-rate');
+    const detailMonthly = document.getElementById('detail-monthly');
+    const toggleBtns = document.querySelectorAll('.segmented-btn');
+
+    const MIN_BILL = 30;
+    const MAX_BILL = 500;
+    const HOME_RATE = 0.15;
+    const BUSINESS_RATE = 0.12;
+    const MAX_YEARLY = 300;
+
+    let isBusiness = false;
+
+    function formatEuros(value) {
+      return new Intl.NumberFormat('es-ES', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function calculateSavings() {
+      const bill = parseInt(slider?.value || '120', 10);
+      const rate = isBusiness ? BUSINESS_RATE : HOME_RATE;
+      const yearlyBill = bill * 12;
+      const estimatedMonthlySaving = bill * rate;
+      const estimatedYearlySaving = estimatedMonthlySaving * 12;
+      const estimatedYearlySavingMax = Math.min(estimatedYearlySaving * 1.5, MAX_YEARLY);
+
+      // Update slider visual
+      const percentage = ((bill - MIN_BILL) / (MAX_BILL - MIN_BILL)) * 100;
+      if (fill) fill.style.width = percentage + '%';
+      if (amount) amount.textContent = formatEuros(bill);
+
+      // Update result card
+      if (resultValue) resultValue.textContent = formatEuros(estimatedYearlySaving);
+      if (resultRange) {
+        resultRange.textContent = `Rango estimado: ${formatEuros(estimatedYearlySaving * 0.7)} – ${formatEuros(estimatedYearlySavingMax)}`;
+      }
+      if (detailYearly) detailYearly.textContent = formatEuros(yearlyBill);
+      if (detailRate) detailRate.textContent = Math.round(rate * 100) + '%';
+      if (detailMonthly) detailMonthly.textContent = formatEuros(estimatedMonthlySaving);
+    }
+
+    // Toggle buttons
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggleBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        isBusiness = btn.dataset.type === 'business';
+        calculateSavings();
+      });
+    });
+
+    // Slider input
+    slider?.addEventListener('input', calculateSavings);
+
+    // Initial calculation
+    calculateSavings();
+  })();
+</script>

@@ -764,12 +764,12 @@ import { MessageCircle, Mail, Phone, ArrowRight, ShieldCheck, Star, Lock, Sparkl
     right: 36px;
     box-shadow: 0 0 0 5px rgba(0,122,255,0.12), 0 4px 16px rgba(0,122,255,0.35);
     z-index: 5;
-    animation: dot-bounce 3s ease-in-out infinite;
+    animation: dot-float 3s ease-in-out infinite;
   }
 
-  @keyframes dot-bounce {
+  @keyframes dot-float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+    50% { transform: translateY(-3px); }
   }
 
   /* ─── Right Column: Action Cards ──────────────────────────────── */

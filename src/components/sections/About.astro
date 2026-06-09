@@ -182,7 +182,7 @@ const averageYearly = siteConfig.savings.averageYearly;
 <style>
   .about-section {
     position: relative;
-    padding: var(--section-py) 0;
+    padding: var(--section-py) 0 var(--space-24) 0;
     overflow: hidden;
     isolation: isolate;
   }
@@ -368,6 +368,7 @@ const averageYearly = siteConfig.savings.averageYearly;
     font-size: var(--text-sm);
     font-weight: var(--font-medium);
     line-height: 1.45;
+    text-wrap: pretty;
   }
 
   .profile-meta-pills {
@@ -501,6 +502,7 @@ const averageYearly = siteConfig.savings.averageYearly;
     font-size: var(--text-sm);
     line-height: 1.58;
     max-width: 54ch;
+    text-wrap: pretty;
   }
 
   .panel-list {
@@ -603,7 +605,7 @@ const averageYearly = siteConfig.savings.averageYearly;
 
   @media (max-width: 767px) {
     .about-section {
-      padding: var(--section-py-mobile) 0;
+      padding: var(--section-py-mobile) 0 var(--space-12) 0;
     }
 
     .about-grid {

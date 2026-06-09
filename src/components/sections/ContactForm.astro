@@ -172,13 +172,13 @@ import LiquidAction from '../ui/LiquidAction.astro';
 <style>
   .contact-section {
     position: relative;
-    padding: var(--section-py) 0;
+    padding: var(--space-24) 0 var(--section-py) 0;
     overflow: hidden;
   }
 
   @media (max-width: 767px) {
     .contact-section {
-      padding: var(--section-py-mobile) 0;
+      padding: var(--space-12) 0 var(--section-py-mobile) 0;
     }
   }
 
@@ -320,6 +320,13 @@ import LiquidAction from '../ui/LiquidAction.astro';
     transform: translateY(-2px);
   }
 
+  .upload-zone.drag-over {
+    border-style: solid;
+    background: rgba(0, 122, 255, 0.08);
+    box-shadow: 0 0 0 6px rgba(0, 122, 255, 0.08), 0 8px 24px rgba(0, 122, 255, 0.1);
+    transform: translateY(-3px) scale(1.01);
+  }
+
   .upload-zone:focus-within {
     border-color: var(--color-primary);
     box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.12);
@@ -360,6 +367,17 @@ import LiquidAction from '../ui/LiquidAction.astro';
     transform: translateY(-2px) scale(1.035);
     background: linear-gradient(135deg, rgba(0,122,255,0.16) 0%, rgba(90,200,250,0.08) 100%);
     box-shadow: 0 14px 30px rgba(0, 122, 255, 0.12);
+  }
+
+  .upload-zone.drag-over .upload-icon {
+    transform: translateY(-4px) scale(1.08);
+    animation: upload-bounce 0.6s var(--ease-ios-spring);
+  }
+
+  @keyframes upload-bounce {
+    0% { transform: translateY(-2px) scale(1.035); }
+    40% { transform: translateY(-6px) scale(1.12); }
+    100% { transform: translateY(-4px) scale(1.08); }
   }
 
   .upload-text {
@@ -444,7 +462,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
     cursor: pointer;
     overflow: hidden;
     letter-spacing: var(--tracking-normal);
-    transition: transform var(--duration-normal) var(--ease-ios-spring), box-shadow var(--duration-normal) var(--ease-ios);
+    transition: transform 150ms var(--ease-ios-spring), box-shadow 200ms var(--ease-ios);
     box-shadow:
       0 4px 14px rgba(0,122,255,0.32),
       0 1px 3px rgba(0,122,255,0.18),
@@ -489,7 +507,9 @@ import LiquidAction from '../ui/LiquidAction.astro';
   }
 
   :global(.submit-btn:active) {
-    transform: scale(0.97) translateY(0);
+    transform: scale(0.96) translateY(0);
+    box-shadow: 0 2px 8px rgba(0,122,255,0.32);
+    transition-duration: 80ms;
   }
 
   @keyframes shimmer-btn {
@@ -535,6 +555,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
     font-size: var(--text-sm);
     color: var(--text-tertiary);
     margin-top: var(--space-1);
+    text-wrap: pretty;
   }
 
   .form-trust svg {
@@ -552,6 +573,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
     font-size: var(--text-sm);
     color: var(--text-tertiary);
     margin-bottom: var(--space-3);
+    text-wrap: pretty;
   }
 
   .alt-links {

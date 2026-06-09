@@ -327,11 +327,12 @@ const cases = [
     height: 8px;
     border-radius: 99px;
     background: rgba(0,0,0,0.18);
-    transition: width 0.3s var(--ease-ios), background 0.3s var(--ease-ios);
+    transform: scaleX(1);
+    transition: transform 0.3s var(--ease-ios), background 0.3s var(--ease-ios);
   }
 
   .case-dots span.is-active {
-    width: 24px;
+    transform: scaleX(3);
     background: var(--ios-blue);
   }
 

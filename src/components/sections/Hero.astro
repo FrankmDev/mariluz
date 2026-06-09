@@ -367,12 +367,8 @@ import LiquidAction from '../ui/LiquidAction.astro';
   }
 
   .card-wrapper:hover .icon svg {
-    animation: icon-bounce 0.5s var(--ease-ios-spring);
-  }
-
-  @keyframes icon-bounce {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
+    transform: scale(1.08);
+    transition: transform 0.35s var(--ease-ios-spring);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -846,18 +842,9 @@ import LiquidAction from '../ui/LiquidAction.astro';
   }
 
   .line-accent {
-    background: linear-gradient(135deg, var(--blue-600) 0%, var(--blue-500) 30%, var(--cyan-400) 50%, var(--blue-500) 70%, var(--blue-600) 100%);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeUp 0.8s var(--ease-ios-decel) forwards, gradient-shift 5s ease infinite;
-    animation-delay: 0.25s, 1s;
-  }
-
-  @keyframes gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    color: var(--color-primary);
+    animation: fadeUp 0.8s var(--ease-ios-decel) forwards;
+    animation-delay: 0.25s;
   }
 
   @keyframes fadeUp {
@@ -875,6 +862,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
     letter-spacing: var(--tracking-normal);
     margin: 0 0 var(--space-8);
     max-width: 440px;
+    text-wrap: pretty;
     opacity: 0;
     transform: translateY(12px);
     animation: fadeUp 0.6s var(--ease-ios-decel) forwards;
@@ -978,9 +966,9 @@ import LiquidAction from '../ui/LiquidAction.astro';
   }
 
   :global(.cta-btn:active) {
-    transform: scale(0.97) translateY(0);
-    box-shadow: 0 3px 12px rgba(0,122,255,0.32);
-    transition-duration: 0.1s;
+    transform: scale(0.96) translateY(0);
+    box-shadow: 0 2px 10px rgba(0,122,255,0.32);
+    transition-duration: 80ms;
   }
 
   .cta-note {
@@ -991,6 +979,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
     font-size: var(--text-sm);
     color: var(--text-tertiary);
     margin: var(--space-3) 0 0;
+    text-wrap: pretty;
   }
   .cta-note svg { stroke: var(--color-primary); }
 

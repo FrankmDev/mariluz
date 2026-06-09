@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-09T00:00:00Z",
+  "title": "Design System: luzaria",
+  "extensions": {
+    "colorMeta": {
+      "liquid-glass-blue": {
+        "role": "primary",
+        "displayName": "Liquid Glass Blue",
+        "canonical": "#007AFF",
+        "tonalRamp": ["#E8F4FF", "#CCE8FF", "#99D1FF", "#66BAFF", "#33A3FF", "#007AFF", "#0062CC", "#0051D5", "#004999", "#003166"]
+      },
+      "cyan-accent": {
+        "role": "accent",
+        "displayName": "Cyan Accent",
+        "canonical": "#5AC8FA",
+        "tonalRamp": ["#E0F7FF", "#B8EEFF", "#7DD3FC", "#5AC8FA", "#34AADC", "#2A8AB0", "#1F6784", "#154558"]
+      },
+      "success-green": {
+        "role": "success",
+        "displayName": "Success Green",
+        "canonical": "#34C759",
+        "tonalRamp": ["#E8F9ED", "#D1F3DB", "#A3E7B7", "#30D158", "#34C759", "#248A3D", "#1F7A34", "#1A662B"]
+      },
+      "secondary-purple": {
+        "role": "secondary",
+        "displayName": "Secondary Purple",
+        "canonical": "#5856D6",
+        "tonalRamp": ["#F3F2FF", "#E6E4FF", "#CBC9FF", "#A5A4F0", "#5856D6", "#4B48B8", "#3D3B99", "#302E7A"]
+      },
+      "accent-orange": {
+        "role": "accent",
+        "displayName": "Accent Orange",
+        "canonical": "#FF9500",
+        "tonalRamp": ["#FFF3E0", "#FFE7C2", "#FFCF85", "#FF9F0A", "#FF9500", "#CC7700", "#995900", "#663C00"]
+      },
+      "text-primary": {
+        "role": "neutral",
+        "displayName": "Text Primary",
+        "canonical": "#000000",
+        "tonalRamp": ["#000000", "#1D1D1F", "#48484A", "#6E6E73", "#8E8E93", "#C7C7CC", "#D1D1D6", "#E5E5EA", "#F5F5F7", "#F9FAFB"]
+      },
+      "bg-secondary": {
+        "role": "neutral",
+        "displayName": "Background Secondary",
+        "canonical": "#F5F5F7",
+        "tonalRamp": ["#000000", "#1D1D1F", "#48484A", "#6E6E73", "#8E8E93", "#C7C7CC", "#D1D1D6", "#E5E5EA", "#F5F5F7", "#FFFFFF"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headlines only. Used once per page."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles and major headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles, feature headings, and sub-section headers."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Primary reading text. Max line length: 65–75ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Badges, eyebrow text, and CTAs. Uppercase, used sparingly."
+      }
+    },
+    "shadows": [
+      {
+        "name": "glass-shadow",
+        "value": "inset 0 1px 0 rgba(255, 255, 255, 0.98), inset 0 -1px 0 rgba(15, 23, 42, 0.012), 0 1px 0 rgba(255, 255, 255, 0.42)",
+        "purpose": "Default resting shadow for all glass panels. Simulates the edge of a physical glass sheet."
+      },
+      {
+        "name": "glass-hover",
+        "value": "inset 0 1px 0 rgba(255, 255, 255, 1), inset 0 -1px 0 rgba(15, 23, 42, 0.014), 0 1px 0 rgba(255, 255, 255, 0.52), 0 10px 30px rgba(15, 23, 42, 0.024)",
+        "purpose": "Applied on glass hover. Slightly deeper and more luminous."
+      },
+      {
+        "name": "glow-blue",
+        "value": "0 0 60px rgba(0, 122, 255, 0.15)",
+        "purpose": "Hero-level accent glow and CTA button ambient light."
+      },
+      {
+        "name": "glow-green",
+        "value": "0 0 60px rgba(52, 199, 89, 0.15)",
+        "purpose": "Savings-related elements and positive outcome cards."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-spring",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "purpose": "Spring-physics feel for hover and interactive transitions."
+      },
+      {
+        "name": "ease-decel",
+        "value": "cubic-bezier(0, 0, 0.2, 1)",
+        "purpose": "Smooth deceleration for scroll reveals and entrance animations."
+      },
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default state transitions and color changes."
+      },
+      {
+        "name": "duration-normal",
+        "value": "300ms",
+        "purpose": "Standard transition duration for hover and focus states."
+      },
+      {
+        "name": "duration-slow",
+        "value": "500ms",
+        "purpose": "Slower transitions for card lifts and section reveals."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "480px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main call-to-action. Used for WhatsApp contact and primary actions.",
+      "html": "<button class=\"ds-btn-primary\">Revisar mi factura<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"ds-btn-icon\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: #007AFF; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, SF Pro Text, Helvetica Neue, sans-serif; font-weight: 600; font-size: 1rem; letter-spacing: -0.02em; border: none; border-radius: 9999px; padding: 0.75rem 1.5rem; cursor: pointer; text-decoration: none; box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.25); transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), background 300ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 300ms cubic-bezier(0.34, 1.56, 0.64, 1); -webkit-tap-highlight-color: transparent; } .ds-btn-primary:hover { background: #0051D5; transform: scale(1.04); box-shadow: 0 8px 24px rgba(0, 122, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3); } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.2); } .ds-btn-icon { flex-shrink: 0; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Used for supporting actions and alternative CTAs.",
+      "html": "<button class=\"ds-btn-secondary\">Más información</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: rgba(0, 122, 255, 0.08); color: #007AFF; font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, SF Pro Text, Helvetica Neue, sans-serif; font-weight: 600; font-size: 1rem; letter-spacing: -0.02em; border: none; border-radius: 9999px; padding: 0.75rem 1.5rem; cursor: pointer; text-decoration: none; transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), background 300ms cubic-bezier(0.34, 1.56, 0.64, 1); -webkit-tap-highlight-color: transparent; } .ds-btn-secondary:hover { background: rgba(0, 122, 255, 0.15); transform: scale(1.04); } .ds-btn-secondary:active { transform: scale(0.98); } .ds-btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.2); }"
+    },
+    {
+      "name": "Glass Card",
+      "kind": "card",
+      "refersTo": "glass-card",
+      "description": "The default surface for content panels, feature cards, and info sections.",
+      "html": "<div class=\"ds-glass-card\"><div class=\"ds-glass-card__specular\"></div><div class=\"ds-glass-card__content\"><h3 class=\"ds-glass-card__title\">Revisión clara</h3><p class=\"ds-glass-card__body\">Te explico tu factura paso a paso, sin prisa y sin compromiso.</p></div></div>",
+      "css": ".ds-glass-card { position: relative; background: rgba(255, 255, 255, 0.68); backdrop-filter: blur(44px) saturate(240%) brightness(1.05); -webkit-backdrop-filter: blur(44px) saturate(240%) brightness(1.05); border: 1px solid rgba(255, 255, 255, 0.58); border-radius: 22px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.98), inset 0 -1px 0 rgba(15, 23, 42, 0.012), 0 1px 0 rgba(255, 255, 255, 0.42); overflow: hidden; transition: transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1), background 500ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 500ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateZ(0); will-change: transform; } .ds-glass-card:hover { transform: translateY(-4px); background: rgba(255, 255, 255, 0.84); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), inset 0 -1px 0 rgba(15, 23, 42, 0.014), 0 1px 0 rgba(255, 255, 255, 0.52), 0 10px 30px rgba(15, 23, 42, 0.024); } .ds-glass-card:active { transform: translateY(-1px) scale(0.992); } .ds-glass-card__specular { position: absolute; inset: 0 0 auto; height: 55%; background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.08) 65%, transparent 100%); pointer-events: none; z-index: 1; } .ds-glass-card__content { position: relative; z-index: 2; padding: 1.5rem; } .ds-glass-card__title { font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, SF Pro Text, Helvetica Neue, sans-serif; font-weight: 700; font-size: 1.375rem; line-height: 1.15; letter-spacing: -0.02em; color: #000000; margin: 0 0 0.75rem; } .ds-glass-card__body { font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, SF Pro Text, Helvetica Neue, sans-serif; font-weight: 400; font-size: 1.0625rem; line-height: 1.6; letter-spacing: -0.02em; color: #6E6E73; margin: 0; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Text input for the contact form and bill upload fields.",
+      "html": "<input type=\"text\" class=\"ds-input\" placeholder=\"Tu nombre\" />",
+      "css": ".ds-input { width: 100%; padding: 14px 1rem; font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, SF Pro Text, Helvetica Neue, sans-serif; font-size: 1rem; color: #000000; background: rgba(255, 255, 255, 0.62); border: 1px solid rgba(15, 23, 42, 0.08); border-radius: 16px; box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.02); transition: border-color 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94), background 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94); outline: none; min-height: 48px; } .ds-input::placeholder { color: #8E8E93; } .ds-input:hover { border-color: rgba(0, 122, 255, 0.22); background: rgba(255, 255, 255, 0.76); } .ds-input:focus { border-color: #007AFF; background: rgba(255, 255, 255, 0.9); box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1), inset 0 1px 2px rgba(15, 23, 42, 0.02); } .ds-input:focus-visible { outline: none; }"
+    },
+    {
+      "name": "Blue Badge",
+      "kind": "chip",
+      "refersTo": "badge-blue",
+      "description": "Small inline label for status, categories, and trust signals.",
+      "html": "<span class=\"ds-badge\">Revisión gratuita</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.75rem; font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, SF Pro Text, Helvetica Neue, sans-serif; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; border-radius: 9999px; background: #E8F4FF; border: 1px solid rgba(0, 122, 255, 0.15); color: #007AFF; }"
+    },
+    {
+      "name": "Green Badge",
+      "kind": "chip",
+      "refersTo": "badge-green",
+      "description": "Savings and positive-outcome indicator.",
+      "html": "<span class=\"ds-badge-green\">Ahorro confirmado</span>",
+      "css": ".ds-badge-green { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.75rem; font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, SF Pro Text, Helvetica Neue, sans-serif; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; border-radius: 9999px; background: #E8F9ED; border: 1px solid rgba(52, 199, 89, 0.15); color: #34C759; }"
+    },
+    {
+      "name": "Navigation Pill",
+      "kind": "nav",
+      "refersTo": "nav-pill",
+      "description": "Fixed top navigation bar with glass treatment.",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav__inner\"><span class=\"ds-nav__brand\">luzaria</span><a href=\"#\" class=\"ds-nav__link\">Cómo funciona</a><a href=\"#\" class=\"ds-nav__link\">Contacto</a></div></nav>",
+      "css": ".ds-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 0.75rem 1rem; } .ds-nav__inner { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0.5rem 1rem; border-radius: 9999px; background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(28px) saturate(200%) brightness(1.03); -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.03); border: 1px solid rgba(255, 255, 255, 0.58); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.96), 0 2px 8px rgba(0, 0, 0, 0.04); } .ds-nav__brand { font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, SF Pro Text, Helvetica Neue, sans-serif; font-weight: 700; font-size: 1.125rem; letter-spacing: -0.02em; color: #000000; } .ds-nav__link { font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, SF Pro Text, Helvetica Neue, sans-serif; font-weight: 500; font-size: 0.875rem; color: #6E6E73; text-decoration: none; transition: color 150ms ease; } .ds-nav__link:hover { color: #007AFF; }"
+    },
+    {
+      "name": "Icon Tile (Blue)",
+      "kind": "custom",
+      "refersTo": "icon-tile-blue",
+      "description": "Small icon container used inside feature cards and info sections.",
+      "html": "<div class=\"ds-icon-tile\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10\"/></svg></div>",
+      "css": ".ds-icon-tile { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 18px; flex-shrink: 0; background: linear-gradient(135deg, rgba(0, 122, 255, 0.18) 0%, rgba(0, 122, 255, 0.06) 100%); border: 1px solid rgba(0, 122, 255, 0.2); color: #007AFF; transition: transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-icon-tile:hover { transform: translateY(-2px) scale(1.045); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Liquid Light System",
+    "overview": "The luzaria design system is a warm, transparent interface that embodies the honesty of a personal energy advisor. Every surface behaves like light passing through polished glass: luminous, refractive, and impossible to hide behind. The aesthetic is unmistakably Apple-inspired — liquid glass panels, spring-physics interactions, and a cool-but-approachable palette — but the voice is human, not corporate. The glass metaphor is not decorative; it is the core argument of the brand: transparency, literally.",
+    "keyCharacteristics": [
+      "Cool-neutral palette with a single saturated blue accent (Liquid Glass Blue)",
+      "Glass-morphism as the dominant surface treatment, not an occasional flourish",
+      "SF Pro Display / Text system stack: native, premium, readable",
+      "Spring-physics micro-interactions (cubic-bezier(0.34, 1.56, 0.64, 1))",
+      "Mobile-first confidence: the design feels native on phones",
+      "Honesty-first hierarchy: the 'no saving = no change' message is central, not a footnote"
+    ],
+    "rules": [
+      {
+        "name": "The Transparency-First Rule",
+        "body": "Glass panels are the default surface, not a special effect. If a section doesn't use glass, it needs a reason. The background is always visible through the surface.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One-Accent Rule",
+        "body": "Liquid Glass Blue is the only saturated color on any given screen. Green, purple, and orange appear only in their functional contexts. Never combine them decoratively.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single-Voice Rule",
+        "body": "One font family carries every role. Do not introduce a second typeface for 'contrast' or 'personality.' The personality lives in the glass and the motion, not in the typography.",
+        "section": "typography"
+      },
+      {
+        "name": "The Glass-Default Rule",
+        "body": "Surfaces are glass at rest. Cards, panels, pills, and input fields all use the glass treatment. Flat white is reserved only for the absolute base canvas.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No-Harsh-Shadows Rule",
+        "body": "Never use a shadow with a blur radius greater than 16px and an opacity greater than 0.12. The depth is in the blur and the highlight, not in a dark drop shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use glass panels as the default surface for cards, sections, and inputs.",
+      "Do include a specular highlight on every glass surface (top 55%, gradient from white to transparent).",
+      "Do use Liquid Glass Blue (#007AFF) as the only saturated accent on any screen.",
+      "Do use spring-physics easing (cubic-bezier(0.34, 1.56, 0.64, 1)) for hover and entrance animations.",
+      "Do keep the background a cool gray (#F5F5F7), never warm beige or cream.",
+      "Do use the single SF Pro / system font stack for all typography.",
+      "Do ensure body text stays within 65–75ch line length.",
+      "Do include visible focus-visible rings on all interactive elements."
+    ],
+    "donts": [
+      "Don't use border-left or border-right greater than 1px as a colored accent on cards or callouts.",
+      "Don't use gradient text (background-clip: text) for headings.",
+      "Don't use glassmorphism as a decorative flourish on an otherwise flat surface.",
+      "Don't use the hero-metric template (big number + small label + gradient accent).",
+      "Don't create identical card grids with icon + heading + text repeated endlessly.",
+      "Don't put tiny uppercase tracked eyebrows above every section.",
+      "Don't use numbered section markers (01 / 02 / 03) as default scaffolding.",
+      "Don't use border-radius greater than 28px on cards or panels.",
+      "Don't pair a 1px border with a soft wide drop shadow (blur >= 16px) on the same element.",
+      "Don't use corporate stock photos, handshakes, or generic 'professional' imagery.",
+      "Don't use all-caps for body copy or sentences.",
+      "Don't use marketing buzzwords: streamline, empower, supercharge, unleash, transform, seamless, world-class, enterprise-grade, next-generation, cutting-edge, game-changer, mission-critical.",
+      "Don't use em dashes (—) or double hyphens (--) in copy.",
+      "Don't default to dark mode without a reason. The system is light-first."
+    ]
+  }
+}

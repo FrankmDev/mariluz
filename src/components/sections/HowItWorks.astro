@@ -176,10 +176,16 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
     left: 0;
     top: 0;
     height: 100%;
-    width: 0%;
+    width: 100%;
     background: linear-gradient(90deg, var(--ios-blue), #5AC8FA);
     border-radius: 1px;
-    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .line-progress.visible {
+    transform: scaleX(1);
   }
 
   .line-dot {
@@ -193,7 +199,7 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
     border-radius: 50%;
     box-shadow: 0 0 0 2.5px var(--ios-blue), 0 0 16px rgba(0,122,255,0.35);
     opacity: 0;
-    transition: opacity 0.4s ease, left 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 0.4s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .line-progress.visible + .line-dot {
@@ -360,7 +366,7 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
     top: var(--space-6);
     right: var(--space-6);
     font-family: var(--font-display);
-    font-size: clamp(5rem, 10vw, 7rem);
+    font-size: clamp(5rem, 10vw, 6rem);
     font-weight: var(--font-extrabold);
     line-height: 1;
     letter-spacing: var(--tracking-tighter);
@@ -410,6 +416,7 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
     font-weight: var(--font-semibold);
     color: var(--text-secondary);
     letter-spacing: var(--tracking-wide);
+    text-wrap: pretty;
   }
 
   .card-blue .meta-tag   { background: rgba(0,122,255,0.07); color: var(--ios-blue); border-color: rgba(0,122,255,0.1); }
@@ -425,6 +432,7 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
     color: var(--text-primary);
     margin: 0;
     line-height: var(--leading-snug);
+    text-wrap: balance;
   }
 
   /* Description */
@@ -434,6 +442,7 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
     color: var(--text-secondary);
     margin: 0;
     max-width: 280px;
+    text-wrap: pretty;
   }
 
   /* ============================================
@@ -579,10 +588,10 @@ const tintMap: Record<string, { bg: string; glow: string; line: string }> = {
       ));
 
       const width = scrollProgress * 100;
-      lineProgress.style.width = `${width}%`;
+      lineProgress.style.transform = `scaleX(${scrollProgress})`;
 
       if (lineDot) {
-        lineDot.style.left = `${width}%`;
+        lineDot.style.transform = `translate(calc(-50% + ${width}% - 50%), -50%)`;
       }
 
       if (scrollProgress > 0.05) {
