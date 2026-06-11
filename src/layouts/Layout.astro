@@ -29,24 +29,33 @@ const {
 } = Astro.props;
 
 const baseUrl = siteConfig.meta.canonical.replace(/\/$/, '');
-const pagePath = Astro.url.pathname.replace(/\/$/, '');
-const selfCanonical = pagePath === '/' ? baseUrl : `${baseUrl}${pagePath}`;
+const pathname = Astro.url.pathname;
+const pagePath = pathname === '/' ? '/' : `${pathname.replace(/\/$/, '')}/`;
+const selfCanonical = pagePath === '/' ? `${baseUrl}/` : `${baseUrl}${pagePath}`;
 const resolvedCanonical = canonical || selfCanonical;
+const siteUrl = `${baseUrl}/`;
+const isHomePage = pagePath === '/';
 
 const fullTitle = title === siteConfig.meta.title ? title : `${title} | ${siteConfig.name}`;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
+const logoUrl = `${baseUrl}/favicon.svg`;
+const businessId = `${siteUrl}#business`;
+const websiteId = `${siteUrl}#website`;
+const organizationId = `${siteUrl}#organization`;
+const serviceId = `${siteUrl}#service`;
+const webPageId = `${resolvedCanonical}#webpage`;
 
 // Enhanced LocalBusiness Schema
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "Service", "ProfessionalService"],
-  "@id": `${siteConfig.meta.canonical}/#business`,
+  "@type": ["LocalBusiness", "ProfessionalService"],
+  "@id": businessId,
   "name": siteConfig.name,
-  "description": description,
-  "url": siteConfig.meta.canonical,
+  "description": siteConfig.meta.description,
+  "url": siteUrl,
   "logo": {
     "@type": "ImageObject",
-    "url": `${siteConfig.meta.canonical}/favicon.svg`,
+    "url": logoUrl,
     "width": 512,
     "height": 512
   },
@@ -89,6 +98,7 @@ const localBusinessSchema = {
   },
   "founder": {
     "@type": "Person",
+    "@id": `${siteUrl}#mariluz-marin`,
     "name": siteConfig.advisor.name,
     "jobTitle": siteConfig.advisor.title,
     "knowsAbout": ["Energía", "Tarifas eléctricas", "Revisión de facturas de luz"]
@@ -103,10 +113,13 @@ const localBusinessSchema = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": `${siteConfig.meta.canonical}/#service`,
+  "@id": serviceId,
+  "name": "Revisión gratuita de factura de luz",
   "serviceType": "Asesoramiento Energético",
+  "description": siteConfig.business.serviceType,
+  "url": siteUrl,
   "provider": {
-    "@id": `${siteConfig.meta.canonical}/#business`
+    "@id": businessId
   },
   "areaServed": {
     "@type": "Country",
@@ -144,7 +157,7 @@ const serviceSchema = {
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": `${siteConfig.meta.canonical}/#faq`,
+  "@id": `${siteUrl}#faq`,
   "mainEntity": faqData.map(faq => ({
     "@type": "Question",
     "name": faq.question,
@@ -159,21 +172,13 @@ const faqSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": `${siteConfig.meta.canonical}/#website`,
-  "url": siteConfig.meta.canonical,
+  "@id": websiteId,
+  "url": siteUrl,
   "name": siteConfig.name,
-  "description": description,
+  "description": siteConfig.meta.description,
   "inLanguage": "es-ES",
   "publisher": {
-    "@id": `${siteConfig.meta.canonical}/#business`
-  },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": `${siteConfig.meta.canonical}/?q={search_term_string}`
-    },
-    "query-input": "required name=search_term_string"
+    "@id": organizationId
   }
 };
 
@@ -186,21 +191,30 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Inicio",
-      "item": siteConfig.meta.canonical
+      "item": siteUrl
     }
   ]
 };
+
+if (!isHomePage) {
+  breadcrumbSchema.itemListElement.push({
+    "@type": "ListItem",
+    "position": 2,
+    "name": title,
+    "item": resolvedCanonical
+  });
+}
 
 // Organization Schema for brand recognition
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": `${siteConfig.meta.canonical}/#organization`,
+  "@id": organizationId,
   "name": siteConfig.name,
-  "url": siteConfig.meta.canonical,
+  "url": siteUrl,
   "logo": {
     "@type": "ImageObject",
-    "url": `${siteConfig.meta.canonical}/favicon.svg`,
+    "url": logoUrl,
     "width": 512,
     "height": 512
   },
@@ -216,8 +230,36 @@ const organizationSchema = {
   "knowsAbout": ["Revisión de facturas de luz", "Tarifas eléctricas", "Eficiencia energética"]
 };
 
+// WebPage Schema
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": webPageId,
+  "url": resolvedCanonical,
+  "name": fullTitle,
+  "description": description,
+  "inLanguage": "es-ES",
+  "isPartOf": {
+    "@id": websiteId
+  },
+  "publisher": {
+    "@id": organizationId
+  },
+  "about": {
+    "@id": serviceId
+  },
+  "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": ogImageUrl,
+    "width": 1200,
+    "height": 630
+  }
+};
+
 // Combine all schemas
-const allSchemas = [websiteSchema, localBusinessSchema, serviceSchema, faqSchema, breadcrumbSchema, organizationSchema];
+const allSchemas = isHomePage
+  ? [websiteSchema, organizationSchema, localBusinessSchema, serviceSchema, webPageSchema, faqSchema, breadcrumbSchema]
+  : [websiteSchema, organizationSchema, localBusinessSchema, serviceSchema, webPageSchema, breadcrumbSchema];
 ---
 
 <!doctype html>
@@ -229,7 +271,7 @@ const allSchemas = [websiteSchema, localBusinessSchema, serviceSchema, faqSchema
 		<!-- Performance Optimizations -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+		<link rel="sitemap" type="application/xml" href={`${siteUrl}sitemap-index.xml`} />
 
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -243,6 +285,7 @@ const allSchemas = [websiteSchema, localBusinessSchema, serviceSchema, faqSchema
 		<meta name="description" content={description} />
 		<meta name="keywords" content={keywords} />
 		<meta name="author" content={siteConfig.meta.author} />
+		<meta name="publisher" content={siteConfig.name} />
 		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'} />
 		<meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'} />
 

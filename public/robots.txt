@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# URLs de confirmación o privadas que no deben indexarse
+Disallow: /gracias/
+
+# Sitemap canónico
 Sitemap: https://luzaria.es/sitemap-index.xml

@@ -4,3 +4,7 @@ https://www.luzaria.es/*  https://luzaria.es/:splat  301!
 # Force HTTPS
 http://luzaria.es/*  https://luzaria.es/:splat  301!
 http://www.luzaria.es/*  https://luzaria.es/:splat  301!
+
+# Normalize legacy/non-canonical project domains to luzaria.es
+https://mariluz.netlify.app/*  https://luzaria.es/:splat  301!
+http://mariluz.netlify.app/*  https://luzaria.es/:splat  301!
