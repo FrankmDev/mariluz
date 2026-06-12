@@ -351,6 +351,9 @@ const allSchemas = isHomePage
 		<!-- Skip to content for accessibility -->
 		<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 		
+		<!-- Scroll progress (Apple-style top hairline) -->
+		<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+		
 		<!-- Global Unified Background -->
 		<div class="global-background" aria-hidden="true">
 			<div class="bg-base"></div>
@@ -360,6 +363,7 @@ const allSchemas = isHomePage
 			<div class="bg-orb orb-4"></div>
 			<div class="bg-orb orb-5"></div>
 			<div class="bg-noise"></div>
+			<div class="bg-grid" aria-hidden="true"></div>
 		</div>
 
 
@@ -542,8 +546,21 @@ const allSchemas = isHomePage
 				position: absolute;
 				inset: 0;
 				background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-				opacity: 0.008;
+				opacity: 0.012;
 				mix-blend-mode: overlay;
+			}
+
+			/* Subtle grid pattern overlay — barely visible, just adds depth */
+			.bg-grid {
+				position: absolute;
+				inset: 0;
+				background-image:
+					linear-gradient(rgba(15, 23, 42, 0.018) 1px, transparent 1px),
+					linear-gradient(90deg, rgba(15, 23, 42, 0.018) 1px, transparent 1px);
+				background-size: 80px 80px;
+				mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 80%);
+				-webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 80%);
+				pointer-events: none;
 			}
 
 			@media (prefers-reduced-motion: reduce) {
@@ -588,6 +605,20 @@ const allSchemas = isHomePage
 					}
 				}, { passive: true });
 			}
+
+			// Scroll progress (Apple-style top hairline)
+			const scrollProgress = document.getElementById('scroll-progress');
+			const docEl = document.documentElement;
+			const updateProgress = () => {
+				if (!scrollProgress) return;
+				const scrollTop = window.scrollY || docEl.scrollTop;
+				const scrollHeight = docEl.scrollHeight - docEl.clientHeight;
+				const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+				scrollProgress.style.setProperty('--scroll-progress', `${Math.min(100, progress)}%`);
+			};
+			window.addEventListener('scroll', updateProgress, { passive: true });
+			window.addEventListener('resize', updateProgress, { passive: true });
+			updateProgress();
 
 			// Pause CSS animations when tab is hidden to save GPU
 			document.addEventListener('visibilitychange', () => {

@@ -109,8 +109,15 @@ import LiquidAction from '../ui/LiquidAction.astro';
     </div>
 
     <h1 class="headline reveal stagger-2" itemprop="headline">
-      <span class="line line-1">Reviso tu factura.</span>
-      <span class="line line-accent">Tú decides.</span>
+      <span class="line line-1">
+        <span class="word" style="--i: 0">Reviso</span>{' '}
+        <span class="word" style="--i: 1">tu</span>{' '}
+        <span class="word" style="--i: 2">factura.</span>
+      </span>
+      <span class="line line-accent">
+        <span class="word" style="--i: 3">Tú</span>{' '}
+        <span class="word" style="--i: 4">decides.</span>
+      </span>
     </h1>
 
     <p class="subhead reveal stagger-3">
@@ -126,7 +133,10 @@ import LiquidAction from '../ui/LiquidAction.astro';
         bgClass="cta-btn-bg"
       >
         <MessageCircle size={20} fill="currentColor" style="position:relative;z-index:1" aria-hidden="true" />
-        <span style="position:relative;z-index:1">Solicitar revisión gratuita</span>
+        <span class="cta-btn-text" style="position:relative;z-index:1">Solicitar revisión gratuita</span>
+        <span class="cta-btn-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
       </LiquidAction>
       <p class="cta-note">
         <Clock size={12} aria-hidden="true" />
@@ -152,7 +162,15 @@ import LiquidAction from '../ui/LiquidAction.astro';
         Estudio gratuito
       </span>
     </div>
+
   </div>
+
+  <!-- Minimal scroll-line at the very bottom -->
+  <a href="#como-funciona" class="scroll-line" aria-label="Desplázate hacia abajo para ver más">
+    <span class="scroll-line-track" aria-hidden="true">
+      <span class="scroll-line-dot"></span>
+    </span>
+  </a>
 
 </section>
 
@@ -831,20 +849,31 @@ import LiquidAction from '../ui/LiquidAction.astro';
     line-height: 1.05;
     text-wrap: balance;
     overflow-wrap: break-word;
+  }
+
+  .word {
+    display: inline-block;
     opacity: 0;
-    transform: translateY(18px);
-    animation: fadeUp 0.8s var(--ease-ios-decel) forwards;
+    transform: translateY(0.55em) scale(0.96);
+    filter: blur(6px);
+    animation: wordRise 0.7s var(--ease-ios-decel) forwards;
+    animation-delay: calc(0.15s + var(--i) * 80ms);
+  }
+
+  @keyframes wordRise {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
   }
 
   .line-1 {
     color: var(--text-primary);
-    animation-delay: 0.1s;
   }
 
   .line-accent {
     color: var(--color-primary);
-    animation: fadeUp 0.8s var(--ease-ios-decel) forwards;
-    animation-delay: 0.25s;
   }
 
   @keyframes fadeUp {
@@ -900,7 +929,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
     text-decoration: none;
     overflow: hidden;
     letter-spacing: var(--tracking-normal);
-    transition: transform var(--duration-normal) var(--ease-ios-spring), box-shadow var(--duration-normal) var(--ease-ios);
+    transition: transform var(--duration-normal) var(--ease-ios-spring), box-shadow var(--duration-normal) var(--ease-ios), padding var(--duration-normal) var(--ease-ios);
     box-shadow:
       0 4px 14px rgba(0,122,255,0.32),
       0 1px 3px rgba(0,122,255,0.18),
@@ -908,6 +937,34 @@ import LiquidAction from '../ui/LiquidAction.astro';
     will-change: transform;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  :global(.cta-btn-arrow) {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateX(-6px);
+    transition:
+      width 0.4s var(--ease-ios-spring),
+      opacity 0.3s var(--ease-ios),
+      transform 0.4s var(--ease-ios-spring),
+      margin 0.3s var(--ease-ios);
+  }
+
+  :global(.cta-btn:hover .cta-btn-arrow) {
+    width: 16px;
+    opacity: 1;
+    transform: translateX(0);
+    margin-left: 2px;
+  }
+
+  :global(.cta-btn:hover) {
+    padding-right: 30px;
   }
 
   :global(.cta-btn:focus-visible) {
@@ -1079,6 +1136,68 @@ import LiquidAction from '../ui/LiquidAction.astro';
     stroke: none;
   }
 
+  /* ─── Scroll line ────────────────────────────────────────────── */
+  .scroll-line {
+    position: absolute;
+    bottom: clamp(24px, 5vh, 44px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1px;
+    height: 56px;
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeUp 0.8s var(--ease-ios-decel) forwards;
+    animation-delay: 1s;
+  }
+
+  .scroll-line-track {
+    position: relative;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 122, 255, 0.25) 18%,
+      rgba(0, 122, 255, 0.55) 60%,
+      rgba(0, 122, 255, 0.15) 100%
+    );
+    overflow: hidden;
+    border-radius: 1px;
+  }
+
+  .scroll-line-dot {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 18px;
+    background: linear-gradient(180deg, rgba(0, 122, 255, 0.95) 0%, rgba(0, 122, 255, 0) 100%);
+    box-shadow: 0 0 6px rgba(0, 122, 255, 0.7);
+    animation: scroll-line-pulse 2.2s var(--ease-ios) infinite;
+  }
+
+  @keyframes scroll-line-pulse {
+    0%   { transform: translateX(-50%) translateY(-12%); opacity: 0; }
+    18%  { opacity: 1; }
+    72%  { transform: translateX(-50%) translateY(180%); opacity: 1; }
+    100% { transform: translateX(-50%) translateY(180%); opacity: 0; }
+  }
+
+  .scroll-line:hover .scroll-line-track {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 122, 255, 0.4) 18%,
+      rgba(0, 122, 255, 0.8) 60%,
+      rgba(0, 122, 255, 0.25) 100%
+    );
+  }
+
   /* ─── Responsive ─────────────────────────────────────────────── */
   @media (max-width: 1199px) and (min-width: 992px) {
     .float-card { display: none; }
@@ -1167,6 +1286,7 @@ import LiquidAction from '../ui/LiquidAction.astro';
     }
     .eyebrow { padding: var(--space-1) var(--space-3); gap: var(--space-1); flex-wrap: wrap; justify-content: center; }
     .eyebrow-free { font-size: var(--text-sm); gap: 3px; }
+    .scroll-line { display: none; }
   }
 
   @media (max-width: 360px) {
@@ -1184,16 +1304,22 @@ import LiquidAction from '../ui/LiquidAction.astro';
     :global(.cta-btn-bg),
     :global(.cta-btn::before),
     .line-accent,
-    .eyebrow {
+    .eyebrow,
+    .word,
+    .scroll-line,
+    .scroll-line-dot {
       animation: none !important;
     }
     .line,
+    .word,
     .subhead,
     .cta-group,
     .trust,
-    .eyebrow {
+    .eyebrow,
+    .scroll-line {
       opacity: 1 !important;
       transform: none !important;
+      filter: none !important;
     }
     .float-card {
       opacity: 1;

@@ -293,15 +293,17 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Selection color */
+/* Selection color — Apple blue tint */
 ::selection {
-  background: rgba(0, 122, 255, 0.18);
+  background: rgba(0, 122, 255, 0.20);
   color: var(--text-primary);
+  text-shadow: 0 0 1px rgba(0, 122, 255, 0.15);
 }
 
-/* Scrollbar styling */
+/* Scrollbar — refined, thinner & floating */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -309,16 +311,30 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(15, 23, 42, 0.10);
   border-radius: 999px;
-  border: 2px solid transparent;
+  border: 2.5px solid transparent;
   background-clip: padding-box;
+  transition: background 200ms var(--ease-ios);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.22);
-  border: 2px solid transparent;
+  background: rgba(15, 23, 42, 0.22);
   background-clip: padding-box;
+  border: 2.5px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 122, 255, 0.40);
+  background-clip: padding-box;
+  border: 2.5px solid transparent;
+}
+
+@supports (scrollbar-width: thin) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(15, 23, 42, 0.18) transparent;
+  }
 }
 
 body {
@@ -338,6 +354,22 @@ body {
   overflow-wrap: break-word;
   -webkit-hyphens: auto;
   hyphens: auto;
+  animation: body-fade-in 0.9s var(--ease-ios-decel) both;
+}
+
+@keyframes body-fade-in {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
 }
 
 /* ============================================
@@ -1182,6 +1214,47 @@ body {
 }
 
 /* ============================================
+   SCROLL PROGRESS — Apple-style top hairline
+   ============================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 9999;
+  pointer-events: none;
+  background: transparent;
+  overflow: hidden;
+}
+
+.scroll-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--scroll-progress, 0%);
+  background: linear-gradient(90deg,
+    rgba(0, 122, 255, 0.0) 0%,
+    rgba(0, 122, 255, 0.85) 12%,
+    rgba(90, 200, 250, 1) 50%,
+    rgba(0, 122, 255, 0.85) 88%,
+    rgba(0, 122, 255, 0.0) 100%
+  );
+  box-shadow:
+    0 0 8px rgba(0, 122, 255, 0.55),
+    0 0 18px rgba(90, 200, 250, 0.35);
+  transform-origin: left;
+  transition: width 80ms linear;
+  will-change: width;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress::after { transition: none; }
+}
+
+/* ============================================
    SCROLL REVEAL — Premium Animation
    ============================================ */
 
@@ -1329,9 +1402,21 @@ body {
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.015;
+  opacity: 0.022;
   mix-blend-mode: overlay;
   pointer-events: none;
+  z-index: 0;
+}
+
+.noise-overlay-refined {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
 }
 
 /* ============================================
